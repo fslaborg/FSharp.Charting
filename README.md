@@ -1,9 +1,25 @@
-# FSharpChart: A Charting Library for F#
+# FSharpChart: An F# Charting Library
 
 The FSharpChart library (`FSharpChart.dll`) implements charting suitable for use from F# scripting.
 
 For now this is a Windows-only library. The scope of this library may be increased in the 
 future to include cross-platform and web page charting.
+
+## Features
+
+* Many chart types: Area, Bar, BoxPlot, Bubble, Candlestick, Column, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi, Line and more
+* 2D and pseudo-3D charting 
+* Create charts from F# data
+* Use either fluent or pipelined chart specifications
+* Updating 'LiveChart' charts - create charts from observables
+
+## Versions
+
+Please use a stable version where necessary.
+
+* 0.6 - the version that roughly corresponds to the MSDN documentation
+* 0.8 - an interim version that uses the updated 'fluent' operators
+* head - an interim version based on 0.8 that includes LiveChart, fluent operators and pipelined operators
 
 ## Documentation 
 

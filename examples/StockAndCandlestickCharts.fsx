@@ -32,6 +32,11 @@ stock prices from the Yahoo Finance portal using F# can be found in [Try F#](htt
 
 Figure 1 visualizes the data set using a candlestick chart.
 
+<div>
+    <img src="images/IC523409.png" alt="Sample Financial Chart">
+</div>
+
+
 A stock or a candlestick chart can be created using the FSharpChart.Stock and FSharpChart.Candlestick functions. Financial charts for 
 visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price). 
 When calling the functions, it is possible to specify the values as a collection 

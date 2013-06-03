@@ -1,4 +1,4 @@
-#load "../../bin/FSharp.Charting.fsx"
+#load "../bin/FSharp.Charting.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting
@@ -40,21 +40,6 @@ Chart.Line(timeSeriesData)
 Chart.Line(data)
 
 Chart.Line [ for x in 0 .. 100 -> (x,x*x) ]
-
-
-Chart.BoxPlotFromData
-  ( [ DateTime.Today, [| for i in 0 .. 20 -> float (rnd.Next 20) |]
-      DateTime.Today, [| for i in 0 .. 20 -> float (rnd.Next 15 + 2) |]
-      DateTime.Today, [| for i in 0 .. 20 -> float (rnd.Next 10 + 5) |] ],
-    ShowUnusualValues = true, ShowMedian = false,
-    ShowAverage = false, WhiskerPercentile = 10)
-
-Chart.BoxPlotFromData
-  ( [ 1, [| for i in 0 .. 20 -> float (rnd.Next 20) |]
-      2, [| for i in 0 .. 20 -> float (rnd.Next 15 + 2) |]
-      3, [| for i in 0 .. 20 -> float (rnd.Next 10 + 5) |] ],
-    ShowUnusualValues = true, ShowMedian = false,
-    ShowAverage = false, WhiskerPercentile = 10)
 
 Chart.Line
   ( [ (DateTime.Now             , 10);

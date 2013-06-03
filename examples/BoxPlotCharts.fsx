@@ -10,6 +10,10 @@ that define the boxplot data, or to infer these statistics from a set of values 
 the boxplot diagram automatically. Figure 1 shows a chart series showing three boxplot 
 diagrams calculated from randomly generated data.
 
+<div>
+    <img src="images/IC523398.png" alt="Sample BoxPlot Chart">
+</div>
+
 A boxplot diagram shows six basic statistics about a set of observations. It displays the 
 dataset' minimum and maximum, the upper and lower quartiles, the average value. and the 
 median. When the F# script calculates these six statistics, the values can be passed to 
@@ -22,8 +26,8 @@ to draw multiple boxplots.
 open FSharp.Charting
 open System
 
-Chart.BoxPlotFromStatistics 
-  ( [ ("Result A", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
+Chart.BoxPlotFromStatistics( 
+    [ ("Result A", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
       ("Result B", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
 
 (**
@@ -31,8 +35,8 @@ Here is the same box plot with dates used as labels. These must be explicitly fo
 
 *)
 
-Chart.BoxPlotFromStatistics 
-  ( [ (DateTime.Today.ToShortDateString()             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
+Chart.BoxPlotFromStatistics(
+    [ (DateTime.Today.ToShortDateString()             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
       (DateTime.Today.AddDays(1.0).ToShortDateString(), -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ],
     ShowMedian = false, ShowAverage = false)
 

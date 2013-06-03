@@ -5,6 +5,10 @@
 
 This example looks at how to create bar and column charts from F#. The input data in this example is an F# list of tuples containing continent names and total populations. The article demonstrates how to display a bar/column chart with names of continents as labels and the population as the value. A sample bar chart is shown in Figure 1.
 
+<div>
+    <img src="images/IC523396.png" alt="Sample Bar Chart">
+</div>
+
 A bar or a column chart can be created using the Chart.Column and Chart.Bar functions. 
 
 All functions are overloaded and can be called with various types of parameters. When called with a list 

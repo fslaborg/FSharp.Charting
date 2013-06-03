@@ -28,8 +28,6 @@ that group the projects in the main logical groups:
    to edit the documentation!
 
 
-## Source code
-
 
 ## Documentation
 
@@ -38,11 +36,19 @@ The documentation for the FSharp.Charting library is automatically generated usi
 `*.md` (Markdown with embedded code snippets) and `*.fsx` files (F# script file with 
 embedded Markdown documentation) to a nice HTML documentation.
 
- * The code for all the documents can be found in the `examples` directory
+ * The template for the pages is in the `tools` directory
+   [on GitHub](https://github.com/fsharp/FSharp.Charting/tree/master/tools).
+
+ * The code for all the documents (including this one) can be found in the `examples` directory
    [on GitHub](https://github.com/fsharp/FSharp.Charting/tree/master/examples). If you 
    find a bug or add a new feature, make sure you document it!
 
+ * Images are not automatically generated - just use 'Save Image As' on a chart and add the PNG to the 'images' folder.
+ 
  * If you want to build the documentation, simply run the `build.fsx` script
    ([GitHub link](https://github.com/fsharp/FSharp.Charting/blob/master/tools/build.fsx)) which
    builds the documentation.
+ 
+ * The final documentation will be pushed to the 'gh-pages' branch by the maintainers of the 'fsharp' 
+   repository for the library. 
 

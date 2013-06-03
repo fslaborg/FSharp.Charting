@@ -1,8 +1,8 @@
-# FSharpChart: An F# Charting Library
+# FSharp.Charting: An F# Charting Library
 
-The FSharpChart library (`FSharpChart.dll`) implements charting suitable for use from F# scripting.
+The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable for use from F# scripting.
 
-See https://fsharp.gitub.io/FSharp.Chart/.
+See http://fsharp.github.io/FSharp.Chart/.
 
 ## Library license
 

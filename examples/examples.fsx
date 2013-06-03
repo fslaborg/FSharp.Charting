@@ -9,12 +9,12 @@
 // You must not remove this notice, or any other, from this software.
 //----------------------------------------------------------------------------
 
-#I ".."
-#load "../FSharpChart-load.fsx"
+#I "../src"
+#load "../src/FSharp.Charting-load.fsx"
 #load "EventEx-0.1.fsx"
 
 
-open Samples.FSharp.Charting
+open FSharp.Charting
 open System
 open System.Drawing
 

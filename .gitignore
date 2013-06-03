@@ -1,0 +1,5 @@
+bin/*
+*.suo
+nuget/*
+packages/*
+TestResults.xml

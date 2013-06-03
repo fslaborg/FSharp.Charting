@@ -42,7 +42,18 @@
 very large number of points or lines, it is better to use Chart.FastLine and Chart.FastPoint. These are special types 
 of charts that do not support as many visual features, but are more efficient.</p>
 
+<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
+invokes a handler that automatically shows the created chart.</p>
+
 <h2>A Simple Line Chart</h2>
+
+<p>The following example calls the Chart.Line function with a list of X and Y values as tuples. The snippet generates 
+values of a simple function, f(x)=x^2. The values of the function are generated for x ranging from 1 to 100. The chart generated is 
+shown below.</p>
+
+<div>
+    <img src="images/Squares.png" alt="Line Chart">
+</div>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -63,13 +74,7 @@ of charts that do not support as many visual features, but are more efficient.</
 <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">Line</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">x</span> <span class="k">in</span> <span class="n">1.0</span> <span class="o">..</span> <span class="n">100.0</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">x</span>, <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">x</span> <span class="o">**</span> <span class="n">2.0</span>) ]</pre>
 </td>
 </tr>
-</table><p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
-invokes a handler that automatically shows the created chart.</p>
-
-<p>The above example calls the Chart.Line function with a list of X and Y values as tuples. The snippet generates 
-values of a simple function, f(x)=x^2. The values of the function are generated for x ranging from 1 to 100.</p>
-
-<h2>Pipelining into Line.Chart</h2>
+</table><h2>Pipelining into Line.Chart</h2>
 
 <p>The following example generates a list containing both X and Y values.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">

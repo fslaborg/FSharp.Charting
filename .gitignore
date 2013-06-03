@@ -1,6 +1,8 @@
 src/bin/*
 src/obj/*
+src/AssemblyInfo.fs
 bin/*
+docs/*
 tests/bin/*
 tests/obj/*
 *.suo

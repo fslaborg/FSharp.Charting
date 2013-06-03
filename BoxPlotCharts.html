@@ -65,8 +65,8 @@ to draw multiple boxplots.</p>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
 
-<span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">BoxPlotFromStatistics</span> 
-  ( [ (<span class="s">&quot;</span><span class="s">Result</span><span class="s"> </span><span class="s">A</span><span class="s">&quot;</span>, <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
+<span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">BoxPlotFromStatistics</span>( 
+    [ (<span class="s">&quot;</span><span class="s">Result</span><span class="s"> </span><span class="s">A</span><span class="s">&quot;</span>, <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
       (<span class="s">&quot;</span><span class="s">Result</span><span class="s"> </span><span class="s">B</span><span class="s">&quot;</span>, <span class="o">-</span><span class="n">6.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">5.0</span>, <span class="n">5.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) ])</pre>
 </td>
 </tr>
@@ -79,8 +79,8 @@ to draw multiple boxplots.</p>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="i">BoxPlotFromStatistics</span> 
-  ( [ (<span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">ToShortDateString</span>()             , <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
+<span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="i">BoxPlotFromStatistics</span>(
+    [ (<span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">ToShortDateString</span>()             , <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
       (<span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">AddDays</span>(<span class="n">1.0</span>)<span class="o">.</span><span class="i">ToShortDateString</span>(), <span class="o">-</span><span class="n">6.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">5.0</span>, <span class="n">5.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) ],
     <span class="i">ShowMedian</span> <span class="o">=</span> <span class="k">false</span>, <span class="i">ShowAverage</span> <span class="o">=</span> <span class="k">false</span>)</pre>
 </td>
@@ -171,6 +171,9 @@ stock prices from the Yahoo Finance portal using F# can be found in <a href="htt
             <li><a href="ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="BarAndColumnCharts.html">Bar and Column Charts</a></li>
             <li><a href="PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="BoxPlotCharts.html">BoxPlot Charts</a></li>
 
           </ul>
 

@@ -34,13 +34,15 @@
         <div class="span9" id="main">
           <h1>FSharp.Charting: Point and Line Charts</h1>
 
-<p><em>Summary:</em> This example shows how to create line and point charts in F#. The example draws a graph of a function, creates a scatter plot and draws a 2D spline defined by a function.</p>
+<p><em>Summary:</em> This example shows how to create line and point charts in F#.</p>
 
 <p>This example looks at how to create line and point charts from F#.</p>
 
 <p>A line or a point chart can be created using the Chart.Line and Chart.Point functions. When generating a 
 very large number of points or lines, it is better to use Chart.FastLine and Chart.FastPoint. These are special types 
 of charts that do not support as many visual features, but are more efficient.</p>
+
+<h2>A Simple Line Chart</h2>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -66,6 +68,10 @@ invokes a handler that automatically shows the created chart.</p>
 
 <p>The above example calls the Chart.Line function with a list of X and Y values as tuples. The snippet generates 
 values of a simple function, f(x)=x^2. The values of the function are generated for x ranging from 1 to 100.</p>
+
+<h2>Pipelining into Line.Chart</h2>
+
+<p>The following example generates a list containing both X and Y values.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -80,9 +86,17 @@ values of a simple function, f(x)=x^2. The values of the function are generated 
 <span onmouseout="hideTip(event, 'fs7', 19)" onmouseover="showTip(event, 'fs7', 19)" class="i">curvyData</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 21)" onmouseover="showTip(event, 'fs5', 21)" class="i">Line</span></pre>
 </td>
 </tr>
-</table><p>The above example generates a list containing both X and Y values. It uses a sequence expression ranging
+</table><p>It uses a sequence expression ranging
 from 0 to 2π with a step size 0.02. This produces a large number of points, so the snippet uses the Chart.Line 
 function to draw the chart. When using a single list as the data source, it is also possible to elegantly use pipelining (|> operator).</p>
+
+<div>
+    <img src="images/IC523424.png" alt="Sample Line Chart">
+</div>
+
+<h2>A Point Chart</h2>
+
+<p>The following example shows how to generate a scatter plot. It uses a list to specify the X- and Y-coordinates of the points.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -101,7 +115,9 @@ function to draw the chart. When using a single list as the data source, it is a
 <span onmouseout="hideTip(event, 'fs4', 31)" onmouseover="showTip(event, 'fs4', 31)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 32)" onmouseover="showTip(event, 'fs19', 32)" class="i">Point</span> <span onmouseout="hideTip(event, 'fs17', 33)" onmouseover="showTip(event, 'fs17', 33)" class="i">randomPoints</span></pre>
 </td>
 </tr>
-</table><p>The above example shows how to generate a scatter plot. It uses a list to specify the X- and Y-coordinates of the points.</p>
+</table><h2>Specifying Minimums, Maximums and other properties on a Line Chart</h2>
+
+<p>The following example shows how to set the "Name", Y-Axis minimum properties on the chart, and use log-distribution for the X axis.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -111,10 +127,13 @@ function to draw the chart. When using a single list as the data source, it is a
 <td class="snippet"><pre class="fssnip">
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 34)" onmouseover="showTip(event, 'fs20', 34)" class="i">highData</span> <span class="o">=</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 35)" onmouseover="showTip(event, 'fs6', 35)" class="i">x</span> <span class="k">in</span> <span class="n">1.0</span> <span class="o">..</span> <span class="n">100.0</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs6', 36)" onmouseover="showTip(event, 'fs6', 36)" class="i">x</span>, <span class="n">3000.0</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs6', 37)" onmouseover="showTip(event, 'fs6', 37)" class="i">x</span> <span class="o">**</span> <span class="n">2.0</span>) ]
 
-<span onmouseout="hideTip(event, 'fs4', 38)" onmouseover="showTip(event, 'fs4', 38)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 39)" onmouseover="showTip(event, 'fs5', 39)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="i">highData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Rates</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Min</span><span class="o">=</span><span class="n">2000.0</span>)</pre>
+<span onmouseout="hideTip(event, 'fs4', 38)" onmouseover="showTip(event, 'fs4', 38)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 39)" onmouseover="showTip(event, 'fs5', 39)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="i">highData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Rates</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Min</span><span class="o">=</span><span class="n">2000.0</span>)<span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Log</span><span class="o">=</span><span class="k">true</span>)</pre>
 </td>
 </tr>
-</table><p>The above example shows how to set the "Name" and Y-Axis minimum properties on the chart.</p>
+</table><h2>Combining Line Charts</h2>
+
+<p>The following example shows how to combine several line charts and give each data set a name. A legend is added
+automatically when names are used for data sets.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -149,9 +168,7 @@ function to draw the chart. When using a single list as the data source, it is a
      <span onmouseout="hideTip(event, 'fs4', 93)" onmouseover="showTip(event, 'fs4', 93)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 94)" onmouseover="showTip(event, 'fs5', 94)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs30', 95)" onmouseover="showTip(event, 'fs30', 95)" class="i">computedProfit</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Profit</span><span class="s">&quot;</span>) ])</pre>
 </td>
 </tr>
-</table><p>The above example shows how to combine several line charts and give each set a name. A legend is added
-automatically when names are used for data sets.</p>
-
+</table>
           <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Charting</div>
 <div class="tip" id="fs3">namespace System</div>

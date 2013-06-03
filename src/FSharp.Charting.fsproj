@@ -38,8 +38,11 @@
     <DocumentationFile>bin\Release\FSharp.Charting.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FSharp.Charting.fsx" />
+    <Compile Include="FSharp.Charting.fs" />
     <Compile Include="AssemblyInfo.fs" />
+    <None Include="FSharp.Charting.fsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -62,8 +65,10 @@
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName)$(TargetExt)" DestinationFolder="$(SolutionDir)bin\v40" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin\v40" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).xml" DestinationFolder="$(SolutionDir)bin\v40" />
+    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).fsx" DestinationFolder="$(SolutionDir)bin\v40" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName)$(TargetExt)" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).xml" DestinationFolder="$(SolutionDir)bin" />
+    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).fsx" DestinationFolder="$(SolutionDir)bin" />
   </Target>
 </Project>

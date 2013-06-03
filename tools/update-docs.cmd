@@ -7,4 +7,4 @@ REM  - Go to the 'tools' directory and run `./update-docs.sh`
 fsi build.fsx
 copy /y update-docs-pt2.cmd ..\..\tmp.cmd
 cd ..
-..\tmp.cmd
+call ..\tmp.cmd

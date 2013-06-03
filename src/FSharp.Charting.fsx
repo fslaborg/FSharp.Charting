@@ -234,23 +234,20 @@ namespace FSharp.Charting
 
     module ChartTypes = 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public DataPoint(X: value, Y: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.Y = Y 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public TwoXYDataPoint(X: value, Y1: value, Y2: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.Y1 = Y1 
             member __.Y2 = Y2 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public ThreeXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
@@ -258,8 +255,7 @@ namespace FSharp.Charting
             member __.Y2 = Y2 
             member __.Y3 = Y3 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public FourXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Y4: value, Label: string) = 
             member __.Label = Label 
             member __.X =  X 
@@ -268,8 +264,7 @@ namespace FSharp.Charting
             member __.Y3 = Y3 
             member __.Y4 = Y4 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public SixXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Y4: value, Y5: value, Y6: value, Label: string) = 
             member __.Label = Label 
             member __.X =  X 
@@ -280,8 +275,7 @@ namespace FSharp.Charting
             member __.Y5 = Y5 
             member __.Y6 = Y6 
 
-        /// An implementation type used by FSharp.Charting to create labelled points on chart. This
-        /// type should not be used directly.
+        /// An implementation type for labelled points on chart. This type should not be used directly.
         type public DataSet(X: value, YS: IEnumerable, Label: string) = 
             member __.Label = Label 
             member __.X = X 
@@ -3931,18 +3925,9 @@ namespace FSharp.Charting
             static member Font(?FamilyName:string, ?FontFamily:FontFamily, ?FontStyle:FontStyle, ?FontSize:float32) =
                 FontCreate(FamilyName, FontFamily, FontStyle, FontSize)
 
-        [<Obsolete("The type FSharp.Charting is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
+        [<Obsolete("The type FSharpChart is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
         let FSharpChart = 1
 
     [<Obsolete("This type is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
     type FSharpChart = Chart
-
-    //#if INTERACTIVE
-    //module FsiAutoShow = 
-    //    fsi.AddPrinter(fun (ch:GenericChart) -> ch.ShowChart(); "(Chart)")
-    //#endif
-
-
-
-
 

@@ -20,6 +20,6 @@
     <file src="..\bin\FSharp.Charting.dll" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.pdb" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.xml" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.fsx" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.fsx" target="." />
   </files>
 </package>

@@ -7,3 +7,4 @@
 * 0.60 - Support for binding a StackedChart with multiple Data Series
 * 0.8 - Includes the updated 'fluent' operators and renames 'FSharpChart' to 'Chart'
 * 0.81 - Includes LiveChart and pipelined operators.
+* 0.82 - Improve documentation.

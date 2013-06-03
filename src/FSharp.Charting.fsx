@@ -10,15 +10,12 @@
 //----------------------------------------------------------------------------
 
 #r "System.Windows.Forms.DataVisualization.dll"
+#nowarn "211"
 #I "../bin"
-//#load "FSharp.Charting.fsx"
-#r "../bin/FSharp.Charting.dll"
+#I "../../packages/FSharp.Charting.0.82/lib/net40"
+#r "FSharp.Charting.dll"
 
 open FSharp.Charting
 module FsiAutoShow = 
     fsi.AddPrinter(fun (ch:FSharp.Charting.ChartTypes.GenericChart) -> ch.ShowChart(); "(Chart)")
-
-
-
-
 

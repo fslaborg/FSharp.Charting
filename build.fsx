@@ -18,7 +18,7 @@ let files includes =
 
 // Information about the project to be used at NuGet and in AssemblyInfo files
 let project = "FSharp.Charting"
-let authors = ["Microsoft Corporation, Tomas Petricek"]
+let authors = ["Carl Nolan, Don Syme, Tomas Petricek"]
 let summary = "A Charting Library for F#"
 let description = """
   The FSharp.Charting library (FSharp.Charting.dll) is a charting library for F# data scripting."""

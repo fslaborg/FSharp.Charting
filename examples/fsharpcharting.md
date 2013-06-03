@@ -1,5 +1,6 @@
 # FSharp.Charting: Documentation
 
+ * [Referencing the Library](ReferencingTheLibrary.html) - shows how to create Line and Point charts
  * [Line And Point Charts](LineAndPointCharts.html) - shows how to create Line and Point charts
  * [Bar and Column Charts](BarAndColumnCharts.html) - shows how to create Bar and Column charts
 

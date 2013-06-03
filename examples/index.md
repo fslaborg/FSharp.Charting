@@ -15,7 +15,7 @@ The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable
   <div class="span1"></div>
 </div>
 
-Alternatively, you can download the [source as a ZIP file][source].
+Alternatively, you can download the [source as a ZIP file][source] or as a [binary release as a ZIP file][binary].
 
 Features
 --------
@@ -29,7 +29,7 @@ Features
 
 Limitations:
 
-* Currently Windows-only. This may change (i.e. cross-platform and web charting for a subset of chaet specifications).
+* Windows-only. This may change (i.e. cross-platform and web charting for a subset of chart specifications).
 
 Documentation
 -------------
@@ -73,6 +73,7 @@ use the library for commercial purposes, fork it, modify it as you wish.
 
 
   [source]: https://github.com/fsharp/FSharp.Charting/zipball/master
+  [release]: https://github.com/fsharp/FSharp.Charting/zipball/release
   [examples]: https://github.com/fsharp/FSharp.Charting/tree/master/examples
   [gh]: https://github.com/fsharp/FSharp.Charting
   [issues]: https://github.com/fsharp/FSharp.Charting/issues

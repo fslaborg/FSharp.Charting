@@ -1,43 +1,7 @@
-(** 
-# FSharp.Charting: Point and Line Charts
-
-This article shows how to create line and point charts in F#. The example draws a graph of a function, creates a scatter plot and draws a 2D spline defined by a function.
-
-This article looks at how to create line and point charts from F#. It presents two versions of the example. The first one uses the FSharpChart library that is available as a free download and the second uses the .NET Chart Controls directly. For more information about loading the two libraries from F#, refer to the  section at the end of the page.
-
-This example demonstrates how to draw the graph of a simple mathematical function (such as sin(x), x2, or similar). This can be done by generating a collection containing Y values of the function. The article also shows how to draw a scatter plot from a collection of X and Y values and how to draw a 2D curve. An example of a curve drawn using a line chart is shown in Figure 1.
-
-## Point and Line Charts Using Data Scripting
-
-A line or a point chart can be created using the Chart.Line and Chart.Point functions. When generating a 
-very large number of points or lines, it is better to use Chart.FastLine and Chart.FastPoint. These are special types 
-of charts that do not support as many visual features, but are more efficient.
-
-All functions are overloaded and can be called with various types of parameters. When called with a list 
-containing just Y values, the chart automatically uses the sequence 1, 2, 3… for the X values. Alternatively, 
-it is possible to provide a list containing both X and Y values as a tuple, which gives a way to draw 2D 
-curves and scatter plots as well. Here are three examples:
-
-*)
-
-#load "../bin/FSharp.Charting.fsx"
+#load "../../bin/FSharp.Charting.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting
-open System
-
-// Drawing graph of a 'square' function 
-Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
-
-// Generates 2D curve using list of tuples
-[ for i in 0.0 .. 0.02 .. 2.0 * Math.PI -> (sin i, cos i * sin i) ] 
-    |> Chart.Line
-
-// Draw scatter plot  of points
-let rnd = new Random()
-let rand() = rnd.NextDouble()
-Chart.Point ( [ for i in 0 .. 1000 -> rand(), rand() ] )
-
 open System
 open System.Drawing
 
@@ -63,6 +27,14 @@ let prices =
     27.81,27.07,27.76,27.25; 27.94,27.29,27.93,27.50
     28.26,27.91,28.19,27.97; 28.34,28.05,28.10,28.28
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
+// Drawing graph of a 'square' function 
+Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+
+// Generates 2D curve using list of tuples
+[ for i in 0.0 .. 0.02 .. 2.0 * Math.PI -> (sin i, cos i * sin i) ] 
+    |> Chart.Line
+
+Chart.Point ( [ for i in 0 .. 1000 -> rand(), rand() ] )
 
 Chart.Line(timeSeriesData)
 Chart.Line(data)
@@ -89,12 +61,16 @@ Chart.Line
       (DateTime.Now.AddDays(1.0), 20);])
 
 Chart.BoxPlotFromStatistics 
+  ( [ ("Result A", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
+      ("Result B", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
+
+Chart.BoxPlotFromStatistics 
   ( [ ("a", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
       ("b", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
 
 Chart.BoxPlotFromStatistics 
-  ( [ (DateTime.Now             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
-      (DateTime.Now.AddDays(1.0), -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ],
+  ( [ (DateTime.Today.ToShortDateString()             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
+      (DateTime.Today.AddDays(1.0).ToShortDateString(), -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ],
     ShowMedian = false, ShowAverage = false)
 
 Chart.BoxPlotFromStatistics 

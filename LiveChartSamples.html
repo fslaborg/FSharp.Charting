@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LiveChartSamples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable for in F# scripting.">
+    <meta name="author" content="Microsoft Corporation, Tomas Petricek">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="content/style.css" />
+    <script src="content/tips.js" type="text/javascript"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/fsharp/FSharp.Charting">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharp.Charting</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          <p>This sample shows a collection of 'LiveChart's, which update as data changes. The input data comes from IObservable (or IEvent) sources.
+The data can be created using Rx, F# Event combinators or F# Observable combinators.</p>
+
+<p>The samples are not yet indivudally documented.</p>
+
+<p>In this sample, some extra event combinators are used to generate reactive data. 
+The EventEx-0.1.fsx file can be found at https://raw.github.com/fsharp/FSharp.Charting/master/examples/EventEx-0.1.fsx</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+<span class="l">31: </span>
+<span class="l">32: </span>
+<span class="l">33: </span>
+<span class="l">34: </span>
+<span class="l">35: </span>
+<span class="l">36: </span>
+<span class="l">37: </span>
+<span class="l">38: </span>
+<span class="l">39: </span>
+<span class="l">40: </span>
+<span class="l">41: </span>
+<span class="l">42: </span>
+<span class="l">43: </span>
+<span class="l">44: </span>
+<span class="l">45: </span>
+<span class="l">46: </span>
+<span class="l">47: </span>
+<span class="l">48: </span>
+<span class="l">49: </span>
+<span class="l">50: </span>
+<span class="l">51: </span>
+<span class="l">52: </span>
+<span class="l">53: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#load</span> <span class="s">&quot;</span><span class="s">.</span><span class="s">.</span><span class="s">/</span><span class="s">bin</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
+<span class="prep">#load</span> <span class="s">&quot;</span><span class="s">EventEx</span><span class="s">-</span><span class="s">0</span><span class="s">.</span><span class="s">1</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">Drawing</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">timeSeriesData</span> <span class="o">=</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="i">Now</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="i">AddDays</span> (<span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="i">float</span> <span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="i">x</span>),<span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="i">sin</span>(<span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="i">float</span> <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">x</span> <span class="o">/</span> <span class="n">10.0</span>)) ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="i">rnd</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="i">Random</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="i">rand</span>() <span class="o">=</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="i">rnd</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="i">NextDouble</span>()
+
+<span class="c">//let form = new System.Windows.Forms.Form(Visible=true,TopMost=true)</span>
+<span class="c">//let incData = form.MouseMove |&gt; Event.map (fun e -&gt; e.Y) |&gt; Event.sampled 30 </span>
+<span class="c">//let evData = form.MouseMove |&gt; Event.map (fun e -&gt; e.Y) |&gt; Event.sampled 30 |&gt; Event.windowTimeInterval 3000</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="i">data</span> <span class="o">=</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 23)" onmouseover="showTip(event, 'fs6', 23)" class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs6', 24)" onmouseover="showTip(event, 'fs6', 24)" class="i">x</span>,<span onmouseout="hideTip(event, 'fs6', 25)" onmouseover="showTip(event, 'fs6', 25)" class="i">x</span><span class="o">*</span><span onmouseout="hideTip(event, 'fs6', 26)" onmouseover="showTip(event, 'fs6', 26)" class="i">x</span>) ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="i">data2</span> <span class="o">=</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs6', 29)" onmouseover="showTip(event, 'fs6', 29)" class="i">x</span>,<span onmouseout="hideTip(event, 'fs11', 30)" onmouseover="showTip(event, 'fs11', 30)" class="i">sin</span>(<span onmouseout="hideTip(event, 'fs10', 31)" onmouseover="showTip(event, 'fs10', 31)" class="i">float</span> <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="i">x</span> <span class="o">/</span> <span class="n">10.0</span>)) ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="i">data3</span> <span class="o">=</span> [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 34)" onmouseover="showTip(event, 'fs6', 34)" class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs6', 35)" onmouseover="showTip(event, 'fs6', 35)" class="i">x</span>,<span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="i">cos</span>(<span onmouseout="hideTip(event, 'fs10', 37)" onmouseover="showTip(event, 'fs10', 37)" class="i">float</span> <span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="i">x</span> <span class="o">/</span> <span class="n">10.0</span>)) ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 39)" onmouseover="showTip(event, 'fs20', 39)" class="i">incData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 40)" onmouseover="showTip(event, 'fs21', 40)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 41)" onmouseover="showTip(event, 'fs22', 41)" class="i">clock</span> <span class="n">10</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 42)" onmouseover="showTip(event, 'fs21', 42)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 43)" onmouseover="showTip(event, 'fs23', 43)" class="i">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs24', 44)" onmouseover="showTip(event, 'fs24', 44)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs24', 45)" onmouseover="showTip(event, 'fs24', 45)" class="i">x</span>, <span onmouseout="hideTip(event, 'fs24', 46)" onmouseover="showTip(event, 'fs24', 46)" class="i">x</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 47)" onmouseover="showTip(event, 'fs25', 47)" class="i">Millisecond</span>))
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 48)" onmouseover="showTip(event, 'fs26', 48)" class="i">incBubbleData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 49)" onmouseover="showTip(event, 'fs21', 49)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 50)" onmouseover="showTip(event, 'fs22', 50)" class="i">clock</span> <span class="n">10</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 51)" onmouseover="showTip(event, 'fs21', 51)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 52)" onmouseover="showTip(event, 'fs23', 52)" class="i">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs24', 53)" onmouseover="showTip(event, 'fs24', 53)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs14', 54)" onmouseover="showTip(event, 'fs14', 54)" class="i">rand</span>(), <span onmouseout="hideTip(event, 'fs14', 55)" onmouseover="showTip(event, 'fs14', 55)" class="i">rand</span>(), <span onmouseout="hideTip(event, 'fs14', 56)" onmouseover="showTip(event, 'fs14', 56)" class="i">rand</span>()))
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="i">evData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 58)" onmouseover="showTip(event, 'fs21', 58)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 59)" onmouseover="showTip(event, 'fs22', 59)" class="i">clock</span> <span class="n">10</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 60)" onmouseover="showTip(event, 'fs21', 60)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 61)" onmouseover="showTip(event, 'fs23', 61)" class="i">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs24', 62)" onmouseover="showTip(event, 'fs24', 62)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs24', 63)" onmouseover="showTip(event, 'fs24', 63)" class="i">x</span>, <span onmouseout="hideTip(event, 'fs24', 64)" onmouseover="showTip(event, 'fs24', 64)" class="i">x</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 65)" onmouseover="showTip(event, 'fs25', 65)" class="i">Millisecond</span>)) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 66)" onmouseover="showTip(event, 'fs21', 66)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 67)" onmouseover="showTip(event, 'fs28', 67)" class="i">windowTimeInterval</span> <span class="n">3000</span> 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 68)" onmouseover="showTip(event, 'fs29', 68)" class="i">evData2</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 69)" onmouseover="showTip(event, 'fs21', 69)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 70)" onmouseover="showTip(event, 'fs22', 70)" class="i">clock</span> <span class="n">20</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 71)" onmouseover="showTip(event, 'fs21', 71)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 72)" onmouseover="showTip(event, 'fs23', 72)" class="i">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs24', 73)" onmouseover="showTip(event, 'fs24', 73)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs24', 74)" onmouseover="showTip(event, 'fs24', 74)" class="i">x</span>, <span class="n">100.0</span> <span class="o">+</span> <span class="n">200.0</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs11', 75)" onmouseover="showTip(event, 'fs11', 75)" class="i">sin</span> (<span onmouseout="hideTip(event, 'fs10', 76)" onmouseover="showTip(event, 'fs10', 76)" class="i">float</span> (<span onmouseout="hideTip(event, 'fs24', 77)" onmouseover="showTip(event, 'fs24', 77)" class="i">x</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs30', 78)" onmouseover="showTip(event, 'fs30', 78)" class="i">Ticks</span> <span class="o">/</span> <span class="n">2000000L</span>)))) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 79)" onmouseover="showTip(event, 'fs21', 79)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 80)" onmouseover="showTip(event, 'fs28', 80)" class="i">windowTimeInterval</span> <span class="n">3000</span> 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 81)" onmouseover="showTip(event, 'fs31', 81)" class="i">evBubbleData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 82)" onmouseover="showTip(event, 'fs21', 82)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 83)" onmouseover="showTip(event, 'fs22', 83)" class="i">clock</span> <span class="n">10</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 84)" onmouseover="showTip(event, 'fs21', 84)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 85)" onmouseover="showTip(event, 'fs23', 85)" class="i">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs24', 86)" onmouseover="showTip(event, 'fs24', 86)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs14', 87)" onmouseover="showTip(event, 'fs14', 87)" class="i">rand</span>(), <span onmouseout="hideTip(event, 'fs14', 88)" onmouseover="showTip(event, 'fs14', 88)" class="i">rand</span>(), <span onmouseout="hideTip(event, 'fs14', 89)" onmouseover="showTip(event, 'fs14', 89)" class="i">rand</span>())) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 90)" onmouseover="showTip(event, 'fs21', 90)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 91)" onmouseover="showTip(event, 'fs32', 91)" class="i">sampled</span> <span class="n">30</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 92)" onmouseover="showTip(event, 'fs21', 92)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 93)" onmouseover="showTip(event, 'fs28', 93)" class="i">windowTimeInterval</span> <span class="n">3000</span>  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 94)" onmouseover="showTip(event, 'fs21', 94)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 95)" onmouseover="showTip(event, 'fs23', 95)" class="i">map</span> (<span onmouseout="hideTip(event, 'fs33', 96)" onmouseover="showTip(event, 'fs33', 96)" class="i">Array</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 97)" onmouseover="showTip(event, 'fs34', 97)" class="i">map</span> (<span class="k">fun</span> (_,<span onmouseout="hideTip(event, 'fs35', 98)" onmouseover="showTip(event, 'fs35', 98)" class="i">x</span>) <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs35', 99)" onmouseover="showTip(event, 'fs35', 99)" class="i">x</span>))
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 100)" onmouseover="showTip(event, 'fs36', 100)" class="i">constantLiveTimeSeriesData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 101)" onmouseover="showTip(event, 'fs21', 101)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 102)" onmouseover="showTip(event, 'fs22', 102)" class="i">clock</span> <span class="n">30</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 103)" onmouseover="showTip(event, 'fs21', 103)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 104)" onmouseover="showTip(event, 'fs23', 104)" class="i">map</span> (<span class="k">fun</span> _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs5', 105)" onmouseover="showTip(event, 'fs5', 105)" class="i">timeSeriesData</span>)
+
+<span class="c">// Cycle through two data sets of the same type</span>
+<span onmouseout="hideTip(event, 'fs37', 106)" onmouseover="showTip(event, 'fs37', 106)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 107)" onmouseover="showTip(event, 'fs38', 107)" class="i">Line</span> (<span onmouseout="hideTip(event, 'fs21', 108)" onmouseover="showTip(event, 'fs21', 108)" class="i">Event</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs39', 109)" onmouseover="showTip(event, 'fs39', 109)" class="i">cycle</span> <span class="n">1000</span> [<span onmouseout="hideTip(event, 'fs17', 110)" onmouseover="showTip(event, 'fs17', 110)" class="i">data2</span>; <span onmouseout="hideTip(event, 'fs18', 111)" onmouseover="showTip(event, 'fs18', 111)" class="i">data3</span>])
+
+<span onmouseout="hideTip(event, 'fs37', 112)" onmouseover="showTip(event, 'fs37', 112)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs40', 113)" onmouseover="showTip(event, 'fs40', 113)" class="i">LineIncremental</span>(<span onmouseout="hideTip(event, 'fs20', 114)" onmouseover="showTip(event, 'fs20', 114)" class="i">incData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">MouseMove</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)
+<span onmouseout="hideTip(event, 'fs37', 115)" onmouseover="showTip(event, 'fs37', 115)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs41', 116)" onmouseover="showTip(event, 'fs41', 116)" class="i">FastLineIncremental</span>(<span onmouseout="hideTip(event, 'fs20', 117)" onmouseover="showTip(event, 'fs20', 117)" class="i">incData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">MouseMove</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 118)" onmouseover="showTip(event, 'fs37', 118)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 119)" onmouseover="showTip(event, 'fs38', 119)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs27', 120)" onmouseover="showTip(event, 'fs27', 120)" class="i">evData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">MouseMove</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)
+<span onmouseout="hideTip(event, 'fs37', 121)" onmouseover="showTip(event, 'fs37', 121)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 122)" onmouseover="showTip(event, 'fs38', 122)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs29', 123)" onmouseover="showTip(event, 'fs29', 123)" class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)<span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Enabled</span><span class="o">=</span><span class="k">false</span>)
+<span onmouseout="hideTip(event, 'fs37', 124)" onmouseover="showTip(event, 'fs37', 124)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 125)" onmouseover="showTip(event, 'fs38', 125)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs29', 126)" onmouseover="showTip(event, 'fs29', 126)" class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+    <span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Title</span><span class="o">=</span><span class="s">&quot;</span><span class="s">abc</span><span class="s">&quot;</span>)
+    <span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Title</span><span class="o">=</span><span class="s">&quot;</span><span class="s">def</span><span class="s">&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 127)" onmouseover="showTip(event, 'fs37', 127)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs42', 128)" onmouseover="showTip(event, 'fs42', 128)" class="i">Point</span>(<span onmouseout="hideTip(event, 'fs29', 129)" onmouseover="showTip(event, 'fs29', 129)" class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+<span onmouseout="hideTip(event, 'fs37', 130)" onmouseover="showTip(event, 'fs37', 130)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs43', 131)" onmouseover="showTip(event, 'fs43', 131)" class="i">FastPoint</span>(<span onmouseout="hideTip(event, 'fs29', 132)" onmouseover="showTip(event, 'fs29', 132)" class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+<span onmouseout="hideTip(event, 'fs37', 133)" onmouseover="showTip(event, 'fs37', 133)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs44', 134)" onmouseover="showTip(event, 'fs44', 134)" class="i">PointIncremental</span>(<span onmouseout="hideTip(event, 'fs20', 135)" onmouseover="showTip(event, 'fs20', 135)" class="i">incData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+<span onmouseout="hideTip(event, 'fs37', 136)" onmouseover="showTip(event, 'fs37', 136)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs45', 137)" onmouseover="showTip(event, 'fs45', 137)" class="i">FastPointIncremental</span>(<span onmouseout="hideTip(event, 'fs20', 138)" onmouseover="showTip(event, 'fs20', 138)" class="i">incData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+<span onmouseout="hideTip(event, 'fs37', 139)" onmouseover="showTip(event, 'fs37', 139)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs46', 140)" onmouseover="showTip(event, 'fs46', 140)" class="i">BubbleIncremental</span>(<span onmouseout="hideTip(event, 'fs26', 141)" onmouseover="showTip(event, 'fs26', 141)" class="i">incBubbleData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+<span onmouseout="hideTip(event, 'fs37', 142)" onmouseover="showTip(event, 'fs37', 142)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs47', 143)" onmouseover="showTip(event, 'fs47', 143)" class="i">Bubble</span>(<span onmouseout="hideTip(event, 'fs31', 144)" onmouseover="showTip(event, 'fs31', 144)" class="i">evBubbleData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 145)" onmouseover="showTip(event, 'fs37', 145)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 146)" onmouseover="showTip(event, 'fs38', 146)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs29', 147)" onmouseover="showTip(event, 'fs29', 147)" class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Clock</span><span class="s">&quot;</span>)
+    <span class="o">.</span><span class="i">WithXAxis</span>(<span class="i">Title</span><span class="o">=</span><span class="s">&quot;</span><span class="s">&quot;</span>)
+    <span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Title</span><span class="o">=</span><span class="s">&quot;</span><span class="s">&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 148)" onmouseover="showTip(event, 'fs37', 148)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 149)" onmouseover="showTip(event, 'fs38', 149)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs29', 150)" onmouseover="showTip(event, 'fs29', 150)" class="i">evData2</span>)<span class="o">.</span><span class="i">WithTitle</span>(<span class="s">&quot;</span><span class="s">A</span><span class="s">&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 151)" onmouseover="showTip(event, 'fs37', 151)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 152)" onmouseover="showTip(event, 'fs38', 152)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs27', 153)" onmouseover="showTip(event, 'fs27', 153)" class="i">evData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">MouseMove</span><span class="s">&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs37', 154)" onmouseover="showTip(event, 'fs37', 154)" class="i">LiveChart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 155)" onmouseover="showTip(event, 'fs38', 155)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs36', 156)" onmouseover="showTip(event, 'fs36', 156)" class="i">constantLiveTimeSeriesData</span>)</pre>
+</td>
+</tr>
+</table>
+          <div class="tip" id="fs1">namespace FSharp</div>
+<div class="tip" id="fs2">namespace FSharp.Charting</div>
+<div class="tip" id="fs3">namespace System</div>
+<div class="tip" id="fs4">namespace System.Drawing</div>
+<div class="tip" id="fs5">val timeSeriesData : (DateTime * float) list<br /><br />Full name: LiveChartSamples.timeSeriesData</div>
+<div class="tip" id="fs6">val x : int</div>
+<div class="tip" id="fs7">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="tip" id="fs8">property DateTime.Now: DateTime</div>
+<div class="tip" id="fs9">DateTime.AddDays(value: float) : DateTime</div>
+<div class="tip" id="fs10">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs11">val sin : value:&#39;T -&gt; &#39;T (requires member Sin)<br /><br />Full name: Microsoft.FSharp.Core.Operators.sin</div>
+<div class="tip" id="fs12">val rnd : Random<br /><br />Full name: LiveChartSamples.rnd</div>
+<div class="tip" id="fs13">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />Full name: System.Random<br /><br />--------------------<br />Random() : unit<br />Random(Seed: int) : unit</div>
+<div class="tip" id="fs14">val rand : unit -&gt; float<br /><br />Full name: LiveChartSamples.rand</div>
+<div class="tip" id="fs15">Random.NextDouble() : float</div>
+<div class="tip" id="fs16">val data : (int * int) list<br /><br />Full name: LiveChartSamples.data</div>
+<div class="tip" id="fs17">val data2 : (int * float) list<br /><br />Full name: LiveChartSamples.data2</div>
+<div class="tip" id="fs18">val data3 : (int * float) list<br /><br />Full name: LiveChartSamples.data3</div>
+<div class="tip" id="fs19">val cos : value:&#39;T -&gt; &#39;T (requires member Cos)<br /><br />Full name: Microsoft.FSharp.Core.Operators.cos</div>
+<div class="tip" id="fs20">val incData : IEvent&lt;DateTime * int&gt;<br /><br />Full name: LiveChartSamples.incData</div>
+<div class="tip" id="fs21">Multiple items<br />module Event<br /><br />--------------------<br />module Event<br /><br />from Microsoft.FSharp.Control<br /><br />--------------------<br />type Event&lt;&#39;T&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;T&gt;<br />&#160;&#160;member Trigger : arg:&#39;T -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_&gt;<br /><br />--------------------<br />type Event&lt;&#39;Delegate,&#39;Args (requires delegate and &#39;Delegate :&gt; Delegate)&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;<br />&#160;&#160;member Trigger : sender:obj * args:&#39;Args -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;Delegate,&#39;Args&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_,_&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;T&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;</div>
+<div class="tip" id="fs22">val clock : interval:int -&gt; IEvent&lt;DateTime&gt;<br /><br />Full name: Event.clock<br /><em><br /><br />&#160;An event which triggers at regular intervals reporting the real world time at each trigger</em></div>
+<div class="tip" id="fs23">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; sourceEvent:IEvent&lt;&#39;Del,&#39;T&gt; -&gt; IEvent&lt;&#39;U&gt; (requires delegate and &#39;Del :&gt; Delegate)<br /><br />Full name: Microsoft.FSharp.Control.Event.map</div>
+<div class="tip" id="fs24">val x : DateTime</div>
+<div class="tip" id="fs25">property DateTime.Millisecond: int</div>
+<div class="tip" id="fs26">val incBubbleData : IEvent&lt;float * float * float&gt;<br /><br />Full name: LiveChartSamples.incBubbleData</div>
+<div class="tip" id="fs27">val evData : IEvent&lt;(DateTime * int) []&gt;<br /><br />Full name: LiveChartSamples.evData</div>
+<div class="tip" id="fs28">val windowTimeInterval : interval:int -&gt; ev:IEvent&lt;DateTime * &#39;a&gt; -&gt; IEvent&lt;(DateTime * &#39;a) []&gt;<br /><br />Full name: Event.windowTimeInterval<br /><em><br /><br />&#160;An event which triggers on every event, reporting samples from the given time window</em></div>
+<div class="tip" id="fs29">val evData2 : IEvent&lt;(DateTime * float) []&gt;<br /><br />Full name: LiveChartSamples.evData2</div>
+<div class="tip" id="fs30">property DateTime.Ticks: int64</div>
+<div class="tip" id="fs31">val evBubbleData : IEvent&lt;(float * float * float) []&gt;<br /><br />Full name: LiveChartSamples.evBubbleData</div>
+<div class="tip" id="fs32">val sampled : interval:int -&gt; ev:IEvent&lt;&#39;a&gt; -&gt; IEvent&lt;DateTime * &#39;a&gt;<br /><br />Full name: Event.sampled<br /><em><br /><br />&#160;An event which triggers at regular intervals reporting the latest observed value of the given event</em></div>
+<div class="tip" id="fs33">type Array =<br />&#160;&#160;member Clone : unit -&gt; obj<br />&#160;&#160;member CopyTo : array:Array * index:int -&gt; unit + 1 overload<br />&#160;&#160;member GetEnumerator : unit -&gt; IEnumerator<br />&#160;&#160;member GetLength : dimension:int -&gt; int<br />&#160;&#160;member GetLongLength : dimension:int -&gt; int64<br />&#160;&#160;member GetLowerBound : dimension:int -&gt; int<br />&#160;&#160;member GetUpperBound : dimension:int -&gt; int<br />&#160;&#160;member GetValue : params indices:int[] -&gt; obj + 7 overloads<br />&#160;&#160;member Initialize : unit -&gt; unit<br />&#160;&#160;member IsFixedSize : bool<br />&#160;&#160;...<br /><br />Full name: System.Array</div>
+<div class="tip" id="fs34">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; array:&#39;T [] -&gt; &#39;U []<br /><br />Full name: Microsoft.FSharp.Collections.Array.map</div>
+<div class="tip" id="fs35">val x : float * float * float</div>
+<div class="tip" id="fs36">val constantLiveTimeSeriesData : IEvent&lt;(DateTime * float) list&gt;<br /><br />Full name: LiveChartSamples.constantLiveTimeSeriesData</div>
+<div class="tip" id="fs37">Multiple items<br />type LiveChart =<br />&#160;&#160;new : unit -&gt; LiveChart<br />&#160;&#160;static member Area : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)<br />&#160;&#160;static member Bar : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)<br />&#160;&#160;static member Bubble : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2 * &#39;a3&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value and &#39;a3 :&gt; value)<br />&#160;&#160;static member BubbleIncremental : data:IObservable&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:IObservable&lt;seq&lt;#value * #value * #value * #value * #value&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:IObservable&lt;seq&lt;#value * #value * #value * #value&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member CandlestickIncremental : data:IObservable&lt;#value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member CandlestickIncremental : data:IObservable&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Column : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.LiveChart<br /><br />--------------------<br />new : unit -&gt; LiveChart</div>
+<div class="tip" id="fs38">static member LiveChart.Line : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)</div>
+<div class="tip" id="fs39">val cycle : interval:int -&gt; values:seq&lt;&#39;a&gt; -&gt; IEvent&lt;&#39;a&gt;<br /><br />Full name: Event.cycle<br /><em><br /><br />&#160;Cycle through the values at the given interval</em></div>
+<div class="tip" id="fs40">static member LiveChart.LineIncremental : data:IObservable&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs41">static member LiveChart.FastLineIncremental : data:IObservable&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs42">static member LiveChart.Point : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?MarkerColor:Color * ?MarkerSize:int -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)</div>
+<div class="tip" id="fs43">static member LiveChart.FastPoint : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value)</div>
+<div class="tip" id="fs44">static member LiveChart.PointIncremental : data:IObservable&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?MarkerColor:Color * ?MarkerSize:int -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs45">static member LiveChart.FastPointIncremental : data:IObservable&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs46">static member LiveChart.BubbleIncremental : data:IObservable&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs47">static member LiveChart.Bubble : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2 * &#39;a3&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; value and &#39;a2 :&gt; value and &#39;a3 :&gt; value)</div>
+
+        </div>
+        <div class="span3">
+
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharp.Charting Library</li>
+            <li><a href="index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (Apache 2.0)</a></li>
+            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            <li><a href="contributing.html">Contributing to FSharp.Charting</a></li>
+            
+            <li class="nav-header">Documentation</li>
+            <li><a href="fsharpcharting.html">FSharp.Charting Documentation</a></li>
+            <li class="divider"></li>
+            <li><a href="ReferencingTheLibrary.html">Referencing The Library</a></li>
+            <li><a href="PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="BarAndColumnCharts.html">Bar and Column Charts</a></li>
+            <li><a href="PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="BoxPlotCharts.html">BoxPlot Charts</a></li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsharp/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

@@ -20,14 +20,13 @@ open System.Drawing
 
 let data = [ for x in 0 .. 99 -> (x,x*x) ]
 let data2 = [ for x in 0 .. 99 -> (x,sin(float x / 10.0)) ]
-let data3 = [ for x in 0 .. 99 -> (x,sin(float x / 10.0)) ]
+let data3 = [ for x in 0 .. 99 -> (x,cos(float x / 10.0)) ]
 let timeSeriesData = [ for x in 0 .. 99 -> (DateTime.Now.AddDays (float x),sin(float x / 10.0)) ]
 let rnd = new System.Random()
 let rand() = rnd.NextDouble()
 let pointsWithSizes = [ for i in 0 .. 30 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
 let pointsWithSizes2 = [ for i in 0 .. 10 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
 let timeHighLowOpenClose = [ for i in 0 .. 10 -> let mid = rand() * 10.0 in (DateTime.Now.AddDays (float i), mid + 0.5, mid - 0.5, mid + 0.25, mid - 0.25) ]
-
 let timedPointsWithSizes = [ for i in 0 .. 30 -> (DateTime.Now.AddDays(rand() * 10.0), rand() * 10.0, rand() / 100.0) ]
 
 let prices =
@@ -42,12 +41,9 @@ let prices =
     28.26,27.91,28.19,27.97; 28.34,28.05,28.10,28.28
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
 
-
 Chart.Line(timeSeriesData)
 
-let constantLiveTimeSeriesData = Event.clock 30 |> Event.map (fun _ -> timeSeriesData)
 
-LiveChart.Line(constantLiveTimeSeriesData)
 
 Chart.BoxPlotFromData
   ( [ DateTime.Today, [| for i in 0 .. 20 -> float (rnd.Next 20) |]
@@ -224,6 +220,10 @@ let incBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand(
 let evBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand())) |> Event.sampled 30 |> Event.windowTimeInterval 3000  |> Event.map (Array.map (fun (_,x) -> x))
 let evData = Event.clock 10 |> Event.map (fun x -> (x, x.Millisecond)) |> Event.windowTimeInterval 3000 
 let evData2 = Event.clock 20 |> Event.map (fun x -> (x, 100.0 + 200.0 * sin (float (x.Ticks / 2000000L)))) |> Event.windowTimeInterval 3000 
+let constantLiveTimeSeriesData = Event.clock 30 |> Event.map (fun _ -> timeSeriesData)
+
+LiveChart.Line (Event.cycle 1000 [data2; data3])
+LiveChart.Line(constantLiveTimeSeriesData)
 
 LiveChart.LineIncremental(incData,Name="MouseMove").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
 LiveChart.FastLineIncremental(incData,Name="MouseMove").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
@@ -279,7 +279,6 @@ let electionData =
 
 // Create doughnut chart showing the data
 Chart.Doughnut(electionData)
-
 
 // Chart showing number of seats in the label
 [ for n, v in electionData -> sprintf "%s (%d)" n v, v ]

@@ -67,6 +67,16 @@ module Event =
         timer.Start()
         out.Publish
 
+    /// Cycle through the values at the given interval
+    let cycle interval values = 
+        let values = Seq.toArray values
+        let out = new Event<_>()
+        let timer = new System.Windows.Forms.Timer(Interval=interval, Enabled=true)
+        let count = ref 0 
+        timer.Tick.Add (fun args -> out.Trigger (values.[!count % values.Length]); incr count)
+        timer.Start()
+        out.Publish
+
     let pairwise  (ev:IEvent<_>) = 
         let out = new Event<_>()
         let queue = System.Collections.Generic.Queue<_>()

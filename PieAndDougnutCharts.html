@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>FSharp.Charting: Bar and Column Charts
+    <title>FSharp.Charting: Pie and Doughnut Charts
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable for in F# scripting.">
@@ -32,18 +32,20 @@
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h1>FSharp.Charting: Bar and Column Charts</h1>
+          <h1>FSharp.Charting: Pie and Doughnut Charts</h1>
 
-<p><em>Summary:</em> This example shows how to create bar and column charts in F#. The example visualizes the size of the populations of the continents.</p>
+<p><em>Summary:</em> This example shows how to create pie and doughnut charts in F#. The example visualizes  the proportion of seats taken by individual parties in the UK general elections.</p>
 
-<p>This example looks at how to create bar and column charts from F#. The input data in this example is an F# list of tuples containing continent names and total populations. The article demonstrates how to display a bar/column chart with names of continents as labels and the population as the value. A sample bar chart is shown in Figure 1.</p>
+<p>This article looks at how to create pie and doughnut charts from F#.</p>
 
-<p>A bar or a column chart can be created using the Chart.Column and Chart.Bar functions.</p>
+<p>The input data in this example is an F# list of tuples containing the names of political parties and 
+their respective numbers of elected candidates. The example demonstrates how to display a 
+pie/doughnut chart showing the proportion of seats taken by each party. A 
+sample doughnut chart is shown in Figure 1.</p>
 
-<p>All functions are overloaded and can be called with various types of parameters. When called with a list 
-containing just Y values, the chart automatically uses the sequence 1, 2, 3… for the X values. Alternatively, 
-it is possible to provide a list containing both X and Y values as a tuple, which gives a way to draw 2D 
-curves and scatter plots as well. Here are three examples:</p>
+<p>A pie or a doughnut chart can be created using the Chart.Pie and Chart.Doughnut functions. 
+When creating pie or doughnut charts, it is usually desirable to provide both labels and 
+values. This is done by using a single collection with labels and values as tuple. Here are three examples:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -57,10 +59,6 @@ curves and scatter plots as well. Here are three examples:</p>
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -69,34 +67,30 @@ curves and scatter plots as well. Here are three examples:</p>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">countryData</span> <span class="o">=</span> 
-    [ <span class="s">&quot;</span><span class="s">Africa</span><span class="s">&quot;</span>, <span class="n">1033043</span>; 
-      <span class="s">&quot;</span><span class="s">Asia</span><span class="s">&quot;</span>, <span class="n">4166741</span>; 
-      <span class="s">&quot;</span><span class="s">Europe</span><span class="s">&quot;</span>, <span class="n">732759</span>; 
-      <span class="s">&quot;</span><span class="s">South</span><span class="s"> </span><span class="s">America</span><span class="s">&quot;</span>, <span class="n">588649</span>; 
-      <span class="s">&quot;</span><span class="s">North</span><span class="s"> </span><span class="s">America</span><span class="s">&quot;</span>, <span class="n">351659</span>; 
-      <span class="s">&quot;</span><span class="s">Oceania</span><span class="s">&quot;</span>, <span class="n">35838</span>  ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">electionData</span> <span class="o">=</span> 
+  [ <span class="s">&quot;</span><span class="s">Conservative</span><span class="s">&quot;</span>, <span class="n">306</span>; <span class="s">&quot;</span><span class="s">Labour</span><span class="s">&quot;</span>, <span class="n">258</span>; 
+    <span class="s">&quot;</span><span class="s">Liberal</span><span class="s"> </span><span class="s">Democrat</span><span class="s">&quot;</span>, <span class="n">57</span> ]
 
-<span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">Bar</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">countryData</span>
+<span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">Pie</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">electionData</span>
 
-<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Column</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">countryData</span></pre>
+<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Doughnut</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">electionData</span></pre>
 </td>
 </tr>
 </table><p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
 invokes a handler that automatically shows the created chart.</p>
 
 <p>The first example specifies the data source as a single list that contains two-element tuples. The first 
-element of the tuple is the X value (category) and the second element is the population.</p>
+element of the tuple is the label and the second element is the value.</p>
 
-<p>The second example creates a Column chart instead of a Bar chart.</p>
+<p>The second example creates a Doughnut chart instead of a Pie chart.</p>
 
           <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Charting</div>
 <div class="tip" id="fs3">namespace System</div>
-<div class="tip" id="fs4">val countryData : (string * int) list<br /><br />Full name: BarAndColumnCharts.countryData</div>
+<div class="tip" id="fs4">val electionData : (string * int) list<br /><br />Full name: PieAndDougnutCharts.electionData</div>
 <div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#value * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#value * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Column : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Columns : charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />&#160;&#160;static member Combine : charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
-<div class="tip" id="fs6">static member Chart.Bar : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs7">static member Chart.Column : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs6">static member Chart.Pie : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.PieChart</div>
+<div class="tip" id="fs7">static member Chart.Doughnut : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.DoughnutChart</div>
 
         </div>
         <div class="span3">

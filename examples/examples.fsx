@@ -13,7 +13,6 @@
 #load "../src/FSharp.Charting-load.fsx"
 #load "EventEx-0.1.fsx"
 
-
 open FSharp.Charting
 open System
 open System.Drawing
@@ -42,7 +41,9 @@ let prices =
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
 
 Chart.Line(timeSeriesData)
+Chart.Line(data)
 
+Chart.Line [ for x in 0 .. 100 -> (x,x*x) ]
 
 
 Chart.BoxPlotFromData
@@ -85,7 +86,8 @@ Chart.Line(data,Title="Test Title").WithTitle(InsideArea=true)
 Chart.Line(data,Title="Test Title")
    |> Chart.WithTitle(InsideArea=true)
 
-Chart.Line(data,Name="Test Data").WithXAxis(Enabled=false,Title="X Axis")
+Chart.Line(data,Name="Test Data")
+   |> Chart.WithXAxis(Enabled=true,Title="X Axis")
 
 Chart.Line(data,Name="Test Data") 
    |> Chart.WithXAxis(Enabled=false,Title="X Axis")

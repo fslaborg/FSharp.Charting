@@ -13,9 +13,9 @@
 //#load "FSharp.Charting.fsx"
 #r "../bin/FSharp.Charting.dll"
 
-open Samples.FSharp.Charting
+open FSharp.Charting
 module FsiAutoShow = 
-    fsi.AddPrinter(fun (ch:Samples.FSharp.Charting.ChartTypes.GenericChart) -> ch.ShowChart(); "(Chart)")
+    fsi.AddPrinter(fun (ch:FSharp.Charting.ChartTypes.GenericChart) -> ch.ShowChart(); "(Chart)")
 
 
 

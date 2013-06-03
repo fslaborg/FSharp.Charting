@@ -1,5 +1,8 @@
+src/bin/*
+src/obj/*
 bin/*
+tests/bin/*
+tests/obj/*
 *.suo
-nuget/*
 packages/*
 TestResults.xml

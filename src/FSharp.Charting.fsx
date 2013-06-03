@@ -3932,10 +3932,10 @@ namespace FSharp.Charting
                 FontCreate(FamilyName, FontFamily, FontStyle, FontSize)
 
         [<Obsolete("The type FSharp.Charting is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
-        let FSharp.Charting = 1
+        let FSharpChart = 1
 
     [<Obsolete("This type is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
-    type FSharp.Charting = Chart
+    type FSharpChart = Chart
 
     //#if INTERACTIVE
     //module FsiAutoShow = 

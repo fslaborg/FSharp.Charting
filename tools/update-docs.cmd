@@ -6,10 +6,4 @@ REM  - Go to the 'tools' directory and run `./update-docs.sh`
 
 fsi build.fsx
 cd ..
-git pull
-git checkout gh-pages
-copy /y docs\*.html .
-git add *.html
-git commit -m "Update generated documentation"
-git push origin gh-pages
-git checkout master
+git checkout gh-pages && copy /y docs\*.html . && git add *.html && git commit -m "Update generated documentation" && git push origin gh-pages && git checkout master

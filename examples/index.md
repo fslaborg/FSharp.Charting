@@ -1,7 +1,13 @@
-FSharp.Charting: An F# Charting Library
-=======================================
+FSharp.Charting: The F# Charting Library
+========================================
 
 The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable for use from F# scripting.
+
+<div>
+ <img src="images/IC523409.png" width="30%" >
+ <img src="images/IC523435.png" width="30%" >
+ <img src="images/IC36812.png" width="30%" >
+</div>
 
 <div class="row">
   <div class="span1"></div>
@@ -61,7 +67,7 @@ On Windows, FSharp.Charting is implemented using the Data Visualization charting
 available on Windows in .NET 4.x, with particular focus on 'making the simple things simple'. </p>
 
 FSharp.Charting is designed so that the same charting specifications can be supported when 
-using different charting implementations. For example, the <a href="http://tryfsharp.org">Try F#</a>
+using different charting implementations. For example, the [Try F#](http://tryfsharp.org)
 charts use similar charting specifications, implemented using in HTML5 using Dojo Charts.
 
 

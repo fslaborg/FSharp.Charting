@@ -1,7 +1,12 @@
 (** 
 
-This sample shows a collection of 'LiveChart's. They update as data changes. The input data comes from IObservable (or IEvent) sources.
+This sample shows a collection of 'LiveChart's, which update as data changes. The input data comes from IObservable (or IEvent) sources.
 The data can be created using Rx, F# Event combinators or F# Observable combinators.
+
+The samples are not yet indivudally documented.
+
+In this sample, some extra event combinators are used to generate reactive data. 
+The EventEx-0.1.fsx file can be found at https://raw.github.com/fsharp/FSharp.Charting/master/examples/EventEx-0.1.fsx
 
 *)
 
@@ -24,10 +29,28 @@ let data = [ for x in 0 .. 99 -> (x,x*x) ]
 let data2 = [ for x in 0 .. 99 -> (x,sin(float x / 10.0)) ]
 let data3 = [ for x in 0 .. 99 -> (x,cos(float x / 10.0)) ]
 let incData = Event.clock 10 |> Event.map (fun x -> (x, x.Millisecond))
-let incBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand()))
-let evData = Event.clock 10 |> Event.map (fun x -> (x, x.Millisecond)) |> Event.windowTimeInterval 3000 
-let evData2 = Event.clock 20 |> Event.map (fun x -> (x, 100.0 + 200.0 * sin (float (x.Ticks / 2000000L)))) |> Event.windowTimeInterval 3000 
-let evBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand())) |> Event.sampled 30 |> Event.windowTimeInterval 3000  |> Event.map (Array.map (fun (_,x) -> x))
+
+let incBubbleData = 
+    Event.clock 10 
+    |> Event.map (fun x -> (rand(), rand(), rand()))
+
+let evData = 
+    Event.clock 10 
+    |> Event.map (fun x -> (x, x.Millisecond)) 
+    |> Event.windowTimeInterval 3000 
+
+let evData2 = 
+    Event.clock 20 
+    |> Event.map (fun x -> (x, 100.0 + 200.0 * sin (float (x.Ticks / 2000000L)))) 
+    |> Event.windowTimeInterval 3000 
+
+let evBubbleData = 
+    Event.clock 10 
+    |> Event.map (fun x -> (rand(), rand(), rand())) 
+    |> Event.sampled 30 
+    |> Event.windowTimeInterval 3000  
+    |> Event.map (Array.map (fun (_,x) -> x))
+
 let constantLiveTimeSeriesData = Event.clock 30 |> Event.map (fun _ -> timeSeriesData)
 
 // Cycle through two data sets of the same type

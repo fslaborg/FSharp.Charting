@@ -1,5 +1,12 @@
+(** 
+
+This is a collection of additional samples for FSharp.Charting. 
+
+The samples are not yet indivudally documented but may be useful to try.
+
+*)
+
 #load "../bin/FSharp.Charting.fsx"
-#load "EventEx-0.1.fsx"
 
 open FSharp.Charting
 open System
@@ -13,8 +20,13 @@ let rnd = new System.Random()
 let rand() = rnd.NextDouble()
 let pointsWithSizes = [ for i in 0 .. 30 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
 let pointsWithSizes2 = [ for i in 0 .. 10 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
-let timeHighLowOpenClose = [ for i in 0 .. 10 -> let mid = rand() * 10.0 in (DateTime.Now.AddDays (float i), mid + 0.5, mid - 0.5, mid + 0.25, mid - 0.25) ]
-let timedPointsWithSizes = [ for i in 0 .. 30 -> (DateTime.Now.AddDays(rand() * 10.0), rand() * 10.0, rand() / 100.0) ]
+
+let timeHighLowOpenClose = 
+    [ for i in 0 .. 10 ->
+         let mid = rand() * 10.0 
+         (DateTime.Now.AddDays (float i), mid + 0.5, mid - 0.5, mid + 0.25, mid - 0.25) ]
+let timedPointsWithSizes = 
+    [ for i in 0 .. 30 -> (DateTime.Now.AddDays(rand() * 10.0), rand() * 10.0, rand() / 100.0) ]
 
 let prices =
   [ 26.24,25.80,26.22,25.95; 26.40,26.18,26.26,26.20
@@ -27,43 +39,8 @@ let prices =
     27.81,27.07,27.76,27.25; 27.94,27.29,27.93,27.50
     28.26,27.91,28.19,27.97; 28.34,28.05,28.10,28.28
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
-// Drawing graph of a 'square' function 
-Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 
-// Generates 2D curve using list of tuples
-[ for i in 0.0 .. 0.02 .. 2.0 * Math.PI -> (sin i, cos i * sin i) ] 
-    |> Chart.Line
 
-Chart.Point ( [ for i in 0 .. 1000 -> rand(), rand() ] )
-
-Chart.Line(timeSeriesData)
-Chart.Line(data)
-
-Chart.Line [ for x in 0 .. 100 -> (x,x*x) ]
-
-Chart.Line
-  ( [ (DateTime.Now             , 10);
-      (DateTime.Now.AddDays(1.0), 20);])
-
-Chart.BoxPlotFromStatistics 
-  ( [ ("Result A", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
-      ("Result B", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
-
-Chart.BoxPlotFromStatistics 
-  ( [ ("a", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
-      ("b", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
-
-Chart.BoxPlotFromStatistics 
-  ( [ (DateTime.Today.ToShortDateString()             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
-      (DateTime.Today.AddDays(1.0).ToShortDateString(), -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ],
-    ShowMedian = false, ShowAverage = false)
-
-Chart.BoxPlotFromStatistics 
-  ( [ (DateTime.Now             , -12.7, 11.6, -8.3, 6.4, 4.0, 0.0);
-      (DateTime.Now.AddDays(1.0), -6.7, 11.6, -5.0, 5.4, 3.0, 0.0) ],
-    ShowMedian = true, ShowAverage = true)
-
-Chart.Line(data2)
 Chart.Line(data,Title="Test Title")
 Chart.Line(data,Title="Test Title").WithTitle(InsideArea=false)
 Chart.Line(data,Title="Test Title").WithTitle(InsideArea=true)
@@ -126,7 +103,6 @@ Chart.Line(data,Name="Test Data").WithLegend(InsideArea=true)
 Chart.Line(data,Name="Test Data").WithLegend(InsideArea=false)
 Chart.Line(data).WithLegend().CopyAsBitmap()
 
-// TODO: check the type of "Data" shows as "seq<...>" not "IEnumerable<...>"
 Chart.Line(data)
 
 Chart.Line(data,Name="Test Data").WithLegend(InsideArea=false)
@@ -146,7 +122,6 @@ Chart.Bubble(pointsWithSizes)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Star10)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Diamond)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red)
-// TODO: these don't seem to change the size
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red,MaxPixelPointWidth=3)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Size=3)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,PointWidth=0.1)
@@ -197,84 +172,5 @@ Chart.Line(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #
 
 Chart.Stock(timeHighLowOpenClose)
 Chart.ThreeLineBreak(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #SERIESNAME") 
-
-//let form = new System.Windows.Forms.Form(Visible=true,TopMost=true)
-
-//let incData = form.MouseMove |> Event.map (fun e -> e.Y) |> Event.sampled 30 
-//let evData = form.MouseMove |> Event.map (fun e -> e.Y) |> Event.sampled 30 |> Event.windowTimeInterval 3000
-let incData = Event.clock 10 |> Event.map (fun x -> (x, x.Millisecond))
-let incBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand()))
-let evBubbleData = Event.clock 10 |> Event.map (fun x -> (rand(), rand(), rand())) |> Event.sampled 30 |> Event.windowTimeInterval 3000  |> Event.map (Array.map (fun (_,x) -> x))
-let evData = Event.clock 10 |> Event.map (fun x -> (x, x.Millisecond)) |> Event.windowTimeInterval 3000 
-let evData2 = Event.clock 20 |> Event.map (fun x -> (x, 100.0 + 200.0 * sin (float (x.Ticks / 2000000L)))) |> Event.windowTimeInterval 3000 
-let constantLiveTimeSeriesData = Event.clock 30 |> Event.map (fun _ -> timeSeriesData)
-
-LiveChart.Line (Event.cycle 1000 [data2; data3])
-LiveChart.Line(constantLiveTimeSeriesData)
-
-LiveChart.LineIncremental(incData,Name="MouseMove").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
-LiveChart.FastLineIncremental(incData,Name="MouseMove").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
-
-LiveChart.Line(evData,Name="MouseMove").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
-LiveChart.Line(evData2,Name="Clock").WithXAxis(Enabled=false).WithYAxis(Enabled=false)
-LiveChart.Line(evData2,Name="Clock")
-    .WithXAxis(Title="abc")
-    .WithYAxis(Title="def")
-
-LiveChart.Point(evData2,Name="Clock")
-LiveChart.FastPoint(evData2,Name="Clock")
-LiveChart.PointIncremental(incData,Name="Clock")
-LiveChart.FastPointIncremental(incData,Name="Clock")
-LiveChart.BubbleIncremental(incBubbleData,Name="Clock")
-LiveChart.Bubble(evBubbleData,Name="Clock")
-
-LiveChart.Line(evData2,Name="Clock")
-    .WithXAxis(Title="")
-    .WithYAxis(Title="")
-
-LiveChart.Line(evData2).WithTitle("A")
-
-LiveChart.Line(evData,Name="MouseMove")
-
-Chart.Combine 
-  [ LiveChart.Line(evData,Name="MouseMove")
-    LiveChart.Line(evData2,Name="Wave") ]
-
-Chart.Combine([ LiveChart.Line(evData,Name="MouseMove")
-                LiveChart.Line(evData2,Name="Wave") ])
-
-
-// TODO these don't do the correct thing:
-
-Chart.Bubble(pointsWithSizes,UseSizeForLabel=true)
-
-// Display prices using stock chart 
-Chart.Stock(prices)
-
-// Display prices with date as a label
-prices 
-|> List.mapi (fun i (v1,v2,v3,v4) -> DateTime.Now.AddDays(float i), v1, v2, v3, v4)
-|> Chart.Stock
-
-// Candlestick chart price range specified
-prices
-|> Chart.Candlestick
-|> Chart.WithYAxis(Max = 29.0, Min = 25.0)
-
-let electionData = 
-  [ "Conservative", 306; "Labour", 258; "Liberal Democrat", 57 ]
-
-// Create doughnut chart showing the data
-Chart.Doughnut(electionData)
-
-// Chart showing number of seats in the label
-[ for n, v in electionData -> sprintf "%s (%d)" n v, v ]
-|> Chart.Doughnut
-
-
-[ "Africa", 1033043; "Asia", 4166741; 
-  "Europe", 732759; "South America", 588649; 
-  "North America", 351659; "Oceania", 35838  ]
-|> Chart.Bar
 
 

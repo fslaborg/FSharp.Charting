@@ -2672,6 +2672,14 @@ namespace FSharp.Charting
         static member Combine charts = 
           CombinedChart (List.ofSeq charts) :> GenericChart
 
+        /// Create a combined chart with the given charts merged. Takes the settings from the baseChart
+        static member CombineWith baseChart newChart = 
+            let combinedChart = CombinedChart [baseChart; newChart] 
+            combinedChart.Area.AxisX <- baseChart.Area.AxisX
+            combinedChart.Area.AxisY <- baseChart.Area.AxisY
+            combinedChart.Margin <- baseChart.Margin
+            combinedChart :> GenericChart
+
 
     /// Contains static methods to construct charts whose data source is an event or observable which 
     /// updates the entire data set.

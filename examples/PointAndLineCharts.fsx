@@ -37,7 +37,7 @@ Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 (**
 
 
-## Pipelining into Line.Chart
+## Pipelining into Chart.Line
 
 The following example generates a list containing both X and Y values. 
 *)

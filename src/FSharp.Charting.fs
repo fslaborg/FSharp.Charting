@@ -37,17 +37,17 @@ namespace FSharp.Charting
 
     module private ClipboardMetafileHelper =
         [<DllImport("user32.dll")>]
-        extern bool OpenClipboard(nativeint hWndNewOwner)
+        extern bool OpenClipboard(nativeint _hWndNewOwner)
         [<DllImport("user32.dll")>]
         extern bool EmptyClipboard()
         [<DllImport("user32.dll")>]
-        extern IntPtr SetClipboardData(uint32 uFormat, nativeint hMem)
+        extern IntPtr SetClipboardData(uint32 _uFormat, nativeint _hMem)
         [<DllImport("user32.dll")>]
         extern bool CloseClipboard()
         [<DllImport("gdi32.dll")>]
-        extern nativeint CopyEnhMetaFile(nativeint hemfSrc, nativeint hNULL)
+        extern nativeint CopyEnhMetaFile(nativeint _hemfSrc, nativeint _hNULL)
         [<DllImport("gdi32.dll")>]
-        extern bool DeleteEnhMetaFile(IntPtr hemf)
+        extern bool DeleteEnhMetaFile(IntPtr _hemf)
     
         // Metafile mf is set to a state that is not valid inside this function.
         let PutEnhMetafileOnClipboard(hWnd, mf : System.Drawing.Imaging.Metafile) =
@@ -200,7 +200,6 @@ namespace FSharp.Charting
         let replacing () = 
             let curr = ref [| |]
             let ev = Event<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>()
-            let ctxt = System.Threading.SynchronizationContext.Current
             let coll = 
                 { new obj() with 
                       member x.ToString() = "INotifyEnumerableInternal from Seq.ofObservableReplacing"
@@ -282,6 +281,7 @@ namespace FSharp.Charting
             member __.X = X 
             member __.YS = YS
 
+        /// Specifies the image type of the chart.
         type ChartImageFormat = 
         /// A JPEG image format.
         | Jpeg = 0
@@ -300,6 +300,7 @@ namespace FSharp.Charting
         /// A Windows Enhanced Metafile Plus (EMF+) image format. 
         | EmfPlus = 7
 
+        /// An enumeration of axis arrow styles
         type AxisArrowStyle = 
         /// No arrow is used for the relevant axis.
         | None = 0
@@ -310,6 +311,7 @@ namespace FSharp.Charting
         /// A line-shaped arrow is used for the relevant axis.
         | Lines = 3
 
+        /// Specifies a line style
         type DashStyle = 
         /// The line style is not set.
         | NotSet = 0
@@ -324,6 +326,7 @@ namespace FSharp.Charting
         /// A solid line.
         | Solid = 5
     
+        /// Specifies text orientation in a chart element
         type TextOrientation = 
         /// Text orientation is automatically determined, based on the type of chart element in which the text appears.
         | Auto = 0
@@ -336,6 +339,7 @@ namespace FSharp.Charting
         /// Text characters are not rotated and are positioned one below the other.
         | Stacked = 4
 
+        /// Specifies text drawing styles
         type TextStyle = 
         /// Default text drawing style
         | Default = 0
@@ -348,6 +352,7 @@ namespace FSharp.Charting
         /// Framed text
         | Frame = 4
 
+        /// Specifies a lighting style for a three-dimensional (3D) chart area
         type LightStyle = 
         /// No lighting is applied.
         | None = 0
@@ -356,6 +361,7 @@ namespace FSharp.Charting
         /// A realistic lighting style is applied, where the hue of all chart area elements changes depending on the amount of rotation.
         | Realistic = 2
     
+        /// Specifies where a chart element, such as a legend or title, will be docked on the chart
         type Docking = 
         /// Docked to the top of either the chart image or a ChartArea object
         | Top = 0
@@ -366,6 +372,7 @@ namespace FSharp.Charting
         /// Docked to the left of either the chart image or a ChartArea object
         | Left = 3
 
+        /// Specifies a style for markers
         type MarkerStyle = 
           /// No marker is displayed for the series or data point.
           | None = 0
@@ -388,6 +395,7 @@ namespace FSharp.Charting
           /// A 10-point star-shaped marker is displayed.
           | Star10 = 9
 
+        /// Specifies an interval type
         type DateTimeIntervalType = 
         /// Automatically determined by the Chart control.
         | Auto = 0
@@ -520,8 +528,7 @@ namespace FSharp.Charting
             | BottomRight = 8
             | Center = 9
 
-        /// The Y value to use as the data point
-        /// label.
+        /// The Y value to use as the data point label.
         type LabelValueType = 
             | High = 0
             | Low = 1
@@ -1031,12 +1038,11 @@ namespace FSharp.Charting
 
             let mutable data = ChartData.Values (NotifySeq.ignoreReset (NotifySeq.notifyOrOnce []), "Item1", "Item2", "") 
             let mutable margin = DefaultMarginForEachChart
-            let legends = new ResizeArray<Legend>()
 
             [<Obsolete("This type does not support GetHashCode()")>]
             override x.GetHashCode() = 0
             [<Obsolete("This type does not support Equals(...)")>]
-            override x.Equals(yobj) = false
+            override x.Equals(_yobj) = false
             [<Obsolete("This type does not support ToString(...)")>]
             override x.ToString() = base.ToString()
             [<Obsolete("This type does not support GetType()")>]
@@ -1618,9 +1624,8 @@ namespace FSharp.Charting
         type internal SubplotChart(charts:GenericChart list, orientation:Orientation) = 
             inherit GenericChart(enum<SeriesChartType> -1)
             let r = 1.0 / (charts |> Seq.length |> float)
-            let mutable splitSizes = seq { for c in charts -> r }
 
-            member x.SplitSizes with get() = splitSizes and set v = splitSizes <- v
+            member x.SplitSizes = [ for _ in charts -> r ]
             member x.Orientation = orientation
             member x.Charts = charts
 
@@ -1659,6 +1664,7 @@ namespace FSharp.Charting
               IntervalOffsetType |> Option.iter (int >> enum >> labelStyle.set_IntervalOffsetType)
               IntervalType |> Option.iter (int >> enum >> labelStyle.set_IntervalType)
               IsStaggered |> Option.iter labelStyle.set_IsStaggered
+              IsEndLabelVisible |> Option.iter labelStyle.set_IsEndLabelVisible
               TruncatedLabels |> Option.iter labelStyle.set_TruncatedLabels
               StyleHelper.OptionalFont(?Family=FontName, ?Size=FontSize, ?Style=FontStyle) |> Option.iter labelStyle.set_Font 
             member internal x.Style = labelStyle 
@@ -1702,14 +1708,13 @@ namespace FSharp.Charting
             let seriesCounter = createCounter()
             let areaCounter = createCounter()
             let legendCounter = createCounter()
-            let axisCounter = createCounter()
             let disposeActions = ResizeArray<_>()
             let chart = new Chart()
             do
                 applyPropertyDefaults srcChart.ChartType chart
                 self.Controls.Add chart
 
-            let setMargin (area:ChartArea) ((left, top, right, bottom) as pos) = 
+            let setMargin (area:ChartArea) (left, top, right, bottom) = 
                 area.Position.X <- left
                 area.Position.Y <- top 
                 area.Position.Width <- right - left
@@ -1887,7 +1892,7 @@ namespace FSharp.Charting
                         let seriesSubCharts = match srcSubChart with :? CombinedChart as cch -> cch.Charts | _ -> [srcSubChart]
                         let legendAndTitleSubCharts = srcSubChart  :: (match srcSubChart with :? CombinedChart as cch -> cch.Charts | _ -> [])
                         let legendOpt = (None, legendAndTitleSubCharts) ||> List.fold (processLegend area)
-                        let titleOpt = (None, legendAndTitleSubCharts) ||> List.fold (processTitle area)
+                        let _titleOpt = (None, legendAndTitleSubCharts) ||> List.fold (processTitle area)
 
                         for c in seriesSubCharts do
                             processSeries area legendOpt c
@@ -1967,7 +1972,7 @@ namespace FSharp.Charting
               ?Color, ?BorderColor, ?BorderWidth,
               ?DataPointLabel, ?DataPointLabelToolTip, ?DataPointToolTip, ?BarLabelPosition,
               ?MarkerColor, ?MarkerSize, ?MarkerStep, ?MarkerStyle:MarkerStyle, ?MarkerBorderColor, ?MarkerBorderWidth,
-              ?LegendEnabled,?LegendTitle, ?LegendBackground, ?LegendFont, ?LegendAlignment, ?LegendDocking:Docking, ?LegendInsideArea, ?LegendIsDockedInsideArea,
+              ?LegendEnabled,?LegendTitle, ?LegendBackground, ?LegendFont, ?LegendAlignment, ?LegendDocking:Docking, ?LegendIsDockedInsideArea,
               ?LegendTitleAlignment, ?LegendTitleFont, ?LegendTitleForeColor, ?LegendBorderColor, ?LegendBorderWidth, ?LegendBorderDashStyle:DashStyle,
               ?Title,  ?TitleStyle:TextStyle, ?TitleFont, ?TitleBackground, ?TitleColor, ?TitleBorderColor, ?TitleBorderWidth, ?TitleBorderDashStyle:DashStyle, 
               ?TitleOrientation:TextOrientation, ?TitleAlignment, ?TitleDocking:Docking, ?TitleInsideArea) =
@@ -2585,13 +2590,13 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
 
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedBar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedBar(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedBar))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -2599,12 +2604,12 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedBar100(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedBar100(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedBar100) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -2612,12 +2617,12 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedColumn(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedColumn(data,?Name,?Title,(* ?Labels, *)?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedColumn) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -2625,12 +2630,12 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedColumn100(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedColumn100(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedColumn100))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -2638,12 +2643,12 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedArea(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedArea(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedArea))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -2651,12 +2656,12 @@ namespace FSharp.Charting
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
         /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
+        // /// <param name="Labels">The labels that match the data.</param>
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="StackedGroupName">The name of the stacked group.</param>
-        static member StackedArea100(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?StackedGroupName) = 
+        static member StackedArea100(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?StackedGroupName) = 
             GenericChart.Create(seqXY data, fun () -> GenericChart(SeriesChartType.StackedArea100))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?StackedGroupName=StackedGroupName)
 
@@ -3879,6 +3884,7 @@ namespace FSharp.Charting
                   IntervalType |> Option.iter labelStyle.set_IntervalType
                   IsStaggered |> Option.iter labelStyle.set_IsStaggered
                   TruncatedLabels |> Option.iter labelStyle.set_TruncatedLabels
+                  IsEndLabelVisible |> Option.iter labelStyle.set_IsEndLabelVisible
                   if FontName.IsSome || FontFamily.IsSome || FontStyle.IsSome || FontSize.IsSome then
                      labelStyle.set_Font (FontCreate(FontName, FontFamily, FontStyle, FontSize))
                   labelStyle

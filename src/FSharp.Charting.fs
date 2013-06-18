@@ -3428,7 +3428,7 @@ namespace FSharp.Charting
             /// <param name="Margin"></param>
             /// <param name="Background"></param>
             /// <param name="BorderColor">The border color for the data series</param>
-            /// <param name="BorderWidth".The border width for the data series</param>
+            /// <param name="BorderWidth">The border width for the data series</param>
             // TODO: move SplineLineTension to the specific chart types it applies to
             /// <param name="SplineLineTension">The line tension for the drawing of curves between data points. Any double from 0 to 2.</param>
             member ch.WithStyling
@@ -3778,7 +3778,7 @@ namespace FSharp.Charting
             /// <param name="Margin"></param>
             /// <param name="Background"></param>
             /// <param name="BorderColor">The border color for the data series</param>
-            /// <param name="BorderWidth".The border width for the data series</param>
+            /// <param name="BorderWidth">The border width for the data series</param>
             // TODO: move SplineLineTension to the specific chart types it applies to
             /// <param name="SplineLineTension">The line tension for the drawing of curves between data points. Any double from 0 to 2.</param>
             static member WithStyling

@@ -1842,9 +1842,9 @@ namespace FSharp.Charting
                             match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryLegend) with
                             | None -> margins
                             | Some leg ->  
-                                printfn "leg.Enabled = %b" leg.Enabled
-                                printfn "leg.IsDockedInsideChartArea = %b" leg.IsDockedInsideChartArea
-                                printfn "leg.Docking = %A" leg.Docking
+                                //printfn "leg.Enabled = %b" leg.Enabled
+                                //printfn "leg.IsDockedInsideChartArea = %b" leg.IsDockedInsideChartArea
+                                //printfn "leg.Docking = %A" leg.Docking
                                 if leg.Enabled && not leg.IsDockedInsideChartArea then 
                                     match leg.Docking with 
                                     | Charting.Docking.Left -> (max l DefaultExtraMarginForLegendIfPresent, t, r, b) 

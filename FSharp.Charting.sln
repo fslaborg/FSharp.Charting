@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting", "src\FSharp.Charting.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB1185}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting", "src\FSharp.Charting.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36E72EB1-5847-4B38-8993-B951648CB0D9}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,10 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6EBFDE55-9687-40A9-8C1A-6E204ECB1185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EBFDE55-9687-40A9-8C1A-6E204ECB1185}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EBFDE55-9687-40A9-8C1A-6E204ECB1185}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EBFDE55-9687-40A9-8C1A-6E204ECB1185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

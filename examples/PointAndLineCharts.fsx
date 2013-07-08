@@ -37,7 +37,7 @@ Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 (**
 
 
-## Pipelining into Line.Chart
+## Pipelining into Chart.Line
 
 The following example generates a list containing both X and Y values. 
 *)
@@ -46,6 +46,18 @@ The following example generates a list containing both X and Y values.
 let curvyData = [ for i in 0.0 .. 0.02 .. 2.0 * Math.PI -> (sin i, cos i * sin i) ] 
 
 curvyData |> Chart.Line
+
+(**
+
+
+## Specifying only Y values
+
+The following example below shows that you may also simply give a set of Y values, rather than (X,Y) value pairs.
+*)
+
+// Generates 2D curve using only Y values
+Chart.Line [ for x in 1.0 .. 100.0 -> x * x * sin x ]
+
 
 (**
 

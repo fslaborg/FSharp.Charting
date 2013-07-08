@@ -16,6 +16,7 @@ The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable
       Install <a href="https://nuget.org/packages/FSharp.Charting">FSharp.Charting using NuGet</a>.
       Run this in the <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console">Package Manager Console</a>:
       <pre>PM> Install-Package FSharp.Charting</pre>
+      Then reference the 'FSharp.Charting.fsx' script in the package.
     </div>
   </div>
   <div class="span1"></div>
@@ -44,7 +45,12 @@ The documentation is automatically generated from `*.fsx` files in  [the example
 If you find a typo, please submit a pull request!
 
  * [FSharp.Charting](fsharpcharting.html) is the documentation home.
- 
+
+Previous Versions
+-----------------
+
+This library is a successor to 'FSharpChart'. The last version of 'FSharpChart' was [version 0.61][fsharpchart61].
+
 Contributing
 ------------
 
@@ -64,11 +70,18 @@ contribute [examples][examples] that can be turned into a documentation.
 FSharp.Charting uses simple, declarative chart specifications.
 
 On Windows, FSharp.Charting is implemented using the Data Visualization charting controls 
-available on Windows in .NET 4.x, with particular focus on 'making the simple things simple'. </p>
+available on Windows in .NET 4.x.
+
+### Library future
 
 FSharp.Charting is designed so that the same charting specifications can be supported when 
 using different charting implementations. For example, the [Try F#](http://tryfsharp.org)
 charts use similar charting specifications, implemented using in HTML5 using Dojo Charts.
+
+The next step we would like to try is to implement cross-platform Javascript-based charting using
+embedded browser controls.
+
+Another direction of interest is to bind to the server-side versions of the charting controls usable by ASP.NET.
 
 
 ### Library license
@@ -77,7 +90,6 @@ The library is available under Apache 2.0. For more information see the
 [License file][readme] in the GitHub repository. In summary, this means that you can 
 use the library for commercial purposes, fork it, modify it as you wish.
 
-
   [source]: https://github.com/fsharp/FSharp.Charting/zipball/master
   [release]: https://github.com/fsharp/FSharp.Charting/zipball/release
   [examples]: https://github.com/fsharp/FSharp.Charting/tree/master/examples
@@ -85,3 +97,4 @@ use the library for commercial purposes, fork it, modify it as you wish.
   [issues]: https://github.com/fsharp/FSharp.Charting/issues
   [readme]: https://github.com/fsharp/FSharp.Charting/blob/master/README.md
   [fsharp-oss]: http://groups.google.com/group/fsharp-opensource
+  [fsharpchart61]: http://code.msdn.microsoft.com/windowsdesktop/FSharpChart-b59073f5

@@ -49,6 +49,18 @@ curvyData |> Chart.Line
 
 (**
 
+
+## Specifying only Y values
+
+The following example below shows that you may also simply give a set of Y values, rather than (X,Y) value pairs.
+*)
+
+// Generates 2D curve using only Y values
+Chart.Line [ for x in 1.0 .. 100.0 -> x * x * sin x ]
+
+
+(**
+
 It uses a sequence expression ranging
 from 0 to 2π with a step size 0.02. This produces a large number of points, so the snippet uses the Chart.Line 
 function to draw the chart. When using a single list as the data source, it is also possible to elegantly use pipelining (|> operator).

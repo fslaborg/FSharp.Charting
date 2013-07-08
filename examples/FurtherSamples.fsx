@@ -28,6 +28,9 @@ let timeHighLowOpenClose =
 let timedPointsWithSizes = 
     [ for i in 0 .. 30 -> (DateTime.Now.AddDays(rand() * 10.0), rand() * 10.0, rand() / 100.0) ]
 
+Chart.Line(data).WithXAxis(MajorGrid=ChartTypes.Grid(Enabled=false))
+
+(*
 let prices =
   [ 26.24,25.80,26.22,25.95; 26.40,26.18,26.26,26.20
     26.37,26.04,26.11,26.08; 26.78,26.15,26.60,26.16
@@ -173,4 +176,6 @@ Chart.Line(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #
 Chart.Stock(timeHighLowOpenClose)
 Chart.ThreeLineBreak(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #SERIESNAME") 
 
+
+*)
 

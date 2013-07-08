@@ -216,13 +216,13 @@ namespace FSharp.Charting
                 curr := elems; ev.Trigger(curr,evArgs)
             coll, update
 
-        // TODO: only start on connect + proper replay
+        // TODO: only start on connect + proper replay + disconnect, OR use weak connection to source
         let ofObservableIncremental (source:IObservable<'T>) : INotifyEnumerableInternal<'T> = 
             let obs = new ObservableCollection<'T>()
             source |> Observable.add (fun x -> obs.Add(x))
             ofObservableCollection obs
 
-        // TODO: only start on connect + proper replay
+        // TODO: only start on connect + proper replay + disconnect, OR use weak connection to source
         let ofObservableReplacing (source:IObservable<#seq<'T>>) : INotifyEnumerableInternal<'T> = 
             let coll, update = replacing ()
             source |> Observable.add (fun elems -> update (Seq.toArray elems))
@@ -734,13 +734,13 @@ namespace FSharp.Charting
             ]
 
         let internal typesToClone = 
-            [ typeof<System.Windows.Forms.DataVisualization.Charting.LabelStyle>;
-              typeof<System.Windows.Forms.DataVisualization.Charting.Axis>;
-              typeof<System.Windows.Forms.DataVisualization.Charting.Grid>; 
-              typeof<System.Windows.Forms.DataVisualization.Charting.TickMark>
-              typeof<System.Windows.Forms.DataVisualization.Charting.ElementPosition>; 
-              typeof<System.Windows.Forms.DataVisualization.Charting.AxisScaleView>; 
-              typeof<System.Windows.Forms.DataVisualization.Charting.AxisScrollBar>; ]
+            [ typeof<Charting.LabelStyle>;
+              typeof<Charting.Axis>;
+              typeof<Charting.Grid>; 
+              typeof<Charting.TickMark>
+              typeof<Charting.ElementPosition>; 
+              typeof<Charting.AxisScaleView>; 
+              typeof<Charting.AxisScrollBar>; ]
 
         let internal typesToCopy = [ typeof<Font>; typeof<String> ]
 
@@ -830,6 +830,10 @@ namespace FSharp.Charting
                 let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y),label) -> DataPoint(X=x,Y=y,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y", "Label=Label") 
 
+        let internal mergeDataAndLabelsForY data (labels: #seq<string> option) = 
+            let data = NotifySeq.notifyOrOnce data
+            mergeDataAndLabelsForXY (data |> NotifySeq.mapi (fun i y -> (i, y))) labels
+
         // Two Y values
         let internal mergeDataAndLabelsForXY2 data labels = 
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
@@ -841,6 +845,10 @@ namespace FSharp.Charting
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y1,y2),label) -> TwoXYDataPoint(X=x,Y1=y1,Y2=y2,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2", "Label=Label")
+
+        let internal mergeDataAndLabelsForY2 data (labels: #seq<string> option) = 
+            let data = NotifySeq.notifyOrOnce data
+            mergeDataAndLabelsForXY2 (data |> NotifySeq.mapi (fun i (y1, y2) -> (i, y1, y2))) labels
 
         // Three Y values
         let internal mergeDataAndLabelsForXY3 data labels = 
@@ -913,25 +921,6 @@ namespace FSharp.Charting
             ChartData.StackedXYValues (series)
 
         // --------------------------------------------------------------------------------------
-
-        let internal bindObservable (chart:Chart, series:Series, maxPoints, values, adder) = 
-            series.Points.Clear()
-            let rec disp = 
-                values |> Observable.subscribe (fun v ->
-                    let op () = 
-                        try
-                            adder series.Points v
-                            if maxPoints <> -1 && series.Points.Count > maxPoints then
-                                series.Points.RemoveAt(0) 
-                        with 
-                        | :? NullReferenceException ->
-                            disp.Dispose() 
-                    if chart.InvokeRequired then
-                        chart.Invoke(Action(op)) |> ignore
-                    else 
-                        op())
-            ()
-
 
         let internal setSeriesData resetSeries (series:Series) data (chart:Chart) setCustomProperty =             
 
@@ -1654,7 +1643,7 @@ namespace FSharp.Charting
         type LabelStyle
                 ( ?Angle, ?Color, ?Format, ?Interval, ?IntervalOffset, ?IntervalOffsetType:DateTimeIntervalType, ?IntervalType:DateTimeIntervalType, ?IsEndLabelVisible, ?IsStaggered, ?TruncatedLabels,
                   ?FontName:string, ?FontStyle:FontStyle, ?FontSize:float) =
-            let labelStyle = new System.Windows.Forms.DataVisualization.Charting.LabelStyle()
+            let labelStyle = new Charting.LabelStyle()
             do
               Angle |> Option.iter labelStyle.set_Angle
               Color |> Option.iter labelStyle.set_ForeColor
@@ -1674,7 +1663,7 @@ namespace FSharp.Charting
 
         [<Sealed>]
         type Grid( ?Enabled, ?Interval, ?IntervalOffset, ?IntervalOffsetType, ?LineColor, ?LineDashStyle, ?LineWidth) = 
-            let grid = new System.Windows.Forms.DataVisualization.Charting.Grid()
+            let grid = new Charting.Grid()
             do
               Enabled |> Option.iter grid.set_Enabled
               Interval |> Option.iter grid.set_Interval
@@ -1687,7 +1676,7 @@ namespace FSharp.Charting
 
         [<Sealed>]
         type TickMark( ?Size, ?Style, ?Enabled, ?Interval, ?IntervalOffset, ?IntervalOffsetType, ?LineColor, ?LineDashStyle, ?LineWidth) = 
-            let tickMark = new System.Windows.Forms.DataVisualization.Charting.TickMark()
+            let tickMark = new Charting.TickMark()
             do
               Enabled |> Option.iter tickMark.set_Enabled
               Interval |> Option.iter tickMark.set_Interval
@@ -2149,6 +2138,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Area))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Area(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Area))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>Illustrates comparisons among individual items</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2159,6 +2160,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Bar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Bar))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Illustrates comparisons among individual items</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Bar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Bar))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 
@@ -2227,6 +2240,24 @@ namespace FSharp.Charting
             Chart.ConfigureBubble(c,BubbleMaxSize,BubbleMinSize,BubbleScaleMax,BubbleScaleMin,UseSizeForLabel)
             c
 
+        /// <summary>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        /// <param name="BubbleMaxSize">The maximum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.</param>
+        /// <param name="BubbleMinSize">The minimum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.</param>
+        /// <param name="BubbleScaleMax">The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.</param>
+        /// <param name="BubbleScaleMin">The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.</param>
+        /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
+        static member Bubble(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
+            let c = GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> GenericChart (SeriesChartType.Bubble) )
+                    |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+            Chart.ConfigureBubble(c,BubbleMaxSize,BubbleMinSize,BubbleScaleMax,BubbleScaleMin,UseSizeForLabel)
+            c
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
         /// <param name="data">The data for the chart as (time, high, low, open, close) tuples.</param>
@@ -2264,6 +2295,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Column))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Uses a sequence of columns to compare values across categories.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Column))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
 
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -2275,6 +2318,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Doughnut(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> DoughnutChart ())
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Doughnut(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> DoughnutChart ())
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</summary>
@@ -2301,6 +2356,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.FastLine))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member FastLine(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.FastLine))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
 
         /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -2312,6 +2379,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member FastPoint(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.FastPoint))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member FastPoint(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.FastPoint))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>Displays in a funnel shape data that equals 100% when totaled.</summary>
@@ -2326,6 +2405,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> FunnelChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Displays in a funnel shape data that equals 100% when totaled.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Funnel(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> FunnelChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2338,6 +2429,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> KagiChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Kagi(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> KagiChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>Illustrates trends in data with the passing of time.</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2348,6 +2451,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Line(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Line) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Illustrates trends in data with the passing of time.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Line(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Line) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 
@@ -2363,6 +2478,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> PieChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Pie(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> PieChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>Uses points to represent data points.</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2373,6 +2500,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Point(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Point))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
+
+        /// <summary>Uses points to represent data points.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Point(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Point))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
 
         /// <summary>Disregards the passage of time and only displays changes in prices.</summary>
@@ -2387,6 +2526,18 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY2 data Labels, fun () -> PointAndFigureChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Disregards the passage of time and only displays changes in prices.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member PointAndFigure(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> PointAndFigureChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>A circular graph on which data points are displayed using the angle, and the distance from the center point.</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2397,6 +2548,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Polar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> PolarChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>A circular graph on which data points are displayed using the angle, and the distance from the center point.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Polar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> PolarChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>Displays data that, when combined, equals 100%.</summary>
@@ -2412,6 +2575,19 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> PyramidChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>Displays data that, when combined, equals 100%.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Pyramid(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> PyramidChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>
         /// A circular chart that is used primarily as a data
         /// comparison tool.
@@ -2425,6 +2601,21 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Radar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> RadarChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
+        /// A circular chart that is used primarily as a data
+        /// comparison tool.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Radar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> RadarChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>
@@ -2444,6 +2635,22 @@ namespace FSharp.Charting
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>
+        /// Displays a range of data by plotting two Y values per data
+        /// point, with each Y value being drawn as a line
+        /// chart.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Range(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> GenericChart(SeriesChartType.Range) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
         /// Displays separate events that have beginning and end values.
         /// </summary>
         /// <param name="data">The data for the chart.</param>
@@ -2455,6 +2662,21 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member RangeBar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY2 data Labels, fun () -> GenericChart(SeriesChartType.RangeBar) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+
+        /// <summary>
+        /// Displays separate events that have beginning and end values.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member RangeBar(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> GenericChart(SeriesChartType.RangeBar) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 
@@ -2474,6 +2696,21 @@ namespace FSharp.Charting
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>
+        /// Displays a range of data by plotting two Y values
+        /// per data point.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member RangeColumn(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> GenericChart(SeriesChartType.RangeColumn))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
         /// Displays a series of connecting vertical lines where the thickness
         /// and direction of the lines are dependent on the action
         /// of the price value.
@@ -2487,6 +2724,22 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Renko(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> RenkoChart ())
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
+        /// Displays a series of connecting vertical lines where the thickness
+        /// and direction of the lines are dependent on the action
+        /// of the price value.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Renko(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> RenkoChart ())
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>
@@ -2505,6 +2758,21 @@ namespace FSharp.Charting
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>
+        /// A Line chart that plots a fitted curve through each
+        /// data point in a series.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Spline(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Spline))
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
         /// An Area chart that plots a fitted curve through each
         /// data point in a series.
         /// </summary>
@@ -2517,6 +2785,21 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member SplineArea(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.SplineArea) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>
+        /// An Area chart that plots a fitted curve through each
+        /// data point in a series.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member SplineArea(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.SplineArea) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 
@@ -2536,6 +2819,22 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForXY2 data Labels, fun () -> GenericChart(SeriesChartType.SplineRange) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
+        /// <summary>
+        /// Displays a range of data by plotting two Y values per
+        /// data point, with each Y value drawn as a line
+        /// chart.
+        /// </summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member SplineRange(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY2 data Labels, fun () -> GenericChart(SeriesChartType.SplineRange) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
         /// <summary>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</summary>
         /// <param name="data">The data for the chart.</param>
         /// <param name="Name">The name of the data set.</param>
@@ -2546,6 +2845,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member StepLine(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.StepLine) )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member StepLine(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.StepLine) )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 
@@ -2584,6 +2895,18 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member ThreeLineBreak(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> ThreeLineBreakChart () )
+             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Displays a series of vertical boxes, or lines, that reflect changes in price values.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member ThreeLineBreak(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> ThreeLineBreakChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>Displays series of the same chart type as stacked bars.</summary>
@@ -2690,7 +3013,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Area(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Area(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Area(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Illustrates comparisons among individual items</summary>
@@ -2701,7 +3024,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Bar(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Bar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Bar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 (*
@@ -2763,7 +3086,7 @@ namespace FSharp.Charting
         /// <param name="BubbleScaleMax">The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.</param>
         /// <param name="BubbleScaleMin">The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.</param>
         /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
-        static member Bubble(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
+        static member Bubble(data:IObservable<#seq<#value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
             Chart.Bubble(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?BubbleMaxSize=BubbleMaxSize,?BubbleMinSize=BubbleMinSize,?BubbleScaleMax=BubbleScaleMax,?BubbleScaleMin=BubbleScaleMin,?UseSizeForLabel=UseSizeForLabel)
 
 
@@ -2780,7 +3103,7 @@ namespace FSharp.Charting
         /// <param name="BubbleScaleMax">The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.</param>
         /// <param name="BubbleScaleMin">The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.</param>
         /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
-        static member BubbleIncremental(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
+        static member BubbleIncremental(data:IObservable<#value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
             Chart.Bubble(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?BubbleMaxSize=BubbleMaxSize,?BubbleMinSize=BubbleMinSize,?BubbleScaleMax=BubbleScaleMax,?BubbleScaleMin=BubbleScaleMin,?UseSizeForLabel=UseSizeForLabel)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -2802,7 +3125,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Candlestick(data:IObservable<seq<_ * _ * _ * _ * _>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Candlestick(data:IObservable<#seq<#value * #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -2813,7 +3136,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member CandlestickIncremental(data:IObservable<_ * _ * _ * _>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member CandlestickIncremental(data:IObservable<#value * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -2824,7 +3147,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member CandlestickIncremental(data:IObservable<_ * _ * _ * _ * _>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member CandlestickIncremental(data:IObservable<#value * #value * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -2836,7 +3159,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Column(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
@@ -2847,7 +3170,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ColumnIncremental(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member ColumnIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
@@ -2858,7 +3181,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Doughnut(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Doughnut(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Doughnut(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</summary>
@@ -2869,7 +3192,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ErrorBar(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member ErrorBar(data:IObservable<#seq<#value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.ErrorBar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -2880,7 +3203,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastLine(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastLine(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastLine(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An incremental variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -2891,7 +3214,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastLineIncremental(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastLineIncremental(data:IObservable<#value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastLine(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -2902,7 +3225,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastPoint(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastPoint(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastPoint(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -2913,7 +3236,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastPointIncremental(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastPointIncremental(data:IObservable<#value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastPoint(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays in a funnel shape data that equals 100% when totaled.</summary>
@@ -2924,7 +3247,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Funnel(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Funnel(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Funnel(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -2939,7 +3262,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Kagi(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Kagi(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Kagi(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -2953,7 +3276,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Line(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Line(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Line(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -2965,7 +3288,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member LineIncremental(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member LineIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Line(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An updating chart which uses points to represent data points, where updates replace the entire data set.</summary>
@@ -2976,8 +3299,21 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Pie(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Pie(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Pie(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+
+
+
+        /// <summary>An incrementally updating chart which uses points to represent data points.</summary>
+        /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+    //    /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member PieIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+            Chart.Pie(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
         /// <summary>An updating chart which uses points to represent data points, where updates replace the entire data set.</summary>
@@ -2988,8 +3324,20 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Point(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
+        static member Point(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
             Chart.Point(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
+
+
+        /// <summary>An incrementally updating chart which uses points to represent data points.</summary>
+        /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+    //    /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member PointIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
+            Chart.Point(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
 
         /// <summary>
         /// Disregards the passage of time and only displays changes in prices.
@@ -3001,7 +3349,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PointAndFigure(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member PointAndFigure(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.PointAndFigure(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3015,7 +3363,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Polar(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Polar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Polar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3028,7 +3376,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Pyramid(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Pyramid(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Pyramid(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A circular chart that is used primarily as a data comparison tool.</summary>
@@ -3039,7 +3387,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Radar(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Radar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Radar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line chart.</summary>
@@ -3050,7 +3398,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Range(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Range(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Range(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays separate events that have beginning and end values.</summary>
@@ -3061,7 +3409,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member RangeBar(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member RangeBar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.RangeBar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3073,7 +3421,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member RangeColumn(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member RangeColumn(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.RangeColumn(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
@@ -3084,7 +3432,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Renko(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Renko(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Renko(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A Line chart that plots a fitted curve through each data point in a series.</summary>
@@ -3095,7 +3443,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Spline(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Spline(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Spline(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An Area chart that plots a fitted curve through each data point in a series.</summary>
@@ -3106,7 +3454,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member SplineArea(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member SplineArea(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.SplineArea(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3118,7 +3466,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member SplineRange(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member SplineRange(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.SplineRange(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3179,7 +3527,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member StepLine(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member StepLine(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.StepLine(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3214,33 +3562,8 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ThreeLineBreak(data,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member ThreeLineBreak(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.ThreeLineBreak(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
-
-
-        /// <summary>An incrementally updating chart which uses points to represent data points.</summary>
-        /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
-        /// <param name="Name">The name of the data set.</param>
-        /// <param name="Title">The title of the chart.</param>
-    //    /// <param name="Labels">The labels that match the data.</param>
-        /// <param name="Color">The color for the data.</param>
-        /// <param name="XTitle">The title of the X-axis.</param>
-        /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PointIncremental(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
-            Chart.Point(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
-
-
-        /// <summary>An incrementally updating chart which uses points to represent data points.</summary>
-        /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
-        /// <param name="Name">The name of the data set.</param>
-        /// <param name="Title">The title of the chart.</param>
-    //    /// <param name="Labels">The labels that match the data.</param>
-        /// <param name="Color">The color for the data.</param>
-        /// <param name="XTitle">The title of the X-axis.</param>
-        /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PieIncremental(data,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
-            Chart.Pie(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
-
 
 
     [<AutoOpen>]
@@ -3874,7 +4197,7 @@ namespace FSharp.Charting
             static member LabelStyle
                 ( ?Angle, ?Color, ?Format, ?Interval, ?IntervalOffset, ?IntervalOffsetType, ?IntervalType, ?IsEndLabelVisible, ?IsStaggered, ?TruncatedLabels,
                   ?FontName:string, ?FontFamily:FontFamily, ?FontStyle:FontStyle, ?FontSize:float32) =
-                  let labelStyle = new System.Windows.Forms.DataVisualization.Charting.LabelStyle()
+                  let labelStyle = new Charting.LabelStyle()
                   Angle |> Option.iter labelStyle.set_Angle
                   Color |> Option.iter labelStyle.set_ForeColor
                   Format |> Option.iter labelStyle.set_Format

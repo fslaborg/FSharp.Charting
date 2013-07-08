@@ -45,5 +45,8 @@ element of the tuple is the X value (category) and the second element is the pop
 
 The second example creates a Column chart instead of a Bar chart.
 
+The third example below shows that you may also simply give a set of Y values, rather than (X,Y) value pairs.
+
 *)
 
+Chart.Bar [ 0 .. 10 ] 

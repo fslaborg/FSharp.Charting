@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------
-// Copyright (c) 2002-2013 Microsoft Corporation
+//
+// Copyright (c) 2002-2013 Microsoft Corporation and F# Open Source Group contributors.
 //
 // This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
 // copy of the license can be found in the License.html file at the root of this distribution. 
@@ -7,10 +8,6 @@
 // by the terms of the Apache License, Version 2.0.
 //
 // You must not remove this notice, or any other, from this software.
-//
-// Originally based on multiple files from fsharppowerpack.codeplex.com.
-//
-// Modified by Tomas Petricek and other contributors under the Apache 2.0 License
 //----------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------------
@@ -31,15 +28,9 @@ namespace FSharp.Charting
     open System.Drawing
     open System.Reflection
     open System.Runtime.InteropServices
-#if WEB
     open System.Web.UI
     open System.Web.UI.DataVisualization
     open System.Web.UI.DataVisualization.Charting
-#else
-    open System.Windows.Forms
-    open System.Windows.Forms.DataVisualization
-    open System.Windows.Forms.DataVisualization.Charting
-#endif
 
     module private ClipboardMetafileHelper =
         [<DllImport("user32.dll")>]
@@ -332,6 +323,10 @@ namespace FSharp.Charting
         /// A solid line.
         | Solid = 5
     
+        type Orientation = 
+        | Horizontal = 0
+        | Vertical = 1
+
         /// Specifies text orientation in a chart element
         type TextOrientation = 
         /// Text orientation is automatically determined, based on the type of chart element in which the text appears.
@@ -745,12 +740,7 @@ namespace FSharp.Charting
               typeof<Charting.Grid>; 
               typeof<Charting.TickMark>
               typeof<Charting.ElementPosition>; 
-              typeof<Charting.AxisScaleView>; 
-#if WEB
-#else
-              typeof<Charting.AxisScrollBar>; 
-#endif
-             ]
+              typeof<Charting.AxisScaleView>; ]
 
         let internal typesToCopy = [ typeof<Font>; typeof<String> ]
 
@@ -931,6 +921,27 @@ namespace FSharp.Charting
             ChartData.StackedXYValues (series)
 
         // --------------------------------------------------------------------------------------
+
+#if NO_OBSERVABLE
+        let internal bindObservable (chart:Chart, series:Series, maxPoints, values, adder) = 
+            series.Points.Clear()
+            let rec disp = 
+                values |> Observable.subscribe (fun v ->
+                    let op () = 
+                        try
+                            adder series.Points v
+                            if maxPoints <> -1 && series.Points.Count > maxPoints then
+                                series.Points.RemoveAt(0) 
+                        with 
+                        | :? NullReferenceException ->
+                            disp.Dispose() 
+                    if chart.InvokeRequired then
+                        chart.Invoke(Action(op)) |> ignore
+                    else 
+                        op())
+            ()
+#endif
+
 
         let internal setSeriesData resetSeries (series:Series) data (chart:Chart) setCustomProperty =             
 
@@ -1118,8 +1129,7 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 Bitmap.FromStream ms
 
-#if WEB
-#else
+#if NOT_ON_WEB
             /// Copy the contents of the chart to the clipboard
             member public x.CopyChartToClipboard() =
                 Clipboard.SetImage(x.CopyAsBitmap())
@@ -1131,8 +1141,8 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 use emf = new System.Drawing.Imaging.Metafile(ms)
                 ClipboardMetafileHelper.PutEnhMetafileOnClipboard(control.Handle, emf) |> ignore
-#endif
 
+#endif
             /// Save the chart as an image in the specified image format
             member public x.SaveChartAs(filename : string, format : ChartImageFormat) =
                 x.Chart.SaveImage(filename, format  |> int |> enum)
@@ -1623,12 +1633,6 @@ namespace FSharp.Charting
 
             member x.Charts = charts
 
-#if WEB
-        type internal Orientation = 
-            | Horizontal = 0
-            | Vertical = 1
-#endif
-
         type internal SubplotChart(charts:GenericChart list, orientation:Orientation) = 
             inherit GenericChart(enum<SeriesChartType> -1)
             let r = 1.0 / (charts |> Seq.length |> float)
@@ -1707,7 +1711,6 @@ namespace FSharp.Charting
               Size |> Option.iter tickMark.set_TickMarkStyle
               Style |> Option.iter tickMark.set_Size
             member internal x.Handle = tickMark
-
 
         /// A Windows Forms control to host a GenericChart specification
         type ChartControl(srcChart:GenericChart) as self = 
@@ -1849,9 +1852,9 @@ namespace FSharp.Charting
                             match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryLegend) with
                             | None -> margins
                             | Some leg ->  
-                                //printfn "leg.Enabled = %b" leg.Enabled
-                                //printfn "leg.IsDockedInsideChartArea = %b" leg.IsDockedInsideChartArea
-                                //printfn "leg.Docking = %A" leg.Docking
+                                printfn "leg.Enabled = %b" leg.Enabled
+                                printfn "leg.IsDockedInsideChartArea = %b" leg.IsDockedInsideChartArea
+                                printfn "leg.Docking = %A" leg.Docking
                                 if leg.Enabled && not leg.IsDockedInsideChartArea then 
                                     match leg.Docking with 
                                     | Charting.Docking.Left -> (max l DefaultExtraMarginForLegendIfPresent, t, r, b) 
@@ -1907,20 +1910,19 @@ namespace FSharp.Charting
                 let (dl,dt,dr,db) = computeExtraDefaultMargins (0,0,0,0) srcChart
                 layoutSubCharts srcChart (0.0f + float32 dl, 0.0f + float32 dt, 100.0f - float32 dr, 100.0f - float32 db)
                 srcChart.TryChart |> Option.iter (applyProperties chart)
-#if WEB
-#else
+#if DISABLED
                 chart.Dock <- DockStyle.Fill
 #endif
                 srcChart.Chart <- chart
 
-#if WEB
-#else
+#if DISABLED
             let props = new PropertyGrid(Width = 250, Dock = DockStyle.Right, SelectedObject = chart, Visible = false)
+#endif
   
             do
               self.Controls.Add chart
+#if DISABLED
               self.Controls.Add props
-
               let menu = new ContextMenu()
               let dlg = new SaveFileDialog(Filter = "PNG (*.png)|*.png|Bitmap (*.bmp;*.dib)|*.bmp;*.dib|GIF (*.gif)|*.gif|TIFF (*.tiff;*.tif)|*.tiff;*.tif|EMF (*.emf)|*.emf|JPEG (*.jpeg;*.jpg;*.jpe)|*.jpeg;*.jpg;*.jpe|EMF+ (*.emf)|*.emf|EMF+Dual (*.emf)|*.emf")
               let miCopy = new MenuItem("&Copy Image to Clipboard", Shortcut = Shortcut.CtrlC)
@@ -1956,6 +1958,12 @@ namespace FSharp.Charting
               menu.MenuItems.AddRange [| miCopy; miCopyEmf; miSave; miEdit |]
               self.ContextMenu <- menu
 
+            override __.Dispose(disposing) = 
+                base.Dispose(disposing)
+                let actions = disposeActions.ToArray()
+                disposeActions.Clear()
+                for a in actions do 
+                    a()
 #endif
     
     open ChartTypes
@@ -3784,8 +3792,7 @@ namespace FSharp.Charting
                 and set(v) = x.SetCustomProperty<EmptyPointValue>("EmptyPointValue", v)
     *)
 
-#if WEB
-#else
+#if DISABLED
             /// Display the chart in a new ChartControl in a new Form()
             member ch.ShowChart () =
                 let frm = new Form(Visible = true, TopMost = true, Width = 700, Height = 500)
@@ -4276,9 +4283,9 @@ namespace FSharp.Charting
             static member Font(?FamilyName:string, ?FontFamily:FontFamily, ?FontStyle:FontStyle, ?FontSize:float32) =
                 FontCreate(FamilyName, FontFamily, FontStyle, FontSize)
 
-        [<Obsolete("The type FSharpChart is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
+        [<Obsolete("The type FSharpChart is now obsolete. Use 'Chart' instead. Note, do not open System.Web.UI.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
         let FSharpChart = 1
 
-    [<Obsolete("This type is now obsolete. Use 'Chart' instead. Note, do not open System.Windows.Forms.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
+    [<Obsolete("This type is now obsolete. Use 'Chart' instead. Note, do not open System.Web.UI.DataVisualization.Charting when using this library, as it also defines a 'Chart' type.")>]
     type FSharpChart = Chart
 

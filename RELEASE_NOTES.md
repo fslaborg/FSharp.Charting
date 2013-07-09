@@ -8,3 +8,4 @@
 * 0.8 - Includes the updated 'fluent' operators and renames 'FSharpChart' to 'Chart'
 * 0.81 - Includes LiveChart and pipelined operators.
 * 0.82 - Improve documentation.
+* 0.83 - Include Y-value overloads and add build of FSharp.Charting.AspNet.dll

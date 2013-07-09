@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FSharp.Charting.fs" />
-    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="AssemblyInfo.AspNet.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

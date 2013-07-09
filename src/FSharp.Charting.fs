@@ -31,9 +31,15 @@ namespace FSharp.Charting
     open System.Drawing
     open System.Reflection
     open System.Runtime.InteropServices
+#if WEB
+    open System.Web.UI
+    open System.Web.UI.DataVisualization
+    open System.Web.UI.DataVisualization.Charting
+#else
     open System.Windows.Forms
     open System.Windows.Forms.DataVisualization
     open System.Windows.Forms.DataVisualization.Charting
+#endif
 
     module private ClipboardMetafileHelper =
         [<DllImport("user32.dll")>]
@@ -740,7 +746,11 @@ namespace FSharp.Charting
               typeof<Charting.TickMark>
               typeof<Charting.ElementPosition>; 
               typeof<Charting.AxisScaleView>; 
-              typeof<Charting.AxisScrollBar>; ]
+#if WEB
+#else
+              typeof<Charting.AxisScrollBar>; 
+#endif
+             ]
 
         let internal typesToCopy = [ typeof<Font>; typeof<String> ]
 
@@ -1108,6 +1118,8 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 Bitmap.FromStream ms
 
+#if WEB
+#else
             /// Copy the contents of the chart to the clipboard
             member public x.CopyChartToClipboard() =
                 Clipboard.SetImage(x.CopyAsBitmap())
@@ -1119,6 +1131,7 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 use emf = new System.Drawing.Imaging.Metafile(ms)
                 ClipboardMetafileHelper.PutEnhMetafileOnClipboard(control.Handle, emf) |> ignore
+#endif
 
             /// Save the chart as an image in the specified image format
             member public x.SaveChartAs(filename : string, format : ChartImageFormat) =
@@ -1610,6 +1623,12 @@ namespace FSharp.Charting
 
             member x.Charts = charts
 
+#if WEB
+        type internal Orientation = 
+            | Horizontal = 0
+            | Vertical = 1
+#endif
+
         type internal SubplotChart(charts:GenericChart list, orientation:Orientation) = 
             inherit GenericChart(enum<SeriesChartType> -1)
             let r = 1.0 / (charts |> Seq.length |> float)
@@ -1697,7 +1716,6 @@ namespace FSharp.Charting
             let seriesCounter = createCounter()
             let areaCounter = createCounter()
             let legendCounter = createCounter()
-            let disposeActions = ResizeArray<_>()
             let chart = new Chart()
             do
                 applyPropertyDefaults srcChart.ChartType chart
@@ -1889,9 +1907,14 @@ namespace FSharp.Charting
                 let (dl,dt,dr,db) = computeExtraDefaultMargins (0,0,0,0) srcChart
                 layoutSubCharts srcChart (0.0f + float32 dl, 0.0f + float32 dt, 100.0f - float32 dr, 100.0f - float32 db)
                 srcChart.TryChart |> Option.iter (applyProperties chart)
+#if WEB
+#else
                 chart.Dock <- DockStyle.Fill
+#endif
                 srcChart.Chart <- chart
 
+#if WEB
+#else
             let props = new PropertyGrid(Width = 250, Dock = DockStyle.Right, SelectedObject = chart, Visible = false)
   
             do
@@ -1933,12 +1956,7 @@ namespace FSharp.Charting
               menu.MenuItems.AddRange [| miCopy; miCopyEmf; miSave; miEdit |]
               self.ContextMenu <- menu
 
-            override __.Dispose(disposing) = 
-                base.Dispose(disposing)
-                let actions = disposeActions.ToArray()
-                disposeActions.Clear()
-                for a in actions do 
-                    a()
+#endif
     
     open ChartTypes
 
@@ -3766,6 +3784,8 @@ namespace FSharp.Charting
                 and set(v) = x.SetCustomProperty<EmptyPointValue>("EmptyPointValue", v)
     *)
 
+#if WEB
+#else
             /// Display the chart in a new ChartControl in a new Form()
             member ch.ShowChart () =
                 let frm = new Form(Visible = true, TopMost = true, Width = 700, Height = 500)
@@ -3774,6 +3794,7 @@ namespace FSharp.Charting
                 frm.Controls.Add(ctl)
                 frm.Show()
                 ctl.Focus() |> ignore
+#endif
 
         [<Obsolete("This type is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
         type AreaProperties() = 

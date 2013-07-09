@@ -21,19 +21,17 @@ let project = "FSharp.Charting"
 let authors = ["Carl Nolan, Don Syme, Tomas Petricek"]
 let summary = "A Charting Library for F#"
 let description = """
-  The FSharp.Charting library (FSharp.Charting.dll) is a charting library for F# data scripting."""
+  The FSharp.Charting library is a charting library for F# data scripting."""
 let tags = "F# FSharpChart charting plotting"
 
-(*
+
 // Information for the project containing experimental providers
-let projectExperimental = "FSharp.Charting.Experimental"
-let summaryExperimental = summary + " (experimental extensions)"
-let tagsExperimental = tags + " Apiary"
-let descriptionExperimental = description + """"
-  This package (FSharp.Charting.Experimental.dll) adds additional type providers that are work
-  in progress and do not match high quality standards yet. Currently, it includes a type 
-  provider for Apiary.io."""
-*)
+let projectAspNet = "FSharp.Charting.AspNet"
+let summaryAspNet = summary + " (ASP.NET web forms)"
+let tagsAspNet = tags + " ASPNET"
+let descriptionAspNet = """
+  The FSharp.Charting.AspNet library is a charting library for ASP.NET Web Forms charts using the same chart specifications as FSharp.Charting."""
+
 
 // Read additional information from the release notes document
 let releaseNotes, version = 
@@ -47,9 +45,7 @@ let releaseNotes, version =
 
 Target "AssemblyInfo" (fun _ ->
     [ ("src/AssemblyInfo.fs", "FSharp.Charting", project, summary)
-      //("src/AssemblyInfo.DesignTime.fs", "FSharp.Charting.DesignTime", project, summary)
-      //( "src/AssemblyInfo.Experimental.fs", "FSharp.Charting.Experimental", projectExperimental, summaryExperimental )
-      //( "src/AssemblyInfo.Experimental.DesignTime.fs", "FSharp.Charting.Experimental.DesignTime", projectExperimental, summaryExperimental) 
+      ( "src/AssemblyInfo.AspNet.fs", "FSharp.Charting.AspNet", projectAspNet, summaryAspNet )
     ]
     |> Seq.iter (fun (fileName, title, project, summary) ->
         CreateFSharpAssemblyInfo fileName
@@ -121,7 +117,7 @@ Target "NuGet" (fun _ ->
             Description = description
             Version = version
             ReleaseNotes = releaseNotes
-            Tags = tags
+            Tags = tagsAspNet
             OutputPath = "bin"
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
@@ -129,13 +125,12 @@ Target "NuGet" (fun _ ->
             Dependencies = [] })
         "nuget/FSharp.Charting.nuspec"
 
-(*
     NuGet (fun p -> 
         { p with   
             Authors = authors
-            Project = projectExperimental
-            Summary = summaryExperimental
-            Description = descriptionExperimental
+            Project = projectAspNet
+            Summary = summaryAspNet
+            Description = descriptionAspNet
             Version = version
             ReleaseNotes = releaseNotes
             Tags = tags
@@ -144,8 +139,7 @@ Target "NuGet" (fun _ ->
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
             Dependencies = [] })
-        "nuget/FSharp.Charting.Experimental.nuspec"
-*)
+        "nuget/FSharp.Charting.AspNet.nuspec"
 
 )
 

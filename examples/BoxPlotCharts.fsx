@@ -21,7 +21,7 @@ the function Chart.BoxPlotFromStatistics as a list of tuples
 to draw multiple boxplots.
 *)
 
-#load "../bin/FSharp.Charting.fsx"
+#load @"../bin/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

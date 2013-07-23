@@ -669,7 +669,7 @@ namespace FSharp.Charting
     Objects and Properties where keywords can be used
  
     Series and DataPoint
-     •Label 
+    •Label 
     •AxisLabel 
     •ToolTip 
     •Url 
@@ -683,7 +683,7 @@ namespace FSharp.Charting
     •LabelToolTip 
 
     Annotation (only if anchored to the data point using SetAnchor method)
-     •ToolTip 
+    •ToolTip 
     •Url 
     •MapAreaAttributes 
     •PostBackValue 
@@ -1028,7 +1028,7 @@ namespace FSharp.Charting
             let mutable title = None 
             let mutable legend = None 
 
-            let mutable name:string = ""
+            let mutable name = ""
 
             let evalLazy v =
                 let l = lazy v
@@ -1056,7 +1056,7 @@ namespace FSharp.Charting
             member internal x.Data with get() = data and set v = data <- v
             member internal x.Chart with get() = chart.Value and set v = chart <- evalLazy v
             member internal x.Margin with get() = margin and set v = margin <- v
-            member internal x.Name = name
+            member internal x.Name with get() = name and set v = name <- v
 
             /// Ensure the chart has a Title
             member internal x.ForceTitle() = 

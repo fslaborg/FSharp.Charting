@@ -2051,8 +2051,7 @@ namespace FSharp.Charting
 
                 AreaBackground |> Option.iter (applyBackground area)
 
-                //Name |> Option.iter area.set_Name
-                Name |> Option.iter ch.Series.set_Name 
+                Name |> Option.iter ch.set_Name
             
                 ShowMarkerLines |> Option.iter (fun v -> ch.SetCustomProperty<bool>("ShowMarkerLines", v))
                 LabelPosition |> Option.iter (fun v -> ch.SetCustomProperty<LabelPosition>("LabelStyle", v))

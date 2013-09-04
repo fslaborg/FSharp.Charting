@@ -237,24 +237,35 @@ namespace FSharp.Charting
 
     /// A primitive value for a point on a chart. An abbreviation for the IConvertible type.
     type value = System.IConvertible
+    type key = System.IComparable
+
+    module internal KeyConversions = 
+        let private registeredConvertors = System.Collections.Generic.Dictionary<_, key -> key>()
+        let tryGetCovnertor (typ:System.Type) =
+          match registeredConvertors.TryGetValue(typ) with 
+          | true, conv -> Some conv
+          | _ -> None
+        let registerConvertor<'T when 'T :> key> (f:'T -> key) =
+          registeredConvertors.Add(typeof<'T>, fun arg -> f (arg :?> 'T))
+        
+        do registerConvertor (fun (dto:DateTimeOffset) -> dto.DateTime :> key)
 
     module ChartTypes = 
-
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public DataPoint(X: value, Y: value, Label: string) = 
+        type public DataPoint(X: key, Y: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.Y = Y 
 
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public TwoXYDataPoint(X: value, Y1: value, Y2: value, Label: string) = 
+        type public TwoXYDataPoint(X: key, Y1: value, Y2: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.Y1 = Y1 
             member __.Y2 = Y2 
 
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public ThreeXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Label: string) = 
+        type public ThreeXYDataPoint(X: key, Y1: value, Y2: value, Y3: value, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.Y1 = Y1 
@@ -262,7 +273,7 @@ namespace FSharp.Charting
             member __.Y3 = Y3 
 
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public FourXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Y4: value, Label: string) = 
+        type public FourXYDataPoint(X: key, Y1: value, Y2: value, Y3: value, Y4: value, Label: string) = 
             member __.Label = Label 
             member __.X =  X 
             member __.Y1 = Y1 
@@ -271,7 +282,7 @@ namespace FSharp.Charting
             member __.Y4 = Y4 
 
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public SixXYDataPoint(X: value, Y1: value, Y2: value, Y3: value, Y4: value, Y5: value, Y6: value, Label: string) = 
+        type public SixXYDataPoint(X: key, Y1: value, Y2: value, Y3: value, Y4: value, Y5: value, Y6: value, Label: string) = 
             member __.Label = Label 
             member __.X =  X 
             member __.Y1 = Y1 
@@ -282,7 +293,7 @@ namespace FSharp.Charting
             member __.Y6 = Y6 
 
         /// An implementation type for labelled points on chart. This type should not be used directly.
-        type public DataSet(X: value, YS: IEnumerable, Label: string) = 
+        type public DataSet(X: key, YS: IEnumerable, Label: string) = 
             member __.Label = Label 
             member __.X = X 
             member __.YS = YS
@@ -831,13 +842,52 @@ namespace FSharp.Charting
         // ----------------------------------------------------------------------------------
         // Single Y value
 
-        let internal mergeDataAndLabelsForXY data (labels: #seq<string> option) = 
+        let private convertKeys (selector:_ -> key) (transform:(key -> key) -> _) data = 
+          let hasConvertor = ref None
+          let convertor = ref None
+          data |> NotifySeq.map (fun v ->
+            if hasConvertor.Value.IsNone then
+              convertor := KeyConversions.tryGetCovnertor ((selector v).GetType())
+              hasConvertor := Some(convertor.Value.IsSome)
+            match convertor.Value with
+            | Some conv -> transform conv v
+            | _ -> v)
+
+        let private convertKeys1of2 data = 
+          data |> NotifySeq.map (fun (k, v) -> k :> key, v)          
+               |> convertKeys fst (fun kf (k, v) -> kf k, v) 
+        let private convertKeys1of2of2 data = 
+          data |> NotifySeq.map (fun ((k, v), l) -> (k :> key, v), l)
+               |> convertKeys (fst >> fst) (fun kf ((k, v), l) -> (kf k, v), l)
+        let private convertKeys1of3 data = 
+          data |> NotifySeq.map (fun (k, v1, v2) -> k :> key, v1, v2)          
+               |> convertKeys (fun (k, _, _) -> k) (fun kf (k, v1, v2) -> kf k, v1, v2) 
+        let private convertKeys1of3of2 data = 
+          data |> NotifySeq.map (fun ((k, v1, v2), l) -> (k :> key, v1, v2), l)
+               |> convertKeys (fun ((k, _, _), _) -> k) (fun kf ((k, v1, v2), l) -> (kf k, v1, v2), l)
+        let private convertKeys1of4 data = 
+          data |> NotifySeq.map (fun (k, v1, v2, v3) -> k :> key, v1, v2, v3)          
+               |> convertKeys (fun (k, _, _, _) -> k) (fun kf (k, v1, v2, v3) -> kf k, v1, v2, v3) 
+        let private convertKeys1of4of2 data = 
+          data |> NotifySeq.map (fun ((k, v1, v2, v3), l) -> (k :> key, v1, v2, v3), l)
+               |> convertKeys (fun ((k, _, _, _), _) -> k) (fun kf ((k, v1, v2, v3), l) -> (kf k, v1, v2, v3), l)
+        let private convertKeys1of5 data = 
+          data |> NotifySeq.map (fun (k, v1, v2, v3, v4) -> k :> key, v1, v2, v3, v4)          
+               |> convertKeys (fun (k, _, _, _, _) -> k) (fun kf (k, v1, v2, v3, v4) -> kf k, v1, v2, v3, v4) 
+        let private convertKeys1of5of2 data = 
+          data |> NotifySeq.map (fun ((k, v1, v2, v3, v4), l) -> (k :> key, v1, v2, v3, v4), l)
+               |> convertKeys (fun ((k, _, _, _, _), _) -> k) (fun kf ((k, v1, v2, v3, v4), l) -> (kf k, v1, v2, v3, v4), l)
+
+        let internal mergeDataAndLabelsForXY (data:seq<#key * #value>) (labels: #seq<string> option) = 
             let data = NotifySeq.notifyOrOnce data
             match labels with 
-            | None -> ChartData.Values(NotifySeq.ignoreReset data , "Item1", "Item2", "") 
+            | None -> ChartData.Values(convertKeys1of2 (NotifySeq.ignoreReset data), "Item1", "Item2", "") 
             | Some labels -> 
                 let labels = NotifySeq.notifyOrOnce labels
-                let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y),label) -> DataPoint(X=x,Y=y,Label=label))
+                let dataAndLabels = 
+                  NotifySeq.zip data labels 
+                  |> convertKeys1of2of2
+                  |> NotifySeq.map (fun ((x,y),label) -> DataPoint(X=x,Y=y,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y", "Label=Label") 
 
         let internal mergeDataAndLabelsForY data (labels: #seq<string> option) = 
@@ -849,11 +899,11 @@ namespace FSharp.Charting
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
-                let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2) -> TwoXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2))
+                let dataAndLabels = data |> convertKeys1of3 |> NotifySeq.map (fun (x,y1,y2) -> TwoXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
-                let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y1,y2),label) -> TwoXYDataPoint(X=x,Y1=y1,Y2=y2,Label=label))
+                let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of3of2 |> NotifySeq.map (fun ((x,y1,y2),label) -> TwoXYDataPoint(X=x,Y1=y1,Y2=y2,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2", "Label=Label")
 
         let internal mergeDataAndLabelsForY2 data (labels: #seq<string> option) = 
@@ -865,24 +915,24 @@ namespace FSharp.Charting
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
-                let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3) -> ThreeXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2,Y3=y3))
+                let dataAndLabels = data |> convertKeys1of4 |> NotifySeq.map (fun (x,y1,y2,y3) -> ThreeXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2,Y3=y3))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
-                let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y1,y2,y3),label) -> ThreeXYDataPoint(X=x,Y1=y1,Y2=y2,Y3=y3,Label=label))
+                let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of4of2 |> NotifySeq.map (fun ((x,y1,y2,y3),label) -> ThreeXYDataPoint(X=x,Y1=y1,Y2=y2,Y3=y3,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3", "Label=Label")
 
 
         // One X and Four Y values
-        let internal mergeDataAndLabelsForXY4 (data:seq<#value * #value * #value * #value * #value>) labels = 
+        let internal mergeDataAndLabelsForXY4 (data:seq<#key * #value * #value * #value * #value>) labels = 
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
-                let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3,y4) -> FourXYDataPoint(X= string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4))
+                let dataAndLabels = data |> convertKeys1of5 |> NotifySeq.map (fun (x,y1,y2,y3,y4) -> FourXYDataPoint(X= string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
-                let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y1,y2,y3,y4),label) -> FourXYDataPoint(X= string (box x),Y1=y1,Y2=y2,Y3=y3,Y4=y4,Label=label))
+                let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of5of2 |> NotifySeq.map (fun ((x,y1,y2,y3,y4),label) -> FourXYDataPoint(X= string (box x),Y1=y1,Y2=y2,Y3=y3,Y4=y4,Label=label))
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "Label=Label")
 
         // Four Y values
@@ -901,7 +951,7 @@ namespace FSharp.Charting
         // Six or more values
 
         // X and Y values 
-        let internal mergeDataAndLabelsForXY6 (data:seq<#value * #value * #value * #value * #value * #value * #value>) labels = 
+        let internal mergeDataAndLabelsForXY6 (data:seq<#key * #value * #value * #value * #value * #value * #value>) labels = 
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
@@ -913,7 +963,7 @@ namespace FSharp.Charting
                 ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4,Y5,Y6", "Label=Label")
 
         // one X and multiple Y values 
-        let internal mergeDataAndLabelsForXYS (data:seq<#value * #seq<#value>>) = 
+        let internal mergeDataAndLabelsForXYS (data:seq<#key * #seq<#value>>) = 
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             let dataAndLabels = data |> NotifySeq.map (fun (x,ys) -> string (box x),(ys |> Array.ofSeq |> Array.map (fun x -> x :> value)))
             ChartData.BoxPlotValues(NotifySeq.ignoreReset dataAndLabels)
@@ -923,7 +973,7 @@ namespace FSharp.Charting
 
         // Sequence of sequence of X and Y Values only
         // TODO: labels
-        let internal seqXY (data: seq< #seq< #value * #value >>) = 
+        let internal seqXY (data: seq< #seq<#key * #value >>) = 
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             let series = data |> NotifySeq.map (fun items ->
                               let (itemsX,itemsY) = items |> Seq.toArray |> Array.unzip 
@@ -2142,6 +2192,11 @@ namespace FSharp.Charting
 
     /// Provides a set of static methods for creating charts.
     type Chart =
+        /// Register a function that is used to automatically transform X values (keys) 
+        /// of a non-primitive type to one of the types supported by the charting library
+        /// (for example, by default DateTimeOffset is converted to DateTime)
+        static member RegisterKeyConvertor<'T when 'T :> key>(conversion:'T -> key) =
+          KeyConversions.registerConvertor(conversion)
 
         /// <summary>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -3030,7 +3085,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Area(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Area(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Area(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Illustrates comparisons among individual items</summary>
@@ -3041,7 +3096,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Bar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Bar(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Bar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 (*
@@ -3103,7 +3158,7 @@ namespace FSharp.Charting
         /// <param name="BubbleScaleMax">The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.</param>
         /// <param name="BubbleScaleMin">The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.</param>
         /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
-        static member Bubble(data:IObservable<#seq<#value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
+        static member Bubble(data:IObservable<#seq<#key * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
             Chart.Bubble(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?BubbleMaxSize=BubbleMaxSize,?BubbleMinSize=BubbleMinSize,?BubbleScaleMax=BubbleScaleMax,?BubbleScaleMin=BubbleScaleMin,?UseSizeForLabel=UseSizeForLabel)
 
 
@@ -3120,7 +3175,7 @@ namespace FSharp.Charting
         /// <param name="BubbleScaleMax">The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.</param>
         /// <param name="BubbleScaleMin">The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.</param>
         /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
-        static member BubbleIncremental(data:IObservable<#value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
+        static member BubbleIncremental(data:IObservable<#key * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle,?BubbleMaxSize,?BubbleMinSize,?BubbleScaleMax,?BubbleScaleMin,?UseSizeForLabel) = 
             Chart.Bubble(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?BubbleMaxSize=BubbleMaxSize,?BubbleMinSize=BubbleMinSize,?BubbleScaleMax=BubbleScaleMax,?BubbleScaleMin=BubbleScaleMin,?UseSizeForLabel=UseSizeForLabel)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -3142,7 +3197,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Candlestick(data:IObservable<#seq<#value * #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Candlestick(data:IObservable<#seq<#key * #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -3153,7 +3208,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member CandlestickIncremental(data:IObservable<#value * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member CandlestickIncremental(data:IObservable<#key * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
@@ -3164,7 +3219,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member CandlestickIncremental(data:IObservable<#value * #value * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member CandlestickIncremental(data:IObservable<#key * #value * #value * #value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Candlestick(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3176,7 +3231,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Column(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
@@ -3187,7 +3242,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ColumnIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member ColumnIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
@@ -3198,7 +3253,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Doughnut(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Doughnut(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Doughnut(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</summary>
@@ -3209,7 +3264,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ErrorBar(data:IObservable<#seq<#value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member ErrorBar(data:IObservable<#seq<#key * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.ErrorBar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -3220,7 +3275,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastLine(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastLine(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastLine(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An incremental variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -3231,7 +3286,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastLineIncremental(data:IObservable<#value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastLineIncremental(data:IObservable<#key * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastLine(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -3242,7 +3297,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastPoint(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastPoint(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastPoint(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</summary>
@@ -3253,7 +3308,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member FastPointIncremental(data:IObservable<#value * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member FastPointIncremental(data:IObservable<#key * #value>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.FastPoint(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays in a funnel shape data that equals 100% when totaled.</summary>
@@ -3264,7 +3319,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Funnel(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Funnel(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Funnel(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3279,7 +3334,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Kagi(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Kagi(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Kagi(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3293,7 +3348,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Line(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Line(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Line(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3305,7 +3360,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member LineIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member LineIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Line(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An updating chart which uses points to represent data points, where updates replace the entire data set.</summary>
@@ -3316,7 +3371,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Pie(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member Pie(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Pie(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3329,7 +3384,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PieIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
+        static member PieIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
             Chart.Pie(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3341,7 +3396,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Point(data:IObservable<#seq<#value * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
+        static member Point(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
             Chart.Point(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
 
 
@@ -3353,7 +3408,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PointIncremental(data:IObservable<#value * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
+        static member PointIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?MarkerColor,?MarkerSize) = 
             Chart.Point(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerColor=MarkerColor,?MarkerSize=MarkerSize)
 
         /// <summary>
@@ -3366,7 +3421,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member PointAndFigure(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member PointAndFigure(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.PointAndFigure(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3380,7 +3435,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Polar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Polar(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Polar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3393,7 +3448,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Pyramid(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Pyramid(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Pyramid(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A circular chart that is used primarily as a data comparison tool.</summary>
@@ -3404,7 +3459,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Radar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Radar(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Radar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line chart.</summary>
@@ -3415,7 +3470,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Range(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Range(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Range(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays separate events that have beginning and end values.</summary>
@@ -3426,7 +3481,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member RangeBar(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member RangeBar(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.RangeBar(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3438,7 +3493,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member RangeColumn(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member RangeColumn(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.RangeColumn(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
@@ -3449,7 +3504,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Renko(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Renko(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Renko(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>A Line chart that plots a fitted curve through each data point in a series.</summary>
@@ -3460,7 +3515,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Spline(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Spline(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Spline(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>An Area chart that plots a fitted curve through each data point in a series.</summary>
@@ -3471,7 +3526,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member SplineArea(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member SplineArea(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.SplineArea(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3483,7 +3538,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member SplineRange(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member SplineRange(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.SplineRange(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>
@@ -3544,7 +3599,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member StepLine(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member StepLine(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.StepLine(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3556,7 +3611,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Stock(data:IObservable< #seq< #value * #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Stock(data:IObservable< #seq<#key * #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Stock(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
         /// <summary>Displays significant stock price points including the high, low, open and close price points.</summary>
@@ -3567,7 +3622,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Stock(data:IObservable< #seq< #value * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member Stock(data:IObservable< #seq<#key * #value * #value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.Stock(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 
@@ -3579,7 +3634,7 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ThreeLineBreak(data:IObservable<#seq<#value * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
+        static member ThreeLineBreak(data:IObservable<#seq<#key * #value>>,?Name,?Title (* ,?Labels *) , ?Color,?XTitle,?YTitle) = 
             Chart.ThreeLineBreak(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
 
 

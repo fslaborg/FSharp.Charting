@@ -815,7 +815,7 @@ namespace FSharp.Charting
         [<RequireQualifiedAccess>]
         type internal ChartData =
             // general binding
-            | Values of IEnumerable * string * string * string
+            | Values of IEnumerable * ChartValueType * string * string * string
             | BoxPlotValues of seq<string * value[]>
             // stacked values
             | StackedXYValues of seq<IEnumerable * IEnumerable>
@@ -878,17 +878,44 @@ namespace FSharp.Charting
           data |> NotifySeq.map (fun ((k, v1, v2, v3, v4), l) -> (k :> key, v1, v2, v3, v4), l)
                |> convertKeys (fun ((k, _, _, _, _), _) -> k) (fun kf ((k, v1, v2, v3, v4), l) -> (kf k, v1, v2, v3, v4), l)
 
+        let knownTypes = 
+          dict [ typeof<int>, ChartValueType.Int32; typeof<int64>, ChartValueType.Int64
+                 typeof<uint32>, ChartValueType.UInt32; typeof<uint64>, ChartValueType.UInt64
+                 typeof<float>, ChartValueType.Double; typeof<float32>, ChartValueType.Single
+                 typeof<string>, ChartValueType.String ]
+
+        let getChartValueType values = 
+          try 
+            let v = Seq.head values 
+            // For date time, we need to decide if it represents dates or actual time
+            // If they all represent the same day, then it is probably time; If they 
+            // all represent 12:00am, then it is probably a date...
+            let typ = v.GetType() 
+            if typ = typeof<DateTime> then                 
+              let dates = Seq.map (unbox<DateTime>) values
+              let firstDate = ((box v) :?> DateTime).Date
+              if dates |> Seq.forall (fun dt -> dt.Date = firstDate) then ChartValueType.Time
+              elif dates |> Seq.forall (fun dt -> dt.TimeOfDay = TimeSpan.Zero) then ChartValueType.Date
+              else ChartValueType.DateTime
+            else 
+              // For all other types, we use the 'knownTypes' lookup table
+              match knownTypes.TryGetValue(typ) with
+              | true, t -> t
+              | _ -> ChartValueType.Auto
+          with _ -> ChartValueType.Auto
+          
         let internal mergeDataAndLabelsForXY (data:seq<#key * #value>) (labels: #seq<string> option) = 
+            let xType = getChartValueType (Seq.map fst data)
             let data = NotifySeq.notifyOrOnce data
             match labels with 
-            | None -> ChartData.Values(convertKeys1of2 (NotifySeq.ignoreReset data), "Item1", "Item2", "") 
+            | None -> ChartData.Values(convertKeys1of2 (NotifySeq.ignoreReset data), xType, "Item1", "Item2", "") 
             | Some labels -> 
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = 
                   NotifySeq.zip data labels 
                   |> convertKeys1of2of2
                   |> NotifySeq.map (fun ((x,y),label) -> DataPoint(X=x,Y=y,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y", "Label=Label") 
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y", "Label=Label") 
 
         let internal mergeDataAndLabelsForY data (labels: #seq<string> option) = 
             let data = NotifySeq.notifyOrOnce data
@@ -896,15 +923,16 @@ namespace FSharp.Charting
 
         // Two Y values
         let internal mergeDataAndLabelsForXY2 data labels = 
+            let xType = getChartValueType (Seq.map (fun (a, _, _) -> a) data)
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
                 let dataAndLabels = data |> convertKeys1of3 |> NotifySeq.map (fun (x,y1,y2) -> TwoXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2", "")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of3of2 |> NotifySeq.map (fun ((x,y1,y2),label) -> TwoXYDataPoint(X=x,Y1=y1,Y2=y2,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2", "Label=Label")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2", "Label=Label")
 
         let internal mergeDataAndLabelsForY2 data (labels: #seq<string> option) = 
             let data = NotifySeq.notifyOrOnce data
@@ -912,28 +940,30 @@ namespace FSharp.Charting
 
         // Three Y values
         let internal mergeDataAndLabelsForXY3 data labels = 
+            let xType = getChartValueType (Seq.map (fun (a, _, _, _) -> a) data)
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
                 let dataAndLabels = data |> convertKeys1of4 |> NotifySeq.map (fun (x,y1,y2,y3) -> ThreeXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2,Y3=y3))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3", "")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of4of2 |> NotifySeq.map (fun ((x,y1,y2,y3),label) -> ThreeXYDataPoint(X=x,Y1=y1,Y2=y2,Y3=y3,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3", "Label=Label")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3", "Label=Label")
 
 
         // One X and Four Y values
         let internal mergeDataAndLabelsForXY4 (data:seq<#key * #value * #value * #value * #value>) labels = 
+            let xType = getChartValueType (Seq.map (fun (a, _, _, _, _) -> a) data)
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
                 let dataAndLabels = data |> convertKeys1of5 |> NotifySeq.map (fun (x,y1,y2,y3,y4) -> FourXYDataPoint(X= string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3,Y4", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels |> convertKeys1of5of2 |> NotifySeq.map (fun ((x,y1,y2,y3,y4),label) -> FourXYDataPoint(X= string (box x),Y1=y1,Y2=y2,Y3=y3,Y4=y4,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "Label=Label")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3,Y4", "Label=Label")
 
         // Four Y values
         let internal mergeDataAndLabelsForY4 (data:seq<#value * #value * #value * #value>) labels = 
@@ -941,26 +971,27 @@ namespace FSharp.Charting
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.mapi (fun i (y1,y2,y3,y4) -> FourXYDataPoint(X=string i,Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, ChartValueType.Auto, "X", "Y1,Y2,Y3,Y4", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.mapi (fun i ((y1,y2,y3,y4),label) -> FourXYDataPoint(X=string i,Y1=y1,Y2=y2,Y3=y3,Y4=y4,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4", "Label=Label")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, ChartValueType.Auto, "X", "Y1,Y2,Y3,Y4", "Label=Label")
 
         // ----------------------------------------------------------------------------------
         // Six or more values
 
         // X and Y values 
         let internal mergeDataAndLabelsForXY6 (data:seq<#key * #value * #value * #value * #value * #value * #value>) labels = 
+            let xType = getChartValueType (Seq.map (fun (a, _, _, _, _, _, _) -> a) data)
             let data = NotifySeq.notifyOrOnce data // evaluate only once and cache
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3,y4,y5,y6) -> SixXYDataPoint(X=string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4,Y5=y5,Y6=y6))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4,Y5,Y6", "")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3,Y4,Y5,Y6", "")
             | Some labels ->  
                 let labels = NotifySeq.notifyOrOnce labels
                 let dataAndLabels = NotifySeq.zip data labels  |> NotifySeq.map (fun ((x,y1,y2,y3,y4,y5,y6),label) -> SixXYDataPoint(X=string (box x),Y1=y1,Y2=y2,Y3=y3,Y4=y4,Y5=y5,Y6=y6,Label=label))
-                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, "X", "Y1,Y2,Y3,Y4,Y5,Y6", "Label=Label")
+                ChartData.Values(NotifySeq.ignoreReset dataAndLabels, xType, "X", "Y1,Y2,Y3,Y4,Y5,Y6", "Label=Label")
 
         // one X and multiple Y values 
         let internal mergeDataAndLabelsForXYS (data:seq<#key * #seq<#value>>) = 
@@ -985,7 +1016,7 @@ namespace FSharp.Charting
         let internal setSeriesData resetSeries (series:Series) data (chart:Chart) setCustomProperty =             
 
             match data with 
-            | ChartData.Values (vs,xField,yField,otherFields) ->
+            | ChartData.Values (vs,xType,xField,yField,otherFields) ->
                 match vs with 
                 | :? INotifyCollectionChanged as i -> 
                       let handler = NotifyCollectionChangedEventHandler(fun _ _ -> 
@@ -995,6 +1026,7 @@ namespace FSharp.Charting
                       i.CollectionChanged.AddHandler handler
                       chart.Disposed.Add(fun _ -> try i.CollectionChanged.RemoveHandler handler with _ -> ())
                 | _ -> ()
+                series.XValueType <- xType
                 series.Points.DataBind(vs,xField,yField,otherFields)
 
             // Special case for BoxPlot
@@ -1085,7 +1117,7 @@ namespace FSharp.Charting
                 l.Force() |> ignore
                 l
 
-            let mutable data = ChartData.Values (NotifySeq.ignoreReset (NotifySeq.notifyOrOnce []), "Item1", "Item2", "") 
+            let mutable data = ChartData.Values (NotifySeq.ignoreReset (NotifySeq.notifyOrOnce []), ChartValueType.Auto, "Item1", "Item2", "") 
             let mutable margin = DefaultMarginForEachChart
 
             [<Obsolete("This type does not support GetHashCode()")>]

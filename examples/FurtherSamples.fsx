@@ -30,6 +30,10 @@ let timedPointsWithSizes =
 
 Chart.Line(data).WithXAxis(MajorGrid=ChartTypes.Grid(Enabled=false))
 
+Chart.Line [ DateTime.Now, 1; DateTime.Now.AddDays(1.0), 10 ]
+Chart.Line [ for h in 1 .. 50 -> DateTime.Now.AddHours(float h), sqrt (float h) ]
+Chart.Line [ for h in 1 .. 50 -> DateTime.Now.AddMinutes(float h), sqrt (float h) ]
+
 (*
 let prices =
   [ 26.24,25.80,26.22,25.95; 26.40,26.18,26.26,26.20

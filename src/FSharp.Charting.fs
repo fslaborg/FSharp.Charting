@@ -240,12 +240,22 @@ namespace FSharp.Charting
     type key = System.IComparable
 
     module internal KeyConversions = 
+        // Mapping from known runtime types to 'ChartValueType' that is used for the X axis
+        // (we try to infer the axis type so that it is displayed nicely)
+        let knownTypes = 
+          dict [ typeof<int>, ChartValueType.Int32; typeof<int64>, ChartValueType.Int64
+                 typeof<uint32>, ChartValueType.UInt32; typeof<uint64>, ChartValueType.UInt64
+                 typeof<float>, ChartValueType.Double; typeof<float32>, ChartValueType.Single
+                 typeof<string>, ChartValueType.String ]
+
         let private registeredConvertors = System.Collections.Generic.Dictionary<_, key -> key>()
         let tryGetCovnertor (typ:System.Type) =
           match registeredConvertors.TryGetValue(typ) with 
           | true, conv -> Some conv
           | _ -> None
         let registerConvertor<'T when 'T :> key> (f:'T -> key) =
+          if knownTypes.ContainsKey(typeof<'T>) then 
+            invalidOp "Registering convertors for known primitive types (int, string, DateTime, ...) is not allowed."
           registeredConvertors.Add(typeof<'T>, fun arg -> f (arg :?> 'T))
         
         do registerConvertor (fun (dto:DateTimeOffset) -> dto.DateTime :> key)
@@ -839,9 +849,6 @@ namespace FSharp.Charting
 
         open System.Collections.Specialized
         
-        // ----------------------------------------------------------------------------------
-        // Single Y value
-
         let private convertKeys (selector:_ -> key) (transform:(key -> key) -> _) data = 
           let hasConvertor = ref None
           let convertor = ref None
@@ -869,35 +876,45 @@ namespace FSharp.Charting
           data |> NotifySeq.map (fun (k, v1, v2, v3, v4, v5, v6) -> k :> key, v1, v2, v3, v4, v5, v6)          
                |> convertKeys (fun (k, _, _, _, _, _, _) -> k) (fun kf (k, v1, v2, v3, v4, v5, v6) -> kf k, v1, v2, v3, v4, v5, v6) 
 
-        let knownTypes = 
-          dict [ typeof<int>, ChartValueType.Int32; typeof<int64>, ChartValueType.Int64
-                 typeof<uint32>, ChartValueType.UInt32; typeof<uint64>, ChartValueType.UInt64
-                 typeof<float>, ChartValueType.Double; typeof<float32>, ChartValueType.Single
-                 typeof<string>, ChartValueType.String ]
+        // In most cases, we can use static type - if it is primitive type and it is not
+        // mapped to something else
+        let getChartValueTypeStatic<'K when 'K :> key>(witness:seq<'K>) =
+          ignore(witness)
+          match KeyConversions.knownTypes.TryGetValue(typeof<'K>) with
+          | true, typ -> Some typ
+          | _ -> None
 
-        let getChartValueType values = 
-          try 
-            let v = Seq.head values 
-            // For date time, we need to decide if it represents dates or actual time
-            // If they all represent the same day, then it is probably time; If they 
-            // all represent 12:00am, then it is probably a date...
-            let typ = v.GetType() 
-            if typ = typeof<DateTime> then                 
-              let dates = Seq.map (unbox<DateTime>) values
-              let firstDate = ((box v) :?> DateTime).Date
-              if dates |> Seq.forall (fun dt -> dt.Date = firstDate) then ChartValueType.Time
-              elif dates |> Seq.forall (fun dt -> dt.TimeOfDay = TimeSpan.Zero) then ChartValueType.Date
-              else ChartValueType.DateTime
-            else 
-              // For all other types, we use the 'knownTypes' lookup table
-              match knownTypes.TryGetValue(typ) with
-              | true, t -> t
-              | _ -> ChartValueType.Auto
-          with _ -> ChartValueType.Auto
+        let getChartValueTypeDynamic xTypeOpt values = 
+          // Only look at the values if we did not find the type using static type
+          match xTypeOpt with
+          | Some xType -> xType
+          | _ ->
+            try 
+              let v = Seq.head values 
+              // For date time, we need to decide if it represents dates or actual time
+              // If they all represent the same day, then it is probably time; If they 
+              // all represent 12:00am, then it is probably a date...
+              let typ = v.GetType() 
+              if typ = typeof<DateTime> then                 
+                let dates = Seq.map (unbox<DateTime>) values
+                let firstDate = ((box v) :?> DateTime).Date
+                if dates |> Seq.forall (fun dt -> dt.Date = firstDate) then ChartValueType.Time
+                elif dates |> Seq.forall (fun dt -> dt.TimeOfDay = TimeSpan.Zero) then ChartValueType.Date
+                else ChartValueType.DateTime
+              else 
+                // For all other types, we use the 'knownTypes' lookup table
+                match KeyConversions.knownTypes.TryGetValue(typ) with
+                | true, t -> t
+                | _ -> ChartValueType.Auto
+            with _ -> ChartValueType.Auto
+
+        // ----------------------------------------------------------------------------------
+        // Single Y value
           
         let internal mergeDataAndLabelsForXY (data:seq<#key * #value>) (labels: #seq<string> option) = 
+            let xTypeOpt = getChartValueTypeStatic (Seq.map fst data)
             let data = convertKeys1of2 (NotifySeq.notifyOrOnce data)
-            let xType = getChartValueType (Seq.map fst data)
+            let xType = getChartValueTypeDynamic xTypeOpt (Seq.map fst data)
             match labels with 
             | None -> ChartData.Values(NotifySeq.ignoreReset data, xType, "Item1", "Item2", "") 
             | Some labels -> 
@@ -912,8 +929,9 @@ namespace FSharp.Charting
 
         // Two Y values
         let internal mergeDataAndLabelsForXY2 data labels = 
+            let xTypeOpt = getChartValueTypeStatic (Seq.map (fun (a, _, _) -> a) data)
             let data = convertKeys1of3 (NotifySeq.notifyOrOnce data)
-            let xType = getChartValueType (Seq.map (fun (a, _, _) -> a) data)
+            let xType = getChartValueTypeDynamic xTypeOpt (Seq.map (fun (a, _, _) -> a) data)
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2) -> TwoXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2))
@@ -929,8 +947,9 @@ namespace FSharp.Charting
 
         // Three Y values
         let internal mergeDataAndLabelsForXY3 data labels = 
+            let xTypeOpt = getChartValueTypeStatic (Seq.map (fun (a, _, _, _) -> a) data)
             let data = convertKeys1of4 (NotifySeq.notifyOrOnce data)
-            let xType = getChartValueType (Seq.map (fun (a, _, _, _) -> a) data)
+            let xType = getChartValueTypeDynamic xTypeOpt (Seq.map (fun (a, _, _, _) -> a) data)
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3) -> ThreeXYDataPoint(X=x,Y1=y1,Label=null,Y2=y2,Y3=y3))
@@ -943,8 +962,9 @@ namespace FSharp.Charting
 
         // One X and Four Y values
         let internal mergeDataAndLabelsForXY4 (data:seq<#key * #value * #value * #value * #value>) labels = 
+            let xTypeOpt = getChartValueTypeStatic (Seq.map (fun (a, _, _, _, _) -> a) data)
             let data = convertKeys1of5 (NotifySeq.notifyOrOnce data)
-            let xType = getChartValueType (Seq.map (fun (a, _, _, _, _) -> a) data)
+            let xType = getChartValueTypeDynamic xTypeOpt (Seq.map (fun (a, _, _, _, _) -> a) data)
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3,y4) -> FourXYDataPoint(X= string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4))
@@ -971,8 +991,9 @@ namespace FSharp.Charting
 
         // X and Y values 
         let internal mergeDataAndLabelsForXY6 (data:seq<#key * #value * #value * #value * #value * #value * #value>) labels = 
+            let xTypeOpt = getChartValueTypeStatic (Seq.map (fun (a, _, _, _, _, _, _) -> a) data)
             let data = convertKeys1of7 (NotifySeq.notifyOrOnce data)
-            let xType = getChartValueType (Seq.map (fun (a, _, _, _, _, _, _) -> a) data)
+            let xType = getChartValueTypeDynamic xTypeOpt (Seq.map (fun (a, _, _, _, _, _, _) -> a) data)
             match labels with 
             | None -> 
                 let dataAndLabels = data |> NotifySeq.map (fun (x,y1,y2,y3,y4,y5,y6) -> SixXYDataPoint(X=string (box x),Y1=y1,Label=null,Y2=y2,Y3=y3,Y4=y4,Y5=y5,Y6=y6))

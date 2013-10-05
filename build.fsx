@@ -82,7 +82,8 @@ Target "RunTests" (fun _ ->
 
     // Will get NUnit.Runner NuGet package if not present
     // (needed to run tests using the 'NUnit' target)
-    RestorePackages()
+    !! "./**/packages.config"
+    |> Seq.iter (RestorePackage (fun p -> { p with ToolPath = "./.nuget/NuGet.exe" }))
 
     let nunitVersion = GetPackageVersion "packages" "NUnit.Runners"
     let nunitPath = sprintf "packages/NUnit.Runners.%s/Tools" nunitVersion

@@ -10,3 +10,4 @@
 * 0.82 - Improve documentation.
 * 0.83 - Include Y-value overloads and add build of FSharp.Charting.AspNet.dll
 * 0.84 - Include correct version in FSharp.Charting.fsx
+* 0.85 - Support DateTimeOffset and custom types as X axis values

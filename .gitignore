@@ -8,3 +8,4 @@ tests/obj/*
 packages/*
 TestResults.xml
 gh-pages
+tools/FAKE/*

@@ -6,6 +6,7 @@
 
 open System
 open System.IO
+open System.Text.RegularExpressions
 open Fake 
 open Fake.AssemblyInfoFile
 open Fake.Git
@@ -57,6 +58,18 @@ Target "AssemblyInfo" (fun _ ->
              Attribute.Description summary
              Attribute.Version version
              Attribute.FileVersion version] )
+)
+
+// --------------------------------------------------------------------------------------
+// Update the assembly version numbers in the script file.
+
+Target "UpdateFsxVersions" (fun _ ->
+    let pattern = @"#I ""../../packages/FSharp.Charting.(.*)/lib/net40"""
+    let replacement = sprintf @"#I ""../../packages/FSharp.Charting.%s/lib/net40""" version
+    let path = @".\src\FSharp.Charting.fsx"
+    let text = File.ReadAllText(path)
+    let text = Regex.Replace(text, pattern, replacement)
+    File.WriteAllText(path, text)
 )
 
 // --------------------------------------------------------------------------------------
@@ -185,6 +198,7 @@ Target "All" DoNothing
 
 "Clean"
   ==> "AssemblyInfo"
+  ==> "UpdateFsxVersions"
   ==> "Build"
   ==> "RunTests"
   ==> "NuGet"

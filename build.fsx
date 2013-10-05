@@ -167,7 +167,8 @@ Target "UpdateBinaries" (fun _ ->
     DeleteDir "release"
     Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "release"
     Branches.checkoutBranch "release" "release"
-    CopyRecursive "bin" "release/bin" true |> printfn "%A"
+    CopyFile "bin/FSharp.Charting.fsx" "release/FSharp.Charting.fsx"
+    CopyRecursive "bin/v40" "release/bin" true |> printfn "%A"
     CommandHelper.runSimpleGitCommand "release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
     Branches.push "release"
 )

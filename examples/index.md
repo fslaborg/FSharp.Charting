@@ -22,7 +22,7 @@ The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable
   <div class="span1"></div>
 </div>
 
-Alternatively, you can download the [source as a ZIP file][source] or as a [binary release as a ZIP file][binary].
+Alternatively, you can download the [source as a ZIP file][source] or as a [binary release as a ZIP file][release].
 
 Features
 --------

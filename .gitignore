@@ -9,3 +9,4 @@ packages/*
 TestResults.xml
 gh-pages
 tools/FAKE/*
+release/*

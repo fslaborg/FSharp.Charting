@@ -1,0 +1,8 @@
+*.suo
+TestResults.xml
+docs/
+gh-pages/
+packages/
+src/
+tests/
+tools/

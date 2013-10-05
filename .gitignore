@@ -7,3 +7,4 @@ tests/obj/*
 *.suo
 packages/*
 TestResults.xml
+gh-pages

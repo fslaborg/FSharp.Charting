@@ -8,6 +8,7 @@ open System
 open System.IO
 open Fake 
 open Fake.AssemblyInfoFile
+open Fake.Git
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
@@ -21,17 +22,20 @@ let project = "FSharp.Charting"
 let authors = ["Carl Nolan, Don Syme, Tomas Petricek"]
 let summary = "A Charting Library for F#"
 let description = """
-  The FSharp.Charting library is a charting library for F# data scripting."""
-let tags = "F# FSharpChart charting plotting"
+  The F# Charting library (FSharp.Charting.dll) is a compositional library for creating charts
+  from F#. It is designed to be a great fit for data scripting in F# Interactive, but 
+  charts can also be embedded in Windows applications. The library is a wrapper for .NET Chart
+  Controls, which are only supported on Windows."""
+let tags = "F# FSharpChart charting plotting visualization"
 
-
-// Information for the project containing experimental providers
+// Information for the ASP.NET build of the project 
 let projectAspNet = "FSharp.Charting.AspNet"
 let summaryAspNet = summary + " (ASP.NET web forms)"
 let tagsAspNet = tags + " ASPNET"
 let descriptionAspNet = """
-  The FSharp.Charting.AspNet library is a charting library for ASP.NET Web Forms charts using the same chart specifications as FSharp.Charting."""
-
+  The F# Charting library (FSharp.Charting.AspNet.dll) is an ASP.NET Web Forms build
+  of F# Charting. It can be used for embedding F# Charting visualizations in ASP.NET
+  web pages, by reusing the same F# chart specifications."""
 
 // Read additional information from the release notes document
 let releaseNotes, version = 
@@ -45,8 +49,7 @@ let releaseNotes, version =
 
 Target "AssemblyInfo" (fun _ ->
     [ ("src/AssemblyInfo.fs", "FSharp.Charting", project, summary)
-      ( "src/AssemblyInfo.AspNet.fs", "FSharp.Charting.AspNet", projectAspNet, summaryAspNet )
-    ]
+      ( "src/AssemblyInfo.AspNet.fs", "FSharp.Charting.AspNet", projectAspNet, summaryAspNet ) ]
     |> Seq.iter (fun (fileName, title, project, summary) ->
         CreateFSharpAssemblyInfo fileName
            [ Attribute.Title title
@@ -107,8 +110,7 @@ Target "NuGet" (fun _ ->
     // Format the description to fit on a single line (remove \r\n and double-spaces)
     let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let descriptionAspNet = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    //let descriptionExperimental = descriptionExperimental.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let nugetPath = "tools/Nuget/nuget.exe"
+    let nugetPath = ".nuget/nuget.exe"
 
     NuGet (fun p -> 
         { p with   
@@ -118,7 +120,7 @@ Target "NuGet" (fun _ ->
             Description = description
             Version = version
             ReleaseNotes = releaseNotes
-            Tags = tagsAspNet
+            Tags = tags
             OutputPath = "bin"
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
@@ -134,7 +136,7 @@ Target "NuGet" (fun _ ->
             Description = descriptionAspNet
             Version = version
             ReleaseNotes = releaseNotes
-            Tags = tags
+            Tags = tagsAspNet
             OutputPath = "bin"
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
@@ -143,6 +145,36 @@ Target "NuGet" (fun _ ->
         "nuget/FSharp.Charting.AspNet.nuspec"
 
 )
+
+// --------------------------------------------------------------------------------------
+// Release Scripts
+
+Target "UpdateDocs" (fun _ ->
+
+    executeFSI "tools" "build.fsx" [] |> ignore
+
+    DeleteDir "gh-pages"
+    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "gh-pages"
+    Branches.checkoutBranch "gh-pages" "gh-pages"
+    CopyRecursive "docs" "gh-pages" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "gh-pages" (sprintf """commit -a -m "Update generated documentation for version %s""" version) |> printfn "%s"
+    Branches.push "gh-pages"
+)
+
+Target "UpdateBinaries" (fun _ ->
+
+    DeleteDir "release"
+    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "release"
+    Branches.checkoutBranch "release" "release"
+    CopyRecursive "bin" "release/bin" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
+    Branches.push "release"
+)
+
+Target "Release" DoNothing
+
+"UpdateDocs" ==> "Release"
+"UpdateBinaries" ==> "Release"
 
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build target=<Target>' to verride
@@ -155,5 +187,6 @@ Target "All" DoNothing
   ==> "RunTests"
   ==> "NuGet"
   ==> "All"
+
 
 Run <| getBuildParamOrDefault "target" "All"

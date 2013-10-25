@@ -2,12 +2,15 @@
 
 Charts specified using FSharp.Charting can be used within WPF applications.
 
-To host a chart object inside a WPF application, use a [WindowsFormHost](http://msdn.microsoft.com/en-us/library/ms751761.aspx) element.
-In your XAML code this will appear aas follows:
+To host a chart object inside a WPF application, 
+
+ * Add a reference to the "Fsharp.Charting" nuget package
+ * Add a reference to WindowsFormsIngegration.dll to your WPF application.
+ * Add a [WindowsFormHost](http://msdn.microsoft.com/en-us/library/ms751761.aspx) element to your XAML in your F# or C# application and give the element a name
+ 
+In your XAML code this should appear as follows:
 
     <WindowsFormsHost x:Name="WinForm" />
-
-Yo umay need to add a reference to WindowsFormsIngegration.dll.
 
 In your application code, set the Child property of the host to a chart control created from a chart specification:
 

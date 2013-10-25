@@ -16,6 +16,10 @@ Animated Live Charts (based on IObservable and IEvent data):
 
  * [Live Charts](LiveChartSamples.html) - shows how to create animated LiveCharts 
 
+Using charts in applications:
+
+ * [Using Chartds in WPF Applications](UsingChartsInWPF.html) - shows how to use charts in a WPF application
+
 Further Samples:
 
  * [Further Samples](FurtherSamples.html) - additional samples
@@ -46,6 +50,7 @@ Please [contribute](contributing.html) more documentation on the following topic
  * Specifying labels
  * Specifying chart colors
  * Specifying more complex properties of charts
+
 
 ## Related projects
 

@@ -18,7 +18,7 @@ Animated Live Charts (based on IObservable and IEvent data):
 
 Using charts in applications:
 
- * [Using Chartds in WPF Applications](UsingChartsInWPF.html) - shows how to use charts in a WPF application
+ * [Using Charts in WPF Applications](UsingChartsInWPF.html) - shows how to use charts in a WPF application
 
 Further Samples:
 

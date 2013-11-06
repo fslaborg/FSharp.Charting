@@ -66,10 +66,10 @@ Target "AssemblyInfo" (fun _ ->
 Target "UpdateFsxVersions" (fun _ ->
     let pattern = @"#I ""../../packages/FSharp.Charting.(.*)/lib/net40"""
     let replacement = sprintf @"#I ""../../packages/FSharp.Charting.%s/lib/net40""" version
-    let path = @".\src\FSharp.Charting.fsx"
-    let text = File.ReadAllText(path)
-    let text = Regex.Replace(text, pattern, replacement)
-    File.WriteAllText(path, text)
+    for path in [ @".\src\FSharp.Charting.fsx"; @".\src\FSharp.Charting.GtkSharp.fsx" ] do
+        let text = File.ReadAllText(path)
+        let text = Regex.Replace(text, pattern, replacement)
+        File.WriteAllText(path, text)
 )
 
 // --------------------------------------------------------------------------------------
@@ -142,6 +142,7 @@ Target "NuGet" (fun _ ->
             Dependencies = [] })
         "nuget/FSharp.Charting.nuspec"
 
+(*
     NuGet (fun p -> 
         { p with   
             Authors = authors
@@ -157,6 +158,7 @@ Target "NuGet" (fun _ ->
             Publish = hasBuildParam "nugetkey"
             Dependencies = [] })
         "nuget/FSharp.Charting.AspNet.nuspec"
+*)
 
 )
 
@@ -181,6 +183,7 @@ Target "UpdateBinaries" (fun _ ->
     Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "release"
     Branches.checkoutBranch "release" "release"
     CopyFile "bin/FSharp.Charting.fsx" "release/FSharp.Charting.fsx"
+    CopyFile "bin/FSharp.Charting.GtkSharp.fsx" "release/FSharp.Charting.GtkSharp.fsx"
     CopyRecursive "bin/v40" "release/bin" true |> printfn "%A"
     CommandHelper.runSimpleGitCommand "release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
     Branches.push "release"

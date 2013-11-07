@@ -69,13 +69,13 @@ curves and scatter plots as well. Here are three examples:</p>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.4/FSharp.Charting.Gtk.fsx</span>
-<span class="prep">#load</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">0</span><span class="s">.</span><span class="s">90</span><span class="s">.</span><span class="s">4</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
+<span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx</span>
+<span class="prep">#load</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">0</span><span class="s">.</span><span class="s">90</span><span class="s">.</span><span class="s">5</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
 
-<span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">System</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">countryData</span> <span class="o">=</span> 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">countryData</span> <span class="o">=</span> 
     [ <span class="s">&quot;</span><span class="s">Africa</span><span class="s">&quot;</span>, <span class="n">1033043</span>; 
       <span class="s">&quot;</span><span class="s">Asia</span><span class="s">&quot;</span>, <span class="n">4166741</span>; 
       <span class="s">&quot;</span><span class="s">Europe</span><span class="s">&quot;</span>, <span class="n">732759</span>; 
@@ -83,9 +83,9 @@ curves and scatter plots as well. Here are three examples:</p>
       <span class="s">&quot;</span><span class="s">North</span><span class="s"> </span><span class="s">America</span><span class="s">&quot;</span>, <span class="n">351659</span>; 
       <span class="s">&quot;</span><span class="s">Oceania</span><span class="s">&quot;</span>, <span class="n">35838</span>  ]
 
-<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">countryData</span>
+<span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">Bar</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">countryData</span>
 
-<span class="i">Chart</span><span class="o">.</span><span class="i">Column</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">countryData</span></pre>
+<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Column</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">countryData</span></pre>
 </td>
 </tr>
 </table><p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
@@ -102,12 +102,17 @@ element of the tuple is the X value (category) and the second element is the pop
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] </pre>
+<span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="i">Bar</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] </pre>
 </td>
 </tr>
 </table>
-          <div class="tip" id="fs1">namespace System</div>
-<div class="tip" id="fs2">val countryData : (string * int) list<br /><br />Full name: BarAndColumnCharts.countryData</div>
+          <div class="tip" id="fs1">namespace FSharp</div>
+<div class="tip" id="fs2">namespace FSharp.Charting</div>
+<div class="tip" id="fs3">namespace System</div>
+<div class="tip" id="fs4">val countryData : (string * int) list<br /><br />Full name: BarAndColumnCharts.countryData</div>
+<div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
+<div class="tip" id="fs6">static member Chart.Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs7">static member Chart.Column : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Column : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
 
         </div>
         <div class="span3">
@@ -118,7 +123,7 @@ element of the tuple is the X value (category) and the second element is the pop
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="https://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
-            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (Apache 2.0)</a></li>
+            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (MIT)</a></li>
             <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
             <li><a href="contributing.html">Contributing to FSharp.Charting</a></li>
             

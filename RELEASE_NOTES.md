@@ -13,3 +13,4 @@
 * 0.85 - Support DateTimeOffset and custom types as X axis values
 * 0.86 - Include correct version in FSharp.Charting.fsx
 * 0.87 - Include correct version in FSharp.Charting.fsx (Finally!)
+* 0.88 - Add preliminary version of FSharp.Charting.Gtk

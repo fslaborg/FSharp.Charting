@@ -33,6 +33,7 @@ let build () =
   for sub in [ "."  ] do
     Literate.ProcessDirectory
       ( sources ++ sub, template, output ++ sub, 
-        replacements = [ "root", root ] )
+        replacements = [ "root", root ],
+        ?errorHandler = Some (fun _ -> ()) )
 
 build()

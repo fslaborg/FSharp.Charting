@@ -7,11 +7,12 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6ebfde55-9687-40a9-8c1a-6e204ecb117d</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSharp.Charting.GtkSharp</RootNamespace>
-    <AssemblyName>FSharp.Charting.GtkSharp</AssemblyName>
+    <RootNamespace>FSharp.Charting.Gtk</RootNamespace>
+    <AssemblyName>FSharp.Charting.Gtk</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <Name>FSharp.Charting.GtkSharp</Name>
+    <Name>FSharp.Charting.Gtk</Name>
     <TargetFrameworkProfile />
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\FSharp.Charting.GtkSharp.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\FSharp.Charting.Gtk.xml</DocumentationFile>
     <StartAction>Project</StartAction>
     <StartProgram>
     </StartProgram>
@@ -37,14 +38,14 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\FSharp.Charting.GtkSharp.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\FSharp.Charting.Gtk.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FSharp.Charting.GtkSharp.fs" />
-    <Compile Include="AssemblyInfo.fs" />
-    <None Include="FSharp.Charting.GtkSharp.fsx">
+    <Compile Include="FSharp.Charting.Gtk.fs" />
+    <None Include="FSharp.Charting.Gtk.fsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="AssemblyInfo.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -61,9 +62,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <!--    #r @"C:\projects\oxyplot-dsyme-gtksharp\Source\OxyPlot.GtkSharp\bin\Debug\OxyPlot.dll"
-    #r @"C:\projects\oxyplot-dsyme-gtksharp\Source\OxyPlot.GtkSharp\bin\Debug\OxyPlot.GtkSharp.dll"
-    -->
     <Reference Include="gtk-sharp" />
     <Reference Include="gdk-sharp" />
     <Reference Include="atk-sharp" />
@@ -73,6 +71,7 @@
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName)$(TargetExt)" DestinationFolder="$(SolutionDir)bin\v40" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin\v40" />
@@ -81,5 +80,7 @@
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).xml" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).fsx" DestinationFolder="$(SolutionDir)bin" />
+    <Copy SourceFiles="$(ProjectDir)$(OutDir)OxyPlot.dll" DestinationFolder="$(SolutionDir)bin" />
+    <Copy SourceFiles="$(ProjectDir)$(OutDir)OxyPlot.GtkSharp.dll" DestinationFolder="$(SolutionDir)bin" />
   </Target>
 </Project>

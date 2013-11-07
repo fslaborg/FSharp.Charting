@@ -1,19 +1,20 @@
 
 
+#nowarn "211"
+#nowarn "40"
+
 #r "gtk-sharp.dll"
 #r "gdk-sharp.dll"
 #r "atk-sharp.dll"
 #r "glib-sharp.dll"
 #I "../bin"
-#I "../../packages/FSharp.Charting.0.87/lib/net40"
-#I @"C:\projects\oxyplot\Source\OxyPlot\bin\PCL\Debug"
-#I @"C:\projects\oxyplot\Source\OxyPlot.GtkSharp\bin\Debug"
+#I "../../../packages/FSharp.Charting.0.88/lib/net40"
+#I "../../../packages/FSharp.Charting/lib/net40"
+#I "../../packages/FSharp.Charting.0.88/lib/net40"
+#I "../../packages/FSharp.Charting/lib/net40"
 #r "OxyPlot.dll"
 #r "OxyPlot.GtkSharp.dll"
-
-#nowarn "211"
-#nowarn "40"
-#load "FSharp.Charting.GtkSharp.fs"
+#r "FSharp.Charting.Gtk.dll"
 
 Gtk.Application.Init()
 

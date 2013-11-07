@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5FF52F
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.AspNet", "src\FSharp.Charting.AspNet.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117E}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.GtkSharp", "src\FSharp.Charting.GtkSharp.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117D}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.Gtk", "src\FSharp.Charting.Gtk.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,7 @@
 
+#load "../bin/FSharp.Charting.Gtk.fsx"
+#load "EventEx-0.1.fsx"
 
-#load @"C:\GitHub\fsharp\FSharp.Charting\src\FSharp.Charting.GtkSharp.fsx"
 open FSharp.Charting
 
 Chart.Point [ for x in 0 .. 10 -> x*x ] 

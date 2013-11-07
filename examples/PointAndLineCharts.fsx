@@ -1,4 +1,4 @@
-﻿(** 
+(** 
 # FSharp.Charting: Point and Line Charts
 
 *Summary:* This example shows how to create line and point charts in F#. 
@@ -26,7 +26,8 @@ shown below.
 
 *)
 
-#load "../bin/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

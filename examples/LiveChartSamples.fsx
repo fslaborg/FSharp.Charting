@@ -10,7 +10,8 @@ The EventEx-0.1.fsx file can be found at https://raw.github.com/fsharp/FSharp.Ch
 
 *)
 
-#load "../bin/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting

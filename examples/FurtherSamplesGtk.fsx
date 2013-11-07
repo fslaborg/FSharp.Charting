@@ -1,5 +1,6 @@
 
-#load "../bin/FSharp.Charting.Gtk.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting
@@ -9,7 +10,8 @@ Chart.Bubble [ for x in 0 .. 10 -> x, 2.0 ]
 Chart.Bubble [ for x in 0 .. 10 -> x, 3.0 ] 
 Chart.Bubble [ for x in 0 .. 10 -> x, x ] 
 
-Chart.Bubble [ for x in 0 .. 10 -> x, x * 100 ] // TODO: should auto-scale the bubble size in some way
+Chart.Bubble [ for x in 0 .. 10 -> x, x * 100 ] 
+// TODO: should auto-scale the bubble size in some way
 
 Chart.Bubble [ for x in 0 .. 10 -> x, x + 1] 
 Chart.Bubble [ for x in 0 .. 10 -> x, x*x ] 

@@ -1,4 +1,4 @@
-﻿(** 
+(** 
 # FSharp.Charting: Bar and Column Charts
 
 *Summary:* This example shows how to create bar and column charts in F#. The example visualizes the size of the populations of the continents. 
@@ -18,7 +18,8 @@ curves and scatter plots as well. Here are three examples:
 
 *)
 
-#load "../bin/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

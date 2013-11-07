@@ -53,10 +53,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OxyPlot">
-      <HintPath>..\..\..\..\projects\oxyplot\Source\OxyPlot\bin\PCL\Debug\OxyPlot.dll</HintPath>
+      <HintPath>..\packages\OxyPlot.Core.2013.2.119.1\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot.GtkSharp">
-      <HintPath>..\..\..\..\projects\oxyplot-dsyme-gtksharp\Source\OxyPlot.GtkSharp\bin\Debug\OxyPlot.GtkSharp.dll</HintPath>
+      <HintPath>..\packages\OxyPlot.GtkSharp.2013.2.119.1\lib\NET40\OxyPlot.GtkSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,5 +82,6 @@
     <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).fsx" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)OxyPlot.dll" DestinationFolder="$(SolutionDir)bin" />
     <Copy SourceFiles="$(ProjectDir)$(OutDir)OxyPlot.GtkSharp.dll" DestinationFolder="$(SolutionDir)bin" />
+    <Copy SourceFiles="$(ProjectDir)\..\LICENSE.md" DestinationFolder="$(SolutionDir)bin" />
   </Target>
 </Project>

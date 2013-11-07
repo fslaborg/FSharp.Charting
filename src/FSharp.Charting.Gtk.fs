@@ -852,7 +852,11 @@ namespace FSharp.Charting
         /// <param name="UseSizeForLabel">Use the bubble size as the data point label.</param>
 *)
         static member Bubble(data:seq<#value * #value * #value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle, ?MarkerSize) = 
-           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((x,y,sz),lab) -> ScatterChartItem(x,y,Size=(max (valueToDouble sz) 0.1),Tag=allowNull lab)), ScatterSeries(DataFieldX="X",DataFieldY="Y",DataFieldSize="Size",DataFieldTag="Tag",MarkerType=MarkerType.Circle, MarkerStroke= defaultArg Color (ScatterSeries().MarkerStroke), MarkerSize= defaultArg MarkerSize (ScatterSeries().MarkerSize) ))
+           let data = data |> listen 
+           let maxSize = lazy (data |> Seq.maxBy (fun (_x,_y,sz) -> valueToDouble sz) |> (fun (_x,_y,sz) -> valueToDouble sz))
+           let data = data |> mergeLabels Labels 
+           let data = data |> makeItems (fun ((x,y,sz),lab) -> ScatterChartItem(x,y,Size=(max (valueToDouble sz / maxSize.Value * 20.0) 0.1),Tag=allowNull lab))
+           GenericChart.Create(data, ScatterSeries(DataFieldX="X",DataFieldY="Y",DataFieldSize="Size",DataFieldTag="Tag",MarkerType=MarkerType.Circle, MarkerStroke= defaultArg Color (ScatterSeries().MarkerStroke), MarkerSize= defaultArg MarkerSize (ScatterSeries().MarkerSize) ))
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle )
             //Chart.ConfigureBubble(c,BubbleMaxSize,BubbleMinSize,BubbleScaleMax,BubbleScaleMin,UseSizeForLabel)
             //c

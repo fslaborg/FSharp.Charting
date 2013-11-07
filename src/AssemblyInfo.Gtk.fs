@@ -1,9 +1,9 @@
 ﻿namespace System
 open System.Reflection
 
-[<assembly: AssemblyTitleAttribute("FSharp.Charting")>]
-[<assembly: AssemblyProductAttribute("FSharp.Charting")>]
-[<assembly: AssemblyDescriptionAttribute("A Charting Library for F#")>]
+[<assembly: AssemblyTitleAttribute("FSharp.Charting.Gtk")>]
+[<assembly: AssemblyProductAttribute("FSharp.Charting.Gtk")>]
+[<assembly: AssemblyDescriptionAttribute("A Charting Library for F# (Gtk, cross-platform)")>]
 [<assembly: AssemblyVersionAttribute("0.90.5")>]
 [<assembly: AssemblyFileVersionAttribute("0.90.5")>]
 

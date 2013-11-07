@@ -1,4 +1,4 @@
-﻿(** 
+(** 
 # FSharp.Charting: Pie and Doughnut Charts
 
 *Summary:* This example shows how to create pie and doughnut charts in F#. The example visualizes  the proportion of seats taken by individual parties in the UK general elections. 
@@ -21,7 +21,8 @@ values. This is done by using a single collection with labels and values as tupl
 
 *)
 
-#load "../bin/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

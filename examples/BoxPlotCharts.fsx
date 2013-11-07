@@ -1,4 +1,4 @@
-﻿(** 
+(** 
 # FSharp.Charting: BoxPlot Charts
 
 *Summary:* This article shows how to create boxplot diagrams in F#. It looks at how to create a single boxplot from six statistics about an observation set as well as how to automatically create boxplots from observations.
@@ -21,7 +21,8 @@ the function Chart.BoxPlotFromStatistics as a list of tuples
 to draw multiple boxplots.
 *)
 
-#load @"../bin/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

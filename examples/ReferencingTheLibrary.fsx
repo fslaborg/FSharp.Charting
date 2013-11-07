@@ -1,12 +1,12 @@
-﻿(** 
+(** 
 # FSharp.Charting: Referencing the Library
 
 FSharp.Charting is most often used from F# scripts. To use the library 
 in a script, load the FSharp.Charting.fsx file, for example from the NuGet package:
 *)
 
-#load "packages/FSharp.Charting.0.84/FSharp.Charting.fsx"
-
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
 (**
 You can now create a chart:
 *)
@@ -23,7 +23,8 @@ invokes a handler that automatically shows the created chart.
 Alternatively, you can reference the `FSharp.Charting` DLL directly and manually display the charts using ShowChart():
 *)
 
-#r "FSharp.Charting.dll"
+// Note, on Mac OSX use FSharp.Charting.Gtk.dll.
+#r "FSharp.Charting.dll" 
 
 open FSharp.Charting
 

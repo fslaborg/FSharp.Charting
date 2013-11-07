@@ -6,6 +6,6 @@ See http://fsharp.github.io/FSharp.Charting/.
 
 ## Library license
 
-The library is available under Apache 2.0. For more information see the [License file][1] in the GitHub repository.
+The library is available under MIT. For more information see the [License file][1] in the GitHub repository.
 
  [1]: https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md

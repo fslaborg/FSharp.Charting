@@ -14,3 +14,10 @@
 * 0.86 - Include correct version in FSharp.Charting.fsx
 * 0.87 - Include correct version in FSharp.Charting.fsx (Finally!)
 * 0.88 - Add preliminary version of FSharp.Charting.Gtk
+* 0.89 - Revert to multiple nuget packages
+* 0.90 - Remove dependencies in main package
+* 0.90.1 - Fix load script for Gtk
+* 0.90.2 - Fix load script for Gtk
+* 0.90.3 - Fix load script for Gtk
+* 0.90.4 - Fix some examples 
+* 0.90.5 - Fix load on OSX

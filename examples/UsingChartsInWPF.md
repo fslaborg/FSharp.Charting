@@ -12,24 +12,28 @@ In your XAML code this should appear as ```<WindowsFormsHost x:Name="WinForm" />
 
 In your application code, set the Child property of the host to a chart control created from a chart specification:
 
-    open FSharp.Charting
-    open FSharp.Charting.ChartTypes
+<div><pre>
+  open FSharp.Charting
+  open FSharp.Charting.ChartTypes
     
-    // ...
+  // ...
     
-    let winForm = window.Root.FindName("WinForm") :?> WindowsFormsHost
+  let winForm = window.Root.FindName("WinForm") :?> WindowsFormsHost
 
-    let chart = Chart.Line [ for i in 0 .. 10 -> (i,i*i) ]
+  let chart = Chart.Line [ for i in 0 .. 10 -> (i,i*i) ]
        
-    winForm.Child <- new ChartControl(chart)
+  winForm.Child <- new ChartControl(chart)
+</pre></div>
 
 
 Live and Incremental updating charts can also be used in this way.
 
-    let dataStream = 
-        window.Root.MouseMove 
-        |> Event.map (fun x -> let p = x.GetPosition(window.Root) in p.X,p.Y )
+<div><pre>
+  let dataStream = 
+      window.Root.MouseMove 
+      |> Event.map (fun x -> let p = x.GetPosition(window.Root) in p.X,p.Y )
        
-    let chart = LiveChart.LineIncremental (dataStream)
-       
-    winForm.Child <- new ChartControl(chart)
+  let chart = LiveChart.LineIncremental (dataStream)
+      
+  winForm.Child <- new ChartControl(chart)
+</pre></div>

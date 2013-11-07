@@ -34,7 +34,7 @@
         <div class="span9" id="main">
           <h1>FSharp.Charting: The F# Charting Library</h1>
 
-<p>The FSharp.Charting library (<code>FSharp.Charting.dll</code>) implements charting suitable for use from F# scripting.</p>
+<p>The FSharp.Charting library implements charting suitable for use from F# scripting.</p>
 
 <div>
  <img src="images/IC523409.png" width="30%" >
@@ -55,23 +55,37 @@
   <div class="span1"></div>
 </div>
 
+<div class="row">
+  <div class="span1"></div>
+  <div class="span6">
+    <div class="well well-small" id="nuget">
+      Install <a href="https://nuget.org/packages/FSharp.Charting.Gtk">FSharp.Charting.Gtk using NuGet on OSX</a>.
+      Run this in the <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console">Package Manager Console</a>:
+      <pre>PM> Install-Package FSharp.Charting.Gtk</pre>
+      Then reference the 'FSharp.Charting.Gtk.fsx' script in the package.
+    </div>
+  </div>
+  <div class="span1"></div>
+</div>
+
 <p>Alternatively, you can download the <a href="https://github.com/fsharp/FSharp.Charting/zipball/master">source as a ZIP file</a> or as a <a href="https://github.com/fsharp/FSharp.Charting/zipball/release">binary release as a ZIP file</a>.</p>
 
 <h2>Features</h2>
 
 <ul>
-<li>Many chart types: Area, Bar, BoxPlot, Bubble, Candlestick, Column, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi, Line and more.</li>
-<li>2D and pseudo-3D charting.</li>
+<li>2D charting.</li>
+<li>Many cross-platform chart types: Area, Bar, Bubble, Column, Line, Point and more.</li>
 <li>Create charts directly from F# data.</li>
 <li>Use either fluent or pipelined chart specifications.</li>
 <li>Create updating 'LiveChart' charts from F# or Rx observables.</li>
 <li>Can be used in conjunction with the <a href="http://fsharp.github.io/FSharp.Data">FSharp.Data</a> library</a>.</li>
 </ul>
 
-<p>Limitations:</p>
+<h2>Extra Features (Windows-only)</h2>
 
 <ul>
-<li>Windows-only. This may change (i.e. cross-platform and web charting for a subset of chart specifications).</li>
+<li>Many extra chart types (windows): BoxPlot, Candlestick, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi and more.</li>
+<li>Pseudo-3D charting.</li>
 </ul>
 
 <h2>Documentation</h2>
@@ -108,6 +122,8 @@ see the <a href="contributing.html">contributing</a> page.</p></li>
 <p>On Windows, FSharp.Charting is implemented using the Data Visualization charting controls 
 available on Windows in .NET 4.x.</p>
 
+<p>On OSX, FSharp.Charting is implemented using the OxyPlot.GtkSharp charting library.</p>
+
 <h3>Library future</h3>
 
 <p>FSharp.Charting is designed so that the same charting specifications can be supported when 
@@ -117,11 +133,11 @@ charts use similar charting specifications, implemented using in HTML5 using Doj
 <p>The next step we would like to try is to implement cross-platform Javascript-based charting using
 embedded browser controls.</p>
 
-<p>Another direction of interest is to bind to the server-side versions of the charting controls usable by ASP.NET.</p>
+<p>Another direction of interest is to bind to charting controls usable by ASP.NET.</p>
 
 <h3>Library license</h3>
 
-<p>The library is available under Apache 2.0. For more information see the 
+<p>The library is available under the MIT licence. For more information see the 
 <a href="https://github.com/fsharp/FSharp.Charting/blob/master/README.md">License file</a> in the GitHub repository. In summary, this means that you can 
 use the library for commercial purposes, fork it, modify it as you wish.</p>
 

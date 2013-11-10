@@ -6,7 +6,6 @@ open System.Reflection
 [<assembly: AssemblyDescriptionAttribute("A Charting Library for F# (ASP.NET web forms)")>]
 [<assembly: AssemblyVersionAttribute("0.90.5")>]
 [<assembly: AssemblyFileVersionAttribute("0.90.5")>]
-
 ()
 
 module internal AssemblyVersionInformation =

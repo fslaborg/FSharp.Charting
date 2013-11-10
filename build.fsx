@@ -2,7 +2,8 @@
 // FAKE build script 
 // --------------------------------------------------------------------------------------
 
-#r @"tools\FAKE\tools\FakeLib.dll"
+#I "tools/FAKE/tools"
+#r "tools/FAKE/tools/FakeLib.dll"
 
 open System
 open System.IO
@@ -52,6 +53,11 @@ let releaseNotes, version =
     ( lastItem.Substring(firstDash + 1 ).Trim(), 
       lastItem.Substring(0, firstDash).Trim([|'*'|]).Trim() )
 
+let compilingOnUnix =
+    match Environment.OSVersion.Platform with
+    | PlatformID.MacOSX | PlatformID.Unix -> true
+    | _ -> false
+
 // --------------------------------------------------------------------------------------
 // Generate assembly info files with the right version & up-to-date information
 
@@ -73,7 +79,7 @@ Target "AssemblyInfo" (fun _ ->
 
 Target "UpdateFsxVersions" (fun _ ->
     for nm in [ "FSharp.Charting"; "FSharp.Charting.Gtk" ] do
-        for path in [ @".\src\" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "examples")  do
+        for path in [ @"./src/" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "examples")  do
           let text1 = File.ReadAllText(path)
           // Adjust entries like #I "../../../packages/FSharp.Charting.0.84"
           let text2 = Regex.Replace(text1, "packages/" + nm + @".(.*)/lib/net40""", "packages/" + nm + sprintf @".%s/lib/net40""" version)
@@ -81,6 +87,14 @@ Target "UpdateFsxVersions" (fun _ ->
           let text3 = Regex.Replace(text2, "packages/" + nm + @".(.*)/" + nm + ".fsx", "packages/" + nm + sprintf @".%s/" version + nm + ".fsx")
           if text1 <> text3 then 
               File.WriteAllText(path, text3)
+)
+
+// --------------------------------------------------------------------------------------
+// Restore NuGet packages
+
+Target "RestorePackages" (fun _ ->
+    !! "./**/packages.config"
+    |> Seq.iter (RestorePackage (fun p -> { p with ToolPath = "./.nuget/NuGet.exe" }))
 )
 
 // --------------------------------------------------------------------------------------
@@ -95,7 +109,11 @@ Target "Clean" (fun _ ->
 // of the runtime library & desktop + Silverlight version of design time library)
 
 Target "Build" (fun _ ->
-    (files ["FSharp.Charting.sln"; "FSharp.Charting.Tests.sln"])
+    (files [if not compilingOnUnix then
+                yield "src/FSharp.Charting.fsproj";
+                yield "tests/FSharp.Charting.Tests.fsproj"
+                yield "src/FSharp.Charting.AspNet.fsproj"
+            yield "src/FSharp.Charting.Gtk.fsproj" ])
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )
@@ -114,8 +132,9 @@ Target "RunTests" (fun _ ->
 
     ActivateFinalTarget "CloseTestRunner"
 
-    (files ["tests/bin/Release/FSharp.Charting.Tests.dll"])
-    |> NUnit (fun p ->
+    if not compilingOnUnix then
+      (files [ "tests/bin/Release/FSharp.Charting.Tests.dll"])
+      |> NUnit (fun p ->
         { p with
             ToolPath = nunitPath
             DisableShadowCopy = true
@@ -138,7 +157,8 @@ Target "NuGet" (fun _ ->
     let descriptionGtk = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let nugetPath = ".nuget/nuget.exe"
 
-    NuGet (fun p -> 
+    if not compilingOnUnix then
+      NuGet (fun p -> 
         { p with   
             Authors = authors
             Project = project
@@ -154,7 +174,8 @@ Target "NuGet" (fun _ ->
             Dependencies = [] })
         "nuget/FSharp.Charting.nuspec"
 
-    NuGet (fun p -> 
+    if not compilingOnUnix then
+      NuGet (fun p -> 
         { p with   
             Authors = authors
             Project = projectAspNet
@@ -225,7 +246,7 @@ Target "Release" DoNothing
 
 Target "All" DoNothing
 
-"Clean"
+"RestorePackages"
   ==> "AssemblyInfo"
   ==> "UpdateFsxVersions"
   ==> "Build"

@@ -44,11 +44,26 @@
 #r "lib/net40/FSharp.Charting.Gtk.dll"
 
 open System
+let verifyMac = 
+    use p=new System.Diagnostics.Process()
+    p.StartInfo.FileName<-"uname"
+    p.StartInfo.Arguments<-"-s"
+    p.StartInfo.RedirectStandardOutput<-true
+    p.StartInfo.UseShellExecute<-false
+    p.StartInfo.CreateNoWindow<-true
+    p.Start() |> ignore
+    let kernalName=p.StandardOutput.ReadLine()
+    p.WaitForExit()
+    kernalName="Darwin"
 
+let isMac = match Environment.OSVersion.Platform with
+            | PlatformID.MacOSX ->true
+            | PlatformID.Unix -> verifyMac
+            | _ ->false
 // Workaround bug http://stackoverflow.com/questions/13885454/mono-on-osx-couldnt-find-gtksharpglue-2-dll
 //
 // There is no harm if this code is run more than once.
-if Environment.OSVersion.Platform = System.PlatformID.MacOSX then 
+if isMac then 
     let prevDynLoadPath = Environment.GetEnvironmentVariable("DYLD_FALLBACK_LIBRARY_PATH")
     let newDynLoadPath =  "/Library/Frameworks/Mono.framework/Versions/Current/lib" + (match prevDynLoadPath with null -> "" | s -> ":" + s) + ":/usr/lib"
     System.Environment.SetEnvironmentVariable("DYLD_FALLBACK_LIBRARY_PATH", newDynLoadPath)

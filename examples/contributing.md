@@ -6,7 +6,7 @@ contributing to the FSharp.Charting package.
 
  * This page can be edited by sending a pull request to FSharp.Charting on GitHub, so
    if you learn something when playing with FSharp.Charting, please record your
-   [findings here](https://github.com/fsharp/FSharp.Charting/blob/master/samples/contributing.md)!
+   [findings here](https://github.com/fsharp/FSharp.Charting/blob/master/examples/contributing.md)!
 
  * If you want to discuss a feature (a good idea!), or if you want to look at 
    suggestions how you might contribute, check out the

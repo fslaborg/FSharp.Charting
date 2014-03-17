@@ -44,8 +44,8 @@ containing four-element tuples, or five-element tuples (Date, High, Low, Open, a
 
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

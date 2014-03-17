@@ -21,7 +21,7 @@ let files includes =
 
 // Information about the project to be used at NuGet and in AssemblyInfo files
 let project = "FSharp.Charting"
-let authors = ["Carl Nolan, Don Syme, Tomas Petricek"]
+let authors = ["Carl Nolan, Tomas Petricek"]
 let summary = "A Charting Library for F#"
 let description = """
   The F# Charting library (FSharp.Charting.dll) is a compositional library for creating charts
@@ -36,7 +36,7 @@ let summaryAspNet = summary + " (ASP.NET web forms)"
 let tagsAspNet = tags + " ASPNET"
 let descriptionAspNet = """
   The F# Charting library (FSharp.Charting.AspNet.dll) is an ASP.NET Web Forms build
-  of FSharp.Charting. It is experimental.."""
+  of FSharp.Charting. It is experimental."""
 
 // Information for the Gtk build of the project 
 let projectGtk = "FSharp.Charting.Gtk"
@@ -246,7 +246,8 @@ Target "Release" DoNothing
 
 Target "All" DoNothing
 
-"RestorePackages"
+"Clean"
+  ==> "RestorePackages"
   ==> "AssemblyInfo"
   ==> "UpdateFsxVersions"
   ==> "Build"

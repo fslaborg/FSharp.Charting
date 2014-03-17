@@ -21,8 +21,8 @@ values. This is done by using a single collection with labels and values as tupl
 
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.5/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.5/FSharp.Charting.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System

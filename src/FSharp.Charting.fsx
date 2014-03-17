@@ -16,9 +16,9 @@
 #r "System.Windows.Forms.DataVisualization.dll"
 #nowarn "211"
 #I "../bin"
-#I "../../../packages/FSharp.Charting.0.90.5/lib/net40"
+#I "../../../packages/FSharp.Charting.0.90.6/lib/net40"
 #I "../../../packages/FSharp.Charting/lib/net40"
-#I "../../packages/FSharp.Charting.0.90.5/lib/net40"
+#I "../../packages/FSharp.Charting.0.90.6/lib/net40"
 #I "../../packages/FSharp.Charting/lib/net40"
 #r "FSharp.Charting.dll"
 

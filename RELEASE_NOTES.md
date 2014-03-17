@@ -21,3 +21,4 @@
 * 0.90.3 - Fix load script for Gtk
 * 0.90.4 - Fix some examples 
 * 0.90.5 - Fix load on OSX
+* 0.90.6 - Update MacOSX recognition function

@@ -15,7 +15,7 @@ open Fake.Git
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
 let files includes = 
-  { BaseDirectories = [__SOURCE_DIRECTORY__]
+  { BaseDirectory = __SOURCE_DIRECTORY__
     Includes = includes
     Excludes = [] } |> Scan
 
@@ -155,7 +155,7 @@ Target "NuGet" (fun _ ->
     let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let descriptionAspNet = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let descriptionGtk = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let nugetPath = ".nuget/nuget.exe"
+    let nugetPath = ".nuget/NuGet.exe"
 
     if not compilingOnUnix then
       NuGet (fun p -> 
@@ -171,7 +171,8 @@ Target "NuGet" (fun _ ->
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
-            Dependencies = [] })
+            Dependencies = [] 
+            WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.nuspec"
 
     if not compilingOnUnix then
@@ -188,7 +189,8 @@ Target "NuGet" (fun _ ->
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
-            Dependencies = [] })
+            Dependencies = [] 
+            WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.AspNet.nuspec"
 
     NuGet (fun p -> 
@@ -204,7 +206,8 @@ Target "NuGet" (fun _ ->
             ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
-            Dependencies = [] })
+            Dependencies = [] 
+            WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.Gtk.nuspec"
 
 )

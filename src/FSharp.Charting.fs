@@ -4226,11 +4226,7 @@ namespace FSharp.Charting
               fun (ch : #GenericChart) ->
               ch |> Helpers.ApplyStyles(?Name=Name,?Color=Color, ?AreaBackground=AreaBackground,?Margin=Margin,?Background=Background,?BorderColor=BorderColor, ?BorderWidth=BorderWidth, ?SplineLineTension=SplineLineTension(* , ?AlignWithChartArea=AlignWithChartArea , ?AlignmentOrientation=AlignmentOrientation, ?AlignmentStyle=AlignmentStyle *) )
 
-
-
-            [<Obsolete("This member is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
             static member WithArea = AreaProperties()
-            [<Obsolete("This member is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
             static member WithSeries = SeriesProperties()
 
 (*
@@ -4256,13 +4252,11 @@ namespace FSharp.Charting
                 ch
 *)
       
-            [<Obsolete("This member is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
             static member WithMargin<'T when 'T :> GenericChart> (left, top, right, bottom) =
               fun (ch:'T) ->
                 ch.Margin <- (left, top, right, bottom)
                 ch
 
-            [<Obsolete("This member is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
             static member WithStyle<'T when 'T :> GenericChart> (?Background) =
               fun (ch:'T) -> 
                 Background |> Option.iter (applyBackground ch.Chart)

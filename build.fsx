@@ -17,7 +17,7 @@ Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 let files includes = 
   { BaseDirectory = __SOURCE_DIRECTORY__
     Includes = includes
-    Excludes = [] } |> Scan
+    Excludes = [] } 
 
 // Information about the project to be used at NuGet and in AssemblyInfo files
 let project = "FSharp.Charting"

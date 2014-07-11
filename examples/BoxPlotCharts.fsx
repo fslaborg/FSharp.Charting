@@ -15,7 +15,7 @@ diagrams calculated from randomly generated data.
 </div>
 
 A boxplot diagram shows six basic statistics about a set of observations. It displays the 
-dataset' minimum and maximum, the upper and lower quartiles, the average value. and the 
+dataset minimum and maximum, the upper and lower quartiles, the average value, and the
 median. When the F# script calculates these six statistics, the values can be passed to 
 the function Chart.BoxPlotFromStatistics as a list of tuples 
 to draw multiple boxplots.

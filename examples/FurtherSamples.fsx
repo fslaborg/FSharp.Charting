@@ -2,7 +2,7 @@
 
 This is a collection of additional samples for FSharp.Charting. 
 
-The samples are not yet indivudally documented but may be useful to try.
+The samples are not yet individually documented but may be useful to try.
 
 *)
 

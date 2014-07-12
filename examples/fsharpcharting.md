@@ -12,7 +12,7 @@ Basic Chart Types:
  * [Stock and Candlestick Charts](StockAndCandlestickCharts.html) - shows how to create common charts for financial data
  * [BoxPlot Charts](BoxPlotCharts.html) - shows how to create BoxPlot charts for statistical summaries of data
 
-Animated Live Charts (based on IObservable and IEvent data):
+Animated Live Charts (based on `IObservable` and `IEvent` data):
 
  * [Live Charts](LiveChartSamples.html) - shows how to create animated LiveCharts 
 
@@ -26,24 +26,26 @@ Further Samples:
 
 The following methods are available on Chart objects:
 
- * chart.CopyAsBitmap
- * chart.CopyChartToClipboard
- * chart.CopyChartToClipboardEmf
- * chart.SaveChartAs
- * chart.ShowChart
+ * `CopyAsBitmap`
+ * `CopyChartToClipboard`
+ * `CopyChartToClipboardEmf`
+ * `SaveChartAs`
+ * `ShowChart`
 
 The following methods are used to style Chart objects:
- * chart.With3D
- * chart.WithDataPointLabels
- * chart.WithLegend
- * chart.WithStyling
- * chart.WithTitle
- * chart.WithXAxis, WithYAxis
+
+ * `With3D`
+ * `WithDataPointLabels`
+ * `WithLegend`
+ * `WithStyling`
+ * `WithTitle`
+ * `WithXAxis`
+ * `WithYAxis`
 
 
 Please [contribute](contributing.html) more documentation on the following topics:
 
- * Combining charts using Chart.Combine, Chart.Rows and Chart.Columns
+ * Combining charts using `Chart.Combine`, `Chart.Rows` and `Chart.Columns`
  * More details on LiveCharts and creating active data for live charts
  * Images for all charts in the samples
  * Setting the chat and axis titles

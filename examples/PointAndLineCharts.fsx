@@ -3,20 +3,17 @@
 
 *Summary:* This example shows how to create line and point charts in F#. 
 
-
-This example looks at how to create line and point charts from F#. 
-
-A line or a point chart can be created using the Chart.Line and Chart.Point functions. When generating a 
-very large number of points or lines, it is better to use Chart.FastLine and Chart.FastPoint. These are special types 
-of charts that do not support as many visual features, but are more efficient.
+A line or a point chart can be created using the `Chart.Line` and `Chart.Point` methods. When generating a
+very large number of points or lines, it is better to use `Chart.FastLine` and `Chart.FastPoint`. These are special types
+of charts that do not support as many visual features but are more efficient.
 
 When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
 invokes a handler that automatically shows the created chart.
 
 ## A Simple Line Chart
 
-The following example calls the Chart.Line function with a list of X and Y values as tuples. The snippet generates 
-values of a simple function, f(x)=x^2. The values of the function are generated for x ranging from 1 to 100. The chart generated is 
+The following example calls the `Chart.Line` method with a list of X and Y values as tuples. The snippet generates
+values of a simple function, f(x)=x^2. The values of the function are generated for X ranging from 1 to 100. The chart generated is 
 shown below.
 
 <div>
@@ -63,8 +60,8 @@ Chart.Line [ for x in 1.0 .. 100.0 -> x * x * sin x ]
 (**
 
 It uses a sequence expression ranging
-from 0 to 2π with a step size 0.02. This produces a large number of points, so the snippet uses the Chart.Line 
-function to draw the chart. When using a single list as the data source, it is also possible to elegantly use pipelining (|> operator).
+from 0 to 2π with a step size 0.02. This produces a large number of points, so the snippet uses the `Chart.Line`
+method to draw the chart. When using a single list as the data source, it is also possible to elegantly use the pipelining (`|>` operator).
 
 <div>
     <img src="images/IC523424.png" alt="Sample Line Chart">
@@ -72,7 +69,7 @@ function to draw the chart. When using a single list as the data source, it is a
 
 ## A Point Chart
 
-The following example shows how to generate a scatter plot. It uses a list to specify the X- and Y-coordinates of the points. 
+The following example shows how to generate a scatter plot. It uses a list to specify the X and Y coordinates of the points. 
 *)
 
 // Draw scatter plot  of points
@@ -87,7 +84,7 @@ Chart.Point randomPoints
 
 ## Specifying Minimums, Maximums and other properties on a Line Chart
 
-The following example shows how to set the "Name", Y-Axis minimum properties on the chart, and use log-distribution for the X axis.
+The following example shows how to set the name and Y axis minimum properties on the chart and use log-distribution for the X axis.
 *)
 
 

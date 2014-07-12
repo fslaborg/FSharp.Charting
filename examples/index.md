@@ -64,7 +64,7 @@ If you find a typo, please submit a pull request!
 Previous Versions
 -----------------
 
-This library is a successor to 'FSharpChart'. The last version of 'FSharpChart' was [version 0.61][fsharpchart61].
+This library is a successor to FSharpChart. The last version of FSharpChart was [version 0.61][fsharpchart61].
 
 Contributing
 ------------

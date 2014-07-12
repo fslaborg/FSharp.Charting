@@ -10,7 +10,7 @@ To host a chart object inside a WPF application,
  
 In your XAML code this should appear as ```<WindowsFormsHost x:Name="WinForm" />```
 
-In your application code, set the Child property of the host to a chart control created from a chart specification:
+In your application code, set the `Child` property of the host to a chart control created from a chart specification:
 
 <div><pre>
   open FSharp.Charting

@@ -1,10 +1,8 @@
 (** 
 # FSharp.Charting: Stock and Candlestick Charts
 
-*Summary:* This article shows how to create stock and candlestick charts to visualize financial data in F#. 
-It looks at how to draw charts, use dates as labels, and how to specify the range of a chart.
-
-This article looks at how to create stock and candlestick charts from F#. 
+*Summary:* This example shows how to create stock and candlestick charts to visualize financial data in F#. 
+It looks at how to draw charts, use dates as labels, and specify the range of a chart.
 
 Stock and candlestick charts are designed to visualize stock prices. The data recorded about 
 stock prices typically consists of four values representing High, Low, Open, and Close prices. 
@@ -37,9 +35,9 @@ Figure 1 visualizes the data set using a candlestick chart.
 </div>
 
 
-A stock or a candlestick chart can be created using the FSharpChart.Stock and FSharpChart.Candlestick functions. Financial charts for 
+A stock or a candlestick chart can be created using the `FSharpChart.Stock` and `FSharpChart.Candlestick` methods. Financial charts for
 visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price). 
-When calling the functions, it is possible to specify the values as a collection 
+When calling the methods, it is possible to specify the values as a collection 
 containing four-element tuples, or five-element tuples (Date, High, Low, Open, and Close price).
 
 *)
@@ -67,17 +65,17 @@ Chart.Candlestick(pricesWithDates)
 
 When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive invokes a handler that automatically shows the created chart.
 
-The first snippet calls the Chart.Stock function with a list containing prices as 
+The first snippet calls the `Chart.Stock` method with a list containing prices as
 four-element tuples. 
 
 The second example adds dates as the labels for the chart. 
-This is done using the List.mapi function. The lambda function used as an argument returns a tuple 
+This is done using the `List.mapi` function. The lambda function used as an argument returns a tuple 
 containing the date and the original tuple of prices. 
-The example also demonstrates how to set the price range of the y-axis using the method `WithYAxis`.
+The example also demonstrates how to set the price range of the Y axis using the method `WithYAxis`.
 
-The last example shows an elegant way of configuring the Y-axis range by using pipelining (the |> operator).
-The chart specification is passed to a configuration function Chart.WithYAxis using pipelining. 
-This function takes named parameters that allow us to specify the range and other properties of the axis.
+The last example shows an elegant way of configuring the Y axis range by using pipelining (the `|>` operator).
+The chart specification is passed to a configuration method `Chart.WithYAxis` using pipelining.
+This method takes named parameters that allow us to specify the range and other properties of the axis.
 
 *)
 

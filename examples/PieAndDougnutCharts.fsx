@@ -1,5 +1,5 @@
 (** 
-# FSharp.Charting: Pie and Doughnut Charts
+# F# Charting: Pie and Doughnut Charts
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 

@@ -1,7 +1,7 @@
 (** 
-# FSharp.Charting: Further Samples
+# F# Charting: Further Samples
 
-This is a collection of additional samples for FSharp.Charting. 
+This is a collection of additional samples for F# Charting. 
 
 The samples are not yet individually documented but may be useful to try.
 

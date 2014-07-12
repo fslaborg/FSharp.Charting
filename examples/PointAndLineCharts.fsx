@@ -1,5 +1,5 @@
 (** 
-# FSharp.Charting: Point and Line Charts
+# F# Charting: Point and Line Charts
 
 *Summary:* This example shows how to create line and point charts in F#. 
 

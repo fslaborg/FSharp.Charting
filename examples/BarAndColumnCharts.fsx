@@ -1,10 +1,10 @@
-(** 
-# FSharp.Charting: Bar and Column Charts
+﻿(** 
+# F# Charting: Bar and Column Charts
 
 *Summary:* This example shows how to create bar and column charts in F#.
 
 The input data in this example is an F# list of tuples containing continent names and total populations.
-The article demonstrates how to display a bar/column chart with names of continents as labels and the 
+The example demonstrates how to display a bar/column chart with names of continents as labels and the 
 populations as the values. A sample bar chart is shown in Figure 1.
 
 <div>
@@ -38,6 +38,7 @@ Chart.Bar countryData
 
 Chart.Column countryData
 
+Chart.Bar [ 0 .. 10 ] 
 
 (**
 When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
@@ -52,4 +53,3 @@ The third example below shows that you may also simply give a set of Y values, r
 
 *)
 
-Chart.Bar [ 0 .. 10 ] 

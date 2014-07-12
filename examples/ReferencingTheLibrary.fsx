@@ -1,7 +1,7 @@
 (** 
-# FSharp.Charting: Referencing the Library
+# F# Charting: Referencing the Library
 
-FSharp.Charting is most often used from F# scripts. To use the library 
+F# Charting is most often used from F# scripts. To use the library 
 in a script, load the `FSharp.Charting.fsx` file, for example from the NuGet package:
 *)
 

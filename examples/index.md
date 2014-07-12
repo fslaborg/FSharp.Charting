@@ -1,7 +1,7 @@
-FSharp.Charting: The F# Charting Library
-========================================
+F# Charting: Library for Data Visualization
+===========================================
 
-The FSharp.Charting library implements charting suitable for use from F# scripting.
+The F# Charting library implements charting suitable for use from F# scripting.
 
 <div>
  <img src="images/IC523409.png" width="30%" >
@@ -16,7 +16,7 @@ The FSharp.Charting library implements charting suitable for use from F# scripti
       Install <a href="https://nuget.org/packages/FSharp.Charting">FSharp.Charting using NuGet</a>.
       Run this in the <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console">Package Manager Console</a>:
       <pre>PM> Install-Package FSharp.Charting</pre>
-      Then reference the 'FSharp.Charting.fsx' script in the package.
+      Then reference the `FSharp.Charting.fsx` script in the package.
     </div>
   </div>
   <div class="span1"></div>
@@ -59,7 +59,7 @@ Documentation
 The documentation is automatically generated from `*.fsx` files in  [the examples folder][examples]. 
 If you find a typo, please submit a pull request!
 
- * [FSharp.Charting](fsharpcharting.html) is the documentation home.
+ * [F# Charting](fsharpcharting.html) is the documentation home.
 
 Previous Versions
 -----------------
@@ -82,16 +82,16 @@ contribute [examples][examples] that can be turned into a documentation.
 
 ### Library philosophy
 
-FSharp.Charting uses simple, declarative chart specifications.
+F# Charting uses simple, declarative chart specifications.
 
-On Windows, FSharp.Charting is implemented using the Data Visualization charting controls 
+On Windows, F# Charting is implemented using the Data Visualization charting controls 
 available on Windows in .NET 4.x.
 
-On OSX, FSharp.Charting is implemented using the OxyPlot.GtkSharp charting library.
+On OSX, F# Charting is implemented using the OxyPlot.GtkSharp charting library.
 
 ### Library future
 
-FSharp.Charting is designed so that the same charting specifications can be supported when 
+F# Charting is designed so that the same charting specifications can be supported when 
 using different charting implementations. For example, the [Try F#](http://tryfsharp.org)
 charts use similar charting specifications, implemented using in HTML5 using Dojo Charts.
 

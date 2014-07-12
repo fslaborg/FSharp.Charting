@@ -1,11 +1,11 @@
-Contributing to FSharp.Charting
-===============================
+Contributing to F# Charting
+===========================
 
 This page should provide you with some basic information if you're thinking about
-contributing to the FSharp.Charting package. 
+contributing to the F# Charting project. 
 
  * This page can be edited by sending a pull request to FSharp.Charting on GitHub, so
-   if you learn something when playing with FSharp.Charting, please record your
+   if you learn something when playing with F# Charting, please record your
    [findings here](https://github.com/fsharp/FSharp.Charting/blob/master/examples/contributing.md)!
 
  * If you want to discuss a feature (a good idea!), or if you want to look at 
@@ -18,12 +18,12 @@ contributing to the FSharp.Charting package.
 The root directory contains a number of Visual Studio solutions (`*.sln`) files 
 that group the projects in the main logical groups:
 
- * **FSharp.Charting.sln** contains the main projects that implement most of the FSharp.Charting
+ * **FSharp.Charting.sln** contains the main projects that implement most of the F# Charting
    functionality (such as runtime and design-time type provider libraries). If you want
    to contribute code that is not quite ready yet, but looks interesting, then please
    add it to the experimental projects.
 
- * **FSharp.Charting.Tests.sln** is a library with tests for FSharp.Charting and it also contains
+ * **FSharp.Charting.Tests.sln** is a library with tests for F# Charting and it also contains
    the content of this web site (as `*.fsx` and `*.md`) files. Look here if you want
    to edit the documentation!
 
@@ -31,7 +31,7 @@ that group the projects in the main logical groups:
 
 ## Documentation
 
-The documentation for the FSharp.Charting library is automatically generated using the 
+The documentation for the F# Charting library is automatically generated using the 
 [F# Formatting](https://github.com/tpetricek/FSharp.Formatting) library. It turns 
 `*.md` (Markdown with embedded code snippets) and `*.fsx` files (F# script file with 
 embedded Markdown documentation) to a nice HTML documentation.

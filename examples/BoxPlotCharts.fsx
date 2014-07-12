@@ -1,5 +1,5 @@
 (** 
-# FSharp.Charting: BoxPlot Charts
+# F# Charting: BoxPlot Charts
 
 *Summary:* This example shows how to create boxplot diagrams in F#. It looks at how 
 to create a single boxplot from six statistics about an observation set as well as 

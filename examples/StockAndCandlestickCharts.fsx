@@ -1,5 +1,5 @@
 (** 
-# FSharp.Charting: Stock and Candlestick Charts
+# F# Charting: Stock and Candlestick Charts
 
 *Summary:* This example shows how to create stock and candlestick charts to visualize financial data in F#. 
 It looks at how to draw charts, use dates as labels, and specify the range of a chart.

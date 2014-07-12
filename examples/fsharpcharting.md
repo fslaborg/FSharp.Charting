@@ -1,4 +1,4 @@
-# FSharp.Charting: Documentation
+# F# Charting: Documentation
 
 Getting Started:
 
@@ -24,7 +24,7 @@ Further Samples:
 
  * [Further Samples](FurtherSamples.html) - additional samples
 
-The following methods are available on Chart objects:
+The following methods are available on chart objects:
 
  * `CopyAsBitmap`
  * `CopyChartToClipboard`
@@ -32,7 +32,7 @@ The following methods are available on Chart objects:
  * `SaveChartAs`
  * `ShowChart`
 
-The following methods are used to style Chart objects:
+The following methods are used to style chart objects:
 
  * `With3D`
  * `WithDataPointLabels`
@@ -48,7 +48,7 @@ Please [contribute](contributing.html) more documentation on the following topic
  * Combining charts using `Chart.Combine`, `Chart.Rows` and `Chart.Columns`
  * More details on LiveCharts and creating active data for live charts
  * Images for all charts in the samples
- * Setting the chat and axis titles
+ * Setting the chart and axis titles
  * Specifying labels
  * Specifying chart colors
  * Specifying more complex properties of charts

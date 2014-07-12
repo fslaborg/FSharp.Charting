@@ -1,5 +1,5 @@
 (** 
-# FSharp.Charting: Live Animated Charts
+# F# Charting: Live Animated Charts
 
 *Summary:* This example shows a collection of LiveCharts, which update as data changes. 
 

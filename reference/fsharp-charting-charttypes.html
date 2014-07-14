@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ChartTypes - F# Charting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
+    <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
+          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+        </ul>
+        <h3 class="muted"><a href="http://fsharp.github.io/FSharp.Charting/index.html">F# Charting</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>ChartTypes</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-axisarrowstyle.html">AxisArrowStyle</a>
+          </td>
+          <td class="xmldoc"><p>An enumeration of axis arrow styles</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-background.html">Background</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-barlabelposition.html">BarLabelPosition</a>
+          </td>
+          <td class="xmldoc"><p>The placement of the data point label.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-candlestickchart.html">CandlestickChart</a>
+          </td>
+          <td class="xmldoc"><p>Used to display stock information using high, low, open and close values.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-chartcontrol.html">ChartControl</a>
+          </td>
+          <td class="xmldoc"><p>A Windows Forms control to host a GenericChart specification</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-chartimageformat.html">ChartImageFormat</a>
+          </td>
+          <td class="xmldoc"><p>Specifies the image type of the chart.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-circularlabelstyle.html">CircularLabelStyle</a>
+          </td>
+          <td class="xmldoc"><p>The text orientation of the axis labels in Radar
+and Polar charts.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-dashstyle.html">DashStyle</a>
+          </td>
+          <td class="xmldoc"><p>Specifies a line style</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-datapoint.html">DataPoint</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-dataset.html">DataSet</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-datetimeintervaltype.html">DateTimeIntervalType</a>
+          </td>
+          <td class="xmldoc"><p>Specifies an interval type</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-docking.html">Docking</a>
+          </td>
+          <td class="xmldoc"><p>Specifies where a chart element, such as a legend or title, will be docked on the chart</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-doughnutchart.html">DoughnutChart</a>
+          </td>
+          <td class="xmldoc"><p>Similar to the Pie chart type, except that it has
+a hole in the center.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-drawsidebyside.html">DrawSideBySide</a>
+          </td>
+          <td class="xmldoc"><p>Specifies whether series of the same chart type are drawn
+next to each other instead of overlapping each other.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-errorbarcentermarkerstyle.html">ErrorBarCenterMarkerStyle</a>
+          </td>
+          <td class="xmldoc"><p>The appearance of the marker at the center value
+of the error bar.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-errorbarchart.html">ErrorBarChart</a>
+          </td>
+          <td class="xmldoc"><p>Consists of lines with markers that are used to display
+statistical information about the data displayed in a graph.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-errorbarstyle.html">ErrorBarStyle</a>
+          </td>
+          <td class="xmldoc"><p>The visibility of the upper and lower error values.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-errorbartype.html">ErrorBarType</a>
+          </td>
+          <td class="xmldoc"><p>Specifies how the upper and lower error values are calculated
+for the center values of the ErrorBarSeries.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-fourxydatapoint.html">FourXYDataPoint</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funnel3ddrawingstyle.html">Funnel3DDrawingStyle</a>
+          </td>
+          <td class="xmldoc"><p>The 3D drawing style of the Funnel chart type.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funnelchart.html">FunnelChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays in a funnel shape data that equals 100% when
+totaled.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funnelinsidelabelalignment.html">FunnelInsideLabelAlignment</a>
+          </td>
+          <td class="xmldoc"><p>The data point label placement of the Funnel chart
+type when the FunnelLabelStyle is set to Inside.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funnellabelstyle.html">FunnelLabelStyle</a>
+          </td>
+          <td class="xmldoc"><p>The data point label style of the Funnel chart type.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funneloutsidelabelplacement.html">FunnelOutsideLabelPlacement</a>
+          </td>
+          <td class="xmldoc"><p>Placement of the data point label in the Funnel chart
+when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-funnelstyle.html">FunnelStyle</a>
+          </td>
+          <td class="xmldoc"><p>The style of the Funnel chart type.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-genericchart.html">GenericChart</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-grid.html">Grid</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-kagichart.html">KagiChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-labelposition.html">LabelPosition</a>
+          </td>
+          <td class="xmldoc"><p>The label position of the data point.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-labelstyle.html">LabelStyle</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-labelvaluetype.html">LabelValueType</a>
+          </td>
+          <td class="xmldoc"><p>The Y value to use as the data point label.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-lightstyle.html">LightStyle</a>
+          </td>
+          <td class="xmldoc"><p>Specifies a lighting style for a three-dimensional (3D) chart area</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-markerstyle.html">MarkerStyle</a>
+          </td>
+          <td class="xmldoc"><p>Specifies a style for markers</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-openclosestyle.html">OpenCloseStyle</a>
+          </td>
+          <td class="xmldoc"><p>The marker style for open and close values.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-piechart.html">PieChart</a>
+          </td>
+          <td class="xmldoc"><p>Shows how proportions of data, shown as pie-shaped pieces, contribute to
+the data as a whole.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-piedrawingstyle.html">PieDrawingStyle</a>
+          </td>
+          <td class="xmldoc"><p>The drawing style of the data points.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pielabelstyle.html">PieLabelStyle</a>
+          </td>
+          <td class="xmldoc"><p>The label style of the data points.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pointandfigurechart.html">PointAndFigureChart</a>
+          </td>
+          <td class="xmldoc"><p>Disregards the passage of time and only displays changes in prices.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pointstyle.html">PointStyle</a>
+          </td>
+          <td class="xmldoc"><p>The drawing style of data points.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-polarchart.html">PolarChart</a>
+          </td>
+          <td class="xmldoc"><p>A circular graph on which data points are displayed using
+the angle, and the distance from the center point.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-polardrawingstyle.html">PolarDrawingStyle</a>
+          </td>
+          <td class="xmldoc"><p>The drawing style of the Polar chart type.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pyramidchart.html">PyramidChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays data that, when combined, equals 100%.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pyramidinsidelabelalignment.html">PyramidInsideLabelAlignment</a>
+          </td>
+          <td class="xmldoc"><p>The placement of the data point labels in the
+Pyramid chart when they are placed inside the pyramid.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pyramidlabelstyle.html">PyramidLabelStyle</a>
+          </td>
+          <td class="xmldoc"><p>The style of data point labels in the Pyramid chart.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pyramidoutsidelabelplacement.html">PyramidOutsideLabelPlacement</a>
+          </td>
+          <td class="xmldoc"><p>The placement of the data point labels in the
+Pyramid chart when the labels are placed outside the pyramid.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-pyramidvaluetype.html">PyramidValueType</a>
+          </td>
+          <td class="xmldoc"><p>Specifies whether the data point value represents a linear height
+or the surface of the segment.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-radarchart.html">RadarChart</a>
+          </td>
+          <td class="xmldoc"><p>A circular chart that is used primarily as a data
+comparison tool.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-radardrawingstyle.html">RadarDrawingStyle</a>
+          </td>
+          <td class="xmldoc"><p>The drawing style of the Radar chart.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-renkochart.html">RenkoChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-showopenclose.html">ShowOpenClose</a>
+          </td>
+          <td class="xmldoc"><p>Specifies whether markers for open and close prices are displayed.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-sixxydatapoint.html">SixXYDataPoint</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-stockchart.html">StockChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays significant stock price points including the open, close, high,
+and low price points.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-textorientation.html">TextOrientation</a>
+          </td>
+          <td class="xmldoc"><p>Specifies text orientation in a chart element</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-textstyle.html">TextStyle</a>
+          </td>
+          <td class="xmldoc"><p>Specifies text drawing styles</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-threelinebreakchart.html">ThreeLineBreakChart</a>
+          </td>
+          <td class="xmldoc"><p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-threexydatapoint.html">ThreeXYDataPoint</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-tickmark.html">TickMark</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-charting-charttypes-twoxydatapoint.html">TwoXYDataPoint</a>
+          </td>
+          <td class="xmldoc"><p>An implementation type for labelled points on chart. This type should not be used directly.</p>
+</td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+            culture 
+          </code>
+          <div class="tip" id="1">
+            <strong>Signature:</strong> CultureInfo<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L848-848" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+            getChartValueTypeDynamic xTypeOpt values
+          </code>
+          <div class="tip" id="3">
+            <strong>Signature:</strong> xTypeOpt:ChartValueType option -&gt; values:seq&lt;&#39;?187526&gt; -&gt; ChartValueType<br />
+                          <strong>Type parameters:</strong> '?187526          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L887-887" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+            getChartValueTypeStatic witness
+          </code>
+          <div class="tip" id="4">
+            <strong>Signature:</strong> witness:seq&lt;&#39;K&gt; -&gt; ChartValueType option<br />
+                          <strong>Type parameters:</strong> 'K          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L881-881" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <a href="http://fsharp.github.io/FSharp.Charting/index.html">
+            <img src="http://fsharp.github.io/FSharp.Charting/images/logo.png" style="width:140px;height:140px;margin:10px 0px 0px 35px;border-style:none;" />
+          </a>
+
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">F# Charting</li>
+            <li><a href="http://fsharp.github.io/FSharp.Charting/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
+            <li><a href="contributing.html">Contributing to F# Charting</a></li>
+            
+            <li class="nav-header">Documentation</li>
+            <li><a href="fsharpcharting.html">F# Charting Documentation</a></li>
+            <li class="divider"></li>
+            <li><a href="ReferencingTheLibrary.html">Referencing The Library</a></li>
+            <li><a href="PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="BarAndColumnCharts.html">Bar and Column Charts</a></li>
+            <li><a href="PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="BoxPlotCharts.html">BoxPlot Charts</a></li>
+            <li><a href="LiveChartSamples.html">Live Animated Charts</a></li>
+            <!-- <li><a href="FurtherSamples.html">Further Samples</a></li> -->
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fsharp.github.io/FSharp.Charting/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsharp/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>

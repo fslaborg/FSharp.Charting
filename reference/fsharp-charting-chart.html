@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chart - F# Charting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
+    <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
+          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+        </ul>
+        <h3 class="muted"><a href="http://fsharp.github.io/FSharp.Charting/index.html">F# Charting</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Chart</h1>
+<div class="xmldoc">
+<p>Provides a set of static methods for creating charts.</p>
+</div>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '359', 359)" onmouseover="showTip(event, '359', 359)">
+            Area(...)
+          </code>
+          <div class="tip" id="359">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186942&gt; * Name:string option * Title:string option * Labels:&#39;?186943 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186942, '?186943          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2263-2263" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '360', 360)" onmouseover="showTip(event, '360', 360)">
+            Area(...)
+          </code>
+          <div class="tip" id="360">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186938 * &#39;?186939&gt; * Name:string option * Title:string option * Labels:&#39;?186940 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186938, '?186939, '?186940          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2251-2251" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '361', 361)" onmouseover="showTip(event, '361', 361)">
+            Bar(...)
+          </code>
+          <div class="tip" id="361">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186949&gt; * Name:string option * Title:string option * Labels:&#39;?186950 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186949, '?186950          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2287-2287" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates comparisons among individual items</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '362', 362)" onmouseover="showTip(event, '362', 362)">
+            Bar(...)
+          </code>
+          <div class="tip" id="362">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186945 * &#39;?186946&gt; * Name:string option * Title:string option * Labels:&#39;?186947 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186945, '?186946, '?186947          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2275-2275" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates comparisons among individual items</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '363', 363)" onmouseover="showTip(event, '363', 363)">
+            BoxPlotFromData(...)
+          </code>
+          <div class="tip" id="363">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186961 * &#39;?186962&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * Percentile:int option * ShowAverage:bool option * ShowMedian:bool option * ShowUnusualValues:bool option * WhiskerPercentile:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186961, '?186962, '?186963          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2320-2320" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of one or more box symbols that summarize the distribution of the data within one or more data sets.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '364', 364)" onmouseover="showTip(event, '364', 364)">
+            BoxPlotFromStatistics(...)
+          </code>
+          <div class="tip" id="364">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186952 * &#39;?186953 * &#39;?186954 * &#39;?186955 * &#39;?186956 * &#39;?186957 * &#39;?186958&gt; * Name:string option * Title:string option * Labels:&#39;?186959 option * Color:Color option * XTitle:string option * YTitle:string option * Percentile:int option * ShowAverage:bool option * ShowMedian:bool option * ShowUnusualValues:bool option * WhiskerPercentile:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186952, '?186953, '?186954, '?186955, '?186956, '?186957, '?186958, '?186959          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2301-2301" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of one or more box symbols that summarize the distribution of the data within one or more data sets.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '365', 365)" onmouseover="showTip(event, '365', 365)">
+            Bubble(...)
+          </code>
+          <div class="tip" id="365">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186971 * &#39;?186972&gt; * Name:string option * Title:string option * Labels:&#39;?186973 option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186971, '?186972, '?186973          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2370-2370" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '366', 366)" onmouseover="showTip(event, '366', 366)">
+            Bubble(...)
+          </code>
+          <div class="tip" id="366">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186966 * &#39;?186967 * &#39;?186968&gt; * Name:string option * Title:string option * Labels:&#39;?186969 option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186966, '?186967, '?186968, '?186969          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2351-2351" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '367', 367)" onmouseover="showTip(event, '367', 367)">
+            Candlestick(...)
+          </code>
+          <div class="tip" id="367">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186982 * &#39;?186983 * &#39;?186984 * &#39;?186985&gt; * Name:string option * Title:string option * Labels:&#39;?186986 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?186982, '?186983, '?186984, '?186985, '?186986          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2396-2396" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Used to display stock information using high, low, open and close values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '368', 368)" onmouseover="showTip(event, '368', 368)">
+            Candlestick(...)
+          </code>
+          <div class="tip" id="368">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186975 * &#39;?186976 * &#39;?186977 * &#39;?186978 * &#39;?186979&gt; * Name:string option * Title:string option * Labels:&#39;?186980 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?186975, '?186976, '?186977, '?186978, '?186979, '?186980          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2384-2384" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Used to display stock information using high, low, open and close values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '369', 369)" onmouseover="showTip(event, '369', 369)">
+            Column(...)
+          </code>
+          <div class="tip" id="369">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186992&gt; * Name:string option * Title:string option * Labels:&#39;?186993 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186992, '?186993          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2420-2420" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses a sequence of columns to compare values across categories.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '370', 370)" onmouseover="showTip(event, '370', 370)">
+            Column(...)
+          </code>
+          <div class="tip" id="370">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186988 * &#39;?186989&gt; * Name:string option * Title:string option * Labels:&#39;?186990 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?186988, '?186989, '?186990          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2408-2408" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses a sequence of columns to compare values across categories.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '371', 371)" onmouseover="showTip(event, '371', 371)">
+            Columns(charts)
+          </code>
+          <div class="tip" id="371">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3110-3110" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts placed in columns</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '372', 372)" onmouseover="showTip(event, '372', 372)">
+            Combine(charts)
+          </code>
+          <div class="tip" id="372">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3114-3114" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts merged</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '373', 373)" onmouseover="showTip(event, '373', 373)">
+            Doughnut(...)
+          </code>
+          <div class="tip" id="373">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186999&gt; * Name:string option * Title:string option * Labels:&#39;?187000 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
+                          <strong>Type parameters:</strong> '?186999, '?187000          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2445-2445" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Pie chart type, except that it has a hole in the center.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '374', 374)" onmouseover="showTip(event, '374', 374)">
+            Doughnut(...)
+          </code>
+          <div class="tip" id="374">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?186995 * &#39;?186996&gt; * Name:string option * Title:string option * Labels:&#39;?186997 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
+                          <strong>Type parameters:</strong> '?186995, '?186996, '?186997          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2433-2433" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Pie chart type, except that it has a hole in the center.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '375', 375)" onmouseover="showTip(event, '375', 375)">
+            ErrorBar(...)
+          </code>
+          <div class="tip" id="375">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187002 * &#39;?187003 * &#39;?187004 * &#39;?187005&gt; * Name:string option * Title:string option * Labels:&#39;?187006 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ErrorBarChart<br />
+                          <strong>Type parameters:</strong> '?187002, '?187003, '?187004, '?187005, '?187006          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2457-2457" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '376', 376)" onmouseover="showTip(event, '376', 376)">
+            FastLine(...)
+          </code>
+          <div class="tip" id="376">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187012&gt; * Name:string option * Title:string option * Labels:&#39;?187013 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187012, '?187013          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2481-2481" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '377', 377)" onmouseover="showTip(event, '377', 377)">
+            FastLine(...)
+          </code>
+          <div class="tip" id="377">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187008 * &#39;?187009&gt; * Name:string option * Title:string option * Labels:&#39;?187010 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187008, '?187009, '?187010          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2469-2469" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '378', 378)" onmouseover="showTip(event, '378', 378)">
+            FastPoint(...)
+          </code>
+          <div class="tip" id="378">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187019&gt; * Name:string option * Title:string option * Labels:&#39;?187020 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187019, '?187020          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2506-2506" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '379', 379)" onmouseover="showTip(event, '379', 379)">
+            FastPoint(...)
+          </code>
+          <div class="tip" id="379">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187015 * &#39;?187016&gt; * Name:string option * Title:string option * Labels:&#39;?187017 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187015, '?187016, '?187017          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2494-2494" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '380', 380)" onmouseover="showTip(event, '380', 380)">
+            Funnel(...)
+          </code>
+          <div class="tip" id="380">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187026&gt; * Name:string option * Title:string option * Labels:&#39;?187027 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
+                          <strong>Type parameters:</strong> '?187026, '?187027          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2530-2530" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays in a funnel shape data that equals 100% when totaled.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '381', 381)" onmouseover="showTip(event, '381', 381)">
+            Funnel(...)
+          </code>
+          <div class="tip" id="381">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187022 * &#39;?187023&gt; * Name:string option * Title:string option * Labels:&#39;?187024 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
+                          <strong>Type parameters:</strong> '?187022, '?187023, '?187024          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2518-2518" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays in a funnel shape data that equals 100% when totaled.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '382', 382)" onmouseover="showTip(event, '382', 382)">
+            Kagi(...)
+          </code>
+          <div class="tip" id="382">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187033&gt; * Name:string option * Title:string option * Labels:&#39;?187034 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
+                          <strong>Type parameters:</strong> '?187033, '?187034          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2554-2554" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '383', 383)" onmouseover="showTip(event, '383', 383)">
+            Kagi(...)
+          </code>
+          <div class="tip" id="383">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187029 * &#39;?187030&gt; * Name:string option * Title:string option * Labels:&#39;?187031 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
+                          <strong>Type parameters:</strong> '?187029, '?187030, '?187031          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2542-2542" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '384', 384)" onmouseover="showTip(event, '384', 384)">
+            Line(...)
+          </code>
+          <div class="tip" id="384">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187040&gt; * Name:string option * Title:string option * Labels:&#39;?187041 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187040, '?187041          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2578-2578" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates trends in data with the passing of time.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '385', 385)" onmouseover="showTip(event, '385', 385)">
+            Line(...)
+          </code>
+          <div class="tip" id="385">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187036 * &#39;?187037&gt; * Name:string option * Title:string option * Labels:&#39;?187038 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187036, '?187037, '?187038          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2566-2566" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates trends in data with the passing of time.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '386', 386)" onmouseover="showTip(event, '386', 386)">
+            Pie(...)
+          </code>
+          <div class="tip" id="386">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187047&gt; * Name:string option * Title:string option * Labels:&#39;?187048 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?187047, '?187048          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2603-2603" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '387', 387)" onmouseover="showTip(event, '387', 387)">
+            Pie(...)
+          </code>
+          <div class="tip" id="387">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187043 * &#39;?187044&gt; * Name:string option * Title:string option * Labels:&#39;?187045 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?187043, '?187044, '?187045          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2591-2591" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '388', 388)" onmouseover="showTip(event, '388', 388)">
+            Point(...)
+          </code>
+          <div class="tip" id="388">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187054&gt; * Name:string option * Title:string option * Labels:&#39;?187055 option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187054, '?187055          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2627-2627" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses points to represent data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '389', 389)" onmouseover="showTip(event, '389', 389)">
+            Point(...)
+          </code>
+          <div class="tip" id="389">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187050 * &#39;?187051&gt; * Name:string option * Title:string option * Labels:&#39;?187052 option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187050, '?187051, '?187052          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2615-2615" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses points to represent data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '390', 390)" onmouseover="showTip(event, '390', 390)">
+            PointAndFigure(...)
+          </code>
+          <div class="tip" id="390">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187062 * &#39;?187063&gt; * Name:string option * Title:string option * Labels:&#39;?187064 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
+                          <strong>Type parameters:</strong> '?187062, '?187063, '?187064          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2651-2651" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Disregards the passage of time and only displays changes in prices.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '391', 391)" onmouseover="showTip(event, '391', 391)">
+            PointAndFigure(...)
+          </code>
+          <div class="tip" id="391">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187057 * &#39;?187058 * &#39;?187059&gt; * Name:string option * Title:string option * Labels:&#39;?187060 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
+                          <strong>Type parameters:</strong> '?187057, '?187058, '?187059, '?187060          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2639-2639" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Disregards the passage of time and only displays changes in prices.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '392', 392)" onmouseover="showTip(event, '392', 392)">
+            Polar(...)
+          </code>
+          <div class="tip" id="392">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187070&gt; * Name:string option * Title:string option * Labels:&#39;?187071 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
+                          <strong>Type parameters:</strong> '?187070, '?187071          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2675-2675" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular graph on which data points are displayed using the angle, and the distance from the center point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '393', 393)" onmouseover="showTip(event, '393', 393)">
+            Polar(...)
+          </code>
+          <div class="tip" id="393">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187066 * &#39;?187067&gt; * Name:string option * Title:string option * Labels:&#39;?187068 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
+                          <strong>Type parameters:</strong> '?187066, '?187067, '?187068          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2663-2663" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular graph on which data points are displayed using the angle, and the distance from the center point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '394', 394)" onmouseover="showTip(event, '394', 394)">
+            Pyramid(...)
+          </code>
+          <div class="tip" id="394">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187077&gt; * Name:string option * Title:string option * Labels:&#39;?187078 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
+                          <strong>Type parameters:</strong> '?187077, '?187078          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2701-2701" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays data that, when combined, equals 100%.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '395', 395)" onmouseover="showTip(event, '395', 395)">
+            Pyramid(...)
+          </code>
+          <div class="tip" id="395">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187073 * &#39;?187074&gt; * Name:string option * Title:string option * Labels:&#39;?187075 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
+                          <strong>Type parameters:</strong> '?187073, '?187074, '?187075          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2688-2688" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays data that, when combined, equals 100%.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '396', 396)" onmouseover="showTip(event, '396', 396)">
+            Radar(...)
+          </code>
+          <div class="tip" id="396">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187084&gt; * Name:string option * Title:string option * Labels:&#39;?187085 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
+                          <strong>Type parameters:</strong> '?187084, '?187085          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2731-2731" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular chart that is used primarily as a data
+comparison tool.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '397', 397)" onmouseover="showTip(event, '397', 397)">
+            Radar(...)
+          </code>
+          <div class="tip" id="397">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187080 * &#39;?187081&gt; * Name:string option * Title:string option * Labels:&#39;?187082 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
+                          <strong>Type parameters:</strong> '?187080, '?187081, '?187082          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2716-2716" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular chart that is used primarily as a data
+comparison tool.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '398', 398)" onmouseover="showTip(event, '398', 398)">
+            Range(...)
+          </code>
+          <div class="tip" id="398">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187092 * &#39;?187093&gt; * Name:string option * Title:string option * Labels:&#39;?187094 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187092, '?187093, '?187094          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2763-2763" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per data
+point, with each Y value being drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '399', 399)" onmouseover="showTip(event, '399', 399)">
+            Range(...)
+          </code>
+          <div class="tip" id="399">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187087 * &#39;?187088 * &#39;?187089&gt; * Name:string option * Title:string option * Labels:&#39;?187090 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187087, '?187088, '?187089, '?187090          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2747-2747" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per data
+point, with each Y value being drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '400', 400)" onmouseover="showTip(event, '400', 400)">
+            RangeBar(...)
+          </code>
+          <div class="tip" id="400">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187101 * &#39;?187102&gt; * Name:string option * Title:string option * Labels:&#39;?187103 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187101, '?187102, '?187103          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2792-2792" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays separate events that have beginning and end values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '401', 401)" onmouseover="showTip(event, '401', 401)">
+            RangeBar(...)
+          </code>
+          <div class="tip" id="401">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187096 * &#39;?187097 * &#39;?187098&gt; * Name:string option * Title:string option * Labels:&#39;?187099 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187096, '?187097, '?187098, '?187099          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2777-2777" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays separate events that have beginning and end values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '402', 402)" onmouseover="showTip(event, '402', 402)">
+            RangeColumn(...)
+          </code>
+          <div class="tip" id="402">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187110 * &#39;?187111&gt; * Name:string option * Title:string option * Labels:&#39;?187112 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187110, '?187111, '?187112          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2823-2823" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values
+per data point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '403', 403)" onmouseover="showTip(event, '403', 403)">
+            RangeColumn(...)
+          </code>
+          <div class="tip" id="403">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187105 * &#39;?187106 * &#39;?187107&gt; * Name:string option * Title:string option * Labels:&#39;?187108 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187105, '?187106, '?187107, '?187108          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2808-2808" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values
+per data point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '404', 404)" onmouseover="showTip(event, '404', 404)">
+            RegisterKeyConvertor(conversion)
+          </code>
+          <div class="tip" id="404">
+            <strong>Signature:</strong> (conversion:(&#39;T -&gt; key)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2240-2240" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Register a function that is used to automatically transform X values (keys) 
+of a non-primitive type to one of the types supported by the charting library
+(for example, by default DateTimeOffset is converted to DateTime)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '405', 405)" onmouseover="showTip(event, '405', 405)">
+            Renko(...)
+          </code>
+          <div class="tip" id="405">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187118&gt; * Name:string option * Title:string option * Labels:&#39;?187119 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
+                          <strong>Type parameters:</strong> '?187118, '?187119          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2855-2855" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '406', 406)" onmouseover="showTip(event, '406', 406)">
+            Renko(...)
+          </code>
+          <div class="tip" id="406">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187114 * &#39;?187115&gt; * Name:string option * Title:string option * Labels:&#39;?187116 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
+                          <strong>Type parameters:</strong> '?187114, '?187115, '?187116          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2839-2839" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '407', 407)" onmouseover="showTip(event, '407', 407)">
+            Rows(charts)
+          </code>
+          <div class="tip" id="407">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3106-3106" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts placed in rows</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '408', 408)" onmouseover="showTip(event, '408', 408)">
+            Spline(...)
+          </code>
+          <div class="tip" id="408">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187125&gt; * Name:string option * Title:string option * Labels:&#39;?187126 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187125, '?187126          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2885-2885" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A Line chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '409', 409)" onmouseover="showTip(event, '409', 409)">
+            Spline(...)
+          </code>
+          <div class="tip" id="409">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187121 * &#39;?187122&gt; * Name:string option * Title:string option * Labels:&#39;?187123 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187121, '?187122, '?187123          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2870-2870" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A Line chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '410', 410)" onmouseover="showTip(event, '410', 410)">
+            SplineArea(...)
+          </code>
+          <div class="tip" id="410">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187132&gt; * Name:string option * Title:string option * Labels:&#39;?187133 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187132, '?187133          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2915-2915" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>An Area chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '411', 411)" onmouseover="showTip(event, '411', 411)">
+            SplineArea(...)
+          </code>
+          <div class="tip" id="411">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187128 * &#39;?187129&gt; * Name:string option * Title:string option * Labels:&#39;?187130 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187128, '?187129, '?187130          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2900-2900" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>An Area chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '412', 412)" onmouseover="showTip(event, '412', 412)">
+            SplineRange(...)
+          </code>
+          <div class="tip" id="412">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187140 * &#39;?187141&gt; * Name:string option * Title:string option * Labels:&#39;?187142 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187140, '?187141, '?187142          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2948-2948" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per
+data point, with each Y value drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '413', 413)" onmouseover="showTip(event, '413', 413)">
+            SplineRange(...)
+          </code>
+          <div class="tip" id="413">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187135 * &#39;?187136 * &#39;?187137&gt; * Name:string option * Title:string option * Labels:&#39;?187138 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187135, '?187136, '?187137, '?187138          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2932-2932" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per
+data point, with each Y value drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '414', 414)" onmouseover="showTip(event, '414', 414)">
+            StackedArea(...)
+          </code>
+          <div class="tip" id="414">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187187&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187187, '?187188, '?187189          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3088-3088" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked areas.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '415', 415)" onmouseover="showTip(event, '415', 415)">
+            StackedArea100(...)
+          </code>
+          <div class="tip" id="415">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187191&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187191, '?187192, '?187193          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3101-3101" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked areas.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '416', 416)" onmouseover="showTip(event, '416', 416)">
+            StackedBar(...)
+          </code>
+          <div class="tip" id="416">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187171&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187171, '?187172, '?187173          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3036-3036" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked bars.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '417', 417)" onmouseover="showTip(event, '417', 417)">
+            StackedBar100(...)
+          </code>
+          <div class="tip" id="417">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187175&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187175, '?187176, '?187177          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3049-3049" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked bars.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '418', 418)" onmouseover="showTip(event, '418', 418)">
+            StackedColumn(...)
+          </code>
+          <div class="tip" id="418">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187179&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187179, '?187180, '?187181          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3062-3062" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked columns.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '419', 419)" onmouseover="showTip(event, '419', 419)">
+            StackedColumn100(...)
+          </code>
+          <div class="tip" id="419">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187183&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187183, '?187184, '?187185          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3075-3075" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked columns.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '420', 420)" onmouseover="showTip(event, '420', 420)">
+            StepLine(...)
+          </code>
+          <div class="tip" id="420">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187148&gt; * Name:string option * Title:string option * Labels:&#39;?187149 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187148, '?187149          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2972-2972" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '421', 421)" onmouseover="showTip(event, '421', 421)">
+            StepLine(...)
+          </code>
+          <div class="tip" id="421">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187144 * &#39;?187145&gt; * Name:string option * Title:string option * Labels:&#39;?187146 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187144, '?187145, '?187146          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2960-2960" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '422', 422)" onmouseover="showTip(event, '422', 422)">
+            Stock(...)
+          </code>
+          <div class="tip" id="422">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187158 * &#39;?187159 * &#39;?187160 * &#39;?187161&gt; * Name:string option * Title:string option * Labels:&#39;?187162 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?187158, '?187159, '?187160, '?187161, '?187162          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2997-2997" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays significant stock price points including the high, low, open and close price points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '423', 423)" onmouseover="showTip(event, '423', 423)">
+            Stock(...)
+          </code>
+          <div class="tip" id="423">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187151 * &#39;?187152 * &#39;?187153 * &#39;?187154 * &#39;?187155&gt; * Name:string option * Title:string option * Labels:&#39;?187156 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?187151, '?187152, '?187153, '?187154, '?187155, '?187156          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L2985-2985" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays significant stock price points including the high, low, open and close price points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '424', 424)" onmouseover="showTip(event, '424', 424)">
+            ThreeLineBreak(...)
+          </code>
+          <div class="tip" id="424">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187168&gt; * Name:string option * Title:string option * Labels:&#39;?187169 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
+                          <strong>Type parameters:</strong> '?187168, '?187169          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3022-3022" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '425', 425)" onmouseover="showTip(event, '425', 425)">
+            ThreeLineBreak(...)
+          </code>
+          <div class="tip" id="425">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187164 * &#39;?187165&gt; * Name:string option * Title:string option * Labels:&#39;?187166 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
+                          <strong>Type parameters:</strong> '?187164, '?187165, '?187166          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/BlueMountainCapital/Deedle/tree/master/src/FSharp.Charting.fs#L3010-3010" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <a href="http://fsharp.github.io/FSharp.Charting/index.html">
+            <img src="http://fsharp.github.io/FSharp.Charting/images/logo.png" style="width:140px;height:140px;margin:10px 0px 0px 35px;border-style:none;" />
+          </a>
+
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">F# Charting</li>
+            <li><a href="http://fsharp.github.io/FSharp.Charting/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
+            <li><a href="contributing.html">Contributing to F# Charting</a></li>
+            
+            <li class="nav-header">Documentation</li>
+            <li><a href="fsharpcharting.html">F# Charting Documentation</a></li>
+            <li class="divider"></li>
+            <li><a href="ReferencingTheLibrary.html">Referencing The Library</a></li>
+            <li><a href="PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="BarAndColumnCharts.html">Bar and Column Charts</a></li>
+            <li><a href="PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="BoxPlotCharts.html">BoxPlot Charts</a></li>
+            <li><a href="LiveChartSamples.html">Live Animated Charts</a></li>
+            <!-- <li><a href="FurtherSamples.html">Further Samples</a></li> -->
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fsharp.github.io/FSharp.Charting/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsharp/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>

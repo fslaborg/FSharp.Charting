@@ -1,8 +1,9 @@
 (** 
+# F# Charting: Further Samples
 
-This is a collection of additional samples for FSharp.Charting. 
+This is a collection of additional samples for F# Charting. 
 
-The samples are not yet indivudally documented but may be useful to try.
+The samples are not yet individually documented but may be useful to try.
 
 *)
 
@@ -35,20 +36,6 @@ Chart.Line [ DateTime.Now, 1; DateTime.Now.AddDays(1.0), 10 ]
 Chart.Line [ for h in 1 .. 50 -> DateTime.Now.AddHours(float h), sqrt (float h) ]
 Chart.Line [ for h in 1 .. 50 -> DateTime.Now.AddMinutes(float h), sqrt (float h) ]
 
-(*
-let prices =
-  [ 26.24,25.80,26.22,25.95; 26.40,26.18,26.26,26.20
-    26.37,26.04,26.11,26.08; 26.78,26.15,26.60,26.16
-    26.86,26.51,26.69,26.58; 26.95,26.50,26.91,26.55
-    27.06,26.50,26.64,26.77; 26.86,26.43,26.53,26.59
-    27.10,26.52,26.78,26.59; 27.21,26.99,27.13,27.06
-    27.37,26.91,26.97,27.21; 27.07,26.60,27.05,27.02
-    27.33,26.95,27.04,26.96; 27.27,26.95,27.21,27.23
-    27.81,27.07,27.76,27.25; 27.94,27.29,27.93,27.50
-    28.26,27.91,28.19,27.97; 28.34,28.05,28.10,28.28
-    28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
-
-
 Chart.Line(data,Title="Test Title")
 Chart.Line(data,Title="Test Title").WithTitle(InsideArea=false)
 Chart.Line(data,Title="Test Title").WithTitle(InsideArea=true)
@@ -63,7 +50,8 @@ Chart.Line(data,Name="Test Data")
    |> Chart.WithXAxis(Enabled=false,Title="X Axis")
 
 Chart.Line(data,Name="Test Data").WithXAxis(Enabled=false,Title="X Axis")
-Chart.Line(data,Name="Test Data").WithXAxis(Enabled=true,Title="X Axis",Max=10.0, Min=0.0).WithYAxis(Max=100.0,Min=0.0)
+Chart.Line(data,Name="Test Data").WithXAxis(Enabled=true,Title="X Axis",Max=10.0, Min=0.0)
+                                 .WithYAxis(Max=100.0,Min=0.0)
 
 Chart.Line(data,Name="Test Data").WithLegend(Title="Hello")
 Chart.Line(data,Name="Test Data").WithLegend(Title="Hello",Enabled=false)
@@ -74,7 +62,8 @@ Chart.Line(data,Name="Test Data").With3D()
 Chart.Line(data,Name="Test Data",XTitle="hello", YTitle="goodbye")
 
 Chart.Line(data,Name="Test Data").WithXAxis(Title="XXX")
-Chart.Line(data,Name="Test Data").WithXAxis(Title="XXX",Max=10.0,Min=4.0).WithYAxis(Title="YYY",Max=100.0,Min=4.0,Log=true)
+Chart.Line(data,Name="Test Data").WithXAxis(Title="XXX",Max=10.0,Min=4.0)
+                                 .WithYAxis(Title="YYY",Max=100.0,Min=4.0,Log=true)
 
 
 Chart.Combine [ Chart.Line(data,Name="Test Data 1 With Long Name")
@@ -95,10 +84,11 @@ Chart.Rows
        Chart.Line(data2,Title="Chart 2", Name="Test Data 2") ]                 
    |> Chart.WithLegend(Title="Hello",Docking=ChartTypes.Docking.Left)
 
+ // TODO: this title and docking left doesn't work
 Chart.Columns
      [ Chart.Line(data,Name="Test Data 1")
        Chart.Line(data2,Name="Test Data 2")]
-   |> Chart.WithLegend(Title="Hello",Docking=ChartTypes.Docking.Left)  // TODO: this title and docking left doesn't work
+   |> Chart.WithLegend(Title="Hello",Docking=ChartTypes.Docking.Left)
 
 
 Chart.Combine [ Chart.Line(data,Name="Test Data 1")
@@ -180,7 +170,4 @@ Chart.Line(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #
 
 Chart.Stock(timeHighLowOpenClose)
 Chart.ThreeLineBreak(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #SERIESNAME") 
-
-
-*)
 

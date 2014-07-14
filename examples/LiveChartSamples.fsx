@@ -1,12 +1,16 @@
 (** 
+# F# Charting: Live Animated Charts
 
-This sample shows a collection of 'LiveChart's, which update as data changes. The input data comes from IObservable (or IEvent) sources.
+*Summary:* This example shows a collection of LiveCharts, which update as data changes. 
+
+The input data comes from `IObservable` (or `IEvent`) sources.
 The data can be created using Rx, F# Event combinators or F# Observable combinators.
 
-The samples are not yet indivudally documented.
+The samples are not yet individually documented.
 
 In this sample, some extra event combinators are used to generate reactive data. 
-The EventEx-0.1.fsx file can be found at https://raw.github.com/fsharp/FSharp.Charting/master/examples/EventEx-0.1.fsx
+The `EventEx-0.1.fsx` file can be found 
+[here](https://raw.github.com/fsharp/FSharp.Charting/master/examples/EventEx-0.1.fsx).
 
 *)
 

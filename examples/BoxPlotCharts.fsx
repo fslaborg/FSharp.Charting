@@ -1,11 +1,11 @@
 (** 
-# FSharp.Charting: BoxPlot Charts
+# F# Charting: BoxPlot Charts
 
-*Summary:* This article shows how to create boxplot diagrams in F#. It looks at how to create a single boxplot from six statistics about an observation set as well as how to automatically create boxplots from observations.
+*Summary:* This example shows how to create boxplot diagrams in F#. It looks at how 
+to create a single boxplot from six statistics about an observation set as well as 
+how to automatically create boxplots from observations.
 
-This article looks at how to create boxplot charts from F#. 
-
-When creating boxplot charts, it is possible to use either 6 statistics (Lower whisker, Upper whisker, Lower box, Upper box, Average, Median)
+When creating boxplot charts, it is possible to use either six statistics (Lower whisker, Upper whisker, Lower box, Upper box, Average, Median)
 that define the boxplot data, or to infer these statistics from a set of values and let the library generate 
 the boxplot diagram automatically. Figure 1 shows a chart series showing three boxplot 
 diagrams calculated from randomly generated data.
@@ -15,9 +15,9 @@ diagrams calculated from randomly generated data.
 </div>
 
 A boxplot diagram shows six basic statistics about a set of observations. It displays the 
-dataset' minimum and maximum, the upper and lower quartiles, the average value. and the 
+dataset minimum and maximum, the upper and lower quartiles, the average value, and the
 median. When the F# script calculates these six statistics, the values can be passed to 
-the function Chart.BoxPlotFromStatistics as a list of tuples 
+the method `Chart.BoxPlotFromStatistics` as a list of tuples
 to draw multiple boxplots.
 *)
 
@@ -43,16 +43,16 @@ Chart.BoxPlotFromStatistics(
 
 (**
 
-This snippet calls the Chart.BoxPlotFromStatistics function with a list containing  
+This snippet calls the `Chart.BoxPlotFromStatistics` method with a list containing  
 (Label, Lower whisker, Upper whisker, Lower box, Upper box, Average, Median) pairs.
 The call uses the value 0.0 as a placeholder for the last two statistics. The lines in the boxplot 
-diagram have to be hidden explicitly by setting BoxPlotShowMedian and BoxPlotShowAverage to false. 
+diagram have to be hidden explicitly by setting `BoxPlotShowMedian` and `BoxPlotShowAverage` to false. 
 
 
-Another alternative when creating a boxplot is to the charting library 
-calculate the boxplot statistics automatically. To do that, the Chart.BoxPlot function 
+Another alternative when creating a boxplot is to let the charting library 
+calculate the boxplot statistics automatically. To do that, the `Chart.BoxPlot` method 
 can be called with a collection of (xLabel, yValues) tuples as an argument. Each entry 
-is a label plus set of observations. The statistics are automatically computed from the 
+is a label plus a set of observations. The statistics are automatically computed from the 
 values in the observations.
 
 *)
@@ -77,7 +77,7 @@ Chart.BoxPlotFromData
 The example above demonstrates how to calculate boxplot diagrams 
 automatically from (randomly generated) data. It is also possible to set 
 several custom properties to configure the boxplot diagram. When 
-BoxPlotShowUnusualValues is true, the boxplot displays unusual values using points, as shown in Figure 1.
+`BoxPlotShowUnusualValues` is true, the boxplot displays unusual values using points, as shown in Figure 1.
 
 More information about working with financial data and how to download 
 stock prices from the Yahoo Finance portal using F# can be found in [Try F#](http://tryfsharp.org).

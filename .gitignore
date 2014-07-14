@@ -1,12 +1,9 @@
 src/bin/*
 src/obj/*
 bin/*
-docs/*
 tests/bin/*
 tests/obj/*
 *.suo
 packages/*
 TestResults.xml
-gh-pages
-tools/FAKE/*
-release/*
+temp/*

@@ -1,3 +1,5 @@
+(*** hide ***)
+#I "../../bin"
 (** 
 # F# Charting: Stock and Candlestick Charts
 
@@ -28,13 +30,6 @@ let prices =
 More information about working with financial data and how to download 
 stock prices from the Yahoo Finance portal using F# can be found in [Try F#](http://tryfsharp.org).
 
-Figure 1 visualizes the data set using a candlestick chart.
-
-<div>
-    <img src="images/IC523409.png" alt="Sample Financial Chart">
-</div>
-
-
 A stock or a candlestick chart can be created using the `FSharpChart.Stock` and `FSharpChart.Candlestick` methods. Financial charts for
 visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price). 
 When calling the methods, it is possible to specify the values as a collection 
@@ -42,24 +37,31 @@ containing four-element tuples, or five-element tuples (Date, High, Low, Open, a
 
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
+// On Mac OSX use FSharp.Charting.Gtk.fsx
+#I "packages/FSharp.Charting.0.90.6"
+#load "FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System
 
+(*** define-output:st ***)
 Chart.Stock(prices)
+(*** include-it:st ***)
 
 let pricesWithDates = 
     prices |> List.mapi (fun i (hi,lo,op,cl) -> 
         (DateTime.Today.AddDays(float i).ToShortDateString(), hi, lo, op, cl))
 
+(*** define-output:ca ***)
 // Candlestick chart price range specified
 Chart.Candlestick(pricesWithDates).WithYAxis(Max = 29.0, Min = 25.0)
+(*** include-it:ca ***)
 
+(*** define-output:ca2 ***)
 // Alternative specification using pipelining
 Chart.Candlestick(pricesWithDates)
-   |> Chart.WithYAxis(Max = 29.0, Min = 25.0)
+|> Chart.WithYAxis(Max = 29.0, Min = 25.0)
+(*** include-it:ca2 ***)
 
 (**
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting", "src\FSharp.Charting.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36E72EB1-5847-4B38-8993-B951648CB0D9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{36E72EB1-5847-4B38-8993-B951648CB0D9}"
 	ProjectSection(SolutionItems) = preProject
 		build.fsx = build.fsx
 		nuget\FSharp.Charting.AspNet.nuspec = nuget\FSharp.Charting.AspNet.nuspec
@@ -25,22 +25,31 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.AspNet", "s
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.Gtk", "src\FSharp.Charting.Gtk.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E0C29A24-145E-4364-A268-2687F5136613}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{E0C29A24-145E-4364-A268-2687F5136613}"
 	ProjectSection(SolutionItems) = preProject
-		examples\BarAndColumnCharts.fsx = examples\BarAndColumnCharts.fsx
-		examples\BoxPlotCharts.fsx = examples\BoxPlotCharts.fsx
-		examples\contributing.md = examples\contributing.md
-		examples\EventEx-0.1.fsx = examples\EventEx-0.1.fsx
-		examples\fsharpcharting.md = examples\fsharpcharting.md
-		examples\FurtherSamples.fsx = examples\FurtherSamples.fsx
-		examples\FurtherSamplesGtk.fsx = examples\FurtherSamplesGtk.fsx
-		examples\index.md = examples\index.md
-		examples\LiveChartSamples.fsx = examples\LiveChartSamples.fsx
-		examples\PieAndDougnutCharts.fsx = examples\PieAndDougnutCharts.fsx
-		examples\PointAndLineCharts.fsx = examples\PointAndLineCharts.fsx
-		examples\ReferencingTheLibrary.fsx = examples\ReferencingTheLibrary.fsx
-		examples\StockAndCandlestickCharts.fsx = examples\StockAndCandlestickCharts.fsx
-		examples\UsingChartsInWPF.md = examples\UsingChartsInWPF.md
+		docs\content\BarAndColumnCharts.fsx = docs\content\BarAndColumnCharts.fsx
+		docs\content\BoxPlotCharts.fsx = docs\content\BoxPlotCharts.fsx
+		docs\content\contributing.md = docs\content\contributing.md
+		docs\content\EventEx-0.1.fsx = docs\content\EventEx-0.1.fsx
+		docs\content\fsharpcharting.md = docs\content\fsharpcharting.md
+		docs\content\FurtherSamples.fsx = docs\content\FurtherSamples.fsx
+		docs\content\FurtherSamplesGtk.fsx = docs\content\FurtherSamplesGtk.fsx
+		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\LiveChartSamples.fsx = docs\content\LiveChartSamples.fsx
+		docs\content\PieAndDougnutCharts.fsx = docs\content\PieAndDougnutCharts.fsx
+		docs\content\PointAndLineCharts.fsx = docs\content\PointAndLineCharts.fsx
+		docs\content\ReferencingTheLibrary.fsx = docs\content\ReferencingTheLibrary.fsx
+		docs\content\StockAndCandlestickCharts.fsx = docs\content\StockAndCandlestickCharts.fsx
+		docs\content\UsingChartsInWPF.md = docs\content\UsingChartsInWPF.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A10EDABF-8FB0-438E-8B4F-5C8ABB1B18BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{77EFC808-0360-4938-98E1-8FB517B39470}"
+	ProjectSection(SolutionItems) = preProject
+		docs\tools\formatters.fsx = docs\tools\formatters.fsx
+		docs\tools\generate.fsx = docs\tools\generate.fsx
+		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
 Global
@@ -64,5 +73,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0C29A24-145E-4364-A268-2687F5136613} = {A10EDABF-8FB0-438E-8B4F-5C8ABB1B18BD}
+		{77EFC808-0360-4938-98E1-8FB517B39470} = {A10EDABF-8FB0-438E-8B4F-5C8ABB1B18BD}
 	EndGlobalSection
 EndGlobal

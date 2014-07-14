@@ -1,3 +1,5 @@
+(*** hide ***)
+#I "../../bin"
 (** 
 # F# Charting: Point and Line Charts
 
@@ -16,21 +18,19 @@ The following example calls the `Chart.Line` method with a list of X and Y value
 values of a simple function, f(x)=x^2. The values of the function are generated for X ranging from 1 to 100. The chart generated is 
 shown below.
 
-<div>
-    <img src="images/Squares.png" alt="Line Chart">
-</div>
-
-
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
+// On Mac OSX use FSharp.Charting.Gtk.fsx
+#I "packages/FSharp.Charting.0.90.6"
+#load "FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System
 
+(*** define-output:sq ***)
 // Drawing graph of a 'square' function 
 Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+(*** include-it:sq ***)
 
 (**
 
@@ -40,10 +40,11 @@ Chart.Line [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 The following example generates a list containing both X and Y values. 
 *)
 
+(*** define-output:cu ***)
 // Generates 2D curve using list of tuples
 let curvyData = [ for i in 0.0 .. 0.02 .. 2.0 * Math.PI -> (sin i, cos i * sin i) ] 
-
 curvyData |> Chart.Line
+(*** include-it:cu ***)
 
 (**
 
@@ -53,8 +54,10 @@ curvyData |> Chart.Line
 The following example below shows that you may also simply give a set of Y values, rather than (X,Y) value pairs.
 *)
 
+(*** define-output:cy ***)
 // Generates 2D curve using only Y values
 Chart.Line [ for x in 1.0 .. 100.0 -> x * x * sin x ]
+(*** include-it:cy ***)
 
 
 (**
@@ -62,10 +65,6 @@ Chart.Line [ for x in 1.0 .. 100.0 -> x * x * sin x ]
 It uses a sequence expression ranging
 from 0 to 2π with a step size 0.02. This produces a large number of points, so the snippet uses the `Chart.Line`
 method to draw the chart. When using a single list as the data source, it is also possible to elegantly use the pipelining (`|>` operator).
-
-<div>
-    <img src="images/IC523424.png" alt="Sample Line Chart">
-</div>
 
 ## A Point Chart
 
@@ -77,7 +76,9 @@ let rnd = new Random()
 let rand() = rnd.NextDouble()
 let randomPoints = [ for i in 0 .. 1000 -> rand(), rand() ]
 
+(*** define-output:rp ***)
 Chart.Point randomPoints
+(*** include-it:rp ***)
 
 (**
 
@@ -88,14 +89,10 @@ The following example shows how to set the name and Y axis minimum properties on
 *)
 
 
+(*** define-output:hd ***)
 let highData = [ for x in 1.0 .. 100.0 -> (x, 3000.0 + x ** 2.0) ]
-
 Chart.Line(highData,Name="Rates").WithYAxis(Min=2000.0).WithXAxis(Log=true)
-
-(**
-
-
-*)
+(*** include-it:hd ***)
 
 (**
 ## Combining Line Charts
@@ -103,24 +100,32 @@ Chart.Line(highData,Name="Rates").WithYAxis(Min=2000.0).WithXAxis(Log=true)
 The following example shows how to combine several line charts and give each data set a name. A legend is added
 automatically when names are used for data sets.
 
-<div>
-    <img src="images/IC36812.png" alt="Multiple Line Chart">
-</div>
-
-
 *)
 let futureDate numDays = DateTime.Today.AddDays(float numDays)
 
-let expectedIncome = [ for x in 1 .. 100 -> (futureDate x, 1000.0 + rand() * 100.0 * exp (float x / 40.0) ) ]
-let expectedExpenses = [ for x in 1 .. 100 -> (futureDate x, rand() * 500.0 * sin (float x / 50.0) ) ]
-let computedProfit = (expectedIncome, expectedExpenses) ||> List.map2 (fun (d1,i) (d2,e) -> (d1, i - e))
+let expectedIncome = 
+  [ for x in 1 .. 100 -> 
+      futureDate x, 1000.0 + rand() * 100.0 * exp (float x / 40.0) ]
+let expectedExpenses = 
+  [ for x in 1 .. 100 -> 
+      futureDate x, rand() * 500.0 * sin (float x / 50.0) ]
+let computedProfit = 
+  (expectedIncome, expectedExpenses) 
+  ||> List.map2 (fun (d1,i) (d2,e) -> (d1, i - e))
 
+(*** define-output:co1 ***)
 Chart.Line(expectedIncome,Name="Income")
+(*** include-it:co1 ***)
+(*** define-output:co2 ***)
 Chart.Line(expectedExpenses,Name="Expenses")
+(*** include-it:co2 ***)
+(*** define-output:co3 ***)
 Chart.Line(computedProfit,Name="Profit")
+(*** include-it:co3 ***)
 
+(*** define-output:co4 ***)
 Chart.Combine(
    [ Chart.Line(expectedIncome,Name="Income")
      Chart.Line(expectedExpenses,Name="Expenses") 
      Chart.Line(computedProfit,Name="Profit") ])
-
+(*** include-it:co4 ***)

@@ -79,7 +79,7 @@ Target "AssemblyInfo" (fun _ ->
 
 Target "UpdateFsxVersions" (fun _ ->
     for nm in [ "FSharp.Charting"; "FSharp.Charting.Gtk" ] do
-        for path in [ @"./src/" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "examples")  do
+        for path in [ @"./src/" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "docs/content")  do
           let text1 = File.ReadAllText(path)
           // Adjust entries like #I "../../../packages/FSharp.Charting.0.84"
           let text2 = Regex.Replace(text1, "packages/" + nm + @".(.*)/lib/net40""", "packages/" + nm + sprintf @".%s/lib/net40""" version)
@@ -102,6 +102,7 @@ Target "RestorePackages" (fun _ ->
 
 Target "Clean" (fun _ ->
     CleanDirs ["bin"]
+    CleanDirs ["docs/output"]
 )
 
 // --------------------------------------------------------------------------------------
@@ -215,39 +216,41 @@ Target "NuGet" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
+Target "GenerateDocs" (fun _ ->
+    executeFSIWithArgs "docs/tools" "generate.fsx" ["--define:RELEASE"] [] |> ignore
+)
+
 Target "UpdateDocs" (fun _ ->
-
-    executeFSI "tools" "build-docs.fsx" [] |> ignore
-
-    DeleteDir "gh-pages"
-    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "gh-pages"
-    Branches.checkoutBranch "gh-pages" "gh-pages"
-    CopyRecursive "docs" "gh-pages" true |> printfn "%A"
-    CommandHelper.runSimpleGitCommand "gh-pages" (sprintf """commit -a -m "Update generated documentation for version %s""" version) |> printfn "%s"
-    Branches.push "gh-pages"
+    DeleteDir "temp/gh-pages"
+    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "temp/gh-pages"
+    Branches.checkoutBranch "temp/gh-pages" "gh-pages"
+    CopyRecursive "docs/output" "temp/gh-pages" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
+    CommandHelper.runSimpleGitCommand "temp/gh-pages" (sprintf """commit -a -m "Update generated documentation for version %s""" version) |> printfn "%s"
+    Branches.push "temp/gh-pages"
 )
 
 Target "UpdateBinaries" (fun _ ->
-
-    DeleteDir "release"
-    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "release"
-    Branches.checkoutBranch "release" "release"
-    CopyFile "bin/FSharp.Charting.fsx" "release/FSharp.Charting.fsx"
-    CopyFile "bin/FSharp.Charting.Gtk.fsx" "release/FSharp.Charting.Gtk.fsx"
-    CopyRecursive "bin/v40" "release/bin" true |> printfn "%A"
-    CommandHelper.runSimpleGitCommand "release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
-    Branches.push "release"
+    DeleteDir "temp/release"
+    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "temp/release"
+    Branches.checkoutBranch "temp/release" "release"
+    CopyFile "bin/FSharp.Charting.fsx" "temp/release/FSharp.Charting.fsx"
+    CopyFile "bin/FSharp.Charting.Gtk.fsx" "temp/release/FSharp.Charting.Gtk.fsx"
+    CopyRecursive "bin/v40" "temp/release/bin" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "temp/release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
+    Branches.push "temp/release"
 )
 
 Target "Release" DoNothing
-
-"UpdateDocs" ==> "Release"
-"UpdateBinaries" ==> "Release"
 
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build target=<Target>' to verride
 
 Target "All" DoNothing
+
+"All" ==> "Release"
+"GenerateDocs" ==> "UpdateDocs" ==> "Release"
+"UpdateBinaries" ==> "Release"
 
 "Clean"
   ==> "RestorePackages"

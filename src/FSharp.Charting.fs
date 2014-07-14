@@ -3117,7 +3117,7 @@ namespace FSharp.Charting
 
     /// Contains static methods to construct charts whose data source is an event or observable which 
     /// updates the entire data set.
-    type LiveChart() = 
+    type LiveChart = 
 
         /// <summary>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</summary>
         /// <param name="data">The data for the chart. Each observation replaces the entire data on the chart.</param>

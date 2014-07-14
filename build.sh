@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -f tools/FAKE/tools/FAKE.exe ]; then
-  mono .nuget/NuGet.exe install FAKE -OutputDirectory tools -ExcludeVersion -Prerelease
+if [ ! -f packages/FAKE/tools/FAKE.exe ]; then
+  mono .nuget/NuGet.exe install FAKE -OutputDirectory packages -ExcludeVersion -Prerelease
 fi
-mono tools/FAKE/tools/FAKE.exe build.fsx $@
+mono packages/FAKE/tools/FAKE.exe build.fsx $@

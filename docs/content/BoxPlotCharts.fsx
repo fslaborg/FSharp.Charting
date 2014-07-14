@@ -1,3 +1,5 @@
+(*** hide ***)
+#I "../../bin"
 (** 
 # F# Charting: BoxPlot Charts
 
@@ -7,12 +9,7 @@ how to automatically create boxplots from observations.
 
 When creating boxplot charts, it is possible to use either six statistics (Lower whisker, Upper whisker, Lower box, Upper box, Average, Median)
 that define the boxplot data, or to infer these statistics from a set of values and let the library generate 
-the boxplot diagram automatically. Figure 1 shows a chart series showing three boxplot 
-diagrams calculated from randomly generated data.
-
-<div>
-    <img src="images/IC523398.png" alt="Sample BoxPlot Chart">
-</div>
+the boxplot diagram automatically. 
 
 A boxplot diagram shows six basic statistics about a set of observations. It displays the 
 dataset minimum and maximum, the upper and lower quartiles, the average value, and the
@@ -21,25 +18,30 @@ the method `Chart.BoxPlotFromStatistics` as a list of tuples
 to draw multiple boxplots.
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
+// On Mac OSX use FSharp.Charting.Gtk.fsx
+#I "packages/FSharp.Charting.0.90.6"
+#load "FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System
 
+(*** define-output:boxs ***)
 Chart.BoxPlotFromStatistics( 
     [ ("Result A", -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
       ("Result B", -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ])
+(*** include-it:boxs ***)
 
 (**
 Here is the same box plot with dates used as labels. These must be explicitly formatted as strings.
 
 *)
 
+(*** define-output:boxs2 ***)
 Chart.BoxPlotFromStatistics(
     [ (DateTime.Today.ToShortDateString()             , -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);
       (DateTime.Today.AddDays(1.0).ToShortDateString(), -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ],
     ShowMedian = false, ShowAverage = false)
+(*** include-it:boxs2 ***)
 
 (**
 
@@ -66,10 +68,12 @@ let threeSyntheticDataSets =
       (date 1, [| for i in 0 .. 20 -> float (rnd.Next 15 + 2) |])
       (date 2, [| for i in 0 .. 20 -> float (rnd.Next 10 + 5) |]) ]
 
+(*** define-output:dt ***)
 Chart.BoxPlotFromData
   ( threeSyntheticDataSets,
     ShowUnusualValues = true, ShowMedian = false,
     ShowAverage = false, WhiskerPercentile = 10)
+(*** include-it:dt ***)
 
 
 (**

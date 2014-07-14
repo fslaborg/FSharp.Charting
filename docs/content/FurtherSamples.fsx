@@ -1,3 +1,5 @@
+(*** hide ***)
+#I "../../bin"
 (** 
 # F# Charting: Further Samples
 
@@ -7,8 +9,9 @@ The samples are not yet individually documented but may be useful to try.
 
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.6/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.0.90.6/FSharp.Charting.fsx"
+// On Mac OSX use FSharp.Charting.Gtk.fsx
+#I "packages/FSharp.Charting.0.90.6"
+#load "FSharp.Charting.fsx"
 
 open FSharp.Charting
 open System
@@ -17,11 +20,15 @@ open System.Drawing
 let data = [ for x in 0 .. 99 -> (x,x*x) ]
 let data2 = [ for x in 0 .. 99 -> (x,sin(float x / 10.0)) ]
 let data3 = [ for x in 0 .. 99 -> (x,cos(float x / 10.0)) ]
-let timeSeriesData = [ for x in 0 .. 99 -> (DateTime.Now.AddDays (float x),sin(float x / 10.0)) ]
+let timeSeriesData = 
+  [ for x in 0 .. 99 -> (DateTime.Now.AddDays (float x),sin(float x / 10.0)) ]
+
 let rnd = new System.Random()
 let rand() = rnd.NextDouble()
-let pointsWithSizes = [ for i in 0 .. 30 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
-let pointsWithSizes2 = [ for i in 0 .. 10 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
+let pointsWithSizes = 
+  [ for i in 0 .. 30 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
+let pointsWithSizes2 = 
+  [ for i in 0 .. 10 -> (rand() * 10.0, rand() * 10.0, rand() / 100.0) ]
 
 let timeHighLowOpenClose = 
     [ for i in 0 .. 10 ->
@@ -49,9 +56,12 @@ Chart.Line(data,Name="Test Data")
 Chart.Line(data,Name="Test Data") 
    |> Chart.WithXAxis(Enabled=false,Title="X Axis")
 
-Chart.Line(data,Name="Test Data").WithXAxis(Enabled=false,Title="X Axis")
-Chart.Line(data,Name="Test Data").WithXAxis(Enabled=true,Title="X Axis",Max=10.0, Min=0.0)
-                                 .WithYAxis(Max=100.0,Min=0.0)
+Chart.Line(data,Name="Test Data")
+  .WithXAxis(Enabled=false,Title="X Axis")
+
+Chart.Line(data,Name="Test Data")
+  .WithXAxis(Enabled=true,Title="X Axis",Max=10.0, Min=0.0)
+  .WithYAxis(Max=100.0,Min=0.0)
 
 Chart.Line(data,Name="Test Data").WithLegend(Title="Hello")
 Chart.Line(data,Name="Test Data").WithLegend(Title="Hello",Enabled=false)
@@ -117,13 +127,20 @@ Chart.Spline(timeSeriesData)
 
 
 Chart.Bubble(pointsWithSizes)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Star10)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Diamond)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red,MaxPixelPointWidth=3)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Size=3)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,PointWidth=0.1)
-Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Cross,PixelPointWidth=3)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Star10)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Diamond)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Color=Color.Red,MaxPixelPointWidth=3)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Cross,Size=3)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Cross,PointWidth=0.1)
+Chart.Bubble(pointsWithSizes)
+  .WithMarkers(Style=ChartTypes.MarkerStyle.Cross,PixelPointWidth=3)
 
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Circle)
 Chart.Bubble(pointsWithSizes).WithMarkers(Style=ChartTypes.MarkerStyle.Square)

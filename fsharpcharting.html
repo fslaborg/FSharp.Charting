@@ -2,19 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>FSharp.Charting: Documentation
+    <title>F# Charting: Documentation
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The FSharp.Charting library (`FSharp.Charting.dll`) implements charting suitable for in F# scripting.">
+    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
-    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="content/style.css" />
-    <script src="content/tips.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/content/style.css" />
+    <script type="text/javascript" src="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/content/tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,14 +26,18 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsharp/FSharp.Charting">github page</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
+          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
         </ul>
-        <h3 class="muted">FSharp.Charting</h3>
+        <h3 class="muted"><a href="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/index.html">F# Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h1>FSharp.Charting: Documentation</h1>
+          
+<h1>F# Charting: Documentation</h1>
 
 <p>Getting Started:</p>
 
@@ -50,7 +55,7 @@
 <li><a href="BoxPlotCharts.html">BoxPlot Charts</a> - shows how to create BoxPlot charts for statistical summaries of data</li>
 </ul>
 
-<p>Animated Live Charts (based on IObservable and IEvent data):</p>
+<p>Animated Live Charts (based on <code>IObservable</code> and <code>IEvent</code> data):</p>
 
 <ul>
 <li><a href="LiveChartSamples.html">Live Charts</a> - shows how to create animated LiveCharts</li>
@@ -68,31 +73,35 @@
 <li><a href="FurtherSamples.html">Further Samples</a> - additional samples</li>
 </ul>
 
-<p>The following methods are available on Chart objects:</p>
+<p>The following methods are available on chart objects:</p>
 
 <ul>
-<li>chart.CopyAsBitmap</li>
-<li>chart.CopyChartToClipboard</li>
-<li>chart.CopyChartToClipboardEmf</li>
-<li>chart.SaveChartAs</li>
-<li>chart.ShowChart</li>
+<li><code>CopyAsBitmap</code></li>
+<li><code>CopyChartToClipboard</code></li>
+<li><code>CopyChartToClipboardEmf</code></li>
+<li><code>SaveChartAs</code></li>
+<li><code>ShowChart</code></li>
 </ul>
 
-<p>The following methods are used to style Chart objects:
- <em> chart.With3D
- </em> chart.WithDataPointLabels
- <em> chart.WithLegend
- </em> chart.WithStyling
- <em> chart.WithTitle
- </em> chart.WithXAxis, WithYAxis</p>
+<p>The following methods are used to style chart objects:</p>
+
+<ul>
+<li><code>With3D</code></li>
+<li><code>WithDataPointLabels</code></li>
+<li><code>WithLegend</code></li>
+<li><code>WithStyling</code></li>
+<li><code>WithTitle</code></li>
+<li><code>WithXAxis</code></li>
+<li><code>WithYAxis</code></li>
+</ul>
 
 <p>Please <a href="contributing.html">contribute</a> more documentation on the following topics:</p>
 
 <ul>
-<li>Combining charts using Chart.Combine, Chart.Rows and Chart.Columns</li>
+<li>Combining charts using <code>Chart.Combine</code>, <code>Chart.Rows</code> and <code>Chart.Columns</code></li>
 <li>More details on LiveCharts and creating active data for live charts</li>
 <li>Images for all charts in the samples</li>
-<li>Setting the chat and axis titles</li>
+<li>Setting the chart and axis titles</li>
 <li>Specifying labels</li>
 <li>Specifying chart colors</li>
 <li>Specifying more complex properties of charts</li>
@@ -102,22 +111,25 @@
 
 <p>FSChart and FSharpChart were previous names for this library.</p>
 
-          
+
         </div>
         <div class="span3">
+          <a href="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/index.html">
+            <img src="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/images/logo.png" style="width:140px;height:140px;margin:10px 0px 0px 35px;border-style:none;" />
+          </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">FSharp.Charting Library</li>
-            <li><a href="index.html">Home page</a></li>
+            <li class="nav-header">F# Charting</li>
+            <li><a href="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
-            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (MIT)</a></li>
-            <li><a href="https://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-            <li><a href="contributing.html">Contributing to FSharp.Charting</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
+            <li><a href="http://github.com/fsharp/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
+            <li><a href="contributing.html">Contributing to F# Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="fsharpcharting.html">FSharp.Charting Documentation</a></li>
+            <li><a href="fsharpcharting.html">F# Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="PointAndLineCharts.html">Point and Line Charts</a></li>
@@ -128,11 +140,12 @@
             <li><a href="LiveChartSamples.html">Live Animated Charts</a></li>
             <li><a href="FurtherSamples.html">Further Samples</a></li>
 
+            <li class="nav-header">Documentation</li>
+            <li><a href="file://C:\Tomas\Public\FSharp.Charting\docs\tools\../output/reference/index.html">API Reference</a></li>
           </ul>
-
         </div>
       </div>
     </div>
-    <a href="https://github.com/fsharp/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    <a href="http://github.com/fsharp/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   </body>
-  </html>
+</html>

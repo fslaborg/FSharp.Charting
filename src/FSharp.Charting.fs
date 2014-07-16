@@ -3890,6 +3890,7 @@ namespace FSharp.Charting
                 frm.Controls.Add(ctl)
                 frm.Show()
                 ctl.Focus() |> ignore
+                frm
 #endif
 
         [<Obsolete("This type is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]

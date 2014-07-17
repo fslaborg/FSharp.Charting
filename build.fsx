@@ -30,14 +30,6 @@ let description = """
   Controls, which are only supported on Windows."""
 let tags = "F# FSharpChart charting plotting visualization"
 
-// Information for the ASP.NET build of the project 
-let projectAspNet = "FSharp.Charting.AspNet"
-let summaryAspNet = summary + " (ASP.NET web forms)"
-let tagsAspNet = tags + " ASPNET"
-let descriptionAspNet = """
-  The F# Charting library (FSharp.Charting.AspNet.dll) is an ASP.NET Web Forms build
-  of FSharp.Charting. It is experimental."""
-
 // Information for the Gtk build of the project 
 let projectGtk = "FSharp.Charting.Gtk"
 let summaryGtk = summary + " (Gtk, cross-platform)"
@@ -63,7 +55,6 @@ let compilingOnUnix =
 
 Target "AssemblyInfo" (fun _ ->
     [ ("src/AssemblyInfo.fs", "FSharp.Charting", project, summary)
-      ( "src/AssemblyInfo.AspNet.fs", "FSharp.Charting.AspNet", projectAspNet, summaryAspNet ) 
       ( "src/AssemblyInfo.Gtk.fs", "FSharp.Charting.Gtk", projectGtk, summaryGtk ) ]
     |> Seq.iter (fun (fileName, title, project, summary) ->
         CreateFSharpAssemblyInfo fileName
@@ -113,7 +104,6 @@ Target "Build" (fun _ ->
     (files [if not compilingOnUnix then
                 yield "src/FSharp.Charting.fsproj";
                 yield "tests/FSharp.Charting.Tests.fsproj"
-                yield "src/FSharp.Charting.AspNet.fsproj"
             yield "src/FSharp.Charting.Gtk.fsproj" ])
     |> MSBuildRelease "" "Rebuild"
     |> ignore
@@ -154,8 +144,7 @@ Target "NuGet" (fun _ ->
 
     // Format the description to fit on a single line (remove \r\n and double-spaces)
     let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let descriptionAspNet = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let descriptionGtk = descriptionAspNet.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
+    let descriptionGtk = descriptionGtk.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let nugetPath = ".nuget/NuGet.exe"
 
     if not compilingOnUnix then
@@ -176,6 +165,7 @@ Target "NuGet" (fun _ ->
             WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.nuspec"
 
+(*
     if not compilingOnUnix then
       NuGet (fun p -> 
         { p with   
@@ -193,6 +183,7 @@ Target "NuGet" (fun _ ->
             Dependencies = [] 
             WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.AspNet.nuspec"
+*)
 
     NuGet (fun p -> 
         { p with   
@@ -220,7 +211,7 @@ Target "GenerateDocs" (fun _ ->
     executeFSIWithArgs "docs/tools" "generate.fsx" ["--define:RELEASE"] [] |> ignore
 )
 
-Target "UpdateDocs" (fun _ ->
+Target "ReleaseDocs" (fun _ ->
     DeleteDir "temp/gh-pages"
     Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "temp/gh-pages"
     Branches.checkoutBranch "temp/gh-pages" "gh-pages"
@@ -230,16 +221,6 @@ Target "UpdateDocs" (fun _ ->
     Branches.push "temp/gh-pages"
 )
 
-Target "UpdateBinaries" (fun _ ->
-    DeleteDir "temp/release"
-    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "temp/release"
-    Branches.checkoutBranch "temp/release" "release"
-    CopyFile "bin/FSharp.Charting.fsx" "temp/release/FSharp.Charting.fsx"
-    CopyFile "bin/FSharp.Charting.Gtk.fsx" "temp/release/FSharp.Charting.Gtk.fsx"
-    CopyRecursive "bin/v40" "temp/release/bin" true |> printfn "%A"
-    CommandHelper.runSimpleGitCommand "temp/release" (sprintf """commit -a -m "Update binaries for version %s""" version) |> printfn "%s"
-    Branches.push "temp/release"
-)
 
 Target "Release" DoNothing
 
@@ -247,10 +228,6 @@ Target "Release" DoNothing
 // Run all targets by default. Invoke 'build target=<Target>' to verride
 
 Target "All" DoNothing
-
-"All" ==> "Release"
-"GenerateDocs" ==> "UpdateDocs" ==> "Release"
-"UpdateBinaries" ==> "Release"
 
 "Clean"
   ==> "RestorePackages"
@@ -260,6 +237,9 @@ Target "All" DoNothing
   ==> "RunTests"
   ==> "NuGet"
   ==> "All"
+
+"All" ==> "Release"
+"GenerateDocs" ==> "ReleaseDocs" 
 
 
 Run <| getBuildParamOrDefault "target" "All"

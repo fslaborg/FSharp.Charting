@@ -103,8 +103,13 @@ Target "Clean" (fun _ ->
 Target "Build" (fun _ ->
     (files [if not compilingOnUnix then
                 yield "src/FSharp.Charting.fsproj";
-                yield "tests/FSharp.Charting.Tests.fsproj"
-            yield "src/FSharp.Charting.Gtk.fsproj" ])
+                yield "tests/FSharp.Charting.Tests.fsproj" ])
+    |> MSBuildRelease "" "Rebuild"
+    |> ignore
+)
+
+Target "BuildGtk" (fun _ ->
+    (files [ "src/FSharp.Charting.Gtk.fsproj" ])
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )
@@ -235,7 +240,16 @@ Target "All" DoNothing
   ==> "UpdateFsxVersions"
   ==> "Build"
   ==> "RunTests"
-  ==> "NuGet"
+
+"RestorePackages"
+  ==> "AssemblyInfo"
+  ==> "UpdateFsxVersions"
+  ==> "BuildGtk"
+
+"Build"  ==> "NuGet"
+"BuildGtk"  ==> "NuGet"
+
+"NuGet"
   ==> "All"
 
 "All" ==> "Release"

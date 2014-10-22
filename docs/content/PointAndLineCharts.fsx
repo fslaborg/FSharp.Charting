@@ -21,7 +21,7 @@ shown below.
 *)
 
 // On Mac OSX use FSharp.Charting.Gtk.fsx
-#I "packages/FSharp.Charting.0.90.9"
+#I "packages/FSharp.Charting"
 #load "FSharp.Charting.fsx"
 
 open FSharp.Charting

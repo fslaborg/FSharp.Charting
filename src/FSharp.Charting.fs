@@ -2080,7 +2080,6 @@ namespace FSharp.Charting
                 let convAxisEnabled = function true -> AxisEnabled.True | false -> AxisEnabled.False
                 //area.AxisX <- new Axis(null, AxisName.X)
                 let configureAxis (ax:Axis) (vEnabled,vIsLogarithmic,vArrowStyle:AxisArrowStyle option,vLabelStyle,vIsMarginVisible,vMaximum,vMinimum,vMajorGrid,vMinorGrid,vMajorTickMark,vMinorTickMark,vName,vTitle,vTitleAlignment,vTitleFont,vTitleForeColor,vToolTip) = 
-                    applyPropertyDefaults ch.ChartType ax
                     vArrowStyle |> Option.iter (int >> enum >> ax.set_ArrowStyle)
                     vEnabled |> Option.iter (convAxisEnabled >> ax.set_Enabled)
                     vLabelStyle |> Option.iter (fun (labelStyle:LabelStyle) -> ax.set_LabelStyle labelStyle.Style)
@@ -2194,7 +2193,6 @@ namespace FSharp.Charting
                 let hasLegend = not (String.IsNullOrEmpty series.Name) || LegendEnabled.IsSome
                 if hasLegend then 
                     let legend = ch.ForceLegend()
-                    applyPropertyDefaults ch.ChartType legend 
                     //LegendInsideArea |> Option.iter legend.set_InsideChartArea
                     LegendEnabled |> Option.iter legend.set_Enabled
                     LegendIsDockedInsideArea |> Option.iter legend.set_IsDockedInsideChartArea
@@ -4236,7 +4234,6 @@ namespace FSharp.Charting
                 ( ?Title, ?Background, ?Font, ?Alignment, ?Docking, ?InsideArea,
                   ?TitleAlignment, ?TitleFont, ?TitleForeColor, ?BorderColor, ?BorderWidth, ?BorderDashStyle) (ch:GenericChart) =
                 let legend = new Legend()
-                applyPropertyDefaults (ch.ChartType) legend
                 InsideArea |> Option.iter legend.set_IsDockedInsideChartArea
                 Background |> Option.iter (applyBackground legend)
                 Font |> Option.iter legend.set_Font
@@ -4270,7 +4267,6 @@ namespace FSharp.Charting
                   ?TextOrientation, ?Alignment, ?Docking, ?InsideArea) =
               fun (ch:'T) ->
                   let title = new Title()
-                  applyPropertyDefaults (ch.ChartType) title
                   Text |> Option.iter title.set_Text 
                   Color |> Option.iter title.set_ForeColor
                   BorderColor |> Option.iter title.set_BorderColor

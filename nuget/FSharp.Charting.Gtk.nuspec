@@ -17,10 +17,12 @@
     <dependencies />
   </metadata>
   <files>
-    <file src="..\bin\FSharp.Charting.dll" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.pdb" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.xml" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.fsx" target="." />
+    <file src="..\bin\FSharp.Charting.Gtk.dll" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.Gtk.pdb" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.Gtk.xml" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.Gtk.fsx" target="." />
+    <file src="..\bin\OxyPlot.dll" target="lib/net40" />
+    <file src="..\bin\OxyPlot.GtkSharp.dll" target="lib/net40" />
     <file src="..\bin\LICENSE.md" target="." />
   </files>
 </package>

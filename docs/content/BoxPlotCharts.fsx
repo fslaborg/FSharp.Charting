@@ -19,7 +19,7 @@ to draw multiple boxplots.
 *)
 
 // On Mac OSX use FSharp.Charting.Gtk.fsx
-#I "packages/FSharp.Charting.0.90.6"
+#I "packages/FSharp.Charting.0.90.8"
 #load "FSharp.Charting.fsx"
 
 open FSharp.Charting

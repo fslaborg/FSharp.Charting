@@ -170,26 +170,6 @@ Target "NuGet" (fun _ ->
             WorkingDir = "./nuget" })
         "nuget/FSharp.Charting.nuspec"
 
-(*
-    if not compilingOnUnix then
-      NuGet (fun p -> 
-        { p with   
-            Authors = authors
-            Project = projectAspNet
-            Summary = summaryAspNet
-            Description = descriptionAspNet
-            Version = version
-            ReleaseNotes = releaseNotes
-            Tags = tagsAspNet
-            OutputPath = "bin"
-            ToolPath = nugetPath
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
-            Dependencies = [] 
-            WorkingDir = "./nuget" })
-        "nuget/FSharp.Charting.AspNet.nuspec"
-*)
-
     NuGet (fun p -> 
         { p with   
             Authors = authors
@@ -217,12 +197,14 @@ Target "GenerateDocs" (fun _ ->
 )
 
 Target "ReleaseDocs" (fun _ ->
-    DeleteDir "temp/gh-pages"
-    Repository.clone "" "https://github.com/fsharp/FSharp.Charting.git" "temp/gh-pages"
-    Branches.checkoutBranch "temp/gh-pages" "gh-pages"
-    CopyRecursive "docs/output" "temp/gh-pages" true |> printfn "%A"
-    CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
-    CommandHelper.runSimpleGitCommand "temp/gh-pages" (sprintf """commit -a -m "Update generated documentation for version %s""" version) |> printfn "%s"
+    let tempDocsDir = "temp/gh-pages"
+    if not (System.IO.Directory.Exists tempDocsDir) then 
+        Repository.cloneSingleBranch "" "https://github.com/fsharp/FSharp.Charting.git" "gh-pages" tempDocsDir
+
+    fullclean tempDocsDir
+    CopyRecursive "docs/output" tempDocsDir true |> tracefn "%A"
+    StageAll tempDocsDir
+    Commit tempDocsDir (sprintf "Update generated documentation for version %s" version) 
     Branches.push "temp/gh-pages"
 )
 

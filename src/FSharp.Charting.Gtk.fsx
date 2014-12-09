@@ -35,9 +35,9 @@
 // In F# 2.0, 3.0 and 3.1, the resolution of #r paths in #load'd scripts is NOT relative to the directory where the script
 // lives. However, the resolution of #I paths is, and the #I paths have local file scope.
 //
-// This means that using #I "." is sufficient to enable local resolution of #r and #I paths within an included script file.
+// This means that using #I __SOURCE_DIRECTORY__ is sufficient to enable local resolution of #r and #I paths within an included script file.
 
-#I "."
+#I __SOURCE_DIRECTORY__
 
 #r "lib/net40/OxyPlot.dll"
 #r "lib/net40/OxyPlot.GtkSharp.dll"

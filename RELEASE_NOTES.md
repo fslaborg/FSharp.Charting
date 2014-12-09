@@ -23,3 +23,4 @@
 * 0.90.5 - Fix load on OSX
 * 0.90.6 - Update MacOSX recognition function
 * 0.90.7 - Return Form from ShowForm
+* 0.90.8 - Fix #58

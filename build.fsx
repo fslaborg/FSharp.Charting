@@ -39,11 +39,12 @@ let descriptionGtk = """
   of FSharp.Charting. It can be used on Windows, OSX and other platforms supporting Gtk."""
 
 // Read additional information from the release notes document
-let releaseNotes, version = 
-    let lastItem = File.ReadLines "RELEASE_NOTES.md" |> Seq.last
-    let firstDash = lastItem.IndexOf('-')
-    ( lastItem.Substring(firstDash + 1 ).Trim(), 
-      lastItem.Substring(0, firstDash).Trim([|'*'|]).Trim() )
+let release = 
+    File.ReadLines "RELEASE_NOTES.md" 
+    |> ReleaseNotesHelper.parseReleaseNotes
+
+let version = release.AssemblyVersion
+let releaseNotes = release.Notes |> String.concat "\n"
 
 let compilingOnUnix =
     match Environment.OSVersion.Platform with

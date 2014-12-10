@@ -711,14 +711,15 @@ namespace FSharp.Charting
           
             let model = ch.Model
             let seriesIter f = for s in model.Series do f s
-            let ensureDefaultXAxis () =
-                match model.DefaultXAxis with 
-                | null -> model.Axes.Add(Axes.LinearAxis(Axes.AxisPosition.Bottom)); model.DefaultXAxis
-                | a -> a
-            let ensureDefaultYAxis () =
-                match model.DefaultYAxis with 
-                | null -> model.Axes.Add(Axes.LinearAxis(Axes.AxisPosition.Left)); model.DefaultYAxis
-                | a -> a
+            let ensureDefaultAxis (X) =
+                match model.Axes |> Seq.tryFind (fun x -> (if X then x.IsHorizontal() else x.IsVertical()) && x.IsXyAxis()) with 
+                | None -> 
+                    let axis = Axes.LinearAxis(if X then Axes.AxisPosition.Bottom else Axes.AxisPosition.Left)
+                    model.Axes.Add axis
+                    axis :> Axes.Axis
+                | Some a -> a
+            let ensureDefaultXAxis () = ensureDefaultAxis true
+            let ensureDefaultYAxis () = ensureDefaultAxis false
             Color |> Option.iter (fun c -> seriesIter (function 
                  | :? AreaSeries as s -> s.Fill <- c 
                  | :? LineSeries as s -> s.Color <- c 

@@ -17,7 +17,7 @@ values. This is done by using a single collection with labels and values as tupl
 *)
 
 // On Mac OSX use FSharp.Charting.Gtk.fsx
-#I "packages/FSharp.Charting.0.90.8"
+#I "packages/FSharp.Charting.0.90.9"
 #load "FSharp.Charting.fsx"
 
 open FSharp.Charting

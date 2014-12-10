@@ -1,6 +1,6 @@
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.8/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.Gtk.0.90.8/FSharp.Charting.Gtk.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.9/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.Gtk.0.90.9/FSharp.Charting.Gtk.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting
@@ -134,7 +134,7 @@ Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Name="The Curve Of Growth", Colo
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Name="The Curve Of Growth", Color=OxyPlot.OxyColors.Green)
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Name="The Curve Of Growth")
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Title="The Only Way is Up")
-Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], XTitle="Time")
+Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Name="The Curve Of Growth", XTitle="Time")
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], XTitle="Time", YTitle="Growth")
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], Title="The Only Way is Up", XTitle="Time", YTitle="Growth")
 Chart.Line ([ for i in 0.0 .. 10.0 -> i, i*i ], XTitle="Time")

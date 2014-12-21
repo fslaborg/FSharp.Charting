@@ -3721,11 +3721,11 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             member ch.WithXAxis
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
-                ch |> Helpers.ApplyStyles(?AxisXLogarithmic=Log,?AxisXEnabled=Enabled, ?AxisXArrowStyle=ArrowStyle, ?AxisXLabelStyle=LabelStyle, (* ?AxisXIsMarginVisible=IsMarginVisible, *) ?AxisXMaximum=Max, ?AxisXMinimum=Min, ?AxisXMajorGrid=MajorGrid, ?AxisXMinorGrid=MinorGrid, ?AxisXMajorTickMark=MajorTickMark, ?AxisXMinorTickMark=MinorTickMark, 
+                ch |> Helpers.ApplyStyles(?AxisXLogarithmic=Log,?AxisXEnabled=Enabled, ?AxisXArrowStyle=ArrowStyle, ?AxisXLabelStyle=LabelStyle, ?AxisXIsMarginVisible=IsMarginVisible, ?AxisXMaximum=Max, ?AxisXMinimum=Min, ?AxisXMajorGrid=MajorGrid, ?AxisXMinorGrid=MinorGrid, ?AxisXMajorTickMark=MajorTickMark, ?AxisXMinorTickMark=MinorTickMark, 
                                           ?AxisXTitle=Title, ?AxisXTitleAlignment=TitleAlignment, ?AxisXTitleFont=titleFont, ?AxisXTitleForeColor=TitleColor, ?AxisXToolTip=ToolTip) 
 
             /// <summary>Apply styling to the Y Axis</summary>
@@ -3746,11 +3746,11 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             member ch.WithYAxis
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
-                ch |> Helpers.ApplyStyles(?AxisYLogarithmic=Log,?AxisYEnabled=Enabled,?AxisYArrowStyle=ArrowStyle,  ?AxisYLabelStyle=LabelStyle, (* ?AxisYIsMarginVisible=IsMarginVisible, *) ?AxisYMaximum=Max, ?AxisYMinimum=Min, ?AxisYMajorGrid=MajorGrid, ?AxisYMinorGrid=MinorGrid, ?AxisYMajorTickMark=MajorTickMark, ?AxisYMinorTickMark=MinorTickMark, ?AxisYTitle=Title, ?AxisYTitleAlignment=TitleAlignment, ?AxisYTitleFont=titleFont, ?AxisYTitleForeColor=TitleColor, ?AxisYToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisYLogarithmic=Log,?AxisYEnabled=Enabled,?AxisYArrowStyle=ArrowStyle,  ?AxisYLabelStyle=LabelStyle, ?AxisYIsMarginVisible=IsMarginVisible, ?AxisYMaximum=Max, ?AxisYMinimum=Min, ?AxisYMajorGrid=MajorGrid, ?AxisYMinorGrid=MinorGrid, ?AxisYMajorTickMark=MajorTickMark, ?AxisYMinorTickMark=MinorTickMark, ?AxisYTitle=Title, ?AxisYTitleAlignment=TitleAlignment, ?AxisYTitleFont=titleFont, ?AxisYTitleForeColor=TitleColor, ?AxisYToolTip=ToolTip) 
 
             /// <summary>Apply styling to the second X axis, if present</summary>
             /// <param name="Enabled">If false, disables the axis</param>
@@ -3770,11 +3770,11 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             member ch.WithXAxis2
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
-                ch |> Helpers.ApplyStyles(?AxisX2Logarithmic=Log,?AxisX2Enabled=Enabled, ?AxisX2ArrowStyle=ArrowStyle, ?AxisX2LabelStyle=LabelStyle, (* ?AxisX2IsMarginVisible=IsMarginVisible, *) ?AxisX2Maximum=Max, ?AxisX2Minimum=Min, ?AxisX2MajorGrid=MajorGrid, ?AxisX2MinorGrid=MinorGrid, ?AxisX2MajorTickMark=MajorTickMark, ?AxisX2MinorTickMark=MinorTickMark, ?AxisX2Title=Title, ?AxisX2TitleAlignment=TitleAlignment, ?AxisX2TitleFont=titleFont, ?AxisX2TitleForeColor=TitleColor, ?AxisX2ToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisX2Logarithmic=Log,?AxisX2Enabled=Enabled, ?AxisX2ArrowStyle=ArrowStyle, ?AxisX2LabelStyle=LabelStyle, ?AxisX2IsMarginVisible=IsMarginVisible, ?AxisX2Maximum=Max, ?AxisX2Minimum=Min, ?AxisX2MajorGrid=MajorGrid, ?AxisX2MinorGrid=MinorGrid, ?AxisX2MajorTickMark=MajorTickMark, ?AxisX2MinorTickMark=MinorTickMark, ?AxisX2Title=Title, ?AxisX2TitleAlignment=TitleAlignment, ?AxisX2TitleFont=titleFont, ?AxisX2TitleForeColor=TitleColor, ?AxisX2ToolTip=ToolTip) 
 
             /// <summary>Apply styling to the second Y axis, if present</summary>
             /// <param name="Enabled">If false, disables the axis</param>
@@ -3794,11 +3794,11 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             member ch.WithYAxis2
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark,
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark,
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
-                ch |> Helpers.ApplyStyles(?AxisY2Logarithmic=Log,?AxisY2Enabled=Enabled, ?AxisY2ArrowStyle=ArrowStyle, ?AxisY2LabelStyle=LabelStyle, (* ?AxisY2IsMarginVisible=IsMarginVisible, *)?AxisY2Maximum=Max, ?AxisY2Minimum=Min, ?AxisY2MajorGrid=MajorGrid, ?AxisY2MinorGrid=MinorGrid, ?AxisY2MajorTickMark=MajorTickMark, ?AxisY2MinorTickMark=MinorTickMark, ?AxisY2Title=Title, ?AxisY2TitleAlignment=TitleAlignment, ?AxisY2TitleFont=titleFont, ?AxisY2TitleForeColor=TitleColor, ?AxisY2ToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisY2Logarithmic=Log,?AxisY2Enabled=Enabled, ?AxisY2ArrowStyle=ArrowStyle, ?AxisY2LabelStyle=LabelStyle, ?AxisY2IsMarginVisible=IsMarginVisible, ?AxisY2Maximum=Max, ?AxisY2Minimum=Min, ?AxisY2MajorGrid=MajorGrid, ?AxisY2MinorGrid=MinorGrid, ?AxisY2MajorTickMark=MajorTickMark, ?AxisY2MinorTickMark=MinorTickMark, ?AxisY2Title=Title, ?AxisY2TitleAlignment=TitleAlignment, ?AxisY2TitleFont=titleFont, ?AxisY2TitleForeColor=TitleColor, ?AxisY2ToolTip=ToolTip) 
 
             /// <summary>Apply content and styling to the title, if present</summary>
             /// <param name="InsideArea">If false, locates the title outside the chart area</param>
@@ -4066,12 +4066,12 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             static member WithXAxis
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
                 fun (ch : #GenericChart) ->
-                ch |> Helpers.ApplyStyles(?AxisXLogarithmic=Log,?AxisXEnabled=Enabled, ?AxisXArrowStyle=ArrowStyle, ?AxisXLabelStyle=LabelStyle, (* ?AxisXIsMarginVisible=IsMarginVisible, *) ?AxisXMaximum=Max, ?AxisXMinimum=Min, ?AxisXMajorGrid=MajorGrid, ?AxisXMinorGrid=MinorGrid, ?AxisXMajorTickMark=MajorTickMark, ?AxisXMinorTickMark=MinorTickMark, 
+                ch |> Helpers.ApplyStyles(?AxisXLogarithmic=Log,?AxisXEnabled=Enabled, ?AxisXArrowStyle=ArrowStyle, ?AxisXLabelStyle=LabelStyle, ?AxisXIsMarginVisible=IsMarginVisible, ?AxisXMaximum=Max, ?AxisXMinimum=Min, ?AxisXMajorGrid=MajorGrid, ?AxisXMinorGrid=MinorGrid, ?AxisXMajorTickMark=MajorTickMark, ?AxisXMinorTickMark=MinorTickMark, 
                                           ?AxisXTitle=Title, ?AxisXTitleAlignment=TitleAlignment, ?AxisXTitleFont=titleFont, ?AxisXTitleForeColor=TitleColor, ?AxisXToolTip=ToolTip) 
 
             /// <summary>Apply styling to the Y Axis</summary>
@@ -4092,12 +4092,12 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             static member WithYAxis
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
                 fun (ch : #GenericChart) ->
-                ch |> Helpers.ApplyStyles(?AxisYLogarithmic=Log,?AxisYEnabled=Enabled,?AxisYArrowStyle=ArrowStyle,  ?AxisYLabelStyle=LabelStyle, (* ?AxisYIsMarginVisible=IsMarginVisible, *) ?AxisYMaximum=Max, ?AxisYMinimum=Min, ?AxisYMajorGrid=MajorGrid, ?AxisYMinorGrid=MinorGrid, ?AxisYMajorTickMark=MajorTickMark, ?AxisYMinorTickMark=MinorTickMark, ?AxisYTitle=Title, ?AxisYTitleAlignment=TitleAlignment, ?AxisYTitleFont=titleFont, ?AxisYTitleForeColor=TitleColor, ?AxisYToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisYLogarithmic=Log,?AxisYEnabled=Enabled,?AxisYArrowStyle=ArrowStyle,  ?AxisYLabelStyle=LabelStyle, ?AxisYIsMarginVisible=IsMarginVisible, ?AxisYMaximum=Max, ?AxisYMinimum=Min, ?AxisYMajorGrid=MajorGrid, ?AxisYMinorGrid=MinorGrid, ?AxisYMajorTickMark=MajorTickMark, ?AxisYMinorTickMark=MinorTickMark, ?AxisYTitle=Title, ?AxisYTitleAlignment=TitleAlignment, ?AxisYTitleFont=titleFont, ?AxisYTitleForeColor=TitleColor, ?AxisYToolTip=ToolTip) 
 
             /// <summary>Apply styling to the second X axis, if present</summary>
             /// <param name="Enabled">If false, disables the axis</param>
@@ -4117,12 +4117,12 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             static member WithXAxis2
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark, 
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
                 fun (ch : #GenericChart) ->
-                ch |> Helpers.ApplyStyles(?AxisX2Logarithmic=Log,?AxisX2Enabled=Enabled, ?AxisX2ArrowStyle=ArrowStyle, ?AxisX2LabelStyle=LabelStyle, (* ?AxisX2IsMarginVisible=IsMarginVisible, *) ?AxisX2Maximum=Max, ?AxisX2Minimum=Min, ?AxisX2MajorGrid=MajorGrid, ?AxisX2MinorGrid=MinorGrid, ?AxisX2MajorTickMark=MajorTickMark, ?AxisX2MinorTickMark=MinorTickMark, ?AxisX2Title=Title, ?AxisX2TitleAlignment=TitleAlignment, ?AxisX2TitleFont=titleFont, ?AxisX2TitleForeColor=TitleColor, ?AxisX2ToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisX2Logarithmic=Log,?AxisX2Enabled=Enabled, ?AxisX2ArrowStyle=ArrowStyle, ?AxisX2LabelStyle=LabelStyle, ?AxisX2IsMarginVisible=IsMarginVisible, ?AxisX2Maximum=Max, ?AxisX2Minimum=Min, ?AxisX2MajorGrid=MajorGrid, ?AxisX2MinorGrid=MinorGrid, ?AxisX2MajorTickMark=MajorTickMark, ?AxisX2MinorTickMark=MinorTickMark, ?AxisX2Title=Title, ?AxisX2TitleAlignment=TitleAlignment, ?AxisX2TitleFont=titleFont, ?AxisX2TitleForeColor=TitleColor, ?AxisX2ToolTip=ToolTip) 
 
             /// <summary>Apply styling to the second Y axis, if present</summary>
             /// <param name="Enabled">If false, disables the axis</param>
@@ -4142,12 +4142,12 @@ namespace FSharp.Charting
             /// <param name="TitleColor">The color of the title of the axis</param>
             /// <param name="Tooltip">The tooltip to use for the axis</param>
             static member WithYAxis2
-                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle,(* ?IsMarginVisible, *) ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark,
+                (?Enabled, ?Title, ?Max, ?Min, ?Log, ?ArrowStyle:AxisArrowStyle, ?LabelStyle:LabelStyle, ?IsMarginVisible, ?MajorGrid:Grid, ?MinorGrid:Grid, ?MajorTickMark:TickMark, ?MinorTickMark:TickMark,
                  ?TitleAlignment, ?TitleFontName, ?TitleFontSize, ?TitleFontStyle, ?TitleColor, ?ToolTip) =
 
                 let titleFont = StyleHelper.OptionalFont(?Family=TitleFontName, ?Size=TitleFontSize, ?Style=TitleFontStyle) 
                 fun (ch : #GenericChart) ->
-                ch |> Helpers.ApplyStyles(?AxisY2Logarithmic=Log,?AxisY2Enabled=Enabled, ?AxisY2ArrowStyle=ArrowStyle, ?AxisY2LabelStyle=LabelStyle, (* ?AxisY2IsMarginVisible=IsMarginVisible, *)?AxisY2Maximum=Max, ?AxisY2Minimum=Min, ?AxisY2MajorGrid=MajorGrid, ?AxisY2MinorGrid=MinorGrid, ?AxisY2MajorTickMark=MajorTickMark, ?AxisY2MinorTickMark=MinorTickMark, ?AxisY2Title=Title, ?AxisY2TitleAlignment=TitleAlignment, ?AxisY2TitleFont=titleFont, ?AxisY2TitleForeColor=TitleColor, ?AxisY2ToolTip=ToolTip) 
+                ch |> Helpers.ApplyStyles(?AxisY2Logarithmic=Log,?AxisY2Enabled=Enabled, ?AxisY2ArrowStyle=ArrowStyle, ?AxisY2LabelStyle=LabelStyle, ?AxisY2IsMarginVisible=IsMarginVisible, ?AxisY2Maximum=Max, ?AxisY2Minimum=Min, ?AxisY2MajorGrid=MajorGrid, ?AxisY2MinorGrid=MinorGrid, ?AxisY2MajorTickMark=MajorTickMark, ?AxisY2MinorTickMark=MinorTickMark, ?AxisY2Title=Title, ?AxisY2TitleAlignment=TitleAlignment, ?AxisY2TitleFont=titleFont, ?AxisY2TitleForeColor=TitleColor, ?AxisY2ToolTip=ToolTip) 
 
             /// <summary>Apply content and styling to the title, if present</summary>
             /// <param name="InsideArea">If false, locates the title outside the chart area</param>

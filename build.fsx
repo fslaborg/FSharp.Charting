@@ -82,14 +82,6 @@ Target "UpdateFsxVersions" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
-// Restore NuGet packages
-
-Target "RestorePackages" (fun _ ->
-    !! "./**/packages.config"
-    |> Seq.iter (RestorePackage (fun p -> { p with ToolPath = "./.nuget/NuGet.exe" }))
-)
-
-// --------------------------------------------------------------------------------------
 // Clean build results
 
 Target "Clean" (fun _ ->
@@ -118,22 +110,12 @@ Target "BuildGtk" (fun _ ->
 // Run the unit tests using test runner & kill test runner when complete
 
 Target "RunTests" (fun _ ->
-
-    // Will get NUnit.Runner NuGet package if not present
-    // (needed to run tests using the 'NUnit' target)
-    !! "./**/packages.config"
-    |> Seq.iter (RestorePackage (fun p -> { p with ToolPath = "./.nuget/NuGet.exe" }))
-
-    let nunitVersion = GetPackageVersion "packages" "NUnit.Runners"
-    let nunitPath = sprintf "packages/NUnit.Runners.%s/Tools" nunitVersion
-
     ActivateFinalTarget "CloseTestRunner"
 
     if not compilingOnUnix then
       (files [ "tests/bin/Release/FSharp.Charting.Tests.dll"])
       |> NUnit (fun p ->
         { p with
-            ToolPath = nunitPath
             DisableShadowCopy = true
             TimeOut = TimeSpan.FromMinutes 20.
             OutputFile = "TestResults.xml" })
@@ -151,7 +133,6 @@ Target "NuGet" (fun _ ->
     // Format the description to fit on a single line (remove \r\n and double-spaces)
     let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
     let descriptionGtk = descriptionGtk.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let nugetPath = ".nuget/NuGet.exe"
 
     if not compilingOnUnix then
       NuGet (fun p -> 
@@ -164,7 +145,6 @@ Target "NuGet" (fun _ ->
             ReleaseNotes = releaseNotes
             Tags = tags
             OutputPath = "bin"
-            ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
             Dependencies = [] 
@@ -181,7 +161,6 @@ Target "NuGet" (fun _ ->
             ReleaseNotes = releaseNotes
             Tags = tagsGtk
             OutputPath = "bin"
-            ToolPath = nugetPath
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
             Dependencies = [] 
@@ -218,15 +197,12 @@ Target "Release" DoNothing
 Target "All" DoNothing
 
 "Clean"
-  ==> "RestorePackages"
   ==> "AssemblyInfo"
   ==> "UpdateFsxVersions"
   ==> "Build"
   ==> "RunTests"
 
-"RestorePackages"
-  ==> "AssemblyInfo"
-  ==> "UpdateFsxVersions"
+"UpdateFsxVersions"
   ==> "BuildGtk"
 
 "Build"  ==> "NuGet"

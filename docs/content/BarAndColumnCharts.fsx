@@ -1,4 +1,4 @@
-﻿(*** hide ***)
+(*** hide ***)
 #I "../../bin"
 (** 
 # F# Charting: Bar and Column Charts
@@ -19,7 +19,7 @@ curves and scatter plots as well. Here are three examples:
 *)
 
 // On Mac OSX use FSharp.Charting.Gtk.fsx
-#I "packages/FSharp.Charting.0.90.9"
+#I "packages/FSharp.Charting"
 #load "FSharp.Charting.fsx"
 
 open FSharp.Charting

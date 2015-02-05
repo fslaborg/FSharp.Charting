@@ -7,3 +7,6 @@ tests/obj/*
 packages/*
 TestResults.xml
 temp/*
+.paket/paket.exe
+*.orig
+docs/output

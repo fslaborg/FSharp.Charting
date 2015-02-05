@@ -1,6 +1,13 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{47D32F6E-7247-4196-8F8F-277C52DCA647}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.Tests", "tests\FSharp.Charting.Tests.fsproj", "{5EF9FF95-1C75-458A-983A-168E43945913}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A9E8062-1D58-4E25-B89A-16B72E95A012}"
@@ -14,13 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		examples\PointAndLineCharts.fsx = examples\PointAndLineCharts.fsx
 		examples\ReferencingTheLibrary.fsx = examples\ReferencingTheLibrary.fsx
 		examples\StockAndCandlestickCharts.fsx = examples\StockAndCandlestickCharts.fsx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5FF52F30-670D-4E8C-85FA-27F7A5D6C591}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global

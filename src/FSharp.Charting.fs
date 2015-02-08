@@ -3711,6 +3711,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -3736,6 +3737,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -3760,6 +3762,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -3784,6 +3787,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -4056,6 +4060,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -4107,6 +4112,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>
@@ -4132,6 +4138,7 @@ namespace FSharp.Charting
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
+            /// <param name="IsMarginVisible">Determines whether to add a margin to the axis</param>
             /// <param name="MajorGrid">The major grid points to use for the axis</param>
             /// <param name="MinorGrid">The minor grid points to use for the axis</param>
             /// <param name="MajorTickMark">The major tick marks to use for the axis</param>

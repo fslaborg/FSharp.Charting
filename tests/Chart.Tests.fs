@@ -95,3 +95,19 @@ let ``Test that chart specifications compile``() =
 
     Chart.Candlestick [for x in 0 .. 10 -> x+10, x-10, x+5, x-5 ] |> check 
     Chart.Stock [for x in 0 .. 10 -> x+10, x-10, x+5, x-5 ] |> check 
+
+    //Basic tests on a couple of charts that IsMarginVisible can be set on all axes.
+    let checkChartWithMarginVisible chart visible =
+        chart
+        |> Chart.WithXAxis (IsMarginVisible = visible)
+        |> Chart.WithYAxis (IsMarginVisible = visible)
+        |> Chart.WithXAxis2 (IsMarginVisible = visible)
+        |> Chart.WithYAxis2 (IsMarginVisible = visible)
+        |> check
+
+    let checkChartWithBothMarginVisibilities chart = 
+        checkChartWithMarginVisible chart true
+        checkChartWithMarginVisible chart false
+
+    checkChartWithBothMarginVisibilities (Chart.Line [ 0 .. 10 ])
+    checkChartWithBothMarginVisibilities (Chart.Point [ 0 .. 10 ])

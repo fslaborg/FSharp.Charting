@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,10 +61,10 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '141', 141)" onmouseover="showTip(event, '141', 141)">
+          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
             new()
           </code>
-          <div class="tip" id="141">
+          <div class="tip" id="151">
             <strong>Signature:</strong> unit -&gt; FunnelChart<br />
                       </div>
         </td>
@@ -79,29 +87,10 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
-            CalloutLineColor
-          </code>
-          <div class="tip" id="153">
-            <strong>Signature:</strong> Color<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1368-1368" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>The line color of the callout for the data point labels of Funnel or Pyramid charts.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
+          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
             CalloutLineColor()
           </code>
-          <div class="tip" id="154">
+          <div class="tip" id="152">
             <strong>Signature:</strong> unit -&gt; Color<br />
                       </div>
         </td>
@@ -117,29 +106,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
-            Funnel3DDrawingStyle
+          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
+            CalloutLineColor()
           </code>
-          <div class="tip" id="155">
-            <strong>Signature:</strong> Funnel3DDrawingStyle<br />
+          <div class="tip" id="153">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1373-1373" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1368-1368" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The 3D drawing style of the Funnel chart type.</p>
+          <p>The line color of the callout for the data point labels of Funnel or Pyramid charts.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
+          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
             Funnel3DDrawingStyle()
           </code>
-          <div class="tip" id="156">
+          <div class="tip" id="154">
             <strong>Signature:</strong> unit -&gt; Funnel3DDrawingStyle<br />
                       </div>
         </td>
@@ -155,29 +144,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
-            Funnel3DRotationAngle
+          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
+            Funnel3DDrawingStyle()
           </code>
-          <div class="tip" id="157">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="155">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1379-1379" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1373-1373" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The 3D rotation angle of the Funnel chart type.</p>
+          <p>The 3D drawing style of the Funnel chart type.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
+          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
             Funnel3DRotationAngle()
           </code>
-          <div class="tip" id="158">
+          <div class="tip" id="156">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -193,29 +182,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
-            FunnelInsideLabelAlignment
+          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
+            Funnel3DRotationAngle()
           </code>
-          <div class="tip" id="159">
-            <strong>Signature:</strong> FunnelInsideLabelAlignment<br />
+          <div class="tip" id="157">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1384-1384" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1379-1379" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The data point label placement of the Funnel chart type when the FunnelLabelStyle is set to Inside.</p>
+          <p>The 3D rotation angle of the Funnel chart type.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
+          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
             FunnelInsideLabelAlignment()
           </code>
-          <div class="tip" id="160">
+          <div class="tip" id="158">
             <strong>Signature:</strong> unit -&gt; FunnelInsideLabelAlignment<br />
                       </div>
         </td>
@@ -231,29 +220,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
-            FunnelLabelStyle
+          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
+            FunnelInsideLabelAlignment()
           </code>
-          <div class="tip" id="161">
-            <strong>Signature:</strong> FunnelLabelStyle<br />
+          <div class="tip" id="159">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1389-1389" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1384-1384" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The data point label style of the Funnel chart type.</p>
+          <p>The data point label placement of the Funnel chart type when the FunnelLabelStyle is set to Inside.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
+          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
             FunnelLabelStyle()
           </code>
-          <div class="tip" id="162">
+          <div class="tip" id="160">
             <strong>Signature:</strong> unit -&gt; FunnelLabelStyle<br />
                       </div>
         </td>
@@ -269,29 +258,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
-            FunnelMinPointHeight
+          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
+            FunnelLabelStyle()
           </code>
-          <div class="tip" id="163">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="161">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1395-1395" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1389-1389" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The minimum height of a data point in the Funnel chart, measured in relative coordinates.</p>
+          <p>The data point label style of the Funnel chart type.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
+          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
             FunnelMinPointHeight()
           </code>
-          <div class="tip" id="164">
+          <div class="tip" id="162">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -307,29 +296,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
-            FunnelNeckHeight
+          <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
+            FunnelMinPointHeight()
           </code>
-          <div class="tip" id="165">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="163">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1401-1401" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1395-1395" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The neck height of the Funnel chart type.</p>
+          <p>The minimum height of a data point in the Funnel chart, measured in relative coordinates.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
             FunnelNeckHeight()
           </code>
-          <div class="tip" id="166">
+          <div class="tip" id="164">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -345,29 +334,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
-            FunnelNeckWidth
+          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+            FunnelNeckHeight()
           </code>
-          <div class="tip" id="167">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="165">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1407-1407" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1401-1401" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The neck width of the Funnel chart type.</p>
+          <p>The neck height of the Funnel chart type.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
             FunnelNeckWidth()
           </code>
-          <div class="tip" id="168">
+          <div class="tip" id="166">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -383,30 +372,29 @@ totaled.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
-            FunnelOutsideLabelPlacement
+          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+            FunnelNeckWidth()
           </code>
-          <div class="tip" id="169">
-            <strong>Signature:</strong> FunnelOutsideLabelPlacement<br />
+          <div class="tip" id="167">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1413-1413" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1407-1407" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Placement of the data point label in the Funnel chart
-when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
+          <p>The neck width of the Funnel chart type.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
             FunnelOutsideLabelPlacement()
           </code>
-          <div class="tip" id="170">
+          <div class="tip" id="168">
             <strong>Signature:</strong> unit -&gt; FunnelOutsideLabelPlacement<br />
                       </div>
         </td>
@@ -423,29 +411,30 @@ when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
-            FunnelPointGap
+          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
+            FunnelOutsideLabelPlacement()
           </code>
-          <div class="tip" id="171">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="169">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1419-1419" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1413-1413" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The gap size between the points of a Funnel chart, measured in relative coordinates.</p>
+          <p>Placement of the data point label in the Funnel chart
+when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
             FunnelPointGap()
           </code>
-          <div class="tip" id="172">
+          <div class="tip" id="170">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -461,15 +450,34 @@ when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
-            FunnelStyle
+          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+            FunnelPointGap()
           </code>
-          <div class="tip" id="173">
-            <strong>Signature:</strong> FunnelStyle<br />
+          <div class="tip" id="171">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1424-1424" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1419-1419" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The gap size between the points of a Funnel chart, measured in relative coordinates.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+            FunnelStyle()
+          </code>
+          <div class="tip" id="172">
+            <strong>Signature:</strong> unit -&gt; FunnelStyle<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1425-1425" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -480,15 +488,15 @@ when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '174', 174)" onmouseover="showTip(event, '174', 174)">
+          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
             FunnelStyle()
           </code>
-          <div class="tip" id="174">
-            <strong>Signature:</strong> unit -&gt; FunnelStyle<br />
+          <div class="tip" id="173">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1425-1425" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1424-1424" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

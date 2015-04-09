@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,10 +61,10 @@ when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
+          <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
             Left
           </code>
-          <div class="tip" id="127">
+          <div class="tip" id="181">
             <strong>Signature:</strong> FunnelOutsideLabelPlacement<br />
               <strong>Modifiers:</strong> static<br />
                       </div>
@@ -72,10 +80,10 @@ when FunnelLabelStyle is set to Outside or OutsideInColumn.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
+          <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
             Right
           </code>
-          <div class="tip" id="128">
+          <div class="tip" id="182">
             <strong>Signature:</strong> FunnelOutsideLabelPlacement<br />
               <strong>Modifiers:</strong> static<br />
                       </div>

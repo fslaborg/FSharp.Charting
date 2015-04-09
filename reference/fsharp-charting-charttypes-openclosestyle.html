@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,10 +60,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '198', 198)" onmouseover="showTip(event, '198', 198)">
+          <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
             Candlestick
           </code>
-          <div class="tip" id="198">
+          <div class="tip" id="228">
             <strong>Signature:</strong> OpenCloseStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>
@@ -71,10 +79,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '199', 199)" onmouseover="showTip(event, '199', 199)">
+          <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
             Line
           </code>
-          <div class="tip" id="199">
+          <div class="tip" id="229">
             <strong>Signature:</strong> OpenCloseStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>
@@ -90,10 +98,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '200', 200)" onmouseover="showTip(event, '200', 200)">
+          <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
             Triangle
           </code>
-          <div class="tip" id="200">
+          <div class="tip" id="230">
             <strong>Signature:</strong> OpenCloseStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>

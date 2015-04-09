@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,10 +60,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+          <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
             new()
           </code>
-          <div class="tip" id="242">
+          <div class="tip" id="256">
             <strong>Signature:</strong> unit -&gt; PointAndFigureChart<br />
                       </div>
         </td>
@@ -78,29 +86,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
-            BoxSize
-          </code>
-          <div class="tip" id="248">
-            <strong>Signature:</strong> string<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1515-1515" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>The box size in the Renko or Point and Figure charts.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
+          <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
             BoxSize()
           </code>
-          <div class="tip" id="249">
+          <div class="tip" id="257">
             <strong>Signature:</strong> unit -&gt; string<br />
                       </div>
         </td>
@@ -116,29 +105,29 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
-            PriceUpColor
+          <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
+            BoxSize()
           </code>
-          <div class="tip" id="250">
-            <strong>Signature:</strong> Color<br />
+          <div class="tip" id="258">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1520-1520" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1515-1515" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The data point color that indicates an increasing trend.</p>
+          <p>The box size in the Renko or Point and Figure charts.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
+          <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
             PriceUpColor()
           </code>
-          <div class="tip" id="251">
+          <div class="tip" id="259">
             <strong>Signature:</strong> unit -&gt; Color<br />
                       </div>
         </td>
@@ -154,30 +143,29 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '252', 252)" onmouseover="showTip(event, '252', 252)">
-            ProportionalSymbols
+          <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
+            PriceUpColor()
           </code>
-          <div class="tip" id="252">
-            <strong>Signature:</strong> bool<br />
+          <div class="tip" id="260">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1526-1526" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1520-1520" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Specifies whether the Point and Figure chart should draw the
-X and O values proportionally.</p>
+          <p>The data point color that indicates an increasing trend.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '253', 253)" onmouseover="showTip(event, '253', 253)">
+          <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
             ProportionalSymbols()
           </code>
-          <div class="tip" id="253">
+          <div class="tip" id="261">
             <strong>Signature:</strong> unit -&gt; bool<br />
                       </div>
         </td>
@@ -194,29 +182,30 @@ X and O values proportionally.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '254', 254)" onmouseover="showTip(event, '254', 254)">
-            ReversalAmount
+          <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
+            ProportionalSymbols()
           </code>
-          <div class="tip" id="254">
-            <strong>Signature:</strong> string<br />
+          <div class="tip" id="262">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1531-1531" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1526-1526" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The reversal amount for the chart.</p>
+          <p>Specifies whether the Point and Figure chart should draw the
+X and O values proportionally.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '255', 255)" onmouseover="showTip(event, '255', 255)">
+          <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
             ReversalAmount()
           </code>
-          <div class="tip" id="255">
+          <div class="tip" id="263">
             <strong>Signature:</strong> unit -&gt; string<br />
                       </div>
         </td>
@@ -232,31 +221,29 @@ X and O values proportionally.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
-            UsedYValueHigh
+          <code onmouseout="hideTip(event, '264', 264)" onmouseover="showTip(event, '264', 264)">
+            ReversalAmount()
           </code>
-          <div class="tip" id="256">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="264">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1541-1541" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1531-1531" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The index of the Y value to use for
-the high price in the Point and Figure chart, with
-the first Y value at index 0.</p>
+          <p>The reversal amount for the chart.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
+          <code onmouseout="hideTip(event, '265', 265)" onmouseover="showTip(event, '265', 265)">
             UsedYValueHigh()
           </code>
-          <div class="tip" id="257">
+          <div class="tip" id="265">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -274,15 +261,36 @@ the first Y value at index 0.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
-            UsedYValueLow
+          <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
+            UsedYValueHigh()
           </code>
-          <div class="tip" id="258">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="266">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1551-1551" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1541-1541" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The index of the Y value to use for
+the high price in the Point and Figure chart, with
+the first Y value at index 0.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '267', 267)" onmouseover="showTip(event, '267', 267)">
+            UsedYValueLow()
+          </code>
+          <div class="tip" id="267">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1552-1552" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -295,15 +303,15 @@ the first Y value at index 0.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
+          <code onmouseout="hideTip(event, '268', 268)" onmouseover="showTip(event, '268', 268)">
             UsedYValueLow()
           </code>
-          <div class="tip" id="259">
-            <strong>Signature:</strong> unit -&gt; int<br />
+          <div class="tip" id="268">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1552-1552" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1551-1551" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

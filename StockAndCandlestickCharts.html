@@ -16,6 +16,15 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+      <link rel="canonical" href="http://fslab.org/FSharp.Charting/StockAndCandlestickCharts.html" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -97,7 +106,7 @@ containing four-element tuples, or five-element tuples (Date, High, Low, Open, a
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// On Mac OSX use FSharp.Charting.Gtk.fsx</span>
-<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">0</span><span class="s">.</span><span class="s">90</span><span class="s">.</span><span class="s">6</span><span class="s">&quot;</span>
+<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">&quot;</span>
 <span class="prep">#load</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
 
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Charting</span>
@@ -195,7 +204,7 @@ This method takes named parameters that allow us to specify the range and other 
 <div class="tip" id="fs17">DateTime.AddDays(value: float) : DateTime</div>
 <div class="tip" id="fs18">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
 <div class="tip" id="fs19">static member Chart.Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart<br />static member Chart.Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart</div>
-<div class="tip" id="fs20">static member Chart.WithYAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:Drawing.StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:Drawing.FontStyle * ?TitleColor:Drawing.Color * ?ToolTip:string -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
+<div class="tip" id="fs20">static member Chart.WithYAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?IsMarginVisible:bool * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:Drawing.StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:Drawing.FontStyle * ?TitleColor:Drawing.Color * ?ToolTip:string -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
 
         </div>
         <div class="span3">

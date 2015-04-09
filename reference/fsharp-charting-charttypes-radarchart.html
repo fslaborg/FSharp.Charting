@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,10 +61,10 @@ comparison tool.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
+          <code onmouseout="hideTip(event, '309', 309)" onmouseover="showTip(event, '309', 309)">
             new()
           </code>
-          <div class="tip" id="280">
+          <div class="tip" id="309">
             <strong>Signature:</strong> unit -&gt; RadarChart<br />
                       </div>
         </td>
@@ -79,30 +87,10 @@ comparison tool.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
-            CircularLabelStyle
-          </code>
-          <div class="tip" id="281">
-            <strong>Signature:</strong> CircularLabelStyle<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1633-1633" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>The text orientation of the axis labels in Radar
-and Polar charts.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
+          <code onmouseout="hideTip(event, '310', 310)" onmouseover="showTip(event, '310', 310)">
             CircularLabelStyle()
           </code>
-          <div class="tip" id="282">
+          <div class="tip" id="310">
             <strong>Signature:</strong> unit -&gt; CircularLabelStyle<br />
                       </div>
         </td>
@@ -119,15 +107,35 @@ and Polar charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
-            RadarDrawingStyle
+          <code onmouseout="hideTip(event, '311', 311)" onmouseover="showTip(event, '311', 311)">
+            CircularLabelStyle()
           </code>
-          <div class="tip" id="283">
-            <strong>Signature:</strong> RadarDrawingStyle<br />
+          <div class="tip" id="311">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1638-1638" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1633-1633" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The text orientation of the axis labels in Radar
+and Polar charts.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '312', 312)" onmouseover="showTip(event, '312', 312)">
+            RadarDrawingStyle()
+          </code>
+          <div class="tip" id="312">
+            <strong>Signature:</strong> unit -&gt; RadarDrawingStyle<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1639-1639" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -138,15 +146,15 @@ and Polar charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
+          <code onmouseout="hideTip(event, '313', 313)" onmouseover="showTip(event, '313', 313)">
             RadarDrawingStyle()
           </code>
-          <div class="tip" id="284">
-            <strong>Signature:</strong> unit -&gt; RadarDrawingStyle<br />
+          <div class="tip" id="313">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1639-1639" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1638-1638" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,10 +59,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '195', 195)" onmouseover="showTip(event, '195', 195)">
+          <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
             new(...)
           </code>
-          <div class="tip" id="195">
+          <div class="tip" id="209">
             <strong>Signature:</strong> (Angle:int option * Color:Color option * Format:string option * Interval:float option * IntervalOffset:float option * IntervalOffsetType:DateTimeIntervalType option * IntervalType:DateTimeIntervalType option * IsEndLabelVisible:bool option * IsStaggered:bool option * TruncatedLabels:bool option * FontName:string option * FontStyle:FontStyle option * FontSize:float option) -&gt; LabelStyle<br />
                       </div>
         </td>
@@ -77,10 +85,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '197', 197)" onmouseover="showTip(event, '197', 197)">
+          <code onmouseout="hideTip(event, '210', 210)" onmouseover="showTip(event, '210', 210)">
             Create(...)
           </code>
-          <div class="tip" id="197">
+          <div class="tip" id="210">
             <strong>Signature:</strong> (Angle:int option * Color:Color option * Format:string option * Interval:float option * IntervalOffset:float option * IntervalOffsetType:DateTimeIntervalType option * IntervalType:DateTimeIntervalType option * IsEndLabelVisible:bool option * IsStaggered:bool option * TruncatedLabels:bool option * FontName:string option * FontStyle:FontStyle option * FontSize:float option) -&gt; LabelStyle<br />
                       </div>
         </td>

@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -83,19 +91,534 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
             FSharpChart 
           </code>
-          <div class="tip" id="2">
+          <div class="tip" id="4">
             <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4371-4371" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4374-4374" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Type extensions</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Type extension</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            ShowChart()
+          </code>
+          <div class="tip" id="5">
+            <strong>Signature:</strong> unit -&gt; Form<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3888-3888" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Display the chart in a new ChartControl in a new Form()</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            With3D(...)
+          </code>
+          <div class="tip" id="6">
+            <strong>Signature:</strong> (Inclination:int option * IsClustered:bool option * IsRightAngleAxes:bool option * LightStyle:LightStyle option * Perspective:int option * PointDepth:int option * PointGapDepth:int option * ShowMarkerLines:bool option * Rotation:int option * WallWidth:int option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3830-3830" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Enables 3D styling for the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+            With3D(...)
+          </code>
+          <div class="tip" id="7">
+            <strong>Signature:</strong> (Inclination:int option * IsClustered:bool option * IsRightAngleAxes:bool option * LightStyle:LightStyle option * Perspective:int option * PointDepth:int option * PointGapDepth:int option * ShowMarkerLines:bool option * Rotation:int option * WallWidth:int option) -&gt; &#39;?17880 -&gt; &#39;?17880<br />
+                          <strong>Type parameters:</strong> '?17880          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4183-4183" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Enables 3D styling for the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+            WithArea
+          </code>
+          <div class="tip" id="8">
+            <strong>Signature:</strong> AreaProperties<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4235-4235" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            WithArea
+          </code>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> AreaProperties<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4235-4235" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            WithDataPointLabels(...)
+          </code>
+          <div class="tip" id="10">
+            <strong>Signature:</strong> (Label:string option * LabelPosition:LabelPosition option * LabelToolTip:string option * PointToolTip:string option * BarLabelPosition:BarLabelPosition option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3859-3859" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add data point labels and apply styling to the labels</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            WithDataPointLabels(...)
+          </code>
+          <div class="tip" id="11">
+            <strong>Signature:</strong> (Label:string option * LabelPosition:LabelPosition option * LabelToolTip:string option * PointToolTip:string option * BarLabelPosition:BarLabelPosition option) -&gt; &#39;?17886 -&gt; &#39;?17886<br />
+                          <strong>Type parameters:</strong> '?17886          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4215-4215" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add data point labels and apply styling to the labels</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+            WithLegend(...)
+          </code>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Background:Background option * FontName:string option * FontSize:float option * FontStyle:FontStyle option * Alignment:StringAlignment option * Docking:Docking option * InsideArea:bool option * TitleAlignment:StringAlignment option * TitleFont:Font option * TitleColor:Color option * BorderColor:Color option * BorderWidth:int option * BorderDashStyle:DashStyle option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3847-3847" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the legend of the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            WithLegend(...)
+          </code>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Background:Background option * FontName:string option * FontSize:float option * FontStyle:FontStyle option * Alignment:StringAlignment option * Docking:Docking option * InsideArea:bool option * TitleAlignment:StringAlignment option * TitleFont:Font option * TitleColor:Color option * BorderColor:Color option * BorderWidth:int option * BorderDashStyle:DashStyle option) -&gt; &#39;?17884 -&gt; &#39;?17884<br />
+                          <strong>Type parameters:</strong> '?17884          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4202-4202" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the legend of the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+            WithMargin(left, top, right, bottom)
+          </code>
+          <div class="tip" id="14">
+            <strong>Signature:</strong> (left:float&lt;MeasureOne&gt; * top:float&lt;MeasureOne&gt; * right:float&lt;MeasureOne&gt; * bottom:float&lt;MeasureOne&gt;) -&gt; &#39;T -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4260-4260" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            WithMarkers(...)
+          </code>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> (Color:Color option * Size:int option * Step:int option * Style:MarkerStyle option * BorderColor:Color option * BorderWidth:int option * PointWidth:float option * PixelPointWidth:int option * PointStyle:PointStyle option * MaxPixelPointWidth:int option * MinPixelPointWidth:int option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3840-3840" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add styling to the markers and points of the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            WithMarkers(...)
+          </code>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> (Color:Color option * Size:int option * Step:int option * Style:MarkerStyle option * BorderColor:Color option * BorderWidth:int option * PointWidth:float option * PixelPointWidth:int option * PointStyle:PointStyle option * MaxPixelPointWidth:int option * MinPixelPointWidth:int option) -&gt; &#39;?17882 -&gt; &#39;?17882<br />
+                          <strong>Type parameters:</strong> '?17882          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4194-4194" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add styling to the markers and points of the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+            WithSeries
+          </code>
+          <div class="tip" id="17">
+            <strong>Signature:</strong> SeriesProperties<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4236-4236" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+            WithSeries
+          </code>
+          <div class="tip" id="18">
+            <strong>Signature:</strong> SeriesProperties<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4236-4236" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+            WithStyle(?Background)
+          </code>
+          <div class="tip" id="19">
+            <strong>Signature:</strong> (Background:Background option) -&gt; &#39;T -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4265-4265" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            WithStyling(...)
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> (Name:string option * Color:Color option * AreaBackground:Background option * Margin:(float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt;) option * Background:Background option * BorderColor:Color option * BorderWidth:int option * SplineLineTension:float option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3873-3873" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply additional styling to the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            WithStyling(...)
+          </code>
+          <div class="tip" id="21">
+            <strong>Signature:</strong> (Name:string option * Color:Color option * AreaBackground:Background option * Margin:(float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt; * float&lt;MeasureOne&gt;) option * Background:Background option * BorderColor:Color option * BorderWidth:int option * SplineLineTension:float option) -&gt; &#39;?17888 -&gt; &#39;?17888<br />
+                          <strong>Type parameters:</strong> '?17888          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4230-4230" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply additional styling to the chart</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            WithTitle(...)
+          </code>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> (Text:string option * InsideArea:bool option * Style:TextStyle option * FontName:string option * FontSize:float option * FontStyle:FontStyle option * Background:Background option * Color:Color option * BorderColor:Color option * BorderWidth:int option * BorderDashStyle:DashStyle option * Orientation:TextOrientation option * Alignment:ContentAlignment option * Docking:Docking option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3822-3822" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply content and styling to the title, if present</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            WithTitle(...)
+          </code>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> (Text:string option * InsideArea:bool option * Style:TextStyle option * FontName:string option * FontSize:float option * FontStyle:FontStyle option * Background:Background option * Color:Color option * BorderColor:Color option * BorderWidth:int option * BorderDashStyle:DashStyle option * Orientation:TextOrientation option * Alignment:ContentAlignment option * Docking:Docking option) -&gt; &#39;?17878 -&gt; &#39;?17878<br />
+                          <strong>Type parameters:</strong> '?17878          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4174-4174" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply content and styling to the title, if present</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            WithXAxis(...)
+          </code>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3724-3724" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the X Axis</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            WithXAxis(...)
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; &#39;?17870 -&gt; &#39;?17870<br />
+                          <strong>Type parameters:</strong> '?17870          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4073-4073" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the X Axis</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+            WithXAxis2(...)
+          </code>
+          <div class="tip" id="26">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3775-3775" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the second X axis, if present</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            WithXAxis2(...)
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; &#39;?17874 -&gt; &#39;?17874<br />
+                          <strong>Type parameters:</strong> '?17874          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4125-4125" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the second X axis, if present</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            WithYAxis(...)
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3750-3750" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the Y Axis</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            WithYAxis(...)
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; &#39;?17872 -&gt; &#39;?17872<br />
+                          <strong>Type parameters:</strong> '?17872          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4099-4099" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the Y Axis</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            WithYAxis2(...)
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3800-3800" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the second Y axis, if present</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+            WithYAxis2(...)
+          </code>
+          <div class="tip" id="31">
+            <strong>Signature:</strong> (Enabled:bool option * Title:string option * Max:float option * Min:float option * Log:bool option * ArrowStyle:AxisArrowStyle option * LabelStyle:LabelStyle option * IsMarginVisible:bool option * MajorGrid:Grid option * MinorGrid:Grid option * MajorTickMark:TickMark option * MinorTickMark:TickMark option * TitleAlignment:StringAlignment option * TitleFontName:string option * TitleFontSize:float option * TitleFontStyle:FontStyle option * TitleColor:Color option * ToolTip:string option) -&gt; &#39;?17876 -&gt; &#39;?17876<br />
+                          <strong>Type parameters:</strong> '?17876          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L4151-4151" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Apply styling to the second Y axis, if present</p>
+
         </td>
       </tr>
     </tbody>

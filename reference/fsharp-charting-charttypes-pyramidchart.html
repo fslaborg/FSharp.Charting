@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,10 +60,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
             new()
           </code>
-          <div class="tip" id="243">
+          <div class="tip" id="281">
             <strong>Signature:</strong> unit -&gt; PyramidChart<br />
                       </div>
         </td>
@@ -78,30 +86,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
-            CalloutLineColor
-          </code>
-          <div class="tip" id="260">
-            <strong>Signature:</strong> Color<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1579-1579" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>The line color of the callout for the data
-point labels of Funnel or Pyramid charts.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
+          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
             CalloutLineColor()
           </code>
-          <div class="tip" id="261">
+          <div class="tip" id="282">
             <strong>Signature:</strong> unit -&gt; Color<br />
                       </div>
         </td>
@@ -118,29 +106,30 @@ point labels of Funnel or Pyramid charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
-            Pyramid3DRotationAngle
+          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
+            CalloutLineColor()
           </code>
-          <div class="tip" id="262">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="283">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1585-1585" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1579-1579" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The 3D rotation angle of the Pyramid chart.</p>
+          <p>The line color of the callout for the data
+point labels of Funnel or Pyramid charts.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
+          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
             Pyramid3DRotationAngle()
           </code>
-          <div class="tip" id="263">
+          <div class="tip" id="284">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -156,30 +145,29 @@ point labels of Funnel or Pyramid charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '264', 264)" onmouseover="showTip(event, '264', 264)">
-            PyramidInsideLabelAlignment
+          <code onmouseout="hideTip(event, '285', 285)" onmouseover="showTip(event, '285', 285)">
+            Pyramid3DRotationAngle()
           </code>
-          <div class="tip" id="264">
-            <strong>Signature:</strong> PyramidInsideLabelAlignment<br />
+          <div class="tip" id="285">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1591-1591" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1585-1585" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The placement of the data point labels in the
-Pyramid chart when they are placed inside the pyramid.</p>
+          <p>The 3D rotation angle of the Pyramid chart.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '265', 265)" onmouseover="showTip(event, '265', 265)">
+          <code onmouseout="hideTip(event, '286', 286)" onmouseover="showTip(event, '286', 286)">
             PyramidInsideLabelAlignment()
           </code>
-          <div class="tip" id="265">
+          <div class="tip" id="286">
             <strong>Signature:</strong> unit -&gt; PyramidInsideLabelAlignment<br />
                       </div>
         </td>
@@ -196,30 +184,30 @@ Pyramid chart when they are placed inside the pyramid.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
-            PyramidLabelStyle
+          <code onmouseout="hideTip(event, '287', 287)" onmouseover="showTip(event, '287', 287)">
+            PyramidInsideLabelAlignment()
           </code>
-          <div class="tip" id="266">
-            <strong>Signature:</strong> PyramidLabelStyle<br />
+          <div class="tip" id="287">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1597-1597" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1591-1591" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The style of data point labels in the Pyramid
-chart.</p>
+          <p>The placement of the data point labels in the
+Pyramid chart when they are placed inside the pyramid.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '267', 267)" onmouseover="showTip(event, '267', 267)">
+          <code onmouseout="hideTip(event, '288', 288)" onmouseover="showTip(event, '288', 288)">
             PyramidLabelStyle()
           </code>
-          <div class="tip" id="267">
+          <div class="tip" id="288">
             <strong>Signature:</strong> unit -&gt; PyramidLabelStyle<br />
                       </div>
         </td>
@@ -236,30 +224,30 @@ chart.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '268', 268)" onmouseover="showTip(event, '268', 268)">
-            PyramidMinPointHeight
+          <code onmouseout="hideTip(event, '289', 289)" onmouseover="showTip(event, '289', 289)">
+            PyramidLabelStyle()
           </code>
-          <div class="tip" id="268">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="289">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1603-1603" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1597-1597" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The minimum height of a data point measured in
-relative coordinates. Any integer from 0 to 100.</p>
+          <p>The style of data point labels in the Pyramid
+chart.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '269', 269)" onmouseover="showTip(event, '269', 269)">
+          <code onmouseout="hideTip(event, '290', 290)" onmouseover="showTip(event, '290', 290)">
             PyramidMinPointHeight()
           </code>
-          <div class="tip" id="269">
+          <div class="tip" id="290">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -276,30 +264,30 @@ relative coordinates. Any integer from 0 to 100.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '270', 270)" onmouseover="showTip(event, '270', 270)">
-            PyramidOutsideLabelPlacement
+          <code onmouseout="hideTip(event, '291', 291)" onmouseover="showTip(event, '291', 291)">
+            PyramidMinPointHeight()
           </code>
-          <div class="tip" id="270">
-            <strong>Signature:</strong> PyramidOutsideLabelPlacement<br />
+          <div class="tip" id="291">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1609-1609" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1603-1603" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The placement of the data point labels in the
-Pyramid chart when the labels are placed outside the pyramid.</p>
+          <p>The minimum height of a data point measured in
+relative coordinates. Any integer from 0 to 100.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '271', 271)" onmouseover="showTip(event, '271', 271)">
+          <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
             PyramidOutsideLabelPlacement()
           </code>
-          <div class="tip" id="271">
+          <div class="tip" id="292">
             <strong>Signature:</strong> unit -&gt; PyramidOutsideLabelPlacement<br />
                       </div>
         </td>
@@ -316,30 +304,30 @@ Pyramid chart when the labels are placed outside the pyramid.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '272', 272)" onmouseover="showTip(event, '272', 272)">
-            PyramidPointGap
+          <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
+            PyramidOutsideLabelPlacement()
           </code>
-          <div class="tip" id="272">
-            <strong>Signature:</strong> int<br />
+          <div class="tip" id="293">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1615-1615" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1609-1609" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The gap size between the data points, measured in
-relative coordinates. Any integer from 0 to 100.</p>
+          <p>The placement of the data point labels in the
+Pyramid chart when the labels are placed outside the pyramid.</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '273', 273)" onmouseover="showTip(event, '273', 273)">
+          <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
             PyramidPointGap()
           </code>
-          <div class="tip" id="273">
+          <div class="tip" id="294">
             <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
@@ -356,15 +344,35 @@ relative coordinates. Any integer from 0 to 100.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '274', 274)" onmouseover="showTip(event, '274', 274)">
-            PyramidValueType
+          <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
+            PyramidPointGap()
           </code>
-          <div class="tip" id="274">
-            <strong>Signature:</strong> PyramidValueType<br />
+          <div class="tip" id="295">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1621-1621" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1615-1615" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The gap size between the data points, measured in
+relative coordinates. Any integer from 0 to 100.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
+            PyramidValueType()
+          </code>
+          <div class="tip" id="296">
+            <strong>Signature:</strong> unit -&gt; PyramidValueType<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1622-1622" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -376,15 +384,15 @@ or the surface of the segment.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '275', 275)" onmouseover="showTip(event, '275', 275)">
+          <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
             PyramidValueType()
           </code>
-          <div class="tip" id="275">
-            <strong>Signature:</strong> unit -&gt; PyramidValueType<br />
+          <div class="tip" id="297">
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1622-1622" class="github-link">
+            <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1621-1621" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

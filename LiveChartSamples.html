@@ -16,6 +16,15 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+      <link rel="canonical" href="http://fslab.org/FSharp.Charting/LiveChartSamples.html" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -63,7 +72,7 @@ The <code>EventEx-0.1.fsx</code> file can be found
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// On Mac OSX use FSharp.Charting.Gtk.fsx</span>
-<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">0</span><span class="s">.</span><span class="s">90</span><span class="s">.</span><span class="s">6</span><span class="s">&quot;</span>
+<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">&quot;</span>
 <span class="prep">#load</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
 <span class="prep">#load</span> <span class="s">&quot;</span><span class="s">EventEx</span><span class="s">-</span><span class="s">0</span><span class="s">.</span><span class="s">1</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
 
@@ -162,6 +171,23 @@ iterates over in-memory sequence, or you can use an event as follows:</p>
 <div class="tip" id="fs28">val cycle : interval:int -&gt; values:seq&lt;&#39;a&gt; -&gt; IEvent&lt;&#39;a&gt;<br /><br />Full name: Event.cycle<br /><em><br /><br />&#160;Cycle through the values at the given interval</em></div>
 <div class="tip" id="fs29">static member LiveChart.LineIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
 <div class="tip" id="fs30">static member LiveChart.FastLineIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs31">val incBubbleData : IEvent&lt;float * float * float&gt;<br /><br />Full name: LiveChartSamples.incBubbleData</div>
+<div class="tip" id="fs32">val evData : IEvent&lt;(DateTime * int) []&gt;<br /><br />Full name: LiveChartSamples.evData</div>
+<div class="tip" id="fs33">val windowTimeInterval : interval:int -&gt; ev:IEvent&lt;DateTime * &#39;a&gt; -&gt; IEvent&lt;(DateTime * &#39;a) []&gt;<br /><br />Full name: Event.windowTimeInterval<br /><em><br /><br />&#160;An event which triggers on every event, reporting samples from the given time window</em></div>
+<div class="tip" id="fs34">val evData2 : IEvent&lt;(DateTime * float) []&gt;<br /><br />Full name: LiveChartSamples.evData2</div>
+<div class="tip" id="fs35">property DateTime.Ticks: int64</div>
+<div class="tip" id="fs36">val evBubbleData : IEvent&lt;(float * float * float) []&gt;<br /><br />Full name: LiveChartSamples.evBubbleData</div>
+<div class="tip" id="fs37">val sampled : interval:int -&gt; ev:IEvent&lt;&#39;a&gt; -&gt; IEvent&lt;DateTime * &#39;a&gt;<br /><br />Full name: Event.sampled<br /><em><br /><br />&#160;An event which triggers at regular intervals reporting the latest observed value of the given event</em></div>
+<div class="tip" id="fs38">type Array =<br />&#160;&#160;member Clone : unit -&gt; obj<br />&#160;&#160;member CopyTo : array:Array * index:int -&gt; unit + 1 overload<br />&#160;&#160;member GetEnumerator : unit -&gt; IEnumerator<br />&#160;&#160;member GetLength : dimension:int -&gt; int<br />&#160;&#160;member GetLongLength : dimension:int -&gt; int64<br />&#160;&#160;member GetLowerBound : dimension:int -&gt; int<br />&#160;&#160;member GetUpperBound : dimension:int -&gt; int<br />&#160;&#160;member GetValue : params indices:int[] -&gt; obj + 7 overloads<br />&#160;&#160;member Initialize : unit -&gt; unit<br />&#160;&#160;member IsFixedSize : bool<br />&#160;&#160;...<br /><br />Full name: System.Array</div>
+<div class="tip" id="fs39">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; array:&#39;T [] -&gt; &#39;U []<br /><br />Full name: Microsoft.FSharp.Collections.Array.map</div>
+<div class="tip" id="fs40">val x : float * float * float</div>
+<div class="tip" id="fs41">val constantLiveTimeSeriesData : IEvent&lt;(DateTime * float) list&gt;<br /><br />Full name: LiveChartSamples.constantLiveTimeSeriesData</div>
+<div class="tip" id="fs42">static member LiveChart.Point : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?MarkerColor:Color * ?MarkerSize:int -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)</div>
+<div class="tip" id="fs43">static member LiveChart.FastPoint : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)</div>
+<div class="tip" id="fs44">static member LiveChart.PointIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?MarkerColor:Color * ?MarkerSize:int -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs45">static member LiveChart.FastPointIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs46">static member LiveChart.BubbleIncremental : data:IObservable&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs47">static member LiveChart.Bubble : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2 * &#39;a3&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value and &#39;a3 :&gt; value)</div>
 
         </div>
         <div class="span3">

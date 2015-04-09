@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,10 +59,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '139', 139)" onmouseover="showTip(event, '139', 139)">
+          <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
             new(chartType)
           </code>
-          <div class="tip" id="139">
+          <div class="tip" id="185">
             <strong>Signature:</strong> chartType:SeriesChartType -&gt; GenericChart<br />
                       </div>
         </td>
@@ -77,10 +85,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '148', 148)" onmouseover="showTip(event, '148', 148)">
+          <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
             CopyAsBitmap()
           </code>
-          <div class="tip" id="148">
+          <div class="tip" id="186">
             <strong>Signature:</strong> unit -&gt; Image<br />
                       </div>
         </td>
@@ -96,10 +104,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '149', 149)" onmouseover="showTip(event, '149', 149)">
+          <code onmouseout="hideTip(event, '187', 187)" onmouseover="showTip(event, '187', 187)">
             CopyChartToClipboard()
           </code>
-          <div class="tip" id="149">
+          <div class="tip" id="187">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
@@ -115,10 +123,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '150', 150)" onmouseover="showTip(event, '150', 150)">
+          <code onmouseout="hideTip(event, '188', 188)" onmouseover="showTip(event, '188', 188)">
             CopyChartToClipboardEmf(control)
           </code>
-          <div class="tip" id="150">
+          <div class="tip" id="188">
             <strong>Signature:</strong> control:Control -&gt; unit<br />
                       </div>
         </td>
@@ -134,10 +142,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
+          <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
             GetType()
           </code>
-          <div class="tip" id="151">
+          <div class="tip" id="189">
             <strong>Signature:</strong> unit -&gt; Type<br />
                       </div>
         </td>
@@ -152,10 +160,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+          <code onmouseout="hideTip(event, '190', 190)" onmouseover="showTip(event, '190', 190)">
             SaveChartAs(filename, format)
           </code>
-          <div class="tip" id="152">
+          <div class="tip" id="190">
             <strong>Signature:</strong> (filename:string * format:ChartImageFormat) -&gt; unit<br />
                       </div>
         </td>

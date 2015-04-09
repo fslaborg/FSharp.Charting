@@ -16,6 +16,15 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+      <link rel="canonical" href="http://fslab.org/FSharp.Charting/FurtherSamples.html" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -226,7 +235,7 @@
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// On Mac OSX use FSharp.Charting.Gtk.fsx</span>
-<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">0</span><span class="s">.</span><span class="s">90</span><span class="s">.</span><span class="s">6</span><span class="s">&quot;</span>
+<span class="prep">#I</span> <span class="s">&quot;</span><span class="s">packages</span><span class="s">/</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">&quot;</span>
 <span class="prep">#load</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Charting</span><span class="s">.</span><span class="s">fsx</span><span class="s">&quot;</span>
 
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
@@ -441,7 +450,7 @@
 <div class="tip" id="fs32">val sqrt : value:&#39;T -&gt; &#39;U (requires member Sqrt)<br /><br />Full name: Microsoft.FSharp.Core.Operators.sqrt</div>
 <div class="tip" id="fs33">DateTime.AddMinutes(value: float) : DateTime</div>
 <div class="tip" id="fs34">static member Chart.WithTitle : ?Text:string * ?InsideArea:bool * ?Style:ChartTypes.TextStyle * ?FontName:string * ?FontSize:float * ?FontStyle:FontStyle * ?Background:ChartTypes.Background * ?Color:Color * ?BorderColor:Color * ?BorderWidth:int * ?BorderDashStyle:ChartTypes.DashStyle * ?Orientation:ChartTypes.TextOrientation * ?Alignment:ContentAlignment * ?Docking:ChartTypes.Docking -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
-<div class="tip" id="fs35">static member Chart.WithXAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:FontStyle * ?TitleColor:Color * ?ToolTip:string -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
+<div class="tip" id="fs35">static member Chart.WithXAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?IsMarginVisible:bool * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:FontStyle * ?TitleColor:Color * ?ToolTip:string -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
 <div class="tip" id="fs36">static member Chart.Combine : charts:seq&lt;ChartTypes.GenericChart&gt; -&gt; ChartTypes.GenericChart</div>
 <div class="tip" id="fs37">static member Chart.WithLegend : ?Enabled:bool * ?Title:string * ?Background:ChartTypes.Background * ?FontName:string * ?FontSize:float * ?FontStyle:FontStyle * ?Alignment:StringAlignment * ?Docking:ChartTypes.Docking * ?InsideArea:bool * ?TitleAlignment:StringAlignment * ?TitleFont:Font * ?TitleColor:Color * ?BorderColor:Color * ?BorderWidth:int * ?BorderDashStyle:ChartTypes.DashStyle -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
 <div class="tip" id="fs38">type Docking =<br />&#160;&#160;|  Top  =  0<br />&#160;&#160;|  Right  =  1<br />&#160;&#160;|  Bottom  =  2<br />&#160;&#160;|  Left  =  3<br /><br />Full name: FSharp.Charting.ChartTypes.Docking</div>

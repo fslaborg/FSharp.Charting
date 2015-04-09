@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,10 +60,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '425', 425)" onmouseover="showTip(event, '425', 425)">
+          <code onmouseout="hideTip(event, '367', 367)" onmouseover="showTip(event, '367', 367)">
             new(X, Y1, Y2, Label)
           </code>
-          <div class="tip" id="425">
+          <div class="tip" id="367">
             <strong>Signature:</strong> (X:key * Y1:value * Y2:value * Label:string) -&gt; TwoXYDataPoint<br />
                       </div>
         </td>
@@ -78,10 +86,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '426', 426)" onmouseover="showTip(event, '426', 426)">
+          <code onmouseout="hideTip(event, '368', 368)" onmouseover="showTip(event, '368', 368)">
             Label
           </code>
-          <div class="tip" id="426">
+          <div class="tip" id="368">
             <strong>Signature:</strong> string<br />
                       </div>
         </td>
@@ -96,10 +104,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '427', 427)" onmouseover="showTip(event, '427', 427)">
+          <code onmouseout="hideTip(event, '369', 369)" onmouseover="showTip(event, '369', 369)">
             X
           </code>
-          <div class="tip" id="427">
+          <div class="tip" id="369">
             <strong>Signature:</strong> key<br />
                       </div>
         </td>
@@ -114,10 +122,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '428', 428)" onmouseover="showTip(event, '428', 428)">
+          <code onmouseout="hideTip(event, '370', 370)" onmouseover="showTip(event, '370', 370)">
             Y1
           </code>
-          <div class="tip" id="428">
+          <div class="tip" id="370">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>
@@ -132,10 +140,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '429', 429)" onmouseover="showTip(event, '429', 429)">
+          <code onmouseout="hideTip(event, '371', 371)" onmouseover="showTip(event, '371', 371)">
             Y2
           </code>
-          <div class="tip" id="429">
+          <div class="tip" id="371">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>

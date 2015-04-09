@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,10 +60,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '106', 106)" onmouseover="showTip(event, '106', 106)">
+          <code onmouseout="hideTip(event, '142', 142)" onmouseover="showTip(event, '142', 142)">
             new(X, Y1, Y2, Y3, Y4, Label)
           </code>
-          <div class="tip" id="106">
+          <div class="tip" id="142">
             <strong>Signature:</strong> (X:key * Y1:value * Y2:value * Y3:value * Y4:value * Label:string) -&gt; FourXYDataPoint<br />
                       </div>
         </td>
@@ -78,10 +86,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '110', 110)" onmouseover="showTip(event, '110', 110)">
+          <code onmouseout="hideTip(event, '143', 143)" onmouseover="showTip(event, '143', 143)">
             Label
           </code>
-          <div class="tip" id="110">
+          <div class="tip" id="143">
             <strong>Signature:</strong> string<br />
                       </div>
         </td>
@@ -96,10 +104,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '111', 111)" onmouseover="showTip(event, '111', 111)">
+          <code onmouseout="hideTip(event, '144', 144)" onmouseover="showTip(event, '144', 144)">
             X
           </code>
-          <div class="tip" id="111">
+          <div class="tip" id="144">
             <strong>Signature:</strong> key<br />
                       </div>
         </td>
@@ -114,10 +122,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '112', 112)" onmouseover="showTip(event, '112', 112)">
+          <code onmouseout="hideTip(event, '145', 145)" onmouseover="showTip(event, '145', 145)">
             Y1
           </code>
-          <div class="tip" id="112">
+          <div class="tip" id="145">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>
@@ -132,10 +140,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '113', 113)" onmouseover="showTip(event, '113', 113)">
+          <code onmouseout="hideTip(event, '146', 146)" onmouseover="showTip(event, '146', 146)">
             Y2
           </code>
-          <div class="tip" id="113">
+          <div class="tip" id="146">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>
@@ -150,10 +158,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '114', 114)" onmouseover="showTip(event, '114', 114)">
+          <code onmouseout="hideTip(event, '147', 147)" onmouseover="showTip(event, '147', 147)">
             Y3
           </code>
-          <div class="tip" id="114">
+          <div class="tip" id="147">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>
@@ -168,10 +176,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '115', 115)" onmouseover="showTip(event, '115', 115)">
+          <code onmouseout="hideTip(event, '148', 148)" onmouseover="showTip(event, '148', 148)">
             Y4
           </code>
-          <div class="tip" id="115">
+          <div class="tip" id="148">
             <strong>Signature:</strong> value<br />
                       </div>
         </td>

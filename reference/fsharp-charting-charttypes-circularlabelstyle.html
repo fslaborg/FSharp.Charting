@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,10 +61,10 @@ and Polar charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+          <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
             Circular
           </code>
-          <div class="tip" id="32">
+          <div class="tip" id="59">
             <strong>Signature:</strong> CircularLabelStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>
@@ -72,10 +80,10 @@ and Polar charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
             Horizontal
           </code>
-          <div class="tip" id="33">
+          <div class="tip" id="60">
             <strong>Signature:</strong> CircularLabelStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>
@@ -91,10 +99,10 @@ and Polar charts.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
             Radial
           </code>
-          <div class="tip" id="34">
+          <div class="tip" id="61">
             <strong>Signature:</strong> CircularLabelStyle<br />
               <strong>Modifiers:</strong> static<br />
                       </div>

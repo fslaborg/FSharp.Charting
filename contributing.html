@@ -16,6 +16,15 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+      <link rel="canonical" href="http://fslab.org/FSharp.Charting/contributing.md" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -62,9 +71,9 @@ that group the projects in the main logical groups:</p>
 functionality (such as runtime and design-time type provider libraries). If you want
 to contribute code that is not quite ready yet, but looks interesting, then please
 add it to the experimental projects.</p></li>
-<li><p><strong>FSharp.Charting.Tests.sln</strong> is a library with tests for F# Charting and it also contains
+<li><strong>FSharp.Charting.Tests.sln</strong> is a library with tests for F# Charting and it also contains
 the content of this web site (as <code>*.fsx</code> and <code>*.md</code>) files. Look here if you want
-to edit the documentation!</p></li>
+to edit the documentation!</li>
 </ul>
 
 <h2>Documentation</h2>

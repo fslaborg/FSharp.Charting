@@ -15,6 +15,14 @@
 
     <link type="text/css" rel="stylesheet" href="http://fsharp.github.io/FSharp.Charting/content/style.css" />
     <script type="text/javascript" src="http://fsharp.github.io/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -504,12 +512,12 @@ and low price points.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
             getChartValueTypeDynamic xTypeOpt values
           </code>
-          <div class="tip" id="3">
-            <strong>Signature:</strong> xTypeOpt:ChartValueType option -&gt; values:seq&lt;&#39;?17021&gt; -&gt; ChartValueType<br />
-                          <strong>Type parameters:</strong> '?17021          </div>
+          <div class="tip" id="2">
+            <strong>Signature:</strong> xTypeOpt:ChartValueType option -&gt; values:seq&lt;&#39;?17168&gt; -&gt; ChartValueType<br />
+                          <strong>Type parameters:</strong> '?17168          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/fsharp/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L887-887" class="github-link">
@@ -522,10 +530,10 @@ and low price points.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
             getChartValueTypeStatic witness
           </code>
-          <div class="tip" id="4">
+          <div class="tip" id="3">
             <strong>Signature:</strong> witness:seq&lt;&#39;K&gt; -&gt; ChartValueType option<br />
                           <strong>Type parameters:</strong> 'K          </div>
         </td>

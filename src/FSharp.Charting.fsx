@@ -16,7 +16,8 @@
 #r "System.Windows.Forms.DataVisualization.dll"
 #nowarn "211"
 #I __SOURCE_DIRECTORY__
-#r "lib/net40/FSharp.Charting.dll"
+#I "lib/net40"
+#r "FSharp.Charting.dll"
 
 open FSharp.Charting
 module FsiAutoShow = 

@@ -15,6 +15,22 @@
 
     <link type="text/css" rel="stylesheet" href="@Root/content/style.css" />
     <script type="text/javascript" src="@Root/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+    @if (Properties.Dictionary.ContainsKey("page-source"))
+    {
+      var source = Properties["page-source"];
+      var page = source.Substring(source.LastIndexOf("\\") + 1).Replace(".fsx", ".html");
+      page = "http://fslab.org/FSharp.Charting/" + (page == "index.html" ? "" : page);
+            
+      <link rel="canonical" href="@page" />
+    }
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

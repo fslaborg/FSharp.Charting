@@ -118,12 +118,12 @@ The library is available under the MIT licence. For more information see the
 [License file][readme] in the GitHub repository. In summary, this means that you can 
 use the library for commercial purposes, fork it, modify it as you wish.
 
-  [source]: https://github.com/fsharp/FSharp.Charting/zipball/master
-  [release]: https://github.com/fsharp/FSharp.Charting/zipball/release
-  [examples]: https://github.com/fsharp/FSharp.Charting/tree/master/docs/content
-  [gh]: https://github.com/fsharp/FSharp.Charting
-  [issues]: https://github.com/fsharp/FSharp.Charting/issues
-  [readme]: https://github.com/fsharp/FSharp.Charting/blob/master/README.md
+  [source]: https://github.com/fslaborg/FSharp.Charting/zipball/master
+  [release]: https://github.com/fslaborg/FSharp.Charting/zipball/release
+  [examples]: https://github.com/fslaborg/FSharp.Charting/tree/master/docs/content
+  [gh]: https://github.com/fslaborg/FSharp.Charting
+  [issues]: https://github.com/fslaborg/FSharp.Charting/issues
+  [readme]: https://github.com/fslaborg/FSharp.Charting/blob/master/README.md
   [fsharp-oss]: http://groups.google.com/group/fsharp-opensource
   [fsharpchart61]: http://code.msdn.microsoft.com/windowsdesktop/FSharpChart-b59073f5
 *)

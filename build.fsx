@@ -179,7 +179,7 @@ Target "GenerateDocs" (fun _ ->
 Target "ReleaseDocs" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
     if not (System.IO.Directory.Exists tempDocsDir) then 
-        Repository.cloneSingleBranch "" "https://github.com/fsharp/FSharp.Charting.git" "gh-pages" tempDocsDir
+        Repository.cloneSingleBranch "" "https://github.com/fslaborg/FSharp.Charting.git" "gh-pages" tempDocsDir
 
     fullclean tempDocsDir
     CopyRecursive "docs/output" tempDocsDir true |> tracefn "%A"

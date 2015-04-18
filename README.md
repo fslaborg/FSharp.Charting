@@ -6,7 +6,7 @@ See http://fslab.org/FSharp.Charting/ and [other charting libraries for use with
 
 ## Library license
 
-The library is available under MIT. For more information see the [License file](https://github.com/fsharp/FSharp.Charting/blob/master/LICENSE.md) in the GitHub repository.
+The library is available under MIT. For more information see the [License file](https://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md) in the GitHub repository.
 
 
 ## Maintainer(s)

@@ -13,7 +13,7 @@ let info =
   [ "project-name", "F# Charting"
     "project-author", "Don Syme, Carl Nolan, Tomas Petricek"
     "project-summary", "The F# Charting library implements charting suitable for in F# scripting."
-    "project-github", "http://github.com/fsharp/FSharp.Charting"
+    "project-github", "http://github.com/fslaborg/FSharp.Charting"
     "project-nuget", "https://nuget.org/packages/FSharp.Charting" ]
 
 // --------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ let buildReference () =
     MetadataFormat.Generate
       ( bin @@ lib, output @@ "reference", layoutRoots, 
         parameters = ("root", root)::info,
-        sourceRepo = "https://github.com/fsharp/FSharp.Charting/tree/master/",
+        sourceRepo = "https://github.com/fslaborg/FSharp.Charting/tree/master/",
         sourceFolder = __SOURCE_DIRECTORY__.Substring(0, __SOURCE_DIRECTORY__.Length - "\docs\tools".Length ) )
 
 // Build documentation from `fsx` and `md` files in `docs/content`

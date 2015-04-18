@@ -12,7 +12,7 @@ The samples are not yet individually documented.
 
 In this sample, some extra event combinators are used to generate reactive data. 
 The `EventEx-0.1.fsx` file can be found 
-[here](https://raw.githubusercontent.com/fsharp/FSharp.Charting/master/docs/content/EventEx-0.1.fsx).
+[here](https://raw.githubusercontent.com/fslaborg/FSharp.Charting/master/docs/content/EventEx-0.1.fsx).
 
 *)
 

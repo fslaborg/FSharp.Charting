@@ -1,6 +1,6 @@
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.9/FSharp.Charting.Gtk.fsx
-#load "packages/FSharp.Charting.Gtk.0.90.9/FSharp.Charting.Gtk.fsx"
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.10/FSharp.Charting.Gtk.fsx
+#load "packages/FSharp.Charting.Gtk.0.90.10/FSharp.Charting.Gtk.fsx"
 #load "EventEx-0.1.fsx"
 
 open FSharp.Charting

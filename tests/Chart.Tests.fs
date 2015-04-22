@@ -37,7 +37,7 @@ let ``Test that chart specifications compile``() =
     Chart.Funnel [ 0 .. 10 ] |> check 
     Chart.Funnel [ for x in 0 .. 10 -> x, x*x ] |> check 
     
-    // Bug: it is really hard to see the data here, see https://github.com/fsharp/FSharp.Charting/issues/14
+    // Bug: it is really hard to see the data here, see https://github.com/fslaborg/FSharp.Charting/issues/14
     Chart.Kagi [ 1.1; 3.1; 4.1; 5.1; 3.1; 2.1;  ] |> check 
     Chart.Kagi [ for x in 0 .. 10 -> float x + 0.1, x*x ] |> check 
     

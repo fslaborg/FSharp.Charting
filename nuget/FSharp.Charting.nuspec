@@ -6,11 +6,7 @@
     <authors>@authors@</authors>
     <owners>@authors@</owners>
     <licenseUrl>http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md</licenseUrl>
-<<<<<<< HEAD
     <projectUrl>http://fslab.org/FSharp.Charting</projectUrl>
-=======
-    <projectUrl>http://fslaborg.github.com/FSharp.Charting</projectUrl>
->>>>>>> e0d6e4a12845da9acd12c674995a99ba547a800c
     <iconUrl>https://raw.github.com/fslaborg/FSharp.Charting/master/misc/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>@summary@</summary>

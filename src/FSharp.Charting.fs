@@ -3112,6 +3112,25 @@ namespace FSharp.Charting
         static member Combine charts = 
           CombinedChart (List.ofSeq charts) :> GenericChart
 
+        /// Display a chart
+        static member public Show (chart:GenericChart) =
+                use cc = new ChartControl(chart)
+                cc.Dock <- DockStyle.Fill
+                use f = new Form()
+                f.Size <- System.Drawing.Size(800, 600)
+                f.Controls.Add cc
+                f.ShowDialog() |> ignore
+
+        /// Save a chart to a file in png format
+        static member Save filename (chart:GenericChart) =
+            use cc = new ChartControl(chart)
+            cc.Dock <- DockStyle.Fill
+            use f = new Form()
+            f.Size <- System.Drawing.Size(800, 600)
+            f.Controls.Add cc
+            f.Load |> Event.add (fun _ -> chart.SaveChartAs(filename, ChartImageFormat.Png); f.Close()) 
+            Application.Run f
+
 
     /// Contains static methods to construct charts whose data source is an event or observable which 
     /// updates the entire data set.

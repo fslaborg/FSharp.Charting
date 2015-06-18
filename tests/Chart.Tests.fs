@@ -111,3 +111,14 @@ let ``Test that chart specifications compile``() =
 
     checkChartWithBothMarginVisibilities (Chart.Line [ 0 .. 10 ])
     checkChartWithBothMarginVisibilities (Chart.Point [ 0 .. 10 ])
+
+    let checkSave chart filename =
+        System.IO.File.Exists(filename)
+        |> should equal false
+        chart
+        |> Chart.Save filename
+        System.IO.File.Exists(filename)
+        |> should equal true
+        System.IO.File.Delete(filename)
+
+    checkSave (Chart.Line [ 0 .. 10 ]) "chart.png"

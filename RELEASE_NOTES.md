@@ -1,3 +1,6 @@
+#### 0.90.11 - 18.06.2015
+* Add Show and Save methods to Chart helper class. 
+
 #### 0.90.10 - 20.04.2015
 * Update project links
 

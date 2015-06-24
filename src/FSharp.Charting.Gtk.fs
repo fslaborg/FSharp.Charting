@@ -652,11 +652,11 @@ namespace FSharp.Charting
                 | :? INotifyCollectionChanged as i -> 
                       let rec handler = NotifyCollectionChangedEventHandler(fun _ _ -> 
                         series.ItemsSource <- data
-                        match model.PlotControl with 
+                        match model.PlotView with 
                         | null -> ()
                         | _ ->  
                            // An exception will indicate form is no longer working, e.g. shutdown or disposed, so disconnect
-                           try model.RefreshPlot(true) 
+                           try model.InvalidatePlot(true) 
                            with _ -> i.CollectionChanged.RemoveHandler handler)
                       i.CollectionChanged.AddHandler handler
                 | _ -> ()
@@ -2387,7 +2387,7 @@ namespace FSharp.Charting
 #endif
             /// Display the chart in a new Gtk.Window()
             member ch.ShowChart () =
-                let plot = new OxyPlot.GtkSharp.Plot(Model = ch.Model )
+                let plot = new OxyPlot.GtkSharp.PlotView(Model = ch.Model )
                 let win = new Gtk.Window(ProvideTitle ch)
                 plot.SetSizeRequest(700, 500)
                 win.SetSizeRequest(700, 500)

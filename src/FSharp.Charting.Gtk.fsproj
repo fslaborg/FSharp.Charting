@@ -113,26 +113,6 @@
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
-        <Reference Include="gtk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\gtk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="gdk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\gdk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="atk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\atk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="glib-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\glib-sharp.dll</HintPath>
-        </Reference>
       </ItemGroup>
     </When>
   </Choose>

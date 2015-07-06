@@ -1,10 +1,4 @@
-//----------------------------------------------------------------------------
-// Copyright (c) 2002-2013 Microsoft Corporation
-//
-// This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
-// copy of the license can be found in the License.html file at the root of this distribution. 
-// By using this source code in any fashion, you are agreeing to be bound 
-// by the terms of the Apache License, Version 2.0.
+"
 //
 // You must not remove this notice, or any other, from this software.
 //
@@ -3726,7 +3720,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -3752,7 +3746,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -3777,7 +3771,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -3802,7 +3796,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -4075,7 +4069,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -4102,7 +4096,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -4127,7 +4121,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>
@@ -4153,7 +4147,7 @@ namespace FSharp.Charting
             /// <param name="Enabled">If false, disables the axis</param>
             /// <param name="Title">The title of the axis</param>
             /// <param name="Max">The maximum value for the axis</param>
-            /// <param name="Max">The minimum value for the axis</param>
+            /// <param name="Min">The minimum value for the axis</param>
             /// <param name="Log">The axis scale is logarithmic</param>
             /// <param name="ArrowStyle">The arrow style for the axis</param>
             /// <param name="LabelStyle">The label style for the axis</param>

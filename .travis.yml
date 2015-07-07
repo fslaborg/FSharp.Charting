@@ -3,5 +3,5 @@ language: csharp
 install:
 
 script: 
-  - ./build.sh
+  - ./build.sh Build
 

@@ -2,9 +2,8 @@ source https://nuget.org/api/v2
 
 nuget FSharp.Formatting
 nuget NUnit
-nuget GtkSharp
 nuget NUnit.Runners 
-nuget OxyPlot.GtkSharp 2013.2.119.1
-nuget OxyPlot.Core 2013.2.119.1
+nuget OxyPlot.GtkSharp 2014.1.546
+nuget OxyPlot.Core 2014.1.546
 nuget Nuget.CommandLine
 nuget FAKE

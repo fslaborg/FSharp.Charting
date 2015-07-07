@@ -56,6 +56,26 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\gtk-sharp-2.0\atk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\gtk-sharp-2.0\gdk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\gtk-sharp-2.0\glib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\gtk-sharp-2.0\gtk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cairo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\Mono.Cairo\Mono.Cairo.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -104,34 +124,9 @@
     <When Condition="($(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')) Or ($(TargetFrameworkIdentifier) == 'MonoAndroid') Or ($(TargetFrameworkIdentifier) == 'MonoTouch')">
       <ItemGroup>
         <Reference Include="OxyPlot.GtkSharp">
-          <HintPath>..\packages\OxyPlot.GtkSharp\lib\NET40\OxyPlot.GtkSharp.dll</HintPath>
+          <HintPath>..\packages\OxyPlot.GtkSharp\lib\net40\OxyPlot.GtkSharp.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
-        </Reference>
-        <Reference Include="OxyPlot">
-          <HintPath>..\packages\OxyPlot.GtkSharp\lib\NET40\OxyPlot.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="gtk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\gtk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="gdk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\gdk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="atk-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\atk-sharp.dll</HintPath>
-        </Reference>
-        <Reference Include="glib-sharp">
-          <Paket>True</Paket>
-          <Private>True</Private>
-          <HintPath>..\packages\GtkSharp\lib\net45\glib-sharp.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>

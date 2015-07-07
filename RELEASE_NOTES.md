@@ -1,3 +1,6 @@
+#### 0.90.12 - 07.07.2015
+* Fix problem with Gtk by removing use of Gtk nuget package
+
 #### 0.90.11 - 18.06.2015
 * Add Show and Save methods to Chart helper class. 
 

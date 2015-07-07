@@ -1,0 +1,7 @@
+language: csharp
+
+install:
+
+script: 
+  - ./build.sh
+

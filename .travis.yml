@@ -3,5 +3,5 @@ language: csharp
 install:
 
 script: 
-  - ./build.sh Build
+  - ./build.sh BuildGtk
 

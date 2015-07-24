@@ -5,7 +5,7 @@ F# Charting is most often used from F# scripts. To use the library
 in a script, load the `FSharp.Charting.fsx` file, for example from the NuGet package:
 *)
 
-// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.10/FSharp.Charting.Gtk.fsx
+// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.12/FSharp.Charting.Gtk.fsx
 #load "packages/FSharp.Charting/FSharp.Charting.fsx"
 (**
 You can now create a chart:

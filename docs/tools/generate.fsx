@@ -23,12 +23,14 @@ let info =
 #I "../../packages/FSharp.Compiler.Service/lib/net40"
 #I "../../packages/FSharp.Formatting/lib/net40"
 #r "../../packages/FAKE/tools/FakeLib.dll"
+
 #r "System.Web.Razor.dll"
 #r "RazorEngine.dll"
 #r "FSharp.Markdown.dll"
 #r "FSharp.Literate.dll"
 #r "FSharp.CodeFormat.dll"
 #r "FSharp.MetadataFormat.dll"
+#r "../../packages/FSharpVSPowerTools.Core/lib/net45/FSharpVSPowerTools.Core.dll"
 #load "formatters.fsx"
 open Fake
 open System.IO

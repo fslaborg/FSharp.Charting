@@ -3129,7 +3129,9 @@ namespace FSharp.Charting
             f.Size <- System.Drawing.Size(800, 600)
             f.Controls.Add cc
             f.Load |> Event.add (fun _ -> chart.SaveChartAs(filename, ChartImageFormat.Png); f.Close()) 
-            Application.Run f
+            // Removed Application.Run: Triggers exception in fsi.exe.  See issue https://github.com/fslaborg/FSharp.Charting/issues/38
+            // Application.Run f
+            f.ShowDialog() |> ignore
 
 
     /// Contains static methods to construct charts whose data source is an event or observable which 

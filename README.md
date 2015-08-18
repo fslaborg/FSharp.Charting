@@ -15,3 +15,7 @@ The library is available under MIT. For more information see the [License file](
 - [@tpetricek](https://github.com/tpetricek)
 
 The default maintainer account for projects under "fsprojects" is [@fsgit](https://github.com/fsgit) - F# Community Project Incubation Space (repo management)
+
+## Building the library
+
+The cross-platform build of the library is using the Gtk library. To be able to build and release both of the FSharp.Charting NuGet packages on Windows, you need to install [Gtk# 2.12.26 for Windows](http://download.xamarin.com/GTKforWindows/Windows/gtk-sharp-2.12.26.msi).

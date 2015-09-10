@@ -208,6 +208,9 @@ namespace FSharp.Charting
 
     module ChartTypes = 
 
+        /// An implementation of a histogram bin.
+        type Bin = { LowerBound: float; UpperBound: float; Count: int}
+
         /// An implementation type for items on a chart. This type should not be used directly.
         type public LineChartItem(X: key, Y: value) = 
             member __.X = X 
@@ -616,6 +619,14 @@ namespace FSharp.Charting
         // ----------------------------------------------------------------------------------
         // Data operations
           
+        let internal binData data lowerBound upperBound intervals =
+            seq{lowerBound .. (upperBound - lowerBound)/intervals .. upperBound }
+            |> Seq.pairwise
+            |> Seq.map (fun (l,u) -> 
+                                    let cnt = data |> Seq.filter (fun e -> e >= l && e < u) |> Seq.length
+                                    {LowerBound = l; UpperBound = u; Count = cnt}
+                        )
+
         let internal allowNull x = match x with None -> null | Some v -> v
 
         let internal listen data = NotifySeq.notifyOrOnce data
@@ -694,7 +705,7 @@ namespace FSharp.Charting
     type internal Helpers() = 
 
         /// Use a DateTime axis if the input key data is DateTime
-        static member ApplyStaticAxis(xty, pos) = (fun (ch:('T :> GenericChart)) -> 
+        static member ApplyStaticAxis(xty, pos, ?gap) = (fun (ch:('T :> GenericChart)) -> 
             let model = ch.Model
             match model.DefaultXAxis with 
             | null -> 
@@ -703,7 +714,12 @@ namespace FSharp.Charting
                 if xty = typeof<System.TimeSpan> then 
                     model.Axes.Add (Axes.TimeSpanAxis(Position=pos))
                 if xty = typeof<string> then 
-                    model.Axes.Add (Axes.CategoryAxis(Position=pos))
+                    match gap with
+                    | Some g -> 
+                        let a = Axes.CategoryAxis(Position=pos)
+                        a.GapWidth <- g
+                        model.Axes.Add (a)
+                    | _ -> model.Axes.Add (Axes.CategoryAxis(Position=pos))
             | _ -> ()
             ch)
 
@@ -730,6 +746,7 @@ namespace FSharp.Charting
             AxisXTitle |> Option.iter (fun t -> ensureDefaultXAxis().Title <- t)
             AxisYTitle |> Option.iter (fun t -> ensureDefaultYAxis().Title <- t)
             ch)
+
 
     /// Provides a set of static methods for creating charts.
     type Chart =
@@ -912,9 +929,13 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data:seq<('key :> key)*#value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data:seq<('key :> key)*#value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?ColumnWidth:float) = 
+           let gap = match ColumnWidth with 
+                     | Some columnWidth -> Some (1.0 - columnWidth)
+                     | _ -> None
            GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((k,v),labelOpt) -> ColumnItem(valueToDouble v)), ColumnSeries(ValueField="Value"))
-             |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom)
+             |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom, ?gap = gap)
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
@@ -925,8 +946,33 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data:seq<#value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
-           Chart.Column(indexData data,?Name=Name,?Title=Title,?Labels=Labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data:seq<#value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle, ?ColumnWidth) = 
+           Chart.Column(indexData data,?Name=Name,?Title=Title,?Labels=Labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=ColumnWidth)
+
+
+        /// <summary>Generates a Histogram with reasonable defaults.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Histogram(data:seq<#value>,?Name,?Title,?Color,?XTitle,?YTitle, ?LowerBound, ?UpperBound, ?Intervals) = 
+            let data' = data |> Seq.map valueToDouble
+            let lowerBound = match LowerBound with
+                            | Some LowerBound -> LowerBound
+                            | _ -> Seq.min data
+            let upperBound = match UpperBound with
+                            | Some UpperBound -> UpperBound
+                            | _ -> Seq.max data
+            let intervals = match Intervals with
+                            | Some Intervals -> Intervals
+                            | _ -> 30. // corresponds to what ggplot does
+            let data'' = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.Count)
+            let labels = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.LowerBound.ToString())
+            Chart.Column(indexData data'',?Name=Name,?Title=Title,?Labels=Some labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.95)
 
 #if INCOMPLETE_API
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
@@ -1785,8 +1831,9 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
-            Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=ColumnWidth)
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
         /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
@@ -1796,8 +1843,9 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ColumnIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
-            Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member ColumnIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=ColumnWidth)
 
 #if INCOMPLETE_API
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>

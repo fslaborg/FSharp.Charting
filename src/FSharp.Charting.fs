@@ -2573,7 +2573,7 @@ namespace FSharp.Charting
                             | _ -> 30. // corresponds to what ggplot does
             let data'' = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.Count)
             let labels = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.LowerBound.ToString())
-            Chart.Column(data'',?Name=Name,?Title=Title,?Labels=Some labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.05)
+            Chart.Column(data'',?Name=Name,?Title=Title,?Labels=Some labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.95)
 
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>

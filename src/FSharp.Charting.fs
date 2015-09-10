@@ -261,6 +261,10 @@ namespace FSharp.Charting
         do registerConvertor (fun (dto:DateTimeOffset) -> dto.DateTime :> key)
 
     module ChartTypes = 
+
+        /// An implementation of a histogram bin.
+        type Bin = { LowerBound: float; UpperBound: float; Count: int}
+
         /// An implementation type for labelled points on chart. This type should not be used directly.
         type public DataPoint(X: key, Y: value, Label: string) = 
             member __.Label = Label 
@@ -830,6 +834,13 @@ namespace FSharp.Charting
             // stacked values
             | StackedXYValues of seq<IEnumerable * IEnumerable>
 
+        let internal binData data lowerBound upperBound intervals =
+            seq{lowerBound .. (upperBound - lowerBound)/intervals .. upperBound }
+            |> Seq.pairwise
+            |> Seq.map (fun (l,u) -> 
+                                    let cnt = data |> Seq.filter (fun e -> e >= l && e < u) |> Seq.length
+                                    {LowerBound = l; UpperBound = u; Count = cnt}
+                        )
 
         // ----------------------------------------------------------------------------------
         // Utilities for working with enumerable and tuples
@@ -846,6 +857,8 @@ namespace FSharp.Charting
 
         // Converts Y value of a chart (defines the type too)
         let culture = System.Globalization.CultureInfo.InvariantCulture
+
+        let valueToDouble (x:value) = x.ToDouble(culture)
 
         open System.Collections.Specialized
         
@@ -2395,17 +2408,8 @@ namespace FSharp.Charting
             GenericChart.Create(mergeDataAndLabelsForY4 data Labels, fun() -> CandlestickChart() )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
-        /// <summary>Uses a sequence of columns to compare values across categories.</summary>
-        /// <param name="data">The data for the chart.</param>
-        /// <param name="Name">The name of the data set.</param>
-        /// <param name="Title">The title of the chart.</param>
-        /// <param name="Labels">The labels that match the data.</param>
-        /// <param name="Color">The color for the data.</param>
-        /// <param name="XTitle">The title of the X-axis.</param>
-        /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
-            GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Column))
-             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+        static member internal ConfigureColumn(c:GenericChart, property, vPointWidth) = 
+            vPointWidth |> Option.iter (fun v -> c.SetCustomProperty<float>(property, v))
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -2415,10 +2419,29 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
-            GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Column))
-             |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
-
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            let c =
+                GenericChart.Create(mergeDataAndLabelsForXY data Labels, fun () -> GenericChart(SeriesChartType.Column))
+                |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+            Chart.ConfigureColumn(c, "PointWidth", ColumnWidth)
+            c
+            
+        /// <summary>Uses a sequence of columns to compare values across categories.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            let c =
+                GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Column))
+                 |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+            Chart.ConfigureColumn(c, "PointWidth", ColumnWidth)
+            c
 
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -2528,6 +2551,30 @@ namespace FSharp.Charting
         static member Funnel(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
             GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> FunnelChart () )
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+
+        /// <summary>Generates a Histogram with reasonable defaults.</summary>
+        /// <param name="data">The data for the chart.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Histogram(data:seq<#value>,?Name,?Title,?Color,?XTitle,?YTitle, ?LowerBound, ?UpperBound, ?Intervals) = 
+            let data' = data |> Seq.map valueToDouble
+            let lowerBound = match LowerBound with
+                            | Some LowerBound -> LowerBound
+                            | _ -> Seq.min data
+            let upperBound = match UpperBound with
+                            | Some UpperBound -> UpperBound
+                            | _ -> Seq.max data
+            let intervals = match Intervals with
+                            | Some Intervals -> Intervals
+                            | _ -> 30. // corresponds to what ggplot does
+            let data'' = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.Count)
+            let labels = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.LowerBound.ToString())
+            Chart.Column(data'',?Name=Name,?Title=Title,?Labels=Some labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.05)
+
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -3292,8 +3339,9 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member Column(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
-            Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member Column(data:IObservable<#seq<#key * #value>>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            Chart.Column(NotifySeq.ofObservableReplacing data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=ColumnWidth)
 
         /// <summary>Uses a sequence of columns to compare values across categories.</summary>
         /// <param name="data">The data for the chart. Each observation adds a data element to the chart.</param>
@@ -3303,8 +3351,9 @@ namespace FSharp.Charting
         /// <param name="Color">The color for the data.</param>
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
-        static member ColumnIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle) = 
-            Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle)
+        /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
+        static member ColumnIncremental(data:IObservable<#key * #value>,?Name,?Title,(* ?Labels, *) ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+            Chart.Column(NotifySeq.ofObservableIncremental data,?Name=Name,?Title=Title(* ,?Labels=Labels *),?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=ColumnWidth)
 
         /// <summary>Similar to the Pie chart type, except that it has a hole in the center.</summary>
         /// <param name="data">The data for the chart. Each observation replaces the entire data on the chart.</param>

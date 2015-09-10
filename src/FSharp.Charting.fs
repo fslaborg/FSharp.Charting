@@ -2436,7 +2436,7 @@ namespace FSharp.Charting
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         /// <param name="ColumnWidth">The width of columns versus whitespace as a percentage.</param>
-        static member Column(data,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle,?ColumnWidth) = 
+        static member Column(data,?Name,?Title,?Labels,?Color,?XTitle,?YTitle,?ColumnWidth) = 
             let c =
                 GenericChart.Create(mergeDataAndLabelsForY data Labels, fun () -> GenericChart(SeriesChartType.Column))
                  |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
@@ -2573,10 +2573,9 @@ namespace FSharp.Charting
             let intervals = match Intervals with
                             | Some intervals -> intervals
                             | _ -> 30. // corresponds to what ggplot does
-            let data'' = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.Count)
-            let labels = (binData data' lowerBound upperBound intervals) |> Seq.map (fun b -> b.LowerBound.ToString())
-            Chart.Column(data'',?Name=Name,?Title=Title,?Labels=Some labels, ?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.95)
-
+            let bins = binData data' lowerBound upperBound intervals
+            let data'' = bins |> Seq.map (fun b -> (b.LowerBound.ToString(), b.Count))
+            Chart.Column(data'',?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=Some 0.95)
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>
         /// <param name="data">The data for the chart.</param>

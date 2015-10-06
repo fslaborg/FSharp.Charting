@@ -188,3 +188,4 @@ Chart.Line(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #
 Chart.Stock(timeHighLowOpenClose)
 Chart.ThreeLineBreak(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #SERIESNAME") 
 
+Chart.Histogram([for x in 1 .. 100 -> rand()*10.],LowerBound=0.,UpperBound=10.,Intervals=10.)

@@ -2102,8 +2102,8 @@ namespace FSharp.Charting
                     vMinimum |> Option.iter ax.set_Minimum
                     vMajorGrid |> Option.iter (fun (c:Grid) -> ax.set_MajorGrid c.Handle)
                     vMinorGrid |> Option.iter (fun (c:Grid) -> ax.set_MinorGrid c.Handle)
-                    vMajorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MajorTickMark c.Handle)
-                    vMinorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MinorTickMark c.Handle)
+                    vMajorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MajorTickMark c.Handle; ax.set_Interval c.Handle.Interval)
+                    vMinorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MinorTickMark c.Handle; ax.set_Interval c.Handle.Interval)
                     vName |> Option.iter ax.set_Name
                     vTitle |> Option.iter ax.set_Title
                     vTitleAlignment |> Option.iter ax.set_TitleAlignment

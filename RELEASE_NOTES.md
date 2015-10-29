@@ -1,3 +1,6 @@
+#### 0.90.13 - 29.10.2015
+* Fix problem https://github.com/fslaborg/FSharp.Charting/issues/33
+
 #### 0.90.12 - 07.07.2015
 * Fix problem with Gtk by removing use of Gtk nuget package
 

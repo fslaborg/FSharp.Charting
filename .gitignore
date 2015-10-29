@@ -10,3 +10,4 @@ temp/*
 .paket/paket.exe
 *.orig
 docs/output
+.fake

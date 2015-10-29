@@ -2,6 +2,8 @@ module Formatters
 #I "../../packages/FSharp.Formatting/lib/net40"
 #r "FSharp.Markdown.dll"
 #r "FSharp.Literate.dll"
+#r "FSharp.CodeFormat.dll"
+#r "RazorEngine.dll"
 #r "../../packages/FAKE/tools/FakeLib.dll"
 #load "../../bin/FSharp.Charting.fsx"
 
@@ -63,6 +65,6 @@ let createFsiEvaluator root output =
     | _ -> None 
     
   // Create FSI evaluator, register transformations & return
-  let fsiEvaluator = FsiEvaluator()
+  let fsiEvaluator = FsiEvaluator(fsiObj = FsiEvaluatorConfig.CreateNoOpFsiObject())
   fsiEvaluator.RegisterTransformation(transformation)
   fsiEvaluator

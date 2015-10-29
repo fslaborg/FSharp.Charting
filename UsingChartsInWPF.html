@@ -54,7 +54,12 @@
 
 <ul>
 <li>Add a reference to the FSharp.Charting nuget package</li>
-<li>Add a reference to WindowsFormsIngegration.dll to your WPF application.</li>
+<li>Add  references to the following additional DLLs from the base class library:
+<ul>
+<li>System.Drawing.dll</li>
+<li>System.Windows.Forms.dll</li>
+<li>WindowsFormsIntegration.dll</li>
+</ul></li>
 <li>Add a <a href="http://msdn.microsoft.com/en-us/library/ms751761.aspx">WindowsFormHost</a> element to your XAML in your F# or C# application and give the element a name</li>
 </ul>
 
@@ -68,9 +73,9 @@
 
 <p>// ...</p>
 
-<p>let winForm = window.Root.FindName("WinForm") :?> WindowsFormsHost</p>
+<p>let winForm = window.Root.FindName("WinForm") :?&gt; WindowsFormsHost</p>
 
-<p>let chart = Chart.Line [ for i in 0 .. 10 -> (i,i*i) ]</p>
+<p>let chart = Chart.Line [ for i in 0 .. 10 -&gt; (i,i*i) ]</p>
 
 <p>winForm.Child <- new ChartControl(chart)
 </pre></div></p>

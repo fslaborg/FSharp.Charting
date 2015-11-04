@@ -27,6 +27,12 @@
 #I "/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/gtk-sharp-2.0"
 #I "/usr/lib/mono/gtk-sharp-2.0"
 
+// In Ubuntu, GTK-sharp libraries are split into various directories
+#I "/usr/lib/cli/glib-sharp-2.0/"
+#I "/usr/lib/cli/atk-sharp-2.0/"
+#I "/usr/lib/cli/gtk-sharp-2.0/"
+#I "/usr/lib/cli/gdk-sharp-2.0/"
+
 #r "gtk-sharp.dll"
 #r "gdk-sharp.dll"
 #r "atk-sharp.dll"

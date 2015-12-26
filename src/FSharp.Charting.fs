@@ -1166,6 +1166,9 @@ namespace FSharp.Charting
             member internal x.Margin with get() = margin and set v = margin <- v
             member internal x.Name with get() = name and set v = name <- v
 
+            member x.ApplyToChart ( fn : Chart -> unit ) =
+                fn x.Chart
+
             /// Ensure the chart has a Title
             member internal x.ForceTitle() = 
                 match title with 

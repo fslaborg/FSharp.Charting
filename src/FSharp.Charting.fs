@@ -1168,6 +1168,7 @@ namespace FSharp.Charting
 
             member x.ApplyToChart ( fn : Chart -> unit ) =
                 fn x.Chart
+                x
 
             /// Ensure the chart has a Title
             member internal x.ForceTitle() = 

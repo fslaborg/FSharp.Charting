@@ -1145,6 +1145,7 @@ namespace FSharp.Charting
 
             let mutable data = ChartData.Values (NotifySeq.ignoreReset (NotifySeq.notifyOrOnce []), ChartValueType.Auto, "Item1", "Item2", "") 
             let mutable margin = DefaultMarginForEachChart
+            let mutable customizationFunctions : (Chart -> unit) list = []
 
             [<Obsolete("This type does not support GetHashCode()")>]
             override x.GetHashCode() = 0
@@ -1165,9 +1166,10 @@ namespace FSharp.Charting
             member internal x.Chart with get() = chart.Value and set v = chart <- evalLazy v
             member internal x.Margin with get() = margin and set v = margin <- v
             member internal x.Name with get() = name and set v = name <- v
+            member internal x.CustomizationFunctions with get() = customizationFunctions
 
             member x.ApplyToChart ( fn : Chart -> unit ) =
-                fn x.Chart
+                customizationFunctions <- ( fn :: customizationFunctions )
                 x
 
             /// Ensure the chart has a Title
@@ -3954,6 +3956,7 @@ namespace FSharp.Charting
                 frm.Text <- ProvideTitle ch
                 frm.Controls.Add(ctl)
                 frm.Show()
+                ch.CustomizationFunctions |> List.map (fun fn -> fn ch.Chart) |> ignore
                 ctl.Focus() |> ignore
                 frm
 

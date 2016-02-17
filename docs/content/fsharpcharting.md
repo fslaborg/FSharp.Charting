@@ -41,7 +41,7 @@ The following methods are used to style chart objects:
  * `WithTitle`
  * `WithXAxis`
  * `WithYAxis`
-
+ * `ApplyToChart`
 
 Please [contribute](contributing.html) more documentation on the following topics:
 

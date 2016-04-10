@@ -3160,16 +3160,10 @@ namespace FSharp.Charting
                 f.ShowDialog() |> ignore
 
         /// Save a chart to a file in png format
-        static member Save filename (chart:GenericChart) =
-            use cc = new ChartControl(chart)
-            cc.Dock <- DockStyle.Fill
-            use f = new Form()
-            f.Size <- System.Drawing.Size(800, 600)
-            f.Controls.Add cc
-            f.Load |> Event.add (fun _ -> chart.SaveChartAs(filename, ChartImageFormat.Png); f.Close()) 
-            // Removed Application.Run: Triggers exception in fsi.exe.  See issue https://github.com/fslaborg/FSharp.Charting/issues/38
-            // Application.Run f
-            f.ShowDialog() |> ignore
+        static member Save (filename:string) (chart:GenericChart) =
+            use cc = new ChartControl(chart, Dock=DockStyle.Fill,Width=800,Height=600)
+            chart.CopyAsBitmap().Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+            
 
 
     /// Contains static methods to construct charts whose data source is an event or observable which 

@@ -3956,7 +3956,7 @@ namespace FSharp.Charting
                 frm.Text <- ProvideTitle ch
                 frm.Controls.Add(ctl)
                 frm.Show()
-                ch.CustomizationFunctions |> List.map (fun fn -> fn ch.Chart) |> ignore
+                ch.CustomizationFunctions |> List.rev |> List.map (fun fn -> fn ch.Chart) |> ignore
                 ctl.Focus() |> ignore
                 frm
 

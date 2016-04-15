@@ -189,3 +189,16 @@ Chart.Stock(timeHighLowOpenClose)
 Chart.ThreeLineBreak(data,Name="SomeData").WithDataPointLabels(PointToolTip="Hello, I am #SERIESNAME") 
 
 Chart.Histogram([for x in 1 .. 100 -> rand()*10.],LowerBound=0.,UpperBound=10.,Intervals=10.)
+
+// Example of .ApplyToChart() used to alter the settings on the window chart and to access the chart child objects.
+// This can normally be done manually, in the chart property grid (right click the chart, then "Show Property Grid"). 
+// This is useful when you want to try out carious settings first. But once you know what you want, .ApplyToChart() 
+// allows programmatic access to the window properties. The two examples below are: IsUserSelectionEnabled essentially 
+// allows zooming in and out along the given axes, and the longer fiddly example below does the same work as .WithDataPointLabels() 
+// but across all series objects.
+[ Chart.Column(data); 
+  Chart.Column(data2) |> Chart.WithSeries.AxisType( YAxisType = Windows.Forms.DataVisualization.Charting.AxisType.Secondary ) ]
+|> Chart.Combine
+|> fun c -> c.WithLegend()
+             .ApplyToChart( fun c -> c.ChartAreas.[0].CursorX.IsUserSelectionEnabled <- true )
+             .ApplyToChart( fun c -> let _ = [0 .. c.Series.Count-1] |> List.map ( fun s -> c.Series.[ s ].ToolTip <- "#SERIESNAME (#VALX, #VAL{0:00000})" ) in () )

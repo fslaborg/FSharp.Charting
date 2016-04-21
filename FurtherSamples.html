@@ -232,6 +232,19 @@
 <span class="l">178: </span>
 <span class="l">179: </span>
 <span class="l">180: </span>
+<span class="l">181: </span>
+<span class="l">182: </span>
+<span class="l">183: </span>
+<span class="l">184: </span>
+<span class="l">185: </span>
+<span class="l">186: </span>
+<span class="l">187: </span>
+<span class="l">188: </span>
+<span class="l">189: </span>
+<span class="l">190: </span>
+<span class="l">191: </span>
+<span class="l">192: </span>
+<span class="l">193: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use FSharp.Charting.Gtk.fsx</span>
 <span class="prep">#I</span> <span class="s">&quot;packages/FSharp.Charting&quot;</span>
@@ -413,6 +426,19 @@
 <span onmouseout="hideTip(event, 'fs26', 514)" onmouseover="showTip(event, 'fs26', 514)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs79', 515)" onmouseover="showTip(event, 'fs79', 515)" class="f">ThreeLineBreak</span>(<span onmouseout="hideTip(event, 'fs5', 516)" onmouseover="showTip(event, 'fs5', 516)" class="i">data</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;SomeData&quot;</span>)<span class="o">.</span><span class="f">WithDataPointLabels</span>(<span class="i">PointToolTip</span><span class="o">=</span><span class="s">&quot;Hello, I am #SERIESNAME&quot;</span>) 
 
 <span onmouseout="hideTip(event, 'fs26', 517)" onmouseover="showTip(event, 'fs26', 517)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs80', 518)" onmouseover="showTip(event, 'fs80', 518)" class="f">Histogram</span>([<span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 519)" onmouseover="showTip(event, 'fs6', 519)" class="i">x</span> <span class="k">in</span> <span class="n">1</span> <span class="o">..</span> <span class="n">100</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs18', 520)" onmouseover="showTip(event, 'fs18', 520)" class="f">rand</span>()<span class="o">*</span><span class="n">10.</span>],<span class="i">LowerBound</span><span class="o">=</span><span class="n">0.</span>,<span class="i">UpperBound</span><span class="o">=</span><span class="n">10.</span>,<span class="i">Intervals</span><span class="o">=</span><span class="n">10.</span>)
+
+<span class="c">// Example of .ApplyToChart() used to alter the settings on the window chart and to access the chart child objects.</span>
+<span class="c">// This can normally be done manually, in the chart property grid (right click the chart, then &quot;Show Property Grid&quot;). </span>
+<span class="c">// This is useful when you want to try out carious settings first. But once you know what you want, .ApplyToChart() </span>
+<span class="c">// allows programmatic access to the window properties. The two examples below are: IsUserSelectionEnabled essentially </span>
+<span class="c">// allows zooming in and out along the given axes, and the longer fiddly example below does the same work as .WithDataPointLabels() </span>
+<span class="c">// but across all series objects.</span>
+[ <span onmouseout="hideTip(event, 'fs26', 521)" onmouseover="showTip(event, 'fs26', 521)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs58', 522)" onmouseover="showTip(event, 'fs58', 522)" class="f">Column</span>(<span onmouseout="hideTip(event, 'fs5', 523)" onmouseover="showTip(event, 'fs5', 523)" class="i">data</span>); 
+  <span onmouseout="hideTip(event, 'fs26', 524)" onmouseover="showTip(event, 'fs26', 524)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs58', 525)" onmouseover="showTip(event, 'fs58', 525)" class="f">Column</span>(<span onmouseout="hideTip(event, 'fs7', 526)" onmouseover="showTip(event, 'fs7', 526)" class="i">data2</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 527)" onmouseover="showTip(event, 'fs26', 527)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs81', 528)" onmouseover="showTip(event, 'fs81', 528)" class="i">WithSeries</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs82', 529)" onmouseover="showTip(event, 'fs82', 529)" class="f">AxisType</span>( <span class="i">YAxisType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs83', 530)" onmouseover="showTip(event, 'fs83', 530)" class="i">Windows</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs84', 531)" onmouseover="showTip(event, 'fs84', 531)" class="i">Forms</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs85', 532)" onmouseover="showTip(event, 'fs85', 532)" class="i">DataVisualization</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs86', 533)" onmouseover="showTip(event, 'fs86', 533)" class="i">Charting</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs87', 534)" onmouseover="showTip(event, 'fs87', 534)" class="t">AxisType</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs88', 535)" onmouseover="showTip(event, 'fs88', 535)" class="i">Secondary</span> ) ]
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 536)" onmouseover="showTip(event, 'fs26', 536)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs36', 537)" onmouseover="showTip(event, 'fs36', 537)" class="f">Combine</span>
+<span class="o">|&gt;</span> <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs89', 538)" onmouseover="showTip(event, 'fs89', 538)" class="i">c</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs89', 539)" onmouseover="showTip(event, 'fs89', 539)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs90', 540)" onmouseover="showTip(event, 'fs90', 540)" class="f">WithLegend</span>()
+             <span class="o">.</span><span class="f">ApplyToChart</span>( <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs91', 541)" onmouseover="showTip(event, 'fs91', 541)" class="i">c</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs91', 542)" onmouseover="showTip(event, 'fs91', 542)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs92', 543)" onmouseover="showTip(event, 'fs92', 543)" class="i">ChartAreas</span><span class="o">.</span>[<span class="n">0</span>]<span class="o">.</span><span class="i">CursorX</span><span class="o">.</span><span class="i">IsUserSelectionEnabled</span> <span class="o">&lt;-</span> <span class="k">true</span> )
+             <span class="o">.</span><span class="f">ApplyToChart</span>( <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs91', 544)" onmouseover="showTip(event, 'fs91', 544)" class="i">c</span> <span class="k">-&gt;</span> <span class="k">let</span> _ <span class="o">=</span> [<span class="n">0</span> <span class="o">..</span> <span onmouseout="hideTip(event, 'fs91', 545)" onmouseover="showTip(event, 'fs91', 545)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs93', 546)" onmouseover="showTip(event, 'fs93', 546)" class="i">Series</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs94', 547)" onmouseover="showTip(event, 'fs94', 547)" class="i">Count</span><span class="o">-</span><span class="n">1</span>] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs95', 548)" onmouseover="showTip(event, 'fs95', 548)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs96', 549)" onmouseover="showTip(event, 'fs96', 549)" class="f">map</span> ( <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs97', 550)" onmouseover="showTip(event, 'fs97', 550)" class="i">s</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs91', 551)" onmouseover="showTip(event, 'fs91', 551)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs93', 552)" onmouseover="showTip(event, 'fs93', 552)" class="i">Series</span><span class="o">.</span>[ <span onmouseout="hideTip(event, 'fs97', 553)" onmouseover="showTip(event, 'fs97', 553)" class="i">s</span> ]<span class="o">.</span><span class="i">ToolTip</span> <span class="o">&lt;-</span> <span class="s">&quot;#SERIESNAME (#VALX, #VAL{0:00000})&quot;</span> ) <span class="k">in</span> () )
 </code></pre></td>
 </tr>
 </table>
@@ -497,6 +523,23 @@
 <div class="tip" id="fs78">static member Chart.Stock : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.StockChart<br />static member Chart.Stock : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.StockChart</div>
 <div class="tip" id="fs79">static member Chart.ThreeLineBreak : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.ThreeLineBreakChart<br />static member Chart.ThreeLineBreak : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.ThreeLineBreakChart</div>
 <div class="tip" id="fs80">static member Chart.Histogram : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?LowerBound:float * ?UpperBound:float * ?Intervals:float -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs81">property Chart.WithSeries: SeriesProperties</div>
+<div class="tip" id="fs82">member SeriesProperties.AxisType : ?YAxisType:Windows.Forms.DataVisualization.Charting.AxisType * ?XAxisType:Windows.Forms.DataVisualization.Charting.AxisType -&gt; (&#39;T -&gt; &#39;T) (requires &#39;T :&gt; ChartTypes.GenericChart)</div>
+<div class="tip" id="fs83">namespace System.Windows</div>
+<div class="tip" id="fs84">namespace System.Windows.Forms</div>
+<div class="tip" id="fs85">namespace System.Windows.Forms.DataVisualization</div>
+<div class="tip" id="fs86">namespace System.Windows.Forms.DataVisualization.Charting</div>
+<div class="tip" id="fs87">type AxisType =<br />&#160;&#160;| Primary = 0<br />&#160;&#160;| Secondary = 1<br /><br />Full name: System.Windows.Forms.DataVisualization.Charting.AxisType</div>
+<div class="tip" id="fs88">field Windows.Forms.DataVisualization.Charting.AxisType.Secondary = 1</div>
+<div class="tip" id="fs89">val c : ChartTypes.GenericChart</div>
+<div class="tip" id="fs90">member ChartTypes.GenericChart.WithLegend : ?Enabled:bool * ?Title:string * ?Background:ChartTypes.Background * ?FontName:string * ?FontSize:float * ?FontStyle:FontStyle * ?Alignment:StringAlignment * ?Docking:ChartTypes.Docking * ?InsideArea:bool * ?TitleAlignment:StringAlignment * ?TitleFont:Font * ?TitleColor:Color * ?BorderColor:Color * ?BorderWidth:int * ?BorderDashStyle:ChartTypes.DashStyle -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs91">val c : Windows.Forms.DataVisualization.Charting.Chart</div>
+<div class="tip" id="fs92">property Windows.Forms.DataVisualization.Charting.Chart.ChartAreas: Windows.Forms.DataVisualization.Charting.ChartAreaCollection</div>
+<div class="tip" id="fs93">property Windows.Forms.DataVisualization.Charting.Chart.Series: Windows.Forms.DataVisualization.Charting.SeriesCollection</div>
+<div class="tip" id="fs94">property Collections.ObjectModel.Collection.Count: int</div>
+<div class="tip" id="fs95">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
+<div class="tip" id="fs96">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><br />Full name: Microsoft.FSharp.Collections.List.map</div>
+<div class="tip" id="fs97">val s : int</div>
 
         </div>
         <div class="span3">

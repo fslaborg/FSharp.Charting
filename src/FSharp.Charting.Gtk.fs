@@ -765,7 +765,7 @@ namespace FSharp.Charting
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Area(data:seq<('key :> key) * #value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
-           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((k,v),labelOpt) -> AreaChartItem(k, v)), AreaSeries(DataFieldX="X",DataFieldY="Y",Fill=AreaSeries().ActualColor))
+           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((k,v),_labelOpt) -> AreaChartItem(k, v)), AreaSeries(DataFieldX="X",DataFieldY="Y",Fill=AreaSeries().ActualColor))
              |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom)
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
@@ -789,7 +789,7 @@ namespace FSharp.Charting
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Bar(data:seq<('key :> key)*#value>,?Name,?Title,?Labels, ?Color,?XTitle,?YTitle) = 
-           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((k,v),labelOpt) -> BarItem(valueToDouble v)), BarSeries(ValueField="Value"))
+           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((_k,v),_labelOpt) -> BarItem(valueToDouble v)), BarSeries(ValueField="Value"))
              |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Left)
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
@@ -934,7 +934,7 @@ namespace FSharp.Charting
            let gap = match ColumnWidth with 
                      | Some columnWidth -> Some (1.0 - columnWidth)
                      | _ -> None
-           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((k,v),labelOpt) -> ColumnItem(valueToDouble v)), ColumnSeries(ValueField="Value"))
+           GenericChart.Create(data |> listen |> mergeLabels Labels |> makeItems (fun ((_k,v),_labelOpt) -> ColumnItem(valueToDouble v)), ColumnSeries(ValueField="Value"))
              |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom, ?gap = gap)
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
@@ -963,15 +963,18 @@ namespace FSharp.Charting
         /// <param name="Intervals">The number of intervals in the histogram.</param>
         static member Histogram(data:seq<#value>,?Name,?Title,?Color,?XTitle,?YTitle, ?LowerBound, ?UpperBound, ?Intervals) = 
             let data' = data |> Seq.map valueToDouble
-            let lowerBound = match LowerBound with
-                            | Some lowerBound -> lowerBound
-                            | _ -> Seq.min data
-            let upperBound = match UpperBound with
-                            | Some upperBound -> upperBound
-                            | _ -> Seq.max data
-            let intervals = match Intervals with
-                            | Some intervals -> intervals
-                            | _ -> 30. // corresponds to what ggplot does
+            let lowerBound = 
+                match LowerBound with
+                | Some lowerBound -> lowerBound
+                | _ -> Seq.min data'
+            let upperBound = 
+                match UpperBound with
+                | Some upperBound -> upperBound
+                | _ -> Seq.max data'
+            let intervals = 
+                match Intervals with
+                | Some intervals -> intervals
+                | _ -> 30. // corresponds to what ggplot does
             let bins = binData data' lowerBound upperBound intervals
             let data'' = bins |> Seq.map (fun b -> ( sprintf "%.2f" b.LowerBound), b.Count)
             Chart.Column(data'',?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle, ?ColumnWidth=Some 0.95)

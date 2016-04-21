@@ -7,3 +7,4 @@ nuget OxyPlot.GtkSharp 2014.1.546
 nuget OxyPlot.Core 2014.1.546
 nuget Nuget.CommandLine
 nuget FAKE
+nuget FSharp.Control.AsyncSeq

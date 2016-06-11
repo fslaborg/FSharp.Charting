@@ -2574,7 +2574,7 @@ namespace FSharp.Charting
                             | Some intervals -> intervals
                             | _ -> 30. // corresponds to what ggplot does
             let bins = binData data' lowerBound upperBound intervals
-            let data'' = bins |> Seq.map (fun b -> ( sprintf "%.2f" b.LowerBound), b.Count)
+            let data'' = bins |> Seq.map (fun b -> b.LowerBound, b.Count) 
             Chart.Column(data'',?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=Some 0.95)
 
         /// <summary>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</summary>

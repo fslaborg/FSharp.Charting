@@ -6,7 +6,7 @@
 *Summary:* This example shows a collection of LiveCharts, which update as data changes. 
 
 The input data comes from `IObservable` (or `IEvent`) sources.
-The data can be created using Rx, F# Event combinators or F# Observable combinators.
+The data can be created using F# AsyncSeq, Rx, F# Event combinators or F# Observable combinators.
 
 The samples are not yet individually documented.
 
@@ -20,10 +20,12 @@ The `EventEx-0.1.fsx` file can be found
 #I "packages/FSharp.Charting"
 #load "FSharp.Charting.fsx"
 #load "EventEx-0.1.fsx"
+#r "../../packages/FSharp.Control.AsyncSeq/lib/net45/FSharp.Control.AsyncSeq.dll"
 
-open FSharp.Charting
 open System
 open System.Drawing
+open FSharp.Charting
+open FSharp.Control
 
 (**
 The following code generates sample data - both as a list of values
@@ -105,3 +107,12 @@ LiveChart.Line(evData2).WithTitle("A")
 LiveChart.Line(evData,Name="MouseMove")
 
 LiveChart.Line(constantLiveTimeSeriesData)
+
+asyncSeq { 
+    yield (1,10) 
+    for i in 0 .. 100 do 
+       do! Async.Sleep 100
+       yield (i,i*i) 
+    }
+ |> AsyncSeq.toObservable
+ |> LiveChart.LineIncremental

@@ -1,3 +1,10 @@
+#### 0.90.14 - 20.04.2016
+* Enable access to underlying .NET chart object
+* Save chart objects without Form creation
+
+#### 0.90.13 - 29.10.2015
+* Fix problem https://github.com/fslaborg/FSharp.Charting/issues/33
+
 #### 0.90.12 - 07.07.2015
 * Fix problem with Gtk by removing use of Gtk nuget package
 

@@ -31,15 +31,10 @@ namespace FSharp.Charting
     open System.Drawing
     open System.Reflection
     open System.Runtime.InteropServices
-#if WEB
-    open System.Web.UI
-    open System.Web.UI.DataVisualization
-    open System.Web.UI.DataVisualization.Charting
-#else
+    open System.Threading
     open System.Windows.Forms
     open System.Windows.Forms.DataVisualization
     open System.Windows.Forms.DataVisualization.Charting
-#endif
 
     module private ClipboardMetafileHelper =
         [<DllImport("user32.dll")>]
@@ -222,16 +217,27 @@ namespace FSharp.Charting
                 curr := elems; ev.Trigger(curr,evArgs)
             coll, update
 
+        type IObservable<'T> with 
+            member source.ObserveOn(ctxt: SynchronizationContext) = 
+              { new IObservable<_> with
+                  member x.Subscribe(observer) =
+                    source.Subscribe
+                      ({ new IObserver<_> with
+                          member x.OnNext(v) = ctxt.Post(SendOrPostCallback(fun _ -> observer.OnNext(v)), null)
+                          member x.OnCompleted() = ctxt.Post(SendOrPostCallback(fun _ -> observer.OnCompleted()),null) 
+                          member x.OnError(e) = ctxt.Post(SendOrPostCallback(fun _ -> observer.OnError(e)),null) }) }
+                
+
         // TODO: only start on connect + proper replay + disconnect, OR use weak connection to source
         let ofObservableIncremental (source:IObservable<'T>) : INotifyEnumerableInternal<'T> = 
             let obs = new ObservableCollection<'T>()
-            source |> Observable.add (fun x -> obs.Add(x))
+            source.ObserveOn(SynchronizationContext.Current) |> Observable.add (fun x -> obs.Add(x))
             ofObservableCollection obs
 
         // TODO: only start on connect + proper replay + disconnect, OR use weak connection to source
         let ofObservableReplacing (source:IObservable<#seq<'T>>) : INotifyEnumerableInternal<'T> = 
             let coll, update = replacing ()
-            source |> Observable.add (fun elems -> update (Seq.toArray elems))
+            source.ObserveOn(SynchronizationContext.Current) |> Observable.add (fun elems -> update (Seq.toArray elems))
             coll
 
 
@@ -771,10 +777,7 @@ namespace FSharp.Charting
               typeof<Charting.TickMark>
               typeof<Charting.ElementPosition>; 
               typeof<Charting.AxisScaleView>; 
-#if WEB
-#else
               typeof<Charting.AxisScrollBar>; 
-#endif
              ]
 
         let internal typesToCopy = [ typeof<Font>; typeof<String> ]
@@ -1142,6 +1145,7 @@ namespace FSharp.Charting
 
             let mutable data = ChartData.Values (NotifySeq.ignoreReset (NotifySeq.notifyOrOnce []), ChartValueType.Auto, "Item1", "Item2", "") 
             let mutable margin = DefaultMarginForEachChart
+            let mutable customizationFunctions : (Chart -> unit) list = []
 
             [<Obsolete("This type does not support GetHashCode()")>]
             override x.GetHashCode() = 0
@@ -1162,6 +1166,11 @@ namespace FSharp.Charting
             member internal x.Chart with get() = chart.Value and set v = chart <- evalLazy v
             member internal x.Margin with get() = margin and set v = margin <- v
             member internal x.Name with get() = name and set v = name <- v
+            member internal x.CustomizationFunctions with get() = customizationFunctions
+
+            member x.ApplyToChart ( fn : Chart -> unit ) =
+                customizationFunctions <- ( fn :: customizationFunctions )
+                x
 
             /// Ensure the chart has a Title
             member internal x.ForceTitle() = 
@@ -1223,8 +1232,6 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 Bitmap.FromStream ms
 
-#if WEB
-#else
             /// Copy the contents of the chart to the clipboard
             member public x.CopyChartToClipboard() =
                 Clipboard.SetImage(x.CopyAsBitmap())
@@ -1236,7 +1243,6 @@ namespace FSharp.Charting
                 ms.Seek(0L, IO.SeekOrigin.Begin) |> ignore
                 use emf = new System.Drawing.Imaging.Metafile(ms)
                 ClipboardMetafileHelper.PutEnhMetafileOnClipboard(control.Handle, emf) |> ignore
-#endif
 
             /// Save the chart as an image in the specified image format
             member public x.SaveChartAs(filename : string, format : ChartImageFormat) =
@@ -1728,12 +1734,6 @@ namespace FSharp.Charting
 
             member x.Charts = charts
 
-#if WEB
-        type internal Orientation = 
-            | Horizontal = 0
-            | Vertical = 1
-#endif
-
         type internal SubplotChart(charts:GenericChart list, orientation:Orientation) = 
             inherit GenericChart(enum<SeriesChartType> -1)
             let r = 1.0 / (charts |> Seq.length |> float)
@@ -2012,14 +2012,9 @@ namespace FSharp.Charting
                 let (dl,dt,dr,db) = computeExtraDefaultMargins (0,0,0,0) srcChart
                 layoutSubCharts srcChart (0.0f + float32 dl, 0.0f + float32 dt, 100.0f - float32 dr, 100.0f - float32 db)
                 srcChart.TryChart |> Option.iter (applyProperties chart)
-#if WEB
-#else
                 chart.Dock <- DockStyle.Fill
-#endif
                 srcChart.Chart <- chart
 
-#if WEB
-#else
             let props = new PropertyGrid(Width = 250, Dock = DockStyle.Right, SelectedObject = chart, Visible = false)
   
             do
@@ -2061,8 +2056,6 @@ namespace FSharp.Charting
               menu.MenuItems.AddRange [| miCopy; miCopyEmf; miSave; miEdit |]
               self.ContextMenu <- menu
 
-#endif
-    
     open ChartTypes
 
     type private Helpers() = 
@@ -2102,8 +2095,8 @@ namespace FSharp.Charting
                     vMinimum |> Option.iter ax.set_Minimum
                     vMajorGrid |> Option.iter (fun (c:Grid) -> ax.set_MajorGrid c.Handle)
                     vMinorGrid |> Option.iter (fun (c:Grid) -> ax.set_MinorGrid c.Handle)
-                    vMajorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MajorTickMark c.Handle)
-                    vMinorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MinorTickMark c.Handle)
+                    vMajorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MajorTickMark c.Handle; ax.set_Interval c.Handle.Interval)
+                    vMinorTickMark |> Option.iter (fun (c:TickMark) -> ax.set_MinorTickMark c.Handle; ax.set_Interval c.Handle.Interval)
                     vName |> Option.iter ax.set_Name
                     vTitle |> Option.iter ax.set_Title
                     vTitleAlignment |> Option.iter ax.set_TitleAlignment
@@ -2564,15 +2557,18 @@ namespace FSharp.Charting
         /// <param name="Intervals">The number of intervals in the histogram.</param>
         static member Histogram(data:seq<#value>,?Name,?Title,?Color,?XTitle,?YTitle, ?LowerBound, ?UpperBound, ?Intervals) = 
             let data' = data |> Seq.map valueToDouble
-            let lowerBound = match LowerBound with
-                            | Some lowerBound -> lowerBound
-                            | _ -> Seq.min data
-            let upperBound = match UpperBound with
-                            | Some upperBound -> upperBound
-                            | _ -> Seq.max data
-            let intervals = match Intervals with
-                            | Some intervals -> intervals
-                            | _ -> 30. // corresponds to what ggplot does
+            let lowerBound = 
+                match LowerBound with
+                | Some lowerBound -> lowerBound
+                | _ -> Seq.min data'
+            let upperBound = 
+                match UpperBound with
+                | Some upperBound -> upperBound
+                | _ -> Seq.max data'
+            let intervals = 
+                match Intervals with
+                | Some intervals -> intervals
+                | _ -> 30. // corresponds to what ggplot does
             let bins = binData data' lowerBound upperBound intervals
             let data'' = bins |> Seq.map (fun b -> b.LowerBound, b.Count) 
             Chart.Column(data'',?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?ColumnWidth=Some 0.95)
@@ -3170,16 +3166,10 @@ namespace FSharp.Charting
                 f.ShowDialog() |> ignore
 
         /// Save a chart to a file in png format
-        static member Save filename (chart:GenericChart) =
-            use cc = new ChartControl(chart)
-            cc.Dock <- DockStyle.Fill
-            use f = new Form()
-            f.Size <- System.Drawing.Size(800, 600)
-            f.Controls.Add cc
-            f.Load |> Event.add (fun _ -> chart.SaveChartAs(filename, ChartImageFormat.Png); f.Close()) 
-            // Removed Application.Run: Triggers exception in fsi.exe.  See issue https://github.com/fslaborg/FSharp.Charting/issues/38
-            // Application.Run f
-            f.ShowDialog() |> ignore
+        static member Save (filename:string) (chart:GenericChart) =
+            use cc = new ChartControl(chart, Dock=DockStyle.Fill,Width=800,Height=600)
+            chart.CopyAsBitmap().Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+            
 
 
     /// Contains static methods to construct charts whose data source is an event or observable which 
@@ -3953,8 +3943,6 @@ namespace FSharp.Charting
                 and set(v) = x.SetCustomProperty<EmptyPointValue>("EmptyPointValue", v)
     *)
 
-#if WEB
-#else
             /// Display the chart in a new ChartControl in a new Form()
             member ch.ShowChart () =
                 let frm = new Form(Visible = true, TopMost = true, Width = 700, Height = 500)
@@ -3962,9 +3950,9 @@ namespace FSharp.Charting
                 frm.Text <- ProvideTitle ch
                 frm.Controls.Add(ctl)
                 frm.Show()
+                ch.CustomizationFunctions |> List.rev |> List.map (fun fn -> fn ch.Chart) |> ignore
                 ctl.Focus() |> ignore
                 frm
-#endif
 
         [<Obsolete("This type is now obsolete. Use the '.WithXYZ(...)' fluent methods or the 'Chart.WithXYZ(...)' pipeline methods instead.")>]
         type AreaProperties() = 

@@ -6,7 +6,7 @@ contributing to the F# Charting project.
 
  * This page can be edited by sending a pull request to FSharp.Charting on GitHub, so
    if you learn something when playing with F# Charting, please record your
-   [findings here](https://github.com/fslaborg/FSharp.Charting/blob/master/examples/contributing.md)!
+   [findings here](https://github.com/fslaborg/FSharp.Charting/blob/master/docs/content/contributing.md)!
 
  * If you want to discuss a feature (a good idea!), or if you want to look at 
    suggestions how you might contribute, check out the
@@ -37,16 +37,16 @@ The documentation for the F# Charting library is automatically generated using t
 embedded Markdown documentation) to a nice HTML documentation.
 
  * The template for the pages is in the `tools` directory
-   [on GitHub](https://github.com/fslaborg/FSharp.Charting/tree/master/tools).
+   [on GitHub](https://github.com/fslaborg/FSharp.Charting/tree/master/docs/tools).
 
  * The code for all the documents (including this one) can be found in the `examples` directory
-   [on GitHub](https://github.com/fslaborg/FSharp.Charting/tree/master/examples). If you 
+   [on GitHub](https://github.com/fslaborg/FSharp.Charting/tree/master/docs/content). If you
    find a bug or add a new feature, make sure you document it!
 
  * Images are not automatically generated - just use 'Save Image As' on a chart and add the PNG to the `images` folder.
  
  * If you want to build the documentation, simply run the `build.fsx` script
-   ([GitHub link](https://github.com/fslaborg/FSharp.Charting/blob/master/tools/build.fsx)) which
+   ([GitHub link](https://github.com/fslaborg/FSharp.Charting/blob/master/docs/tools/generate.fsx)) which
    builds the documentation.
  
  * The final documentation will be pushed to the `gh-pages` branch by the maintainers of the `fsharp`

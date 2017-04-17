@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chart - F# Charting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://fslab.org/FSharp.Charting/content/style.css" />
+    <script type="text/javascript" src="http://fslab.org/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
+          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+        </ul>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Chart</h1>
+<div class="xmldoc">
+<p>Provides a set of static methods for creating charts.</p>
+</div>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '390', 390)" onmouseover="showTip(event, '390', 390)">
+            Area(...)
+          </code>
+          <div class="tip" id="390">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187358&gt; * Name:string option * Title:string option * Labels:&#39;?187359 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187358, '?187359          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2261-2261" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '391', 391)" onmouseover="showTip(event, '391', 391)">
+            Area(...)
+          </code>
+          <div class="tip" id="391">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187354 * &#39;?187355&gt; * Name:string option * Title:string option * Labels:&#39;?187356 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187354, '?187355, '?187356          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2249-2249" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '392', 392)" onmouseover="showTip(event, '392', 392)">
+            Bar(...)
+          </code>
+          <div class="tip" id="392">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187365&gt; * Name:string option * Title:string option * Labels:&#39;?187366 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187365, '?187366          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2285-2285" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates comparisons among individual items</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '393', 393)" onmouseover="showTip(event, '393', 393)">
+            Bar(...)
+          </code>
+          <div class="tip" id="393">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187361 * &#39;?187362&gt; * Name:string option * Title:string option * Labels:&#39;?187363 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187361, '?187362, '?187363          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2273-2273" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates comparisons among individual items</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '394', 394)" onmouseover="showTip(event, '394', 394)">
+            BoxPlotFromData(...)
+          </code>
+          <div class="tip" id="394">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187377 * &#39;?187378&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * Percentile:int option * ShowAverage:bool option * ShowMedian:bool option * ShowUnusualValues:bool option * WhiskerPercentile:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187377, '?187378, '?187379          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2318-2318" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of one or more box symbols that summarize the distribution of the data within one or more data sets.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '395', 395)" onmouseover="showTip(event, '395', 395)">
+            BoxPlotFromStatistics(...)
+          </code>
+          <div class="tip" id="395">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187368 * &#39;?187369 * &#39;?187370 * &#39;?187371 * &#39;?187372 * &#39;?187373 * &#39;?187374&gt; * Name:string option * Title:string option * Labels:&#39;?187375 option * Color:Color option * XTitle:string option * YTitle:string option * Percentile:int option * ShowAverage:bool option * ShowMedian:bool option * ShowUnusualValues:bool option * WhiskerPercentile:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187368, '?187369, '?187370, '?187371, '?187372, '?187373, '?187374, '?187375          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2299-2299" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of one or more box symbols that summarize the distribution of the data within one or more data sets.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '396', 396)" onmouseover="showTip(event, '396', 396)">
+            Bubble(...)
+          </code>
+          <div class="tip" id="396">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187387 * &#39;?187388&gt; * Name:string option * Title:string option * Labels:&#39;?187389 option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187387, '?187388, '?187389          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2368-2368" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '397', 397)" onmouseover="showTip(event, '397', 397)">
+            Bubble(...)
+          </code>
+          <div class="tip" id="397">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187382 * &#39;?187383 * &#39;?187384&gt; * Name:string option * Title:string option * Labels:&#39;?187385 option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187382, '?187383, '?187384, '?187385          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2349-2349" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '398', 398)" onmouseover="showTip(event, '398', 398)">
+            Candlestick(...)
+          </code>
+          <div class="tip" id="398">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187398 * &#39;?187399 * &#39;?187400 * &#39;?187401&gt; * Name:string option * Title:string option * Labels:&#39;?187402 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?187398, '?187399, '?187400, '?187401, '?187402          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2394-2394" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Used to display stock information using high, low, open and close values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '399', 399)" onmouseover="showTip(event, '399', 399)">
+            Candlestick(...)
+          </code>
+          <div class="tip" id="399">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187391 * &#39;?187392 * &#39;?187393 * &#39;?187394 * &#39;?187395&gt; * Name:string option * Title:string option * Labels:&#39;?187396 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?187391, '?187392, '?187393, '?187394, '?187395, '?187396          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2382-2382" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Used to display stock information using high, low, open and close values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '400', 400)" onmouseover="showTip(event, '400', 400)">
+            Column(...)
+          </code>
+          <div class="tip" id="400">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187408&gt; * Name:string option * Title:string option * Labels:&#39;?187409 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187408, '?187409          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2418-2418" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses a sequence of columns to compare values across categories.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '401', 401)" onmouseover="showTip(event, '401', 401)">
+            Column(...)
+          </code>
+          <div class="tip" id="401">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187404 * &#39;?187405&gt; * Name:string option * Title:string option * Labels:&#39;?187406 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187404, '?187405, '?187406          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2406-2406" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses a sequence of columns to compare values across categories.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '402', 402)" onmouseover="showTip(event, '402', 402)">
+            Columns(charts)
+          </code>
+          <div class="tip" id="402">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3108-3108" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts placed in columns</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '403', 403)" onmouseover="showTip(event, '403', 403)">
+            Combine(charts)
+          </code>
+          <div class="tip" id="403">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3112-3112" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts merged</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '404', 404)" onmouseover="showTip(event, '404', 404)">
+            Doughnut(...)
+          </code>
+          <div class="tip" id="404">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187415&gt; * Name:string option * Title:string option * Labels:&#39;?187416 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
+                          <strong>Type parameters:</strong> '?187415, '?187416          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2443-2443" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Pie chart type, except that it has a hole in the center.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '405', 405)" onmouseover="showTip(event, '405', 405)">
+            Doughnut(...)
+          </code>
+          <div class="tip" id="405">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187411 * &#39;?187412&gt; * Name:string option * Title:string option * Labels:&#39;?187413 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
+                          <strong>Type parameters:</strong> '?187411, '?187412, '?187413          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2431-2431" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Pie chart type, except that it has a hole in the center.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '406', 406)" onmouseover="showTip(event, '406', 406)">
+            ErrorBar(...)
+          </code>
+          <div class="tip" id="406">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187418 * &#39;?187419 * &#39;?187420 * &#39;?187421&gt; * Name:string option * Title:string option * Labels:&#39;?187422 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ErrorBarChart<br />
+                          <strong>Type parameters:</strong> '?187418, '?187419, '?187420, '?187421, '?187422          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2455-2455" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '407', 407)" onmouseover="showTip(event, '407', 407)">
+            FastLine(...)
+          </code>
+          <div class="tip" id="407">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187428&gt; * Name:string option * Title:string option * Labels:&#39;?187429 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187428, '?187429          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2479-2479" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '408', 408)" onmouseover="showTip(event, '408', 408)">
+            FastLine(...)
+          </code>
+          <div class="tip" id="408">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187424 * &#39;?187425&gt; * Name:string option * Title:string option * Labels:&#39;?187426 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187424, '?187425, '?187426          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2467-2467" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '409', 409)" onmouseover="showTip(event, '409', 409)">
+            FastPoint(...)
+          </code>
+          <div class="tip" id="409">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187435&gt; * Name:string option * Title:string option * Labels:&#39;?187436 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187435, '?187436          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2504-2504" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '410', 410)" onmouseover="showTip(event, '410', 410)">
+            FastPoint(...)
+          </code>
+          <div class="tip" id="410">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187431 * &#39;?187432&gt; * Name:string option * Title:string option * Labels:&#39;?187433 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187431, '?187432, '?187433          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2492-2492" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '411', 411)" onmouseover="showTip(event, '411', 411)">
+            Funnel(...)
+          </code>
+          <div class="tip" id="411">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187442&gt; * Name:string option * Title:string option * Labels:&#39;?187443 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
+                          <strong>Type parameters:</strong> '?187442, '?187443          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2528-2528" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays in a funnel shape data that equals 100% when totaled.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '412', 412)" onmouseover="showTip(event, '412', 412)">
+            Funnel(...)
+          </code>
+          <div class="tip" id="412">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187438 * &#39;?187439&gt; * Name:string option * Title:string option * Labels:&#39;?187440 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
+                          <strong>Type parameters:</strong> '?187438, '?187439, '?187440          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2516-2516" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays in a funnel shape data that equals 100% when totaled.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '413', 413)" onmouseover="showTip(event, '413', 413)">
+            Kagi(...)
+          </code>
+          <div class="tip" id="413">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187449&gt; * Name:string option * Title:string option * Labels:&#39;?187450 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
+                          <strong>Type parameters:</strong> '?187449, '?187450          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2552-2552" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '414', 414)" onmouseover="showTip(event, '414', 414)">
+            Kagi(...)
+          </code>
+          <div class="tip" id="414">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187445 * &#39;?187446&gt; * Name:string option * Title:string option * Labels:&#39;?187447 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
+                          <strong>Type parameters:</strong> '?187445, '?187446, '?187447          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2540-2540" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '415', 415)" onmouseover="showTip(event, '415', 415)">
+            Line(...)
+          </code>
+          <div class="tip" id="415">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187456&gt; * Name:string option * Title:string option * Labels:&#39;?187457 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187456, '?187457          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2576-2576" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates trends in data with the passing of time.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '416', 416)" onmouseover="showTip(event, '416', 416)">
+            Line(...)
+          </code>
+          <div class="tip" id="416">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187452 * &#39;?187453&gt; * Name:string option * Title:string option * Labels:&#39;?187454 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187452, '?187453, '?187454          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2564-2564" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illustrates trends in data with the passing of time.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '417', 417)" onmouseover="showTip(event, '417', 417)">
+            Pie(...)
+          </code>
+          <div class="tip" id="417">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187463&gt; * Name:string option * Title:string option * Labels:&#39;?187464 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?187463, '?187464          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2601-2601" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '418', 418)" onmouseover="showTip(event, '418', 418)">
+            Pie(...)
+          </code>
+          <div class="tip" id="418">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187459 * &#39;?187460&gt; * Name:string option * Title:string option * Labels:&#39;?187461 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?187459, '?187460, '?187461          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2589-2589" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '419', 419)" onmouseover="showTip(event, '419', 419)">
+            Point(...)
+          </code>
+          <div class="tip" id="419">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187470&gt; * Name:string option * Title:string option * Labels:&#39;?187471 option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187470, '?187471          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2625-2625" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses points to represent data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '420', 420)" onmouseover="showTip(event, '420', 420)">
+            Point(...)
+          </code>
+          <div class="tip" id="420">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187466 * &#39;?187467&gt; * Name:string option * Title:string option * Labels:&#39;?187468 option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187466, '?187467, '?187468          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2613-2613" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Uses points to represent data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '421', 421)" onmouseover="showTip(event, '421', 421)">
+            PointAndFigure(...)
+          </code>
+          <div class="tip" id="421">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187478 * &#39;?187479&gt; * Name:string option * Title:string option * Labels:&#39;?187480 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
+                          <strong>Type parameters:</strong> '?187478, '?187479, '?187480          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2649-2649" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Disregards the passage of time and only displays changes in prices.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '422', 422)" onmouseover="showTip(event, '422', 422)">
+            PointAndFigure(...)
+          </code>
+          <div class="tip" id="422">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187473 * &#39;?187474 * &#39;?187475&gt; * Name:string option * Title:string option * Labels:&#39;?187476 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
+                          <strong>Type parameters:</strong> '?187473, '?187474, '?187475, '?187476          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2637-2637" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Disregards the passage of time and only displays changes in prices.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '423', 423)" onmouseover="showTip(event, '423', 423)">
+            Polar(...)
+          </code>
+          <div class="tip" id="423">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187486&gt; * Name:string option * Title:string option * Labels:&#39;?187487 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
+                          <strong>Type parameters:</strong> '?187486, '?187487          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2673-2673" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular graph on which data points are displayed using the angle, and the distance from the center point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '424', 424)" onmouseover="showTip(event, '424', 424)">
+            Polar(...)
+          </code>
+          <div class="tip" id="424">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187482 * &#39;?187483&gt; * Name:string option * Title:string option * Labels:&#39;?187484 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
+                          <strong>Type parameters:</strong> '?187482, '?187483, '?187484          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2661-2661" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular graph on which data points are displayed using the angle, and the distance from the center point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '425', 425)" onmouseover="showTip(event, '425', 425)">
+            Pyramid(...)
+          </code>
+          <div class="tip" id="425">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187493&gt; * Name:string option * Title:string option * Labels:&#39;?187494 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
+                          <strong>Type parameters:</strong> '?187493, '?187494          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2699-2699" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays data that, when combined, equals 100%.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '426', 426)" onmouseover="showTip(event, '426', 426)">
+            Pyramid(...)
+          </code>
+          <div class="tip" id="426">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187489 * &#39;?187490&gt; * Name:string option * Title:string option * Labels:&#39;?187491 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
+                          <strong>Type parameters:</strong> '?187489, '?187490, '?187491          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2686-2686" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays data that, when combined, equals 100%.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '427', 427)" onmouseover="showTip(event, '427', 427)">
+            Radar(...)
+          </code>
+          <div class="tip" id="427">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187500&gt; * Name:string option * Title:string option * Labels:&#39;?187501 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
+                          <strong>Type parameters:</strong> '?187500, '?187501          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2729-2729" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular chart that is used primarily as a data
+comparison tool.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '428', 428)" onmouseover="showTip(event, '428', 428)">
+            Radar(...)
+          </code>
+          <div class="tip" id="428">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187496 * &#39;?187497&gt; * Name:string option * Title:string option * Labels:&#39;?187498 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
+                          <strong>Type parameters:</strong> '?187496, '?187497, '?187498          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2714-2714" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A circular chart that is used primarily as a data
+comparison tool.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '429', 429)" onmouseover="showTip(event, '429', 429)">
+            Range(...)
+          </code>
+          <div class="tip" id="429">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187508 * &#39;?187509&gt; * Name:string option * Title:string option * Labels:&#39;?187510 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187508, '?187509, '?187510          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2761-2761" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per data
+point, with each Y value being drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '430', 430)" onmouseover="showTip(event, '430', 430)">
+            Range(...)
+          </code>
+          <div class="tip" id="430">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187503 * &#39;?187504 * &#39;?187505&gt; * Name:string option * Title:string option * Labels:&#39;?187506 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187503, '?187504, '?187505, '?187506          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2745-2745" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per data
+point, with each Y value being drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '431', 431)" onmouseover="showTip(event, '431', 431)">
+            RangeBar(...)
+          </code>
+          <div class="tip" id="431">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187517 * &#39;?187518&gt; * Name:string option * Title:string option * Labels:&#39;?187519 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187517, '?187518, '?187519          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2790-2790" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays separate events that have beginning and end values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '432', 432)" onmouseover="showTip(event, '432', 432)">
+            RangeBar(...)
+          </code>
+          <div class="tip" id="432">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187512 * &#39;?187513 * &#39;?187514&gt; * Name:string option * Title:string option * Labels:&#39;?187515 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187512, '?187513, '?187514, '?187515          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2775-2775" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays separate events that have beginning and end values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '433', 433)" onmouseover="showTip(event, '433', 433)">
+            RangeColumn(...)
+          </code>
+          <div class="tip" id="433">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187526 * &#39;?187527&gt; * Name:string option * Title:string option * Labels:&#39;?187528 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187526, '?187527, '?187528          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2821-2821" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values
+per data point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '434', 434)" onmouseover="showTip(event, '434', 434)">
+            RangeColumn(...)
+          </code>
+          <div class="tip" id="434">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187521 * &#39;?187522 * &#39;?187523&gt; * Name:string option * Title:string option * Labels:&#39;?187524 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187521, '?187522, '?187523, '?187524          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2806-2806" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values
+per data point.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '435', 435)" onmouseover="showTip(event, '435', 435)">
+            RegisterKeyConvertor(conversion)
+          </code>
+          <div class="tip" id="435">
+            <strong>Signature:</strong> (conversion:(&#39;T -&gt; key)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2238-2238" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Register a function that is used to automatically transform X values (keys) 
+of a non-primitive type to one of the types supported by the charting library
+(for example, by default DateTimeOffset is converted to DateTime)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '436', 436)" onmouseover="showTip(event, '436', 436)">
+            Renko(...)
+          </code>
+          <div class="tip" id="436">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187534&gt; * Name:string option * Title:string option * Labels:&#39;?187535 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
+                          <strong>Type parameters:</strong> '?187534, '?187535          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2853-2853" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '437', 437)" onmouseover="showTip(event, '437', 437)">
+            Renko(...)
+          </code>
+          <div class="tip" id="437">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187530 * &#39;?187531&gt; * Name:string option * Title:string option * Labels:&#39;?187532 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
+                          <strong>Type parameters:</strong> '?187530, '?187531, '?187532          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2837-2837" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of connecting vertical lines where the thickness
+and direction of the lines are dependent on the action
+of the price value.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '438', 438)" onmouseover="showTip(event, '438', 438)">
+            Rows(charts)
+          </code>
+          <div class="tip" id="438">
+            <strong>Signature:</strong> charts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3104-3104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a combined chart with the given charts placed in rows</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '439', 439)" onmouseover="showTip(event, '439', 439)">
+            Spline(...)
+          </code>
+          <div class="tip" id="439">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187541&gt; * Name:string option * Title:string option * Labels:&#39;?187542 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187541, '?187542          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2883-2883" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A Line chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '440', 440)" onmouseover="showTip(event, '440', 440)">
+            Spline(...)
+          </code>
+          <div class="tip" id="440">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187537 * &#39;?187538&gt; * Name:string option * Title:string option * Labels:&#39;?187539 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187537, '?187538, '?187539          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2868-2868" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>A Line chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '441', 441)" onmouseover="showTip(event, '441', 441)">
+            SplineArea(...)
+          </code>
+          <div class="tip" id="441">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187548&gt; * Name:string option * Title:string option * Labels:&#39;?187549 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187548, '?187549          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2913-2913" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>An Area chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '442', 442)" onmouseover="showTip(event, '442', 442)">
+            SplineArea(...)
+          </code>
+          <div class="tip" id="442">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187544 * &#39;?187545&gt; * Name:string option * Title:string option * Labels:&#39;?187546 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187544, '?187545, '?187546          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2898-2898" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>An Area chart that plots a fitted curve through each
+data point in a series.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '443', 443)" onmouseover="showTip(event, '443', 443)">
+            SplineRange(...)
+          </code>
+          <div class="tip" id="443">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187556 * &#39;?187557&gt; * Name:string option * Title:string option * Labels:&#39;?187558 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187556, '?187557, '?187558          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2946-2946" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per
+data point, with each Y value drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '444', 444)" onmouseover="showTip(event, '444', 444)">
+            SplineRange(...)
+          </code>
+          <div class="tip" id="444">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187551 * &#39;?187552 * &#39;?187553&gt; * Name:string option * Title:string option * Labels:&#39;?187554 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187551, '?187552, '?187553, '?187554          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2930-2930" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a range of data by plotting two Y values per
+data point, with each Y value drawn as a line
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '445', 445)" onmouseover="showTip(event, '445', 445)">
+            StackedArea(...)
+          </code>
+          <div class="tip" id="445">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187603&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187603, '?187604, '?187605          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3086-3086" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked areas.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '446', 446)" onmouseover="showTip(event, '446', 446)">
+            StackedArea100(...)
+          </code>
+          <div class="tip" id="446">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187607&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187607, '?187608, '?187609          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3099-3099" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked areas.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '447', 447)" onmouseover="showTip(event, '447', 447)">
+            StackedBar(...)
+          </code>
+          <div class="tip" id="447">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187587&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187587, '?187588, '?187589          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3034-3034" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked bars.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '448', 448)" onmouseover="showTip(event, '448', 448)">
+            StackedBar100(...)
+          </code>
+          <div class="tip" id="448">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187591&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187591, '?187592, '?187593          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3047-3047" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked bars.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '449', 449)" onmouseover="showTip(event, '449', 449)">
+            StackedColumn(...)
+          </code>
+          <div class="tip" id="449">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187595&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187595, '?187596, '?187597          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3060-3060" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked columns.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '450', 450)" onmouseover="showTip(event, '450', 450)">
+            StackedColumn100(...)
+          </code>
+          <div class="tip" id="450">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187599&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * StackedGroupName:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187599, '?187600, '?187601          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3073-3073" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays series of the same chart type as stacked columns.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '451', 451)" onmouseover="showTip(event, '451', 451)">
+            StepLine(...)
+          </code>
+          <div class="tip" id="451">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187564&gt; * Name:string option * Title:string option * Labels:&#39;?187565 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187564, '?187565          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2970-2970" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '452', 452)" onmouseover="showTip(event, '452', 452)">
+            StepLine(...)
+          </code>
+          <div class="tip" id="452">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187560 * &#39;?187561&gt; * Name:string option * Title:string option * Labels:&#39;?187562 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?187560, '?187561, '?187562          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2958-2958" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Similar to the Line chart type, but uses vertical and horizontal lines to connect the data points in a series forming a step-like progression.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '453', 453)" onmouseover="showTip(event, '453', 453)">
+            Stock(...)
+          </code>
+          <div class="tip" id="453">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187574 * &#39;?187575 * &#39;?187576 * &#39;?187577&gt; * Name:string option * Title:string option * Labels:&#39;?187578 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?187574, '?187575, '?187576, '?187577, '?187578          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2995-2995" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays significant stock price points including the high, low, open and close price points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '454', 454)" onmouseover="showTip(event, '454', 454)">
+            Stock(...)
+          </code>
+          <div class="tip" id="454">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187567 * &#39;?187568 * &#39;?187569 * &#39;?187570 * &#39;?187571&gt; * Name:string option * Title:string option * Labels:&#39;?187572 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?187567, '?187568, '?187569, '?187570, '?187571, '?187572          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L2983-2983" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays significant stock price points including the high, low, open and close price points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '455', 455)" onmouseover="showTip(event, '455', 455)">
+            ThreeLineBreak(...)
+          </code>
+          <div class="tip" id="455">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187584&gt; * Name:string option * Title:string option * Labels:&#39;?187585 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
+                          <strong>Type parameters:</strong> '?187584, '?187585          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3020-3020" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '456', 456)" onmouseover="showTip(event, '456', 456)">
+            ThreeLineBreak(...)
+          </code>
+          <div class="tip" id="456">
+            <strong>Signature:</strong> (data:seq&lt;&#39;?187580 * &#39;?187581&gt; * Name:string option * Title:string option * Labels:&#39;?187582 option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
+                          <strong>Type parameters:</strong> '?187580, '?187581, '?187582          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3008-3008" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <a href="http://fslab.org/FSharp.Charting/index.html">
+            <img src="http://fslab.org/FSharp.Charting/images/logo.png" style="width:140px;height:140px;margin:10px 0px 0px 35px;border-style:none;" />
+          </a>
+
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">F# Charting</li>
+            <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li class="divider"></li>
+            <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/BarAndColumnCharts.html">Bar and Column Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/BoxPlotCharts.html">BoxPlot Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/LiveChartSamples.html">Live Animated Charts</a></li>
+            <!-- <li><a href="FurtherSamples.html">Further Samples</a></li> -->
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fslab.org/FSharp.Charting/reference/fsharp-charting-chart.html">Chart API reference</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/reference/fsharp-charting-livechart.html">LiveChart API reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fslaborg/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>

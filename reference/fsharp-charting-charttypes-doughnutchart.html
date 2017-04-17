@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DoughnutChart - F# Charting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://fslab.org/FSharp.Charting/content/style.css" />
+    <script type="text/javascript" src="http://fslab.org/FSharp.Charting/content/tips.js"></script>
+
+    <script type="text/javascript">
+      // Redirect using JavaScript - which is not perfect, but AFAIK the best we can do 
+      // (We also generate link rel="canonical" (below) to let Google know *when we can*
+      if (window.location.host == "fsharp.github.io") {
+        window.location = window.location.toString().replace("fsharp.github.io", "fslab.org");
+      }
+    </script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
+          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+        </ul>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>DoughnutChart</h1>
+<div class="xmldoc">
+<p>Similar to the Pie chart type, except that it has
+a hole in the center.</p>
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
+            new()
+          </code>
+          <div class="tip" id="91">
+            <strong>Signature:</strong> unit -&gt; DoughnutChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1265-1265" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
+            DoughnutRadius()
+          </code>
+          <div class="tip" id="92">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1284-1284" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The radius of the doughnut portion in the Doughnut
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
+            DoughnutRadius()
+          </code>
+          <div class="tip" id="93">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1283-1283" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The radius of the doughnut portion in the Doughnut
+chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
+            Exploded()
+          </code>
+          <div class="tip" id="94">
+            <strong>Signature:</strong> unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1289-1289" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Specifies whether the Pie or Doughnut data point is exploded.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
+            Exploded()
+          </code>
+          <div class="tip" id="95">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1288-1288" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Specifies whether the Pie or Doughnut data point is exploded.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
+            LabelLineSize3D()
+          </code>
+          <div class="tip" id="96">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1275-1275" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The 3D label line size as a percentage of
+the default size.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
+            LabelLineSize3D()
+          </code>
+          <div class="tip" id="97">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1274-1274" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The 3D label line size as a percentage of
+the default size.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
+            LabelsHorizontalLineSize()
+          </code>
+          <div class="tip" id="98">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1298-1298" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The size of the horizontal segment of the callout
+line.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '99', 99)" onmouseover="showTip(event, '99', 99)">
+            LabelsHorizontalLineSize()
+          </code>
+          <div class="tip" id="99">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1297-1297" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The size of the horizontal segment of the callout
+line.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '100', 100)" onmouseover="showTip(event, '100', 100)">
+            LabelsRadialLineSize()
+          </code>
+          <div class="tip" id="100">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1304-1304" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The size of the radial segment of the callout line.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '101', 101)" onmouseover="showTip(event, '101', 101)">
+            LabelsRadialLineSize()
+          </code>
+          <div class="tip" id="101">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1303-1303" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The size of the radial segment of the callout line.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '102', 102)" onmouseover="showTip(event, '102', 102)">
+            MinimumRelativePieSize()
+          </code>
+          <div class="tip" id="102">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1310-1310" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The minimum pie or doughnut size.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '103', 103)" onmouseover="showTip(event, '103', 103)">
+            MinimumRelativePieSize()
+          </code>
+          <div class="tip" id="103">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1309-1309" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The minimum pie or doughnut size.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '104', 104)" onmouseover="showTip(event, '104', 104)">
+            PieDrawingStyle()
+          </code>
+          <div class="tip" id="104">
+            <strong>Signature:</strong> unit -&gt; PieDrawingStyle<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1315-1315" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The drawing style of the data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '105', 105)" onmouseover="showTip(event, '105', 105)">
+            PieDrawingStyle()
+          </code>
+          <div class="tip" id="105">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1314-1314" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The drawing style of the data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '106', 106)" onmouseover="showTip(event, '106', 106)">
+            PieLabelStyle()
+          </code>
+          <div class="tip" id="106">
+            <strong>Signature:</strong> unit -&gt; PieLabelStyle<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1320-1320" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The label style of the data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '107', 107)" onmouseover="showTip(event, '107', 107)">
+            PieLabelStyle()
+          </code>
+          <div class="tip" id="107">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1319-1319" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The label style of the data points.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '108', 108)" onmouseover="showTip(event, '108', 108)">
+            PieLineColor()
+          </code>
+          <div class="tip" id="108">
+            <strong>Signature:</strong> unit -&gt; Color<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1326-1326" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The color of the radial and horizontal segments of
+the callout lines.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '109', 109)" onmouseover="showTip(event, '109', 109)">
+            PieLineColor()
+          </code>
+          <div class="tip" id="109">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1325-1325" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The color of the radial and horizontal segments of
+the callout lines.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '110', 110)" onmouseover="showTip(event, '110', 110)">
+            PieStartAngle()
+          </code>
+          <div class="tip" id="110">
+            <strong>Signature:</strong> unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1332-1332" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The angle of the data point in the Pie or Doughnut chart.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '111', 111)" onmouseover="showTip(event, '111', 111)">
+            PieStartAngle()
+          </code>
+          <div class="tip" id="111">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L1331-1331" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The angle of the data point in the Pie or Doughnut chart.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <a href="http://fslab.org/FSharp.Charting/index.html">
+            <img src="http://fslab.org/FSharp.Charting/images/logo.png" style="width:140px;height:140px;margin:10px 0px 0px 35px;border-style:none;" />
+          </a>
+
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">F# Charting</li>
+            <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
+            <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li class="divider"></li>
+            <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/BarAndColumnCharts.html">Bar and Column Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/PieAndDougnutCharts.html">Pie and Doughnut Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/StockAndCandlestickCharts.html">Stock and Candlestick Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/BoxPlotCharts.html">BoxPlot Charts</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/LiveChartSamples.html">Live Animated Charts</a></li>
+            <!-- <li><a href="FurtherSamples.html">Further Samples</a></li> -->
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://fslab.org/FSharp.Charting/reference/fsharp-charting-chart.html">Chart API reference</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/reference/fsharp-charting-livechart.html">LiveChart API reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fslaborg/FSharp.Charting"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>

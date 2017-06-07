@@ -44,10 +44,11 @@
 // This means that using #I __SOURCE_DIRECTORY__ is sufficient to enable local resolution of #r and #I paths within an included script file.
 
 #I __SOURCE_DIRECTORY__
+#I "lib/net40"
 
-#r "lib/net40/OxyPlot.dll"
-#r "lib/net40/OxyPlot.GtkSharp.dll"
-#r "lib/net40/FSharp.Charting.Gtk.dll"
+#r "OxyPlot.dll"
+#r "OxyPlot.GtkSharp.dll"
+#r "FSharp.Charting.Gtk.dll"
 
 open System
 let verifyMac () = 

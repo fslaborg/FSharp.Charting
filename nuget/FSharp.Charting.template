@@ -1,0 +1,22 @@
+type file
+id FSharp.Charting
+licenseurl http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md
+projecturl http://fslab.org/FSharp.Charting
+iconurl https://raw.github.com/fslaborg/FSharp.Charting/master/misc/logo.png
+description
+  The F# Charting library (FSharp.Charting.dll) is a compositional library for creating charts
+  from F# on Windows. Use FSharp.Charting.Gtk for other platforms. FSharp.Charting is designed
+  to be a great fit for data scripting in F# Interactive, but charts can also be embedded in 
+  Windows applications. The library is a wrapper for .NET Chart Controls, which are only supported 
+  on Windows.
+authors
+  Carl Nolan
+  Tomas Petricek
+  Don Syme
+tags
+    F#, fsharp, interactive, compiler, editor, charting
+files
+    ../bin/FSharp.Charting.dll ==> lib/net45
+    ../bin/FSharp.Charting.xml ==> lib/net45
+    ../bin/FSharp.Charting.pdb ==> lib/net45
+    ../bin/FSharp.Charting.fsx ==> lib/net45

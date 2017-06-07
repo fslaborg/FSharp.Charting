@@ -78,6 +78,9 @@ F# Charting features
 * Can be used in conjunction with the [FSharp.Data](http://fsharp.github.io/FSharp.Data) library</a>.
 * Many extra chart types (Windows-only): BoxPlot, Candlestick, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi and more.
 
+Not all features are supported in the FSharp.Charting.Gtk version of the library.
+See ``INCOMPLETE_API`` in the implementation.  Contributions to compelte the features are welcome.
+
 Approach, history and future
 -----------------------------
 
@@ -89,11 +92,7 @@ available on Windows in .NET 4.x.
 On OSX, F# Charting is implemented using the OxyPlot.GtkSharp charting library.
 
 F# Charting is designed so that the same charting specifications can be supported when 
-using different charting implementations. For example, the [Try F#](http://tryfsharp.org)
-charts use similar charting specifications, implemented using in HTML5 using Dojo Charts.
-
-The next step we would like to try is to implement cross-platform Javascript-based charting using
-embedded browser controls.
+using different charting implementations. 
 
 ### Contributing
 

@@ -130,44 +130,19 @@ FinalTarget "CloseTestRunner" (fun _ ->
 // Build a NuGet package
 
 Target "NuGet" (fun _ ->
-
-    // Format the description to fit on a single line (remove \r\n and double-spaces)
-    let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let descriptionGtk = descriptionGtk.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-
+    Paket.Pack (fun p -> 
+        { p with 
+            TemplateFile = "nuget/FSharp.Charting.Gtk.template"
+            Version = release.NugetVersion
+            OutputPath = "bin"
+            ReleaseNotes = toLines release.Notes })
     if not compilingOnUnix then
-      NuGet (fun p -> 
-        { p with   
-            Authors = authors
-            Project = project
-            Summary = summary
-            Description = description
-            Version = version
-            ReleaseNotes = releaseNotes
-            Tags = tags
-            OutputPath = "bin"
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
-            Dependencies = [] 
-            WorkingDir = "./nuget" })
-        "nuget/FSharp.Charting.nuspec"
-
-    NuGet (fun p -> 
-        { p with   
-            Authors = authors
-            Project = projectGtk
-            Summary = summaryGtk
-            Description = descriptionGtk
-            Version = version
-            ReleaseNotes = releaseNotes
-            Tags = tagsGtk
-            OutputPath = "bin"
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
-            Dependencies = [] 
-            WorkingDir = "./nuget" })
-        "nuget/FSharp.Charting.Gtk.nuspec"
-
+        Paket.Pack (fun p -> 
+            { p with 
+                TemplateFile = "nuget/FSharp.Charting.template"
+                Version = release.NugetVersion
+                OutputPath = "bin"
+                ReleaseNotes = toLines release.Notes })
 )
 
 // --------------------------------------------------------------------------------------

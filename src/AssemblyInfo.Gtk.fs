@@ -5,13 +5,13 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("FSharp.Charting.Gtk")>]
 [<assembly: AssemblyProductAttribute("FSharp.Charting.Gtk")>]
 [<assembly: AssemblyDescriptionAttribute("A Charting Library for F# (Gtk, cross-platform)")>]
-[<assembly: AssemblyVersionAttribute("0.90.14")>]
-[<assembly: AssemblyFileVersionAttribute("0.90.14")>]
+[<assembly: AssemblyVersionAttribute("0.91.0")>]
+[<assembly: AssemblyFileVersionAttribute("0.91.0")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "FSharp.Charting.Gtk"
     let [<Literal>] AssemblyProduct = "FSharp.Charting.Gtk"
     let [<Literal>] AssemblyDescription = "A Charting Library for F# (Gtk, cross-platform)"
-    let [<Literal>] AssemblyVersion = "0.90.14"
-    let [<Literal>] AssemblyFileVersion = "0.90.14"
+    let [<Literal>] AssemblyVersion = "0.91.0"
+    let [<Literal>] AssemblyFileVersion = "0.91.0"

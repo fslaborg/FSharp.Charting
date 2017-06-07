@@ -19,8 +19,8 @@ curves and scatter plots as well. Here are three examples:
 *)
 
 // On Mac OSX use FSharp.Charting.Gtk.fsx
-#I "packages/FSharp.Charting"
-#load "FSharp.Charting.fsx"
+#I "packages/FSharp.Charting.Gtk"
+#load "FSharp.Charting.Gtk.fsx"
 
 open FSharp.Charting
 open System

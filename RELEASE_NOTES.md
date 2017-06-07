@@ -1,5 +1,7 @@
-#### 0.90.15  07.06.2017
+#### 0.91.0  07.06.2017
 * Update packages
+* Use paket to build nuget packages
+* Update to OxyPlot 1.0.0
 
 #### 0.90.14 - 20.04.2016
 * Enable access to underlying .NET chart object

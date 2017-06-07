@@ -730,7 +730,8 @@ namespace FSharp.Charting
             let ensureDefaultAxis (X) =
                 match model.Axes |> Seq.tryFind (fun x -> (if X then x.IsHorizontal() else x.IsVertical()) && x.IsXyAxis()) with 
                 | None -> 
-                    let axis = Axes.LinearAxis(if X then Axes.AxisPosition.Bottom else Axes.AxisPosition.Left)
+                    let axis = Axes.LinearAxis()
+                    axis.Position <- (if X then Axes.AxisPosition.Bottom else Axes.AxisPosition.Left)
                     model.Axes.Add axis
                     axis :> Axes.Axis
                 | Some a -> a

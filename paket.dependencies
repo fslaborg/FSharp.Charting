@@ -1,3 +1,4 @@
+frameworks: net40, net45, net461, net461
 source https://nuget.org/api/v2
 
 nuget FSharp.Formatting

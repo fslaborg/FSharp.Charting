@@ -1,3 +1,6 @@
+#### 0.90.15  07.06.2017
+* Update packages
+
 #### 0.90.14 - 20.04.2016
 * Enable access to underlying .NET chart object
 * Save chart objects without Form creation

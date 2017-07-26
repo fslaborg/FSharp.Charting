@@ -1194,17 +1194,17 @@ namespace FSharp.Charting
                     leg
                 | Some t -> t
 
-            /// Return the object that holds the configuration preoperties for the chart title, if present
+            /// Return the object that holds the configuration properties for the chart title, if present
             member internal x.TryTitle = title
             member internal x.SetTitle t = title <- Some t
-            /// Return the object that holds the configuration preoperties for the chart legend, if present
+            /// Return the object that holds the configuration properties for the chart legend, if present
             member internal x.TryLegend = legend
             member internal x.SetLegend leg = legend <- Some leg
-            /// Return the object that holds the configuration preoperties for the chart, if present
+            /// Return the object that holds the configuration properties for the chart, if present
             member internal x.TryChart = if chart.IsValueCreated then Some chart.Value else None
-            /// Return the object that holds the configuration preoperties for the chart area
+            /// Return the object that holds the configuration properties for the chart area
             member internal x.Area = area
-            /// Return the object that holds the configuration preoperties for the chart series
+            /// Return the object that holds the configuration properties for the chart series
             member internal x.Series = series
         
             [<CLIEvent>]

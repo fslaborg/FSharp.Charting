@@ -1960,14 +1960,14 @@ namespace FSharp.Charting
                                 | Charting.Docking.Bottom -> (0, 0, 0, margin)
                                 | _ -> (0, 0, 0, 0)
 
-                            let extraLegendMargins =
+                            let extraMarginsForLegend =
                                 match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryLegend) with
                                 | None -> (0, 0, 0, 0)
                                 | Some leg when leg.Enabled && not leg.IsDockedInsideChartArea ->
                                     getSingleSideMargins leg.Docking DefaultExtraMarginForLegendIfPresent
                                 | _ -> (0, 0, 0, 0)
 
-                            let extraTitleMargins =
+                            let extraMarginsForTitle =
                                 match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryTitle) with
                                 | None -> (0, 0, 0, 0)
                                 | Some title when not title.IsDockedInsideChartArea ->
@@ -1977,7 +1977,7 @@ namespace FSharp.Charting
                             let pickMaxMargins (al, at, ar, ab) (bl, bt, br, bb) =
                                 (max al bl, max at bt, max ar br, max ab bb)
 
-                            [extraLegendMargins; extraTitleMargins]
+                            [extraMarginsForLegend; extraMarginsForTitle]
                             |> List.fold pickMaxMargins margins
 
                 let rec layoutSubCharts (srcSubChart:GenericChart) (l, t, r, b) = 

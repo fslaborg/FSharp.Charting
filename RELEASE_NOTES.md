@@ -1,3 +1,7 @@
+#### 0.91.1  11.08.2017
+* Fix #133
+* Add Candlestick charts. #131
+
 #### 0.91.0  07.06.2017
 * Update packages
 * Use paket to build nuget packages

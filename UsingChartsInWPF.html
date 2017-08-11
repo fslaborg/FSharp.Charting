@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="http://fslab.org/FSharp.Charting/content/style.css" />
@@ -47,48 +47,36 @@
         <div class="span9" id="main">
           
 <h1>Using Charts in WPF applications</h1>
-
 <p>Charts specified using F# Charting can be used within WPF applications.</p>
-
 <p>To host a chart object inside a WPF application,</p>
-
 <ul>
 <li>Add a reference to the FSharp.Charting nuget package</li>
-<li>Add  references to the following additional DLLs from the base class library:
+<li>
+Add  references to the following additional DLLs from the base class library:
 <ul>
 <li>System.Drawing.dll</li>
 <li>System.Windows.Forms.dll</li>
 <li>WindowsFormsIntegration.dll</li>
-</ul></li>
+</ul>
+</li>
 <li>Add a <a href="http://msdn.microsoft.com/en-us/library/ms751761.aspx">WindowsFormHost</a> element to your XAML in your F# or C# application and give the element a name</li>
 </ul>
-
-<p>In your XAML code this should appear as <code>`&lt;WindowsFormsHost x:Name="WinForm" /&gt;</code>`</p>
-
+<p>In your XAML code this should appear as <code>&lt;WindowsFormsHost x:Name="WinForm" /&gt;</code></p>
 <p>In your application code, set the <code>Child</code> property of the host to a chart control created from a chart specification:</p>
-
 <div><pre>
   open FSharp.Charting
   open FSharp.Charting.ChartTypes
-
 <p>// ...</p>
-
 <p>let winForm = window.Root.FindName("WinForm") :?&gt; WindowsFormsHost</p>
-
 <p>let chart = Chart.Line [ for i in 0 .. 10 -&gt; (i,i*i) ]</p>
-
 <p>winForm.Child <- new ChartControl(chart)
 </pre></div></p>
-
 <p>Live and Incremental updating charts can also be used in this way.</p>
-
 <div><pre>
   let dataStream = 
       window.Root.MouseMove 
       |> Event.map (fun x -> let p = x.GetPosition(window.Root) in p.X,p.Y )
-
 <p>let chart = LiveChart.LineIncremental (dataStream)</p>
-
 <p>winForm.Child <- new ChartControl(chart)
 </pre></div></p>
 

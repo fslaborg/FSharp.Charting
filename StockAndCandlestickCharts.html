@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="http://fslab.org/FSharp.Charting/content/style.css" />
@@ -47,16 +47,13 @@
         <div class="span9" id="main">
           
 <h1>F# Charting: Stock and Candlestick Charts</h1>
-
-<p><em>Summary:</em> This example shows how to create stock and candlestick charts to visualize financial data in F#. 
+<p><em>Summary:</em> This example shows how to create stock and candlestick charts to visualize financial data in F#.
 It looks at how to draw charts, use dates as labels, and specify the range of a chart.</p>
-
-<p>Stock and candlestick charts are designed to visualize stock prices. The data recorded about 
-stock prices typically consists of four values representing High, Low, Open, and Close prices. 
-The first two are the maximum and minimum price of the stock reached during the day and the 
-last two are prices at the start and the end of the day. The examples use the following data 
+<p>Stock and candlestick charts are designed to visualize stock prices. The data recorded about
+stock prices typically consists of four values representing High, Low, Open, and Close prices.
+The first two are the maximum and minimum price of the stock reached during the day and the
+last two are prices at the start and the end of the day. The examples use the following data
 set (price of MSFT stocks over 10 days):</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -83,15 +80,12 @@ set (price of MSFT stocks over 10 days):</p>
 </code></pre></td>
 </tr>
 </table>
-
-<p>More information about working with financial data and how to download 
+<p>More information about working with financial data and how to download
 stock prices from the Yahoo Finance portal using F# can be found in <a href="http://tryfsharp.org">Try F#</a>.</p>
-
 <p>A stock or a candlestick chart can be created using the <code>FSharpChart.Stock</code> and <code>FSharpChart.Candlestick</code> methods. Financial charts for
-visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price). 
-When calling the methods, it is possible to specify the values as a collection 
+visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price).
+When calling the methods, it is possible to specify the values as a collection
 containing four-element tuples, or five-element tuples (Date, High, Low, Open, and Close price).</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -108,61 +102,50 @@ containing four-element tuples, or five-element tuples (Date, High, Low, Open, a
 </code></pre></td>
 </tr>
 </table>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="f">Stock</span>(<span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="i">prices</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">Stock</span>(<span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="i">prices</span>)
 </code></pre></td>
 </tr>
 </table>
-
-<p><img src="http://fslab.org/FSharp.Charting/images/chart20.png" alt="Chart" /></p>
-
+<p><img src="http://fslab.org/FSharp.Charting/images/chart17.png" alt="Chart" /></p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">pricesWithDates</span> <span class="o">=</span> 
-    <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="i">prices</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="f">mapi</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="i">i</span> (<span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="i">hi</span>,<span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="i">lo</span>,<span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="i">op</span>,<span onmouseout="hideTip(event, 'fs14', 16)" onmouseover="showTip(event, 'fs14', 16)" class="i">cl</span>) <span class="k">-&gt;</span> 
-        (<span onmouseout="hideTip(event, 'fs15', 17)" onmouseover="showTip(event, 'fs15', 17)" class="t">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 18)" onmouseover="showTip(event, 'fs16', 18)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 19)" onmouseover="showTip(event, 'fs17', 19)" class="f">AddDays</span>(<span onmouseout="hideTip(event, 'fs18', 20)" onmouseover="showTip(event, 'fs18', 20)" class="f">float</span> <span onmouseout="hideTip(event, 'fs10', 21)" onmouseover="showTip(event, 'fs10', 21)" class="i">i</span>)<span class="o">.</span><span class="f">ToShortDateString</span>(), <span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="i">hi</span>, <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="i">lo</span>, <span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="i">op</span>, <span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="i">cl</span>))
+    <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="i">prices</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="i">mapi</span> (<span class="k">fun</span> <span class="i">i</span> (<span class="i">hi</span>,<span class="i">lo</span>,<span class="i">op</span>,<span class="i">cl</span>) <span class="k">-&gt;</span> 
+        (<span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="i">AddDays</span>(<span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="i">float</span> <span class="i">i</span>)<span class="o">.</span><span class="i">ToShortDateString</span>(), <span class="i">hi</span>, <span class="i">lo</span>, <span class="i">op</span>, <span class="i">cl</span>))
 </code></pre></td>
 </tr>
 </table>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Candlestick chart price range specified</span>
-<span onmouseout="hideTip(event, 'fs5', 26)" onmouseover="showTip(event, 'fs5', 26)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="f">Candlestick</span>(<span onmouseout="hideTip(event, 'fs7', 28)" onmouseover="showTip(event, 'fs7', 28)" class="i">pricesWithDates</span>)<span class="o">.</span><span class="f">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
+<span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 17)" onmouseover="showTip(event, 'fs14', 17)" class="f">Candlestick</span>(<span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="i">pricesWithDates</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
 </code></pre></td>
 </tr>
 </table>
-
-<p><img src="http://fslab.org/FSharp.Charting/images/chart21.png" alt="Chart" /></p>
-
+<p><img src="http://fslab.org/FSharp.Charting/images/chart18.png" alt="Chart" /></p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Alternative specification using pipelining</span>
-<span onmouseout="hideTip(event, 'fs5', 29)" onmouseover="showTip(event, 'fs5', 29)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 30)" onmouseover="showTip(event, 'fs19', 30)" class="f">Candlestick</span>(<span onmouseout="hideTip(event, 'fs7', 31)" onmouseover="showTip(event, 'fs7', 31)" class="i">pricesWithDates</span>)
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 32)" onmouseover="showTip(event, 'fs5', 32)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 33)" onmouseover="showTip(event, 'fs20', 33)" class="f">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
+<span onmouseout="hideTip(event, 'fs5', 19)" onmouseover="showTip(event, 'fs5', 19)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="f">Candlestick</span>(<span onmouseout="hideTip(event, 'fs7', 21)" onmouseover="showTip(event, 'fs7', 21)" class="i">pricesWithDates</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 22)" onmouseover="showTip(event, 'fs5', 22)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="f">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
 </code></pre></td>
 </tr>
 </table>
-
-<p><img src="http://fslab.org/FSharp.Charting/images/chart22.png" alt="Chart" /></p>
-
+<p><img src="http://fslab.org/FSharp.Charting/images/chart19.png" alt="Chart" /></p>
 <p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive invokes a handler that automatically shows the created chart.</p>
-
 <p>The first snippet calls the <code>Chart.Stock</code> method with a list containing prices as
 four-element tuples.</p>
-
-<p>The second example adds dates as the labels for the chart. 
-This is done using the <code>List.mapi</code> function. The lambda function used as an argument returns a tuple 
-containing the date and the original tuple of prices. 
+<p>The second example adds dates as the labels for the chart.
+This is done using the <code>List.mapi</code> function. The lambda function used as an argument returns a tuple
+containing the date and the original tuple of prices.
 The example also demonstrates how to set the price range of the Y axis using the method <code>WithYAxis</code>.</p>
-
 <p>The last example shows an elegant way of configuring the Y axis range by using pipelining (the <code>|&gt;</code> operator).
 The chart specification is passed to a configuration method <code>Chart.WithYAxis</code> using pipelining.
 This method takes named parameters that allow us to specify the range and other properties of the axis.</p>
@@ -173,20 +156,15 @@ This method takes named parameters that allow us to specify the range and other 
 <div class="tip" id="fs4">namespace System</div>
 <div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
 <div class="tip" id="fs6">static member Chart.Stock : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.StockChart<br />static member Chart.Stock : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.StockChart</div>
-<div class="tip" id="fs7">val pricesWithDates : (string * float * float * float * float) list<br /><br />Full name: StockAndCandlestickCharts.pricesWithDates</div>
-<div class="tip" id="fs8">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
-<div class="tip" id="fs9">val mapi : mapping:(int -&gt; &#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><br />Full name: Microsoft.FSharp.Collections.List.mapi</div>
-<div class="tip" id="fs10">val i : int</div>
-<div class="tip" id="fs11">val hi : float</div>
-<div class="tip" id="fs12">val lo : float</div>
-<div class="tip" id="fs13">val op : float</div>
-<div class="tip" id="fs14">val cl : float</div>
-<div class="tip" id="fs15">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
-<div class="tip" id="fs16">property DateTime.Today: DateTime</div>
-<div class="tip" id="fs17">DateTime.AddDays(value: float) : DateTime</div>
-<div class="tip" id="fs18">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
-<div class="tip" id="fs19">static member Chart.Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart<br />static member Chart.Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart</div>
-<div class="tip" id="fs20">static member Chart.WithYAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?IsMarginVisible:bool * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:Drawing.StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:Drawing.FontStyle * ?TitleColor:Drawing.Color * ?ToolTip:string -&gt; (&#39;a -&gt; &#39;a) (requires &#39;a :&gt; ChartTypes.GenericChart)</div>
+<div class="tip" id="fs7">val pricesWithDates : obj<br /><br />Full name: StockAndCandlestickCharts.pricesWithDates</div>
+<div class="tip" id="fs8">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------</div>
+<div class="tip" id="fs9"></div>
+<div class="tip" id="fs10">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="tip" id="fs11">property DateTime.Today: DateTime</div>
+<div class="tip" id="fs12">DateTime.AddDays(value: float) : DateTime</div>
+<div class="tip" id="fs13">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs14">static member Chart.Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart<br />static member Chart.Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart</div>
+<div class="tip" id="fs15">static member Chart.WithYAxis : ?Enabled:bool * ?Title:string * ?Max:float * ?Min:float * ?Log:bool * ?ArrowStyle:ChartTypes.AxisArrowStyle * ?LabelStyle:ChartTypes.LabelStyle * ?IsMarginVisible:bool * ?MajorGrid:ChartTypes.Grid * ?MinorGrid:ChartTypes.Grid * ?MajorTickMark:ChartTypes.TickMark * ?MinorTickMark:ChartTypes.TickMark * ?TitleAlignment:Drawing.StringAlignment * ?TitleFontName:string * ?TitleFontSize:float * ?TitleFontStyle:Drawing.FontStyle * ?TitleColor:Drawing.Color * ?ToolTip:string -&gt; (&#39;a0 -&gt; &#39;a0) (requires &#39;a0 :&gt; ChartTypes.GenericChart)</div>
 
         </div>
         <div class="span3">

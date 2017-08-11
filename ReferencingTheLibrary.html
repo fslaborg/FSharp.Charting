@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="http://fslab.org/FSharp.Charting/content/style.css" />
@@ -47,21 +47,17 @@
         <div class="span9" id="main">
           
 <h1>F# Charting: Referencing the Library</h1>
-
-<p>F# Charting is most often used from F# scripts. To use the library 
+<p>F# Charting is most often used from F# scripts. To use the library
 in a script, load the <code>FSharp.Charting.fsx</code> file, for example from the NuGet package:</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.0.90.14/FSharp.Charting.Gtk.fsx</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.0.91.1/FSharp.Charting.Gtk.fsx</span>
 <span class="prep">#load</span> <span class="s">&quot;packages/FSharp.Charting/FSharp.Charting.fsx&quot;</span>
 </code></pre></td>
 </tr>
 </table>
-
 <p>You can now create a chart:</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -72,12 +68,9 @@ in a script, load the <code>FSharp.Charting.fsx</code> file, for example from th
 </code></pre></td>
 </tr>
 </table>
-
-<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
+<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive
 invokes a handler that automatically shows the created chart.</p>
-
 <p>Alternatively, you can reference <code>FSharp.Charting.dll</code> directly and manually display the charts using <code>ShowChart</code>:</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -94,9 +87,7 @@ invokes a handler that automatically shows the created chart.</p>
 </code></pre></td>
 </tr>
 </table>
-
 <p>To use the library in a project, either</p>
-
 <ul>
 <li>add the <code>FSharp.Charting</code> NuGet package, or</li>
 <li>reference <code>FSharp.Charting.dll</code> directly</li>

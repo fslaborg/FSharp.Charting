@@ -19,4 +19,4 @@ files
     ../bin/FSharp.Charting.dll ==> lib/net45
     ../bin/FSharp.Charting.xml ==> lib/net45
     ../bin/FSharp.Charting.pdb ==> lib/net45
-    ../bin/FSharp.Charting.fsx ==> lib/net45
+    ../bin/FSharp.Charting.fsx ==> .

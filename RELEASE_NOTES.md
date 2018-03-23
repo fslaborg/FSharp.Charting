@@ -1,3 +1,12 @@
+#### 0.91.1  11.08.2017
+* Fix #133
+* Add Candlestick charts. #131
+
+#### 0.91.0  07.06.2017
+* Update packages
+* Use paket to build nuget packages
+* Update to OxyPlot 1.0.0
+
 #### 0.90.14 - 20.04.2016
 * Enable access to underlying .NET chart object
 * Save chart objects without Form creation

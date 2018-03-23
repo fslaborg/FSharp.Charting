@@ -657,8 +657,10 @@ namespace FSharp.Charting
         let internal DefaultFontForOthers = new Font("Arial Narrow", 10.0f, FontStyle.Regular)
         let internal DefaultFontForLegend = DefaultFontForOthers
         let internal DefaultFontForLabels = DefaultFontForOthers
-        let internal DefaultExtraMarginForTitleIfPresent = 5  // default extra margin percentage
-        let internal DefaultExtraMarginForLegendIfPresent = 15  // default extra margin percentage
+
+        // Default margin settings
+        let internal DefaultExtraMarginForTitleIfPresent = 5
+        let internal DefaultExtraMarginForLegendIfPresent = 15
         let internal DefaultMarginForEachChart = (2.0, 2.0, 2.0, 2.0)
 
         // Type used for defining defaults
@@ -1192,17 +1194,17 @@ namespace FSharp.Charting
                     leg
                 | Some t -> t
 
-            /// Return the object that holds the configuration preoperties for the chart title, if present
+            /// Return the object that holds the configuration properties for the chart title, if present
             member internal x.TryTitle = title
             member internal x.SetTitle t = title <- Some t
-            /// Return the object that holds the configuration preoperties for the chart legend, if present
+            /// Return the object that holds the configuration properties for the chart legend, if present
             member internal x.TryLegend = legend
             member internal x.SetLegend leg = legend <- Some leg
-            /// Return the object that holds the configuration preoperties for the chart, if present
+            /// Return the object that holds the configuration properties for the chart, if present
             member internal x.TryChart = if chart.IsValueCreated then Some chart.Value else None
-            /// Return the object that holds the configuration preoperties for the chart area
+            /// Return the object that holds the configuration properties for the chart area
             member internal x.Area = area
-            /// Return the object that holds the configuration preoperties for the chart series
+            /// Return the object that holds the configuration properties for the chart series
             member internal x.Series = series
         
             [<CLIEvent>]
@@ -1941,45 +1943,42 @@ namespace FSharp.Charting
             do
 
                 // Compute some default extra room for margins if no margins specified
-                let rec computeExtraDefaultMargins ((l, t, r, b) as margins)  (srcSubChart:GenericChart) = 
-                  if srcSubChart.Margin <> DefaultMarginForEachChart then 
-                    margins 
-                  else 
-                    match srcSubChart with
-                    | :? SubplotChart as subplot ->
-                         (margins, subplot.Charts) ||> List.fold computeExtraDefaultMargins
-                    | _ -> 
-                        let legendAndTitleSubCharts = srcSubChart  :: (match srcSubChart with :? CombinedChart as cch -> cch.Charts | _ -> [])
-                        let margins =
-                            match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryLegend) with
-                            | None -> margins
-                            | Some leg ->  
-                                //printfn "leg.Enabled = %b" leg.Enabled
-                                //printfn "leg.IsDockedInsideChartArea = %b" leg.IsDockedInsideChartArea
-                                //printfn "leg.Docking = %A" leg.Docking
-                                if leg.Enabled && not leg.IsDockedInsideChartArea then 
-                                    match leg.Docking with 
-                                    | Charting.Docking.Left -> (max l DefaultExtraMarginForLegendIfPresent, t, r, b) 
-                                    | Charting.Docking.Right -> (l, t, max r DefaultExtraMarginForLegendIfPresent, b)
-                                    | Charting.Docking.Top -> (l, max t DefaultExtraMarginForLegendIfPresent, r, b) 
-                                    | Charting.Docking.Bottom -> (l, t, r, max b DefaultExtraMarginForLegendIfPresent)
-                                    | _ -> margins
-                                else
-                                    margins
-                        let margins =
-                            match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryTitle) with
-                            | None -> margins
-                            | Some title ->  
-                                if not title.IsDockedInsideChartArea then 
-                                    match title.Docking with 
-                                    | Charting.Docking.Left -> (max l DefaultExtraMarginForTitleIfPresent, t, r, b) 
-                                    | Charting.Docking.Right -> (l, t, max r DefaultExtraMarginForTitleIfPresent, b)
-                                    | Charting.Docking.Top -> (l, max t DefaultExtraMarginForTitleIfPresent, r, b) 
-                                    | Charting.Docking.Bottom -> (l, t, r, max b DefaultExtraMarginForTitleIfPresent)
-                                    | _ -> margins
-                                else
-                                    margins
+                let rec computeExtraDefaultMargins margins (srcSubChart:GenericChart) =
+                    if srcSubChart.Margin <> DefaultMarginForEachChart then
                         margins
+                    else
+                        match srcSubChart with
+                        | :? SubplotChart as subplot ->
+                            (margins, subplot.Charts) ||> List.fold computeExtraDefaultMargins
+                        | _ ->
+                            let legendAndTitleSubCharts = srcSubChart  :: (match srcSubChart with :? CombinedChart as cch -> cch.Charts | _ -> [])
+                            let getSingleSideMargins docking margin =
+                                match docking with
+                                | Charting.Docking.Left -> (margin, 0, 0, 0)
+                                | Charting.Docking.Right -> (0, 0, margin, 0)
+                                | Charting.Docking.Top -> (0, margin, 0, 0)
+                                | Charting.Docking.Bottom -> (0, 0, 0, margin)
+                                | _ -> (0, 0, 0, 0)
+
+                            let extraMarginsForLegend =
+                                match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryLegend) with
+                                | None -> (0, 0, 0, 0)
+                                | Some leg when leg.Enabled && not leg.IsDockedInsideChartArea ->
+                                    getSingleSideMargins leg.Docking DefaultExtraMarginForLegendIfPresent
+                                | _ -> (0, 0, 0, 0)
+
+                            let extraMarginsForTitle =
+                                match legendAndTitleSubCharts |> List.tryPick (fun ch -> ch.TryTitle) with
+                                | None -> (0, 0, 0, 0)
+                                | Some title when not title.IsDockedInsideChartArea ->
+                                    getSingleSideMargins title.Docking DefaultExtraMarginForTitleIfPresent
+                                | _ -> (0, 0, 0, 0)
+
+                            let pickMaxMargins (al, at, ar, ab) (bl, bt, br, bb) =
+                                (max al bl, max at bt, max ar br, max ab bb)
+
+                            [extraMarginsForLegend; extraMarginsForTitle]
+                            |> List.fold pickMaxMargins margins
 
                 let rec layoutSubCharts (srcSubChart:GenericChart) (l, t, r, b) = 
                     let (ml, mt, mr, mb) = srcSubChart.Margin

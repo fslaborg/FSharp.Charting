@@ -1,10 +1,12 @@
+frameworks: net40, net45, net461, net461
 source https://nuget.org/api/v2
 
 nuget FSharp.Formatting
 nuget NUnit
 nuget NUnit.Runners 
-nuget OxyPlot.GtkSharp 2014.1.546
-nuget OxyPlot.Core 2014.1.546
+nuget OxyPlot.GtkSharp 1.0.0
+nuget OxyPlot.Core 1.0.0
+nuget FSharp.Core 4.0.0.1
 nuget Nuget.CommandLine
 nuget FAKE
 nuget FSharp.Control.AsyncSeq

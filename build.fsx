@@ -11,6 +11,8 @@ open System.Text.RegularExpressions
 open Fake 
 open Fake.AssemblyInfoFile
 open Fake.Git
+open Fake.Testing
+
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
@@ -115,11 +117,10 @@ Target "RunTests" (fun _ ->
 
     if not compilingOnUnix then
       (files [ "tests/bin/Release/FSharp.Charting.Tests.dll"])
-      |> NUnit (fun p ->
+      |> NUnit3 (fun p ->
         { p with
-            DisableShadowCopy = true
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml" })
+            TimeOut = TimeSpan.FromMinutes 20.            
+            })
 )
 
 FinalTarget "CloseTestRunner" (fun _ ->  

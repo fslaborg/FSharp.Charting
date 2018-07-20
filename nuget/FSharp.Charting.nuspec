@@ -5,8 +5,8 @@
     <version>@build.number@</version>
     <authors>@authors@</authors>
     <owners>@authors@</owners>
-    <licenseUrl>http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md</licenseUrl>
-    <projectUrl>http://fslab.org/FSharp.Charting</projectUrl>
+    <licenseUrl>https://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://fslab.org/FSharp.Charting</projectUrl>
     <iconUrl>https://raw.github.com/fslaborg/FSharp.Charting/master/misc/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>@summary@</summary>
@@ -14,11 +14,12 @@
     <releaseNotes>@releaseNotes@</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>@tags@</tags>
-    <dependencies />
+    <dependencies>
+        <dependency id="FSharp.Core" version="4.0.0.1" />    
+    </dependencies>
   </metadata>
   <files>
     <file src="..\bin\FSharp.Charting.dll" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.pdb" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.xml" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.fsx" target="." />
     <file src="..\bin\LICENSE.md" target="." />

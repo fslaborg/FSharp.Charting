@@ -1,3 +1,6 @@
+#### 2.0.0 - 20.07.2018
+* Update docs an rebrand as 2.0
+
 #### 0.90.14 - 20.04.2016
 * Enable access to underlying .NET chart object
 * Save chart objects without Form creation

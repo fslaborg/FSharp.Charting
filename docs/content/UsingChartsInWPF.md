@@ -1,6 +1,6 @@
 # Using Charts in WPF applications
 
-Charts specified using F# Charting can be used within WPF applications.
+Charts specified using FSharp.Charting can be used within WPF applications.
 
 To host a chart object inside a WPF application, 
 

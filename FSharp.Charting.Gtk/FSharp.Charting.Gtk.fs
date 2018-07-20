@@ -1183,7 +1183,7 @@ namespace FSharp.Charting
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Point(data:seq<#value>,?Name,?Title,?Labels,?Color,?XTitle,?YTitle,?MarkerSize) = 
-           Chart.Point(indexData data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerSize=MarkerSize)
+           Chart.Point(indexData data,?Name=Name,?Title=Title,?Labels=Labels,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerSize=MarkerSize)
 
 #if INCOMPLETE_API
         /// <summary>Disregards the passage of time and only displays changes in prices.</summary>

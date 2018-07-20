@@ -1,7 +1,7 @@
 (*** hide ***)
 #I "../../bin"
 (** 
-# F# Charting: Live Animated Charts
+# FSharp.Charting: Live Animated Charts
 
 *Summary:* This example shows a collection of LiveCharts, which update as data changes. 
 

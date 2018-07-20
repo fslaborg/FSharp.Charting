@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>F# Charting: Library for Data Visualization
+    <title>FSharp.Charting: Library for Data Visualization
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
+    <meta name="description" content="The FSharp.Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
@@ -34,123 +34,107 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
-<h1>F# Charting: Library for Data Visualization</h1>
-<p>The F# Charting library implements charting suitable for use from F# scripting.
-Once you load the library as documented in <a href="ReferencingTheLibrary.html">referencing the library document</a>, you
+<h1>FSharp.Charting: Library for Data Visualization</h1>
+
+<blockquote>
+  <p>NOTE: FSharp.Charting is mostly used on Windows. See the <a href="https://fslab.org/XPlot">XPlot</a> package for alternative cross-platform charting.</p>
+</blockquote>
+
+<p>The FSharp.Charting library implements charting suitable for use from F# scripting.
+Once you load the library as documented in <a href="ReferencingTheLibrary.html">referencing the library document</a>, you 
 can use the members of the <code>Chart</code> type to easily build charts. The following example creates a candlestick
 chart for a time series and sets the range of the Y axis:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs24', 46)" onmouseover="showTip(event, 'fs24', 46)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 47)" onmouseover="showTip(event, 'fs25', 47)" class="f">Candlestick</span>(<span onmouseout="hideTip(event, 'fs5', 48)" onmouseover="showTip(event, 'fs5', 48)" class="i">priceSeries</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">Candlestick</span>(<span class="i">priceSeries</span>)<span class="o">.</span><span class="i">WithYAxis</span>(<span class="i">Max</span> <span class="o">=</span> <span class="n">29.0</span>, <span class="i">Min</span> <span class="o">=</span> <span class="n">25.0</span>)
 </code></pre></td>
 </tr>
 </table>
-<p><img src="http://fslab.org/FSharp.Charting/images/chart4.png" alt="Chart" /></p>
-<p>The library provides a composable API for creating charts. For example, you can use the
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart7.png" alt="Chart" /></p>
+
+<p>The library provides a composable API for creating charts. For example, you can use the 
 <code>Chart.Combine</code> function to create a chart consisting of multiple line charts. The following
 example creates a single area showing sample income, expenses and profit in a single chart:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs24', 49)" onmouseover="showTip(event, 'fs24', 49)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 50)" onmouseover="showTip(event, 'fs26', 50)" class="f">Combine</span>(
-   [ <span onmouseout="hideTip(event, 'fs24', 51)" onmouseover="showTip(event, 'fs24', 51)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 52)" onmouseover="showTip(event, 'fs27', 52)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs18', 53)" onmouseover="showTip(event, 'fs18', 53)" class="i">expectedIncome</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Income&quot;</span>)
-     <span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 55)" onmouseover="showTip(event, 'fs27', 55)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs21', 56)" onmouseover="showTip(event, 'fs21', 56)" class="i">expectedExpenses</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Expenses&quot;</span>) 
-     <span onmouseout="hideTip(event, 'fs24', 57)" onmouseover="showTip(event, 'fs24', 57)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 58)" onmouseover="showTip(event, 'fs27', 58)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs23', 59)" onmouseover="showTip(event, 'fs23', 59)" class="i">computedProfit</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Profit&quot;</span>) ])
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">Combine</span>(
+   [ <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">expectedIncome</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Income&quot;</span>)
+     <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">expectedExpenses</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Expenses&quot;</span>) 
+     <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">computedProfit</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Profit&quot;</span>) ])
 </code></pre></td>
 </tr>
 </table>
-<p><img src="http://fslab.org/FSharp.Charting/images/chart5.png" alt="Chart" /></p>
-<h3>How to get F# Charting</h3>
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart8.png" alt="Chart" /></p>
+
+<h3>How to get FSharp.Charting</h3>
+
 <ul>
+<li>The <a href="https://fslab.org">FsLab</a> template includes both FSharp.Charting and <a href="https://fslab.org/XPlot">XPlot</a>.</li>
 <li>The Windows version of the library is available as <a href="https://nuget.org/packages/FSharp.Charting">FSharp.Charting</a> on NuGet</li>
-<li>The Mac/Linux version of the library is available as <a href="https://nuget.org/packages/FSharp.Charting.Gtk">FSharp.Charting.Gtk</a> on NuGet</li>
-<li>Alternatively, you can download the <a href="https://github.com/fslaborg/FSharp.Charting/zipball/master">source as a ZIP file</a> or as a <a href="https://github.com/fslaborg/FSharp.Charting/zipball/release">binary release as a ZIP file</a>.</li>
+<li>There is a preliminary Mac/Linux version of the library is available as <a href="https://nuget.org/packages/FSharp.Charting.Gtk">FSharp.Charting.Gtk</a> on NuGet. See the <a href="https://fslab.org/XPlot">XPlot</a> package for alternative cross-platform charting.</li>
 </ul>
-<h2>F# Charting features</h2>
+
+<h2>FSharp.Charting features</h2>
+
 <ul>
 <li>Cross-platform 2D charting and support for pseudo-3D charts on .NET.</li>
 <li>Many cross-platform chart types: Area, Bar, Bubble, Column, Line, Point and more.</li>
-<li>Create charts directly from F# data such as lists and tuples.</li>
+<li>Create charts directly from FSharp.Data such as lists and tuples.</li>
 <li>Use either fluent or pipelined chart specifications.</li>
 <li>Create updating 'LiveChart' charts from F# or Rx observables.</li>
 <li>Can be used in conjunction with the <a href="http://fsharp.github.io/FSharp.Data">FSharp.Data</a> library</a>.</li>
 <li>Many extra chart types (Windows-only): BoxPlot, Candlestick, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi and more.</li>
 </ul>
-<p>Not all features are supported in the FSharp.Charting.Gtk version of the library.
-See <code>INCOMPLETE_API</code> in the implementation.  Contributions to compelte the features are welcome.</p>
+
 <h2>Approach, history and future</h2>
+
 <p>This library is a successor to <code>FSharpChart</code>. The last version of FSharpChart was <a href="http://code.msdn.microsoft.com/windowsdesktop/FSharpChart-b59073f5">version 0.61</a>.</p>
-<p>F# Charting uses simple, declarative chart specifications.
-On Windows, F# Charting is implemented using the Data Visualization charting controls
+
+<p>On Windows, FSharp.Charting is implemented using the Data Visualization charting controls 
 available on Windows in .NET 4.x.
-On OSX, F# Charting is implemented using the OxyPlot.GtkSharp charting library.</p>
-<p>F# Charting is designed so that the same charting specifications can be supported when
-using different charting implementations.</p>
+On OSX, FSharp.Charting is implemented using the OxyPlot.GtkSharp charting library.</p>
+
 <h3>Contributing</h3>
-<p>The project is hosted on <a href="https://github.com/fslaborg/FSharp.Charting">GitHub</a> where you can <a href="https://github.com/fslaborg/FSharp.Charting/issues">report issues</a>, fork
-the project and submit pull requests. If you're adding new public API, please also
+
+<p>The project is hosted on <a href="https://github.com/fslaborg/FSharp.Charting">GitHub</a> where you can <a href="https://github.com/fslaborg/FSharp.Charting/issues">report issues</a>, fork 
+the project and submit pull requests. If you're adding new public API, please also 
 contribute <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/docs/content">examples</a> that can be turned into a documentation.</p>
+
 <ul>
-<li>
-<p>If you want to discuss an issue or feature that you want to add the to the library,
+<li><p>If you want to discuss an issue or feature that you want to add the to the library,
 then you can submit <a href="https://github.com/fslaborg/FSharp.Charting/issues">an issue or feature request</a> via Github or you can
-send an email to the <a href="http://groups.google.com/group/fsharp-opensource">F# open source</a> mailing list.</p>
-</li>
-<li>
-<p>For more information about the library architecture, organization and more
-see the <a href="contributing.html">contributing</a> page.</p>
-</li>
-<li>
-<p>The documentation is automatically generated from <code>*.fsx</code> files in  <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/docs/content">the <code>docs/content</code> folder</a>.
-If you find a typo, please submit a pull request!</p>
-</li>
+send an email to the <a href="http://groups.google.com/group/fsharp-opensource">F# open source</a> mailing list.</p></li>
+<li><p>For more information about the library architecture, organization and more
+see the <a href="contributing.html">contributing</a> page.</p></li>
+<li>The documentation is automatically generated from <code>*.fsx</code> files in  <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/docs/content">the <code>docs/content</code> folder</a>. 
+If you find a typo, please submit a pull request!</li>
 </ul>
+
 <h3>Library license</h3>
-<p>The library is available under the MIT licence. For more information see the
-<a href="https://github.com/fslaborg/FSharp.Charting/blob/master/README.md">License file</a> in the GitHub repository. In summary, this means that you can
+
+<p>The library is available under the MIT licence. For more information see the 
+<a href="https://github.com/fslaborg/FSharp.Charting/blob/master/README.md">License file</a> in the GitHub repository. In summary, this means that you can 
 use the library for commercial purposes, fork it, modify it as you wish.</p>
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Charting</div>
-<div class="tip" id="fs3">namespace System</div>
-<div class="tip" id="fs4">val prices : (float * float * float * float) list<br /><br />Full name: Index.prices</div>
-<div class="tip" id="fs5">val priceSeries : obj<br /><br />Full name: Index.priceSeries</div>
-<div class="tip" id="fs6">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------</div>
-<div class="tip" id="fs7"></div>
-<div class="tip" id="fs8">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
-<div class="tip" id="fs9">property DateTime.Today: DateTime</div>
-<div class="tip" id="fs10">DateTime.AddDays(value: float) : DateTime</div>
-<div class="tip" id="fs11">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
-<div class="tip" id="fs12">val futureDate : numDays:int -&gt; DateTime<br /><br />Full name: Index.futureDate</div>
-<div class="tip" id="fs13">val numDays : int</div>
-<div class="tip" id="fs14">val rnd : Random<br /><br />Full name: Index.rnd</div>
-<div class="tip" id="fs15">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />Full name: System.Random<br /><br />--------------------<br />Random() : unit<br />Random(Seed: int) : unit</div>
-<div class="tip" id="fs16">val rand : unit -&gt; float<br /><br />Full name: Index.rand</div>
-<div class="tip" id="fs17">Random.NextDouble() : float</div>
-<div class="tip" id="fs18">val expectedIncome : (DateTime * float) list<br /><br />Full name: Index.expectedIncome</div>
-<div class="tip" id="fs19">val x : int</div>
-<div class="tip" id="fs20">val exp : value:&#39;T -&gt; &#39;T (requires member Exp)<br /><br />Full name: Microsoft.FSharp.Core.Operators.exp</div>
-<div class="tip" id="fs21">val expectedExpenses : (DateTime * float) list<br /><br />Full name: Index.expectedExpenses</div>
-<div class="tip" id="fs22">val sin : value:&#39;T -&gt; &#39;T (requires member Sin)<br /><br />Full name: Microsoft.FSharp.Core.Operators.sin</div>
-<div class="tip" id="fs23">val computedProfit : obj<br /><br />Full name: Index.computedProfit</div>
-<div class="tip" id="fs24">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
-<div class="tip" id="fs25">static member Chart.Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart<br />static member Chart.Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.CandlestickChart</div>
-<div class="tip" id="fs26">static member Chart.Combine : charts:seq&lt;ChartTypes.GenericChart&gt; -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs27">static member Chart.Line : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Line : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
 
         </div>
         <div class="span3">
@@ -159,17 +143,17 @@ use the library for commercial purposes, fork it, modify it as you wish.</p>
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

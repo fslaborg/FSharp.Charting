@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>F# Charting: Referencing the Library
+    <title>FSharp.Charting: Referencing the Library
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
+    <meta name="description" content="The FSharp.Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
@@ -34,43 +34,50 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
-<h1>F# Charting: Referencing the Library</h1>
-<p>F# Charting is most often used from F# scripts. To use the library
+<h1>FSharp.Charting: Referencing the Library</h1>
+
+<p>FSharp.Charting is most often used from F# scripts. To use the library 
 in a script, load the <code>FSharp.Charting.fsx</code> file, for example from the NuGet package:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.0.91.1/FSharp.Charting.Gtk.fsx</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.2.0.0/FSharp.Charting.Gtk.fsx</span>
 <span class="prep">#load</span> <span class="s">&quot;packages/FSharp.Charting/FSharp.Charting.fsx&quot;</span>
 </code></pre></td>
 </tr>
 </table>
+
 <p>You can now create a chart:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
 
 <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ]
 </code></pre></td>
 </tr>
 </table>
-<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive
+
+<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
 invokes a handler that automatically shows the created chart.</p>
+
 <p>Alternatively, you can reference <code>FSharp.Charting.dll</code> directly and manually display the charts using <code>ShowChart</code>:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -81,19 +88,20 @@ invokes a handler that automatically shows the created chart.</p>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Note, on Mac OSX use FSharp.Charting.Gtk.dll.</span>
 <span class="prep">#r</span> <span class="s">&quot;FSharp.Charting.dll&quot;</span> 
 
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
+<span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
 
 <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span>([ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ])<span class="o">.</span><span class="i">ShowChart</span>()
 </code></pre></td>
 </tr>
 </table>
+
 <p>To use the library in a project, either</p>
+
 <ul>
 <li>add the <code>FSharp.Charting</code> NuGet package, or</li>
 <li>reference <code>FSharp.Charting.dll</code> directly</li>
 </ul>
 
-<div class="tip" id="fs1">namespace Microsoft.FSharp</div>
 
         </div>
         <div class="span3">
@@ -102,17 +110,17 @@ invokes a handler that automatically shows the created chart.</p>
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

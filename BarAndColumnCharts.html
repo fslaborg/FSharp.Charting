@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>F# Charting: Bar and Column Charts
+    <title>FSharp.Charting: Bar and Column Charts
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
+    <meta name="description" content="The FSharp.Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
@@ -34,28 +34,33 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
-<h1>F# Charting: Bar and Column Charts</h1>
+<h1>FSharp.Charting: Bar and Column Charts</h1>
+
 <p><em>Summary:</em> This example shows how to create bar and column charts in F#.</p>
+
 <p>The input data in this example is an F# list of tuples containing continent names and total populations.
-The example demonstrates how to display a bar/column chart with names of continents as labels and the
+The example demonstrates how to display a bar/column chart with names of continents as labels and the 
 populations as the values. A sample bar chart is shown below.</p>
+
 <p>A bar or a column chart can be created using the <code>Chart.Column</code> and <code>Chart.Bar</code> methods.</p>
-<p>All methods are overloaded and can be called with various types of parameters. When called with a list
-containing just Y values, the chart automatically uses the sequence 1, 2, 3… for the X values. Alternatively,
-it is possible to provide a list containing both X and Y values as a tuple, which gives a way to draw 2D
+
+<p>All methods are overloaded and can be called with various types of parameters. When called with a list 
+containing just Y values, the chart automatically uses the sequence 1, 2, 3… for the X values. Alternatively, 
+it is possible to provide a list containing both X and Y values as a tuple, which gives a way to draw 2D 
 curves and scatter plots as well. Here are three examples:</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -72,13 +77,13 @@ curves and scatter plots as well. Here are three examples:</p>
 <span class="l">14: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use FSharp.Charting.Gtk.fsx</span>
-<span class="prep">#I</span> <span class="s">&quot;packages/FSharp.Charting.Gtk&quot;</span>
-<span class="prep">#load</span> <span class="s">&quot;FSharp.Charting.Gtk.fsx&quot;</span>
+<span class="prep">#I</span> <span class="s">&quot;packages/FSharp.Charting&quot;</span>
+<span class="prep">#load</span> <span class="s">&quot;FSharp.Charting.fsx&quot;</span>
 
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
+<span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
+<span class="k">open</span> <span class="i">System</span>
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">countryData</span> <span class="o">=</span> 
+<span class="k">let</span> <span class="i">countryData</span> <span class="o">=</span> 
     [ <span class="s">&quot;Africa&quot;</span>, <span class="n">1033043</span>; 
       <span class="s">&quot;Asia&quot;</span>, <span class="n">4166741</span>; 
       <span class="s">&quot;Europe&quot;</span>, <span class="n">732759</span>; 
@@ -88,41 +93,44 @@ curves and scatter plots as well. Here are three examples:</p>
 </code></pre></td>
 </tr>
 </table>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">Bar</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">countryData</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> <span class="i">countryData</span>
 </code></pre></td>
 </tr>
 </table>
-<table class="pre"><tr><td><pre><code>No value has been returned</code></pre></td></tr></table>
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart1.png" alt="Chart" /></p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Column</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">countryData</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">Column</span> <span class="i">countryData</span>
 </code></pre></td>
 </tr>
 </table>
-<table class="pre"><tr><td><pre><code>No value has been returned</code></pre></td></tr></table>
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart2.png" alt="Chart" /></p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="i">Bar</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
 </code></pre></td>
 </tr>
 </table>
-<table class="pre"><tr><td><pre><code>No value has been returned</code></pre></td></tr></table>
-<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart3.png" alt="Chart" /></p>
+
+<p>When using F# Interactive, each of these examples needs to be evaluated separately. This way, F# Interactive 
 invokes a handler that automatically shows the created chart.</p>
-<p>The first example specifies the data source as a single list that contains two-element tuples. The first
+
+<p>The first example specifies the data source as a single list that contains two-element tuples. The first 
 element of the tuple is the X value (category) and the second element is the population.</p>
+
 <p>The second example creates a Column chart instead of a Bar chart.</p>
+
 <p>The third example below shows that you may also simply give a set of Y values, rather than (X,Y) value pairs.</p>
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Charting</div>
-<div class="tip" id="fs3">namespace System</div>
-<div class="tip" id="fs4">val countryData : (string * int) list<br /><br />Full name: BarAndColumnCharts.countryData</div>
-<div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a3 : null)<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a4&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a4 : null)<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Column : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart<br />&#160;&#160;static member Column : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart<br />&#160;&#160;static member Histogram : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?LowerBound:float * ?UpperBound:float * ?Intervals:float -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
-<div class="tip" id="fs6">static member Chart.Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs7">static member Chart.Column : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; ChartTypes.GenericChart<br />static member Chart.Column : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; ChartTypes.GenericChart</div>
 
         </div>
         <div class="span3">
@@ -131,17 +139,17 @@ element of the tuple is the X value (category) and the second element is the pop
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

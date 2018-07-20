@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>LiveChart - F# Charting</title>
+    <title>LiveChart - FSharp.Charting</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
@@ -32,13 +32,13 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
@@ -52,8 +52,9 @@
   <span>Namespace: FSharp.Charting</span><br />
 </p>
 <div class="xmldoc">
-<p>Contains static methods to construct charts whose data source is an event or observable which
+<p>Contains static methods to construct charts whose data source is an event or observable which 
 updates the entire data set.</p>
+
 
 </div>
   <h3>Static members</h3>
@@ -69,17 +70,15 @@ updates the entire data set.</p>
             Area(...)
           </code>
           <div class="tip" id="465">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336580&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336580, '?336581, '?336582          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49262&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49262, '?49263, '?49264          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3186-3186" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3187-3187" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Emphasizes the degree of change over time and shows the relationship of the parts to a whole.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -89,17 +88,15 @@ updates the entire data set.</p>
             Bar(...)
           </code>
           <div class="tip" id="466">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336584&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336584, '?336585, '?336586          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49266&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49266, '?49267, '?49268          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3197-3197" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3198-3198" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Illustrates comparisons among individual items</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -109,18 +106,15 @@ updates the entire data set.</p>
             Bubble(...)
           </code>
           <div class="tip" id="467">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336588&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336588, '?336589, '?336590, '?336591          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49270&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49270, '?49271, '?49272, '?49273          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3259-3259" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3260-3260" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A variation of the Point chart type, where the data
-points are replaced by bubbles of different sizes.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.The maximum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.The minimum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.Use the bubble size as the data point label.
         </td>
       </tr>
       <tr>
@@ -130,17 +124,15 @@ points are replaced by bubbles of different sizes.</p>
             BubbleIncremental(...)
           </code>
           <div class="tip" id="468">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336593 * &#39;?336594 * &#39;?336595&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336593, '?336594, '?336595          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49275 * &#39;?49276 * &#39;?49277&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * BubbleMaxSize:int option * BubbleMinSize:int option * BubbleScaleMax:float option * BubbleScaleMin:float option * UseSizeForLabel:bool option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49275, '?49276, '?49277          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3276-3276" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3277-3277" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.The maximum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.The minimum size of the bubble radius as a percentage of the chart area size. Any integer from 0 to 100.The maximum bubble size, which is a percentage of the chart area that is set by BubbleMaxSize. Any double.The minimum bubble size, which is a percentage of the chart area that is set by BubbleMinSize. Any double.Use the bubble size as the data point label.
         </td>
       </tr>
       <tr>
@@ -150,17 +142,15 @@ points are replaced by bubbles of different sizes.</p>
             Candlestick(...)
           </code>
           <div class="tip" id="469">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336602&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
-                          <strong>Type parameters:</strong> '?336602, '?336603, '?336604, '?336605, '?336606, '?336607          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49284&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?49284, '?49285, '?49286, '?49287, '?49288, '?49289          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3298-3298" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3299-3299" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Used to display stock information using high, low, open and close values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -170,17 +160,15 @@ points are replaced by bubbles of different sizes.</p>
             Candlestick(...)
           </code>
           <div class="tip" id="470">
-            <strong>Signature:</strong> (data:IObservable&lt;seq&lt;&#39;?336597 * &#39;?336598 * &#39;?336599 * &#39;?336600&gt;&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
-                          <strong>Type parameters:</strong> '?336597, '?336598, '?336599, '?336600          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;seq&lt;&#39;?49279 * &#39;?49280 * &#39;?49281 * &#39;?49282&gt;&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?49279, '?49280, '?49281, '?49282          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3287-3287" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3288-3288" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Used to display stock information using high, low, open and close values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -190,17 +178,15 @@ points are replaced by bubbles of different sizes.</p>
             CandlestickIncremental(...)
           </code>
           <div class="tip" id="471">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336614 * &#39;?336615 * &#39;?336616 * &#39;?336617 * &#39;?336618&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
-                          <strong>Type parameters:</strong> '?336614, '?336615, '?336616, '?336617, '?336618          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49296 * &#39;?49297 * &#39;?49298 * &#39;?49299 * &#39;?49300&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?49296, '?49297, '?49298, '?49299, '?49300          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3320-3320" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3321-3321" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Used to display stock information using high, low, open and close values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -210,17 +196,15 @@ points are replaced by bubbles of different sizes.</p>
             CandlestickIncremental(...)
           </code>
           <div class="tip" id="472">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336609 * &#39;?336610 * &#39;?336611 * &#39;?336612&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
-                          <strong>Type parameters:</strong> '?336609, '?336610, '?336611, '?336612          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49291 * &#39;?49292 * &#39;?49293 * &#39;?49294&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; CandlestickChart<br />
+                          <strong>Type parameters:</strong> '?49291, '?49292, '?49293, '?49294          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3309-3309" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3310-3310" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Used to display stock information using high, low, open and close values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -230,17 +214,15 @@ points are replaced by bubbles of different sizes.</p>
             Column(...)
           </code>
           <div class="tip" id="473">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336620&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * ColumnWidth:float option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336620, '?336621, '?336622          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49302&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * ColumnWidth:float option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49302, '?49303, '?49304          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3333-3333" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3334-3334" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Uses a sequence of columns to compare values across categories.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.The width of columns versus whitespace as a percentage.
         </td>
       </tr>
       <tr>
@@ -250,17 +232,15 @@ points are replaced by bubbles of different sizes.</p>
             ColumnIncremental(...)
           </code>
           <div class="tip" id="474">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336624 * &#39;?336625&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * ColumnWidth:float option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336624, '?336625          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49306 * &#39;?49307&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * ColumnWidth:float option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49306, '?49307          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3345-3345" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3346-3346" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Uses a sequence of columns to compare values across categories.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.The width of columns versus whitespace as a percentage.
         </td>
       </tr>
       <tr>
@@ -270,17 +250,15 @@ points are replaced by bubbles of different sizes.</p>
             Doughnut(...)
           </code>
           <div class="tip" id="475">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336627&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
-                          <strong>Type parameters:</strong> '?336627, '?336628, '?336629          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49309&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; DoughnutChart<br />
+                          <strong>Type parameters:</strong> '?49309, '?49310, '?49311          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3356-3356" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3357-3357" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Similar to the Pie chart type, except that it has a hole in the center.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -290,17 +268,15 @@ points are replaced by bubbles of different sizes.</p>
             ErrorBar(...)
           </code>
           <div class="tip" id="476">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336631&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ErrorBarChart<br />
-                          <strong>Type parameters:</strong> '?336631, '?336632, '?336633, '?336634, '?336635          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49313&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ErrorBarChart<br />
+                          <strong>Type parameters:</strong> '?49313, '?49314, '?49315, '?49316, '?49317          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3367-3367" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3368-3368" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Consists of lines with markers that are used to display statistical information about the data displayed in a graph.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -310,17 +286,15 @@ points are replaced by bubbles of different sizes.</p>
             FastLine(...)
           </code>
           <div class="tip" id="477">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336637&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336637, '?336638, '?336639          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49319&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49319, '?49320, '?49321          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3378-3378" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3379-3379" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -330,17 +304,15 @@ points are replaced by bubbles of different sizes.</p>
             FastLineIncremental(...)
           </code>
           <div class="tip" id="478">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336641 * &#39;?336642&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336641, '?336642          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49323 * &#39;?49324&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49323, '?49324          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3389-3389" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3390-3390" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An incremental variation of the Line chart that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -350,17 +322,15 @@ points are replaced by bubbles of different sizes.</p>
             FastPoint(...)
           </code>
           <div class="tip" id="479">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336644&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336644, '?336645, '?336646          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49326&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49326, '?49327, '?49328          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3400-3400" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3401-3401" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -370,17 +340,15 @@ points are replaced by bubbles of different sizes.</p>
             FastPointIncremental(...)
           </code>
           <div class="tip" id="480">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336648 * &#39;?336649&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336648, '?336649          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49330 * &#39;?49331&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49330, '?49331          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3411-3411" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3412-3412" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A variation of the Point chart type that significantly reduces the drawing time of a series that contains a very large number of data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -390,17 +358,15 @@ points are replaced by bubbles of different sizes.</p>
             Funnel(...)
           </code>
           <div class="tip" id="481">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336651&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
-                          <strong>Type parameters:</strong> '?336651, '?336652, '?336653          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49333&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; FunnelChart<br />
+                          <strong>Type parameters:</strong> '?49333, '?49334, '?49335          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3422-3422" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3423-3423" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays in a funnel shape data that equals 100% when totaled.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -410,19 +376,15 @@ points are replaced by bubbles of different sizes.</p>
             Kagi(...)
           </code>
           <div class="tip" id="482">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336655&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
-                          <strong>Type parameters:</strong> '?336655, '?336656, '?336657          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49337&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; KagiChart<br />
+                          <strong>Type parameters:</strong> '?49337, '?49338, '?49339          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3437-3437" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3438-3438" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a series of connecting vertical lines where the thickness
-and direction of the lines are dependent on the action
-of the price value.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -432,17 +394,15 @@ of the price value.</p>
             Line(...)
           </code>
           <div class="tip" id="483">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336659&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336659, '?336660, '?336661          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49341&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49341, '?49342, '?49343          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3451-3451" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3452-3452" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An updating chart which illustrates trends in data with the passing of time.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -452,17 +412,15 @@ of the price value.</p>
             LineIncremental(...)
           </code>
           <div class="tip" id="484">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336663 * &#39;?336664&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336663, '?336664          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49345 * &#39;?49346&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49345, '?49346          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3463-3463" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3464-3464" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An incrementally updating chart which illustrates trends in data with the passing of time.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -472,17 +430,15 @@ of the price value.</p>
             Pie(...)
           </code>
           <div class="tip" id="485">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336666&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
-                          <strong>Type parameters:</strong> '?336666, '?336667, '?336668          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49348&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?49348, '?49349, '?49350          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3474-3474" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3475-3475" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An updating chart which uses points to represent data points, where updates replace the entire data set.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -492,17 +448,15 @@ of the price value.</p>
             PieIncremental(...)
           </code>
           <div class="tip" id="486">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336670 * &#39;?336671&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
-                          <strong>Type parameters:</strong> '?336670, '?336671          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49352 * &#39;?49353&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PieChart<br />
+                          <strong>Type parameters:</strong> '?49352, '?49353          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3487-3487" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3488-3488" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An incrementally updating chart which uses points to represent data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -512,17 +466,15 @@ of the price value.</p>
             Point(...)
           </code>
           <div class="tip" id="487">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336673&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336673, '?336674, '?336675          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49355&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49355, '?49356, '?49357          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3499-3499" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3500-3500" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An updating chart which uses points to represent data points, where updates replace the entire data set.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -532,17 +484,15 @@ of the price value.</p>
             PointAndFigure(...)
           </code>
           <div class="tip" id="488">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336680&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
-                          <strong>Type parameters:</strong> '?336680, '?336681, '?336682          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49362&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PointAndFigureChart<br />
+                          <strong>Type parameters:</strong> '?49362, '?49363, '?49364          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3524-3524" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3525-3525" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Disregards the passage of time and only displays changes in prices.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -552,17 +502,15 @@ of the price value.</p>
             PointIncremental(...)
           </code>
           <div class="tip" id="489">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336677 * &#39;?336678&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336677, '?336678          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49359 * &#39;?49360&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option * MarkerColor:Color option * MarkerSize:int option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49359, '?49360          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3511-3511" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3512-3512" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An incrementally updating chart which uses points to represent data points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -572,18 +520,15 @@ of the price value.</p>
             Polar(...)
           </code>
           <div class="tip" id="490">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336684&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
-                          <strong>Type parameters:</strong> '?336684, '?336685, '?336686          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49366&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PolarChart<br />
+                          <strong>Type parameters:</strong> '?49366, '?49367, '?49368          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3538-3538" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3539-3539" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A circular graph on which data points are displayed using
-the angle, and the distance from the center point.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -593,17 +538,15 @@ the angle, and the distance from the center point.</p>
             Pyramid(...)
           </code>
           <div class="tip" id="491">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336688&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
-                          <strong>Type parameters:</strong> '?336688, '?336689, '?336690          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49370&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; PyramidChart<br />
+                          <strong>Type parameters:</strong> '?49370, '?49371, '?49372          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3551-3551" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3552-3552" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays data that, when combined, equals 100%.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -613,17 +556,15 @@ the angle, and the distance from the center point.</p>
             Radar(...)
           </code>
           <div class="tip" id="492">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336692&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
-                          <strong>Type parameters:</strong> '?336692, '?336693, '?336694          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49374&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RadarChart<br />
+                          <strong>Type parameters:</strong> '?49374, '?49375, '?49376          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3562-3562" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3563-3563" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A circular chart that is used primarily as a data comparison tool.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -633,17 +574,15 @@ the angle, and the distance from the center point.</p>
             Range(...)
           </code>
           <div class="tip" id="493">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336696&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336696, '?336697, '?336698          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49378&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49378, '?49379, '?49380          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3573-3573" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3574-3574" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line chart.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -653,17 +592,15 @@ the angle, and the distance from the center point.</p>
             RangeBar(...)
           </code>
           <div class="tip" id="494">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336700&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336700, '?336701, '?336702          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49382&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49382, '?49383, '?49384          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3584-3584" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3585-3585" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays separate events that have beginning and end values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -673,17 +610,15 @@ the angle, and the distance from the center point.</p>
             RangeColumn(...)
           </code>
           <div class="tip" id="495">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336704&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336704, '?336705, '?336706          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49386&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49386, '?49387, '?49388          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3596-3596" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3597-3597" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a range of data by plotting two Y values per data point.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -693,17 +628,15 @@ the angle, and the distance from the center point.</p>
             Renko(...)
           </code>
           <div class="tip" id="496">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336708&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
-                          <strong>Type parameters:</strong> '?336708, '?336709, '?336710          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49390&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; RenkoChart<br />
+                          <strong>Type parameters:</strong> '?49390, '?49391, '?49392          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3607-3607" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3608-3608" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a series of connecting vertical lines where the thickness and direction of the lines are dependent on the action of the price value.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -713,17 +646,15 @@ the angle, and the distance from the center point.</p>
             Spline(...)
           </code>
           <div class="tip" id="497">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336712&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336712, '?336713, '?336714          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49394&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49394, '?49395, '?49396          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3618-3618" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3619-3619" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A Line chart that plots a fitted curve through each data point in a series.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -733,17 +664,15 @@ the angle, and the distance from the center point.</p>
             SplineArea(...)
           </code>
           <div class="tip" id="498">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336716&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336716, '?336717, '?336718          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49398&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49398, '?49399, '?49400          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3629-3629" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3630-3630" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An Area chart that plots a fitted curve through each data point in a series.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -753,17 +682,15 @@ the angle, and the distance from the center point.</p>
             SplineRange(...)
           </code>
           <div class="tip" id="499">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336720&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336720, '?336721, '?336722          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49402&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49402, '?49403, '?49404          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3641-3641" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3642-3642" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a range of data by plotting two Y values per data point, with each Y value drawn as a line chart.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -773,18 +700,15 @@ the angle, and the distance from the center point.</p>
             StackedArea(...)
           </code>
           <div class="tip" id="500">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336724&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336724, '?336725, '?336726, '?336727          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49406&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49406, '?49407, '?49408, '?49409          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3655-3655" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3656-3656" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>An Area chart that stacks two or more data series
-on top of one another.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -794,19 +718,15 @@ on top of one another.</p>
             StepLine(...)
           </code>
           <div class="tip" id="501">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336729&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?336729, '?336730, '?336731          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49411&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; GenericChart<br />
+                          <strong>Type parameters:</strong> '?49411, '?49412, '?49413          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3702-3702" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3703-3703" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Similar to the Line chart type, but uses vertical and
-horizontal lines to connect the data points in a series
-forming a step-like progression.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -816,17 +736,15 @@ forming a step-like progression.</p>
             Stock(...)
           </code>
           <div class="tip" id="502">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336740&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
-                          <strong>Type parameters:</strong> '?336740, '?336741, '?336742, '?336743, '?336744          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49422&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?49422, '?49423, '?49424, '?49425, '?49426          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3725-3725" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3726-3726" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays significant stock price points including the high, low, open and close price points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -836,17 +754,15 @@ forming a step-like progression.</p>
             Stock(...)
           </code>
           <div class="tip" id="503">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336733&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
-                          <strong>Type parameters:</strong> '?336733, '?336734, '?336735, '?336736, '?336737, '?336738          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49415&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; StockChart<br />
+                          <strong>Type parameters:</strong> '?49415, '?49416, '?49417, '?49418, '?49419, '?49420          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3714-3714" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3715-3715" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays significant stock price points including the high, low, open and close price points.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
       <tr>
@@ -856,17 +772,15 @@ forming a step-like progression.</p>
             ThreeLineBreak(...)
           </code>
           <div class="tip" id="504">
-            <strong>Signature:</strong> (data:IObservable&lt;&#39;?336746&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
-                          <strong>Type parameters:</strong> '?336746, '?336747, '?336748          </div>
+            <strong>Signature:</strong> (data:IObservable&lt;&#39;?49428&gt; * Name:string option * Title:string option * Color:Color option * XTitle:string option * YTitle:string option) -&gt; ThreeLineBreakChart<br />
+                          <strong>Type parameters:</strong> '?49428, '?49429, '?49430          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/src/FSharp.Charting.fs#L3737-3737" class="github-link">
+            <a href="https://github.com/fslaborg/FSharp.Charting/tree/master/FSharp.Charting/FSharp.Charting.fs#L3738-3738" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Displays a series of vertical boxes, or lines, that reflect changes in price values.</p>
-
-
+          The color for the data.The title of the X-axis.The title of the Y-axis.
         </td>
       </tr>
     </tbody>
@@ -879,17 +793,17 @@ forming a step-like progression.</p>
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

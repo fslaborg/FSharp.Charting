@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>F# Charting: BoxPlot Charts
+    <title>FSharp.Charting: BoxPlot Charts
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
+    <meta name="description" content="The FSharp.Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
@@ -34,30 +34,34 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
-<h1>F# Charting: BoxPlot Charts</h1>
-<p><em>Summary:</em> This example shows how to create boxplot diagrams in F#. It looks at how
-to create a single boxplot from six statistics about an observation set as well as
+<h1>FSharp.Charting: BoxPlot Charts</h1>
+
+<p><em>Summary:</em> This example shows how to create boxplot diagrams in F#. It looks at how 
+to create a single boxplot from six statistics about an observation set as well as 
 how to automatically create boxplots from observations.</p>
+
 <p>When creating boxplot charts, it is possible to use either six statistics (Lower whisker, Upper whisker, Lower box, Upper box, Average, Median)
-that define the boxplot data, or to infer these statistics from a set of values and let the library generate
+that define the boxplot data, or to infer these statistics from a set of values and let the library generate 
 the boxplot diagram automatically.</p>
-<p>A boxplot diagram shows six basic statistics about a set of observations. It displays the
+
+<p>A boxplot diagram shows six basic statistics about a set of observations. It displays the 
 dataset minimum and maximum, the upper and lower quartiles, the average value, and the
-median. When the F# script calculates these six statistics, the values can be passed to
+median. When the F# script calculates these six statistics, the values can be passed to 
 the method <code>Chart.BoxPlotFromStatistics</code> as a list of tuples
 to draw multiple boxplots.</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -69,45 +73,53 @@ to draw multiple boxplots.</p>
 <span class="prep">#I</span> <span class="s">&quot;packages/FSharp.Charting&quot;</span>
 <span class="prep">#load</span> <span class="s">&quot;FSharp.Charting.fsx&quot;</span>
 
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Charting</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span>
+<span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
+<span class="k">open</span> <span class="i">System</span>
 </code></pre></td>
 </tr>
 </table>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="f">BoxPlotFromStatistics</span>( 
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">BoxPlotFromStatistics</span>( 
     [ (<span class="s">&quot;Result A&quot;</span>, <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
       (<span class="s">&quot;Result B&quot;</span>, <span class="o">-</span><span class="n">6.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">5.0</span>, <span class="n">5.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) ])
 </code></pre></td>
 </tr>
 </table>
-<p><img src="http://fslab.org/FSharp.Charting/images/chart1.png" alt="Chart" /></p>
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart4.png" alt="Chart" /></p>
+
 <p>Here is the same box plot with dates used as labels. These must be explicitly formatted as strings.</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="f">BoxPlotFromStatistics</span>(
-    [ (<span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">ToShortDateString</span>()             , <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
-      (<span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="i">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">AddDays</span>(<span class="n">1.0</span>)<span class="o">.</span><span class="i">ToShortDateString</span>(), <span class="o">-</span><span class="n">6.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">5.0</span>, <span class="n">5.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) ],
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">BoxPlotFromStatistics</span>(
+    [ (<span class="i">DateTime</span><span class="o">.</span><span class="i">Today</span><span class="o">.</span><span class="i">ToShortDateString</span>()             , <span class="o">-</span><span class="n">12.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">8.3</span>, <span class="n">6.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>);
+      (<span class="i">DateTime</span><span class="o">.</span><span class="i">Today</span><span class="o">.</span><span class="i">AddDays</span>(<span class="n">1.0</span>)<span class="o">.</span><span class="i">ToShortDateString</span>(), <span class="o">-</span><span class="n">6.7</span>, <span class="n">11.6</span>, <span class="o">-</span><span class="n">5.0</span>, <span class="n">5.4</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) ],
     <span class="i">ShowMedian</span> <span class="o">=</span> <span class="k">false</span>, <span class="i">ShowAverage</span> <span class="o">=</span> <span class="k">false</span>)
 </code></pre></td>
 </tr>
 </table>
-<p><img src="http://fslab.org/FSharp.Charting/images/chart2.png" alt="Chart" /></p>
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart5.png" alt="Chart" /></p>
+
 <p>This snippet calls the <code>Chart.BoxPlotFromStatistics</code> method with a list containing<br />
 (Label, Lower whisker, Upper whisker, Lower box, Upper box, Average, Median) pairs.
-The call uses the value 0.0 as a placeholder for the last two statistics. The lines in the boxplot
+The call uses the value 0.0 as a placeholder for the last two statistics. The lines in the boxplot 
 diagram have to be hidden explicitly by setting <code>BoxPlotShowMedian</code> and <code>BoxPlotShowAverage</code> to false.</p>
-<p>Another alternative when creating a boxplot is to let the charting library
-calculate the boxplot statistics automatically. To do that, the <code>Chart.BoxPlot</code> method
-can be called with a collection of (xLabel, yValues) tuples as an argument. Each entry
-is a label plus a set of observations. The statistics are automatically computed from the
+
+<p>Another alternative when creating a boxplot is to let the charting library 
+calculate the boxplot statistics automatically. To do that, the <code>Chart.BoxPlot</code> method 
+can be called with a collection of (xLabel, yValues) tuples as an argument. Each entry 
+is a label plus a set of observations. The statistics are automatically computed from the 
 values in the observations.</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -116,54 +128,40 @@ values in the observations.</p>
 <span class="l">6: </span>
 <span class="l">7: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="f">date</span> <span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="i">n</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 16)" onmouseover="showTip(event, 'fs6', 16)" class="t">DateTime</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 17)" onmouseover="showTip(event, 'fs7', 17)" class="i">Today</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="f">AddDays</span>(<span onmouseout="hideTip(event, 'fs12', 19)" onmouseover="showTip(event, 'fs12', 19)" class="f">float</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="i">n</span>)<span class="o">.</span><span class="f">ToShortDateString</span>()
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="i">rnd</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs3', 22)" onmouseover="showTip(event, 'fs3', 22)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="t">Random</span>()
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">date</span> <span class="i">n</span> <span class="o">=</span> <span class="i">DateTime</span><span class="o">.</span><span class="i">Today</span><span class="o">.</span><span class="i">AddDays</span>(<span class="i">float</span> <span class="i">n</span>)<span class="o">.</span><span class="i">ToShortDateString</span>()
+<span class="k">let</span> <span class="i">rnd</span> <span class="o">=</span> <span class="k">new</span> <span class="i">System</span><span class="o">.</span><span class="i">Random</span>()
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 24)" onmouseover="showTip(event, 'fs15', 24)" class="i">threeSyntheticDataSets</span> <span class="o">=</span> 
-    [ (<span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="f">date</span> <span class="n">0</span>, [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs12', 27)" onmouseover="showTip(event, 'fs12', 27)" class="f">float</span> (<span onmouseout="hideTip(event, 'fs13', 28)" onmouseover="showTip(event, 'fs13', 28)" class="i">rnd</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 29)" onmouseover="showTip(event, 'fs17', 29)" class="f">Next</span> <span class="n">20</span>) |])
-      (<span onmouseout="hideTip(event, 'fs10', 30)" onmouseover="showTip(event, 'fs10', 30)" class="f">date</span> <span class="n">1</span>, [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs16', 31)" onmouseover="showTip(event, 'fs16', 31)" class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs12', 32)" onmouseover="showTip(event, 'fs12', 32)" class="f">float</span> (<span onmouseout="hideTip(event, 'fs13', 33)" onmouseover="showTip(event, 'fs13', 33)" class="i">rnd</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 34)" onmouseover="showTip(event, 'fs17', 34)" class="f">Next</span> <span class="n">15</span> <span class="o">+</span> <span class="n">2</span>) |])
-      (<span onmouseout="hideTip(event, 'fs10', 35)" onmouseover="showTip(event, 'fs10', 35)" class="f">date</span> <span class="n">2</span>, [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs16', 36)" onmouseover="showTip(event, 'fs16', 36)" class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs12', 37)" onmouseover="showTip(event, 'fs12', 37)" class="f">float</span> (<span onmouseout="hideTip(event, 'fs13', 38)" onmouseover="showTip(event, 'fs13', 38)" class="i">rnd</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 39)" onmouseover="showTip(event, 'fs17', 39)" class="f">Next</span> <span class="n">10</span> <span class="o">+</span> <span class="n">5</span>) |]) ]
+<span class="k">let</span> <span class="i">threeSyntheticDataSets</span> <span class="o">=</span> 
+    [ (<span class="i">date</span> <span class="n">0</span>, [| <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span class="i">float</span> (<span class="i">rnd</span><span class="o">.</span><span class="i">Next</span> <span class="n">20</span>) |])
+      (<span class="i">date</span> <span class="n">1</span>, [| <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span class="i">float</span> (<span class="i">rnd</span><span class="o">.</span><span class="i">Next</span> <span class="n">15</span> <span class="o">+</span> <span class="n">2</span>) |])
+      (<span class="i">date</span> <span class="n">2</span>, [| <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">20</span> <span class="k">-&gt;</span> <span class="i">float</span> (<span class="i">rnd</span><span class="o">.</span><span class="i">Next</span> <span class="n">10</span> <span class="o">+</span> <span class="n">5</span>) |]) ]
 </code></pre></td>
 </tr>
 </table>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 40)" onmouseover="showTip(event, 'fs4', 40)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 41)" onmouseover="showTip(event, 'fs18', 41)" class="f">BoxPlotFromData</span>
-  ( <span onmouseout="hideTip(event, 'fs15', 42)" onmouseover="showTip(event, 'fs15', 42)" class="i">threeSyntheticDataSets</span>,
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">Chart</span><span class="o">.</span><span class="i">BoxPlotFromData</span>
+  ( <span class="i">threeSyntheticDataSets</span>,
     <span class="i">ShowUnusualValues</span> <span class="o">=</span> <span class="k">true</span>, <span class="i">ShowMedian</span> <span class="o">=</span> <span class="k">false</span>,
     <span class="i">ShowAverage</span> <span class="o">=</span> <span class="k">false</span>, <span class="i">WhiskerPercentile</span> <span class="o">=</span> <span class="n">10</span>)
 </code></pre></td>
 </tr>
 </table>
-<p><img src="http://fslab.org/FSharp.Charting/images/chart3.png" alt="Chart" /></p>
-<p>The example above demonstrates how to calculate boxplot diagrams
-automatically from (randomly generated) data. It is also possible to set
-several custom properties to configure the boxplot diagram. When
+
+<p><img src="http://fslab.org/FSharp.Charting/images/chart6.png" alt="Chart" /></p>
+
+<p>The example above demonstrates how to calculate boxplot diagrams 
+automatically from (randomly generated) data. It is also possible to set 
+several custom properties to configure the boxplot diagram. When 
 <code>BoxPlotShowUnusualValues</code> is true, the boxplot displays unusual values using points, as shown in Figure 1.</p>
-<p>More information about working with financial data and how to download
+
+<p>More information about working with financial data and how to download 
 stock prices from the Yahoo Finance portal using F# can be found in <a href="http://tryfsharp.org">Try F#</a>.</p>
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Charting</div>
-<div class="tip" id="fs3">namespace System</div>
-<div class="tip" id="fs4">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
-<div class="tip" id="fs5">static member Chart.BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs6">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
-<div class="tip" id="fs7">property DateTime.Today: DateTime</div>
-<div class="tip" id="fs8">DateTime.ToShortDateString() : string</div>
-<div class="tip" id="fs9">DateTime.AddDays(value: float) : DateTime</div>
-<div class="tip" id="fs10">val date : n:int -&gt; string<br /><br />Full name: BoxPlotCharts.date</div>
-<div class="tip" id="fs11">val n : int</div>
-<div class="tip" id="fs12">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
-<div class="tip" id="fs13">val rnd : Random<br /><br />Full name: BoxPlotCharts.rnd</div>
-<div class="tip" id="fs14">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />Full name: System.Random<br /><br />--------------------<br />Random() : unit<br />Random(Seed: int) : unit</div>
-<div class="tip" id="fs15">val threeSyntheticDataSets : (string * float []) list<br /><br />Full name: BoxPlotCharts.threeSyntheticDataSets</div>
-<div class="tip" id="fs16">val i : int</div>
-<div class="tip" id="fs17">Random.Next() : int<br />Random.Next(maxValue: int) : int<br />Random.Next(minValue: int, maxValue: int) : int</div>
-<div class="tip" id="fs18">static member Chart.BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Drawing.Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; ChartTypes.GenericChart (requires &#39;a2 :&gt; value)</div>
 
         </div>
         <div class="span3">
@@ -172,17 +170,17 @@ stock prices from the Yahoo Finance portal using F# can be found in <a href="htt
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

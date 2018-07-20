@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>FurtherSamplesGtk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The F# Charting library implements charting suitable for in F# scripting.">
+    <meta name="description" content="The FSharp.Charting library implements charting suitable for in F# scripting.">
     <meta name="author" content="Don Syme, Carl Nolan, Tomas Petricek">
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
@@ -33,89 +33,471 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fsharp.org/images/thumbs/Deedle.png" /> Deedle</a></li>
-          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height=" 16" width="16" src="http://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
-          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.png" /> F# Data</a></li>
-          <li><a href="http://fsprojects.github.io/FSharp.Data.Toolbox"><img height="16" width="16" src="http://fsharp.org/images/thumbs/FSharp.Data.Toolbox.png" /> F# Data Toolbox</a></li>
+          <li><a href="https://fslab.org">fslab.org</a></li>
+          <li><a href="https://fslab.org/RProvider"><img height=" 16" width="16" src="https://fsharp.org/images/thumbs/FSharpRProvider.png" /> R Provider</a></li>
+          <li><a href="https://fslab.org/FSharp.Charting/"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Charting.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fslab.org/XPlot/"><img height="16" width="16" src="https://fslab.org/XPlot/img/logo.png" /> FSharp.Charting</a></li>
+          <li><a href="https://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="https://fsharp.org/images/thumbs/FSharp.Data.png" /> FSharp.Data</a></li>
         </ul>
-        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">F# Charting</a></h3>
+        <h3 class="muted"><a href="http://fslab.org/FSharp.Charting/index.html">FSharp.Charting</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">  1: </span>
+<span class="l">  2: </span>
+<span class="l">  3: </span>
+<span class="l">  4: </span>
+<span class="l">  5: </span>
+<span class="l">  6: </span>
+<span class="l">  7: </span>
+<span class="l">  8: </span>
+<span class="l">  9: </span>
+<span class="l"> 10: </span>
+<span class="l"> 11: </span>
+<span class="l"> 12: </span>
+<span class="l"> 13: </span>
+<span class="l"> 14: </span>
+<span class="l"> 15: </span>
+<span class="l"> 16: </span>
+<span class="l"> 17: </span>
+<span class="l"> 18: </span>
+<span class="l"> 19: </span>
+<span class="l"> 20: </span>
+<span class="l"> 21: </span>
+<span class="l"> 22: </span>
+<span class="l"> 23: </span>
+<span class="l"> 24: </span>
+<span class="l"> 25: </span>
+<span class="l"> 26: </span>
+<span class="l"> 27: </span>
+<span class="l"> 28: </span>
+<span class="l"> 29: </span>
+<span class="l"> 30: </span>
+<span class="l"> 31: </span>
+<span class="l"> 32: </span>
+<span class="l"> 33: </span>
+<span class="l"> 34: </span>
+<span class="l"> 35: </span>
+<span class="l"> 36: </span>
+<span class="l"> 37: </span>
+<span class="l"> 38: </span>
+<span class="l"> 39: </span>
+<span class="l"> 40: </span>
+<span class="l"> 41: </span>
+<span class="l"> 42: </span>
+<span class="l"> 43: </span>
+<span class="l"> 44: </span>
+<span class="l"> 45: </span>
+<span class="l"> 46: </span>
+<span class="l"> 47: </span>
+<span class="l"> 48: </span>
+<span class="l"> 49: </span>
+<span class="l"> 50: </span>
+<span class="l"> 51: </span>
+<span class="l"> 52: </span>
+<span class="l"> 53: </span>
+<span class="l"> 54: </span>
+<span class="l"> 55: </span>
+<span class="l"> 56: </span>
+<span class="l"> 57: </span>
+<span class="l"> 58: </span>
+<span class="l"> 59: </span>
+<span class="l"> 60: </span>
+<span class="l"> 61: </span>
+<span class="l"> 62: </span>
+<span class="l"> 63: </span>
+<span class="l"> 64: </span>
+<span class="l"> 65: </span>
+<span class="l"> 66: </span>
+<span class="l"> 67: </span>
+<span class="l"> 68: </span>
+<span class="l"> 69: </span>
+<span class="l"> 70: </span>
+<span class="l"> 71: </span>
+<span class="l"> 72: </span>
+<span class="l"> 73: </span>
+<span class="l"> 74: </span>
+<span class="l"> 75: </span>
+<span class="l"> 76: </span>
+<span class="l"> 77: </span>
+<span class="l"> 78: </span>
+<span class="l"> 79: </span>
+<span class="l"> 80: </span>
+<span class="l"> 81: </span>
+<span class="l"> 82: </span>
+<span class="l"> 83: </span>
+<span class="l"> 84: </span>
+<span class="l"> 85: </span>
+<span class="l"> 86: </span>
+<span class="l"> 87: </span>
+<span class="l"> 88: </span>
+<span class="l"> 89: </span>
+<span class="l"> 90: </span>
+<span class="l"> 91: </span>
+<span class="l"> 92: </span>
+<span class="l"> 93: </span>
+<span class="l"> 94: </span>
+<span class="l"> 95: </span>
+<span class="l"> 96: </span>
+<span class="l"> 97: </span>
+<span class="l"> 98: </span>
+<span class="l"> 99: </span>
+<span class="l">100: </span>
+<span class="l">101: </span>
+<span class="l">102: </span>
+<span class="l">103: </span>
+<span class="l">104: </span>
+<span class="l">105: </span>
+<span class="l">106: </span>
+<span class="l">107: </span>
+<span class="l">108: </span>
+<span class="l">109: </span>
+<span class="l">110: </span>
+<span class="l">111: </span>
+<span class="l">112: </span>
+<span class="l">113: </span>
+<span class="l">114: </span>
+<span class="l">115: </span>
+<span class="l">116: </span>
+<span class="l">117: </span>
+<span class="l">118: </span>
+<span class="l">119: </span>
+<span class="l">120: </span>
+<span class="l">121: </span>
+<span class="l">122: </span>
+<span class="l">123: </span>
+<span class="l">124: </span>
+<span class="l">125: </span>
+<span class="l">126: </span>
+<span class="l">127: </span>
+<span class="l">128: </span>
+<span class="l">129: </span>
+<span class="l">130: </span>
+<span class="l">131: </span>
+<span class="l">132: </span>
+<span class="l">133: </span>
+<span class="l">134: </span>
+<span class="l">135: </span>
+<span class="l">136: </span>
+<span class="l">137: </span>
+<span class="l">138: </span>
+<span class="l">139: </span>
+<span class="l">140: </span>
+<span class="l">141: </span>
+<span class="l">142: </span>
+<span class="l">143: </span>
+<span class="l">144: </span>
+<span class="l">145: </span>
+<span class="l">146: </span>
+<span class="l">147: </span>
+<span class="l">148: </span>
+<span class="l">149: </span>
+<span class="l">150: </span>
+<span class="l">151: </span>
+<span class="l">152: </span>
+<span class="l">153: </span>
+<span class="l">154: </span>
+<span class="l">155: </span>
+<span class="l">156: </span>
+<span class="l">157: </span>
+<span class="l">158: </span>
+<span class="l">159: </span>
+<span class="l">160: </span>
+<span class="l">161: </span>
+<span class="l">162: </span>
+<span class="l">163: </span>
+<span class="l">164: </span>
+<span class="l">165: </span>
+<span class="l">166: </span>
+<span class="l">167: </span>
+<span class="l">168: </span>
+<span class="l">169: </span>
+<span class="l">170: </span>
+<span class="l">171: </span>
+<span class="l">172: </span>
+<span class="l">173: </span>
+<span class="l">174: </span>
+<span class="l">175: </span>
+<span class="l">176: </span>
+<span class="l">177: </span>
+<span class="l">178: </span>
+<span class="l">179: </span>
+<span class="l">180: </span>
+<span class="l">181: </span>
+<span class="l">182: </span>
+<span class="l">183: </span>
+<span class="l">184: </span>
+<span class="l">185: </span>
+<span class="l">186: </span>
+<span class="l">187: </span>
+<span class="l">188: </span>
+<span class="l">189: </span>
+<span class="l">190: </span>
+<span class="l">191: </span>
+<span class="l">192: </span>
+<span class="l">193: </span>
+<span class="l">194: </span>
+<span class="l">195: </span>
+<span class="l">196: </span>
+<span class="l">197: </span>
+<span class="l">198: </span>
+<span class="l">199: </span>
+<span class="l">200: </span>
+<span class="l">201: </span>
+<span class="l">202: </span>
+<span class="l">203: </span>
+<span class="l">204: </span>
+<span class="l">205: </span>
+<span class="l">206: </span>
+<span class="l">207: </span>
+<span class="l">208: </span>
+<span class="l">209: </span>
+<span class="l">210: </span>
+<span class="l">211: </span>
+<span class="l">212: </span>
+<span class="l">213: </span>
+<span class="l">214: </span>
+<span class="l">215: </span>
+<span class="l">216: </span>
+<span class="l">217: </span>
+<span class="l">218: </span>
+<span class="l">219: </span>
+<span class="l">220: </span>
+<span class="l">221: </span>
+<span class="l">222: </span>
+<span class="l">223: </span>
+<span class="l">224: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// On Mac OSX use packages/FSharp.Charting.Gtk.2.0.0/FSharp.Charting.Gtk.fsx</span>
+<span class="prep">#load</span> <span class="s">&quot;packages/FSharp.Charting.Gtk.2.0.0/FSharp.Charting.Gtk.fsx&quot;</span>
+<span class="prep">#load</span> <span class="s">&quot;EventEx-0.1.fsx&quot;</span>
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Charting</div>
-<div class="tip" id="fs3">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a3 : null)<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a4&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a4 : null)<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Column : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart<br />&#160;&#160;static member Column : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart<br />&#160;&#160;static member Histogram : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?LowerBound:float * ?UpperBound:float * ?Intervals:float -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
-<div class="tip" id="fs4">static member Chart.Point : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:&#39;a1 * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart<br />static member Chart.Point : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart (requires &#39;a3 : null)</div>
-<div class="tip" id="fs5">val x : int</div>
-<div class="tip" id="fs6">static member Chart.Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart (requires &#39;a3 : null)<br />static member Chart.Bubble : data:seq&lt;#value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a4&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart (requires &#39;a4 : null)</div>
-<div class="tip" id="fs7">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
-<div class="tip" id="fs8">Multiple items<br />val single : value:&#39;T -&gt; single (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.single<br /><br />--------------------<br />type single = System.Single<br /><br />Full name: Microsoft.FSharp.Core.single</div>
-<div class="tip" id="fs9">static member Chart.Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs10">val i : int</div>
-<div class="tip" id="fs11">namespace System</div>
-<div class="tip" id="fs12">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />System.DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(ticks: int64, kind: System.DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, calendar: System.Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: System.DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: System.Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: System.DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
-<div class="tip" id="fs13">property System.DateTime.Now: System.DateTime</div>
-<div class="tip" id="fs14">System.DateTime.AddDays(value: float) : System.DateTime</div>
-<div class="tip" id="fs15">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
-<div class="tip" id="fs16">static member Chart.Line : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Line : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs17">System.DateTime.AddSeconds(value: float) : System.DateTime</div>
-<div class="tip" id="fs18">System.DateTime.AddMinutes(value: float) : System.DateTime</div>
-<div class="tip" id="fs19">System.DateTime.AddHours(value: float) : System.DateTime</div>
-<div class="tip" id="fs20">System.DateTime.AddMonths(months: int) : System.DateTime</div>
-<div class="tip" id="fs21">System.DateTime.AddYears(value: int) : System.DateTime</div>
-<div class="tip" id="fs22">Multiple items<br />type TimeSpan =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; TimeSpan + 3 overloads<br />&#160;&#160;&#160;&#160;member Add : ts:TimeSpan -&gt; TimeSpan<br />&#160;&#160;&#160;&#160;member CompareTo : value:obj -&gt; int + 1 overload<br />&#160;&#160;&#160;&#160;member Days : int<br />&#160;&#160;&#160;&#160;member Duration : unit -&gt; TimeSpan<br />&#160;&#160;&#160;&#160;member Equals : value:obj -&gt; bool + 1 overload<br />&#160;&#160;&#160;&#160;member GetHashCode : unit -&gt; int<br />&#160;&#160;&#160;&#160;member Hours : int<br />&#160;&#160;&#160;&#160;member Milliseconds : int<br />&#160;&#160;&#160;&#160;member Minutes : int<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.TimeSpan<br /><br />--------------------<br />System.TimeSpan()<br />System.TimeSpan(ticks: int64) : unit<br />System.TimeSpan(hours: int, minutes: int, seconds: int) : unit<br />System.TimeSpan(days: int, hours: int, minutes: int, seconds: int) : unit<br />System.TimeSpan(days: int, hours: int, minutes: int, seconds: int, milliseconds: int) : unit</div>
-<div class="tip" id="fs23">System.TimeSpan.FromDays(value: float) : System.TimeSpan</div>
-<div class="tip" id="fs24">namespace OxyPlot</div>
-<div class="tip" id="fs25">type OxyColors =<br />&#160;&#160;static val Undefined : OxyColor<br />&#160;&#160;static val Automatic : OxyColor<br />&#160;&#160;static val AliceBlue : OxyColor<br />&#160;&#160;static val AntiqueWhite : OxyColor<br />&#160;&#160;static val Aqua : OxyColor<br />&#160;&#160;static val Aquamarine : OxyColor<br />&#160;&#160;static val Azure : OxyColor<br />&#160;&#160;static val Beige : OxyColor<br />&#160;&#160;static val Bisque : OxyColor<br />&#160;&#160;static val Black : OxyColor<br />&#160;&#160;...<br /><br />Full name: OxyPlot.OxyColors</div>
-<div class="tip" id="fs26"></div>
-<div class="tip" id="fs27">static member Chart.Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs28">static member Chart.Column : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a2&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; ChartTypes.GenericChart<br />static member Chart.Column : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;&#39;a3&gt; * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs29">static member Chart.Pie : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Pie : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs30">val i : float</div>
-<div class="tip" id="fs31">val rnd : System.Random<br /><br />Full name: FurtherSamplesGtk.rnd</div>
-<div class="tip" id="fs32">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />Full name: System.Random<br /><br />--------------------<br />System.Random() : unit<br />System.Random(Seed: int) : unit</div>
-<div class="tip" id="fs33">val rand : unit -&gt; float<br /><br />Full name: FurtherSamplesGtk.rand</div>
-<div class="tip" id="fs34">System.Random.NextDouble() : float</div>
-<div class="tip" id="fs35">val incData : IEvent&lt;System.DateTime * int&gt;<br /><br />Full name: FurtherSamplesGtk.incData</div>
-<div class="tip" id="fs36">Multiple items<br />module Event<br /><br />--------------------<br />module Event<br /><br />from Microsoft.FSharp.Control<br /><br />--------------------<br />type Event&lt;&#39;T&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;T&gt;<br />&#160;&#160;member Trigger : arg:&#39;T -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_&gt;<br /><br />--------------------<br />type Event&lt;&#39;Delegate,&#39;Args (requires delegate and &#39;Delegate :&gt; Delegate)&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;<br />&#160;&#160;member Trigger : sender:obj * args:&#39;Args -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;Delegate,&#39;Args&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_,_&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;T&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;</div>
-<div class="tip" id="fs37">val clock : interval:int -&gt; IEvent&lt;System.DateTime&gt;<br /><br />Full name: Event.clock<br /><em><br /><br />&#160;An event which triggers at regular intervals reporting the real world time at each trigger</em></div>
-<div class="tip" id="fs38">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; sourceEvent:IEvent&lt;&#39;Del,&#39;T&gt; -&gt; IEvent&lt;&#39;U&gt; (requires delegate and &#39;Del :&gt; System.Delegate)<br /><br />Full name: Microsoft.FSharp.Control.Event.map</div>
-<div class="tip" id="fs39">val x : System.DateTime</div>
-<div class="tip" id="fs40">property System.DateTime.Millisecond: int</div>
-<div class="tip" id="fs41">val evData : IEvent&lt;(System.DateTime * int) []&gt;<br /><br />Full name: FurtherSamplesGtk.evData</div>
-<div class="tip" id="fs42">val windowTimeInterval : interval:int -&gt; ev:IEvent&lt;System.DateTime * &#39;a&gt; -&gt; IEvent&lt;(System.DateTime * &#39;a) []&gt;<br /><br />Full name: Event.windowTimeInterval<br /><em><br /><br />&#160;An event which triggers on every event, reporting samples from the given time window</em></div>
-<div class="tip" id="fs43">val evData2 : IEvent&lt;(System.DateTime * float) []&gt;<br /><br />Full name: FurtherSamplesGtk.evData2</div>
-<div class="tip" id="fs44">val sin : value:&#39;T -&gt; &#39;T (requires member Sin)<br /><br />Full name: Microsoft.FSharp.Core.Operators.sin</div>
-<div class="tip" id="fs45">property System.DateTime.Ticks: int64</div>
-<div class="tip" id="fs46">Multiple items<br />type LiveChart =<br />&#160;&#160;new : unit -&gt; LiveChart<br />&#160;&#160;static member Area : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member Bar : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member Bubble : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2 * &#39;a3&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a1 :&gt; value and &#39;a2 :&gt; value and &#39;a3 :&gt; value)<br />&#160;&#160;static member BubbleIncremental : data:IObservable&lt;&#39;a0 * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; GenericChart (requires &#39;a0 :&gt; key and &#39;a0 :&gt; value)<br />&#160;&#160;static member Column : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member ColumnIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string * ?ColumnWidth:float -&gt; GenericChart<br />&#160;&#160;static member Line : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member LineIncremental : data:IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Pie : data:IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyColor * ?XTitle:string * ?YTitle:string -&gt; GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.LiveChart<br /><br />--------------------<br />new : unit -&gt; LiveChart</div>
-<div class="tip" id="fs47">static member LiveChart.Line : data:System.IObservable&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)</div>
-<div class="tip" id="fs48">val data2 : (int * float) list<br /><br />Full name: FurtherSamplesGtk.data2</div>
-<div class="tip" id="fs49">val data3 : (int * float) list<br /><br />Full name: FurtherSamplesGtk.data3</div>
-<div class="tip" id="fs50">val cos : value:&#39;T -&gt; &#39;T (requires member Cos)<br /><br />Full name: Microsoft.FSharp.Core.Operators.cos</div>
-<div class="tip" id="fs51">val cycle : interval:int -&gt; values:seq&lt;&#39;a&gt; -&gt; IEvent&lt;&#39;a&gt;<br /><br />Full name: Event.cycle<br /><em><br /><br />&#160;Cycle through the values at the given interval</em></div>
-<div class="tip" id="fs52">static member LiveChart.LineIncremental : data:System.IObservable&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
-<div class="tip" id="fs53">val evBubbleData : IEvent&lt;(float * float * float) []&gt;<br /><br />Full name: FurtherSamplesGtk.evBubbleData</div>
-<div class="tip" id="fs54">val sampled : interval:int -&gt; ev:IEvent&lt;&#39;a&gt; -&gt; IEvent&lt;System.DateTime * &#39;a&gt;<br /><br />Full name: Event.sampled<br /><em><br /><br />&#160;An event which triggers at regular intervals reporting the latest observed value of the given event</em></div>
-<div class="tip" id="fs55">module Array<br /><br />from Microsoft.FSharp.Collections</div>
-<div class="tip" id="fs56">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; array:&#39;T [] -&gt; &#39;U []<br /><br />Full name: Microsoft.FSharp.Collections.Array.map</div>
-<div class="tip" id="fs57">val x : float * float * float</div>
-<div class="tip" id="fs58">val incBubbleData : IEvent&lt;float * float * float&gt;<br /><br />Full name: FurtherSamplesGtk.incBubbleData</div>
-<div class="tip" id="fs59">static member LiveChart.BubbleIncremental : data:System.IObservable&lt;&#39;a0 * #value * #value&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart (requires &#39;a0 :&gt; key and &#39;a0 :&gt; value)</div>
-<div class="tip" id="fs60">static member LiveChart.Bubble : data:System.IObservable&lt;#seq&lt;&#39;a1 * &#39;a2 * &#39;a3&gt;&gt; * ?Name:string * ?Title:string * ?Color:OxyPlot.OxyColor * ?XTitle:string * ?YTitle:string * ?MarkerSize:float -&gt; ChartTypes.GenericChart (requires &#39;a1 :&gt; key and &#39;a1 :&gt; value and &#39;a2 :&gt; value and &#39;a3 :&gt; value)</div>
-<div class="tip" id="fs61">Multiple items<br />module Gtk<br /><br />from FSharp.Charting<br /><br />--------------------<br />namespace Gtk</div>
-<div class="tip" id="fs62">module Example1<br /><br />from FurtherSamplesGtk</div>
-<div class="tip" id="fs63">val win : Window<br /><br />Full name: FurtherSamplesGtk.Example1.win</div>
-<div class="tip" id="fs64">Multiple items<br />type Window =<br />&#160;&#160;inherit Bin<br />&#160;&#160;new : raw:nativeint -&gt; Window + 2 overloads<br />&#160;&#160;member AcceptFocus : bool with get, set<br />&#160;&#160;member ActivateDefault : unit -&gt; bool<br />&#160;&#160;member ActivateFocus : unit -&gt; bool<br />&#160;&#160;member ActivateKey : evnt:EventKey -&gt; bool<br />&#160;&#160;member AddAccelGroup : accel_group:AccelGroup -&gt; unit<br />&#160;&#160;member AddEmbeddedXid : xid:uint32 -&gt; unit<br />&#160;&#160;member AddMnemonic : keyval:uint32 * target:Widget -&gt; unit<br />&#160;&#160;member AllowGrow : bool with get, set<br />&#160;&#160;member AllowShrink : bool with get, set<br />&#160;&#160;...<br /><br />Full name: Gtk.Window<br /><br />--------------------<br />Window(raw: nativeint) : unit<br />Window(type: WindowType) : unit<br />Window(title: string) : unit</div>
-<div class="tip" id="fs65">val btn : Button<br /><br />Full name: FurtherSamplesGtk.Example1.btn</div>
-<div class="tip" id="fs66">Multiple items<br />type Button =<br />&#160;&#160;inherit Bin<br />&#160;&#160;new : unit -&gt; Button + 3 overloads<br />&#160;&#160;member Click : unit -&gt; unit<br />&#160;&#160;member Enter : unit -&gt; unit<br />&#160;&#160;member FocusOnClick : bool with get, set<br />&#160;&#160;member GetAlignment : xalign:float32 * yalign:float32 -&gt; unit<br />&#160;&#160;member Image : Widget with get, set<br />&#160;&#160;member ImagePosition : PositionType with get, set<br />&#160;&#160;member InButton : bool with get, set<br />&#160;&#160;member Label : string with get, set<br />&#160;&#160;member Leave : unit -&gt; unit<br />&#160;&#160;...<br /><br />Full name: Gtk.Button<br /><br />--------------------<br />Button() : unit<br />Button(raw: nativeint) : unit<br />Button(stock_id: string) : unit<br />Button(widget: Widget) : unit</div>
-<div class="tip" id="fs67">property Widget.Visible: bool</div>
-<div class="tip" id="fs68">Widget.Show() : unit</div>
-<div class="tip" id="fs69">Container.Add(widget: Widget) : unit</div>
-<div class="tip" id="fs70">Window.Present() : unit</div>
+<span class="k">open</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span>
+
+<span class="i">Chart</span><span class="o">.</span><span class="i">Point</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="n">2.0</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="n">3.0</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span> ] 
+
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span> <span class="o">*</span> <span class="n">100</span> ] 
+<span class="c">// TODO: should auto-scale the bubble size in some way</span>
+
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span> <span class="o">+</span> <span class="n">1</span>] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span>, <span class="i">float</span> (<span class="i">x</span><span class="o">*</span><span class="i">x</span>) ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span>, <span class="i">single</span>  (<span class="i">x</span><span class="o">*</span><span class="i">x</span>) ] 
+
+<span class="c">// Check with date time date</span>
+<span class="i">Chart</span><span class="o">.</span><span class="i">Area</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddDays</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Area</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">string</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+
+<span class="c">// TODO: needs to show the labels as &quot;categories&quot;</span>
+<span class="c">//Chart.Bar [ for i in 0 .. 10 -&gt; (&quot;abc&quot; + string i, i*i)] </span>
+
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddSeconds</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddMinutes</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddHours</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddDays</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddMonths</span>(<span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddYears</span>(<span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">TimeSpan</span><span class="o">.</span><span class="i">FromDays</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+
+
+<span class="c">// TODO: this scatter plot asserts, we can&#39;t show DateTime in scatter plots X axis</span>
+<span class="c">// Chart.Point [ for i in 0 .. 10 -&gt; (System.DateTime.Now.AddDays(float i), i*i)] </span>
+
+
+<span class="c">// TODO: check labels</span>
+
+<span class="c">//let check (c:GenericChart) = c.ShowChart() |&gt; ignore</span>
+<span class="i">Chart</span><span class="o">.</span><span class="i">Area</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ]   <span class="c">// TODO: this doesn&#39;t fill the area</span>
+<span class="i">Chart</span><span class="o">.</span><span class="i">Area</span> ([ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ],<span class="i">Color</span><span class="o">=</span><span class="i">OxyPlot</span><span class="o">.</span><span class="i">OxyColors</span><span class="o">.</span><span class="i">Blue</span>)   <span class="c">// TODO: this doesn&#39;t fill the area</span>
+<span class="i">Chart</span><span class="o">.</span><span class="i">Area</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">float</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bar</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddDays</span>(<span class="i">float</span> <span class="i">x</span>), <span class="i">x</span><span class="o">*</span><span class="i">x</span> ]  <span class="c">// TODO, the category is not used</span>
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Bubble</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span>, <span class="i">float</span> (<span class="i">x</span><span class="o">*</span><span class="i">x</span>) ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Column</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Column</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="c">(*</span>
+<span class="c">Chart.Doughnut [ 0 .. 10 ] </span>
+<span class="c">Chart.Doughnut [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.ErrorBar [ for x in 0 .. 10 -&gt; x, x, x-1, x+1 ] </span>
+<span class="c">Chart.FastLine [ 0 .. 10 ] </span>
+<span class="c">Chart.FastLine [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.FastPoint [ 0 .. 10 ] </span>
+<span class="c">Chart.FastPoint [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Funnel [ 0 .. 10 ] </span>
+<span class="c">Chart.Funnel [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">    </span>
+<span class="c">// Bug: it is really hard to see the data here, see https://github.com/fslaborg/FSharp.Charting/issues/14</span>
+<span class="c">Chart.Kagi [ 1.1; 3.1; 4.1; 5.1; 3.1; 2.1;  ] </span>
+<span class="c">Chart.Kagi [ for x in 0 .. 10 -&gt; float x + 0.1, x*x ] </span>
+<span class="c">*)</span>
+    
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> (<span class="i">System</span><span class="o">.</span><span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span><span class="o">.</span><span class="i">AddDays</span>(<span class="i">float</span> <span class="i">i</span>), <span class="i">i</span><span class="o">*</span><span class="i">i</span>)] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Pie</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Pie</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Point</span> [ <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> ] 
+<span class="i">Chart</span><span class="o">.</span><span class="i">Point</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">10</span> <span class="k">-&gt;</span> <span class="i">x</span>, <span class="i">x</span><span class="o">*</span><span class="i">x</span> ] 
+<span class="c">(*</span>
+<span class="c">Chart.PointAndFigure [ for x in 0 .. 10 -&gt; cos (float x), sin (float x) ] </span>
+<span class="c">Chart.PointAndFigure [ for x in 0 .. 10 -&gt; x, cos (float x), sin (float x) ] </span>
+<span class="c">Chart.Polar [ 0 .. 10 ] </span>
+<span class="c">Chart.Polar [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Pyramid [ 0 .. 10 ] </span>
+<span class="c">Chart.Pyramid [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Radar [ 0 .. 10 ] </span>
+<span class="c">Chart.Radar [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Range [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Range [ for x in 0 .. 10 -&gt; x, x-1, x+1 ] </span>
+<span class="c">Chart.RangeBar [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.RangeBar [ for x in 0 .. 10 -&gt; x, x-1, x+1 ] </span>
+<span class="c">Chart.RangeColumn [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.RangeColumn [ for x in 0 .. 10 -&gt; x, x-1, x+1 ] </span>
+<span class="c">Chart.Renko [ 0 .. 10 ] </span>
+<span class="c">Chart.Renko [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.Spline [ 0 .. 10 ] </span>
+<span class="c">Chart.Spline [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.SplineArea [ 0 .. 10 ] </span>
+<span class="c">Chart.SplineArea [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.SplineRange [ for x in 0 .. 10 -&gt; x, x*x ] </span>
+<span class="c">Chart.SplineRange [ for x in 0 .. 10 -&gt; x, x*x, x+4 ] </span>
+<span class="c">Chart.StackedArea [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StackedArea100 [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StackedBar [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StackedBar100 [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StackedColumn [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StackedColumn100 [ [ for x in 0 .. 10 -&gt; x, x]; [ for x in 0 .. 10 -&gt; x, x*x] ] </span>
+<span class="c">Chart.StepLine [for x in 0 .. 10 -&gt; x, x] </span>
+<span class="c">Chart.BoxPlotFromStatistics( </span>
+<span class="c">        [ (&quot;Result A&quot;, -12.7, 11.6, -8.3, 6.4, 0.0, 0.0);</span>
+<span class="c">          (&quot;Result B&quot;, -6.7, 11.6, -5.0, 5.4, 0.0, 0.0) ]) |&gt; check</span>
+
+<span class="c">let date n = System.DateTime.Today.AddDays(float n).ToShortDateString()</span>
+<span class="c">let rnd = new System.Random()</span>
+
+<span class="c">let threeSyntheticDataSets = </span>
+<span class="c">    [ (date 0, [| for i in 0 .. 20 -&gt; float (rnd.Next 20) |])</span>
+<span class="c">      (date 1, [| for i in 0 .. 20 -&gt; float (rnd.Next 15 + 2) |])</span>
+<span class="c">      (date 2, [| for i in 0 .. 20 -&gt; float (rnd.Next 10 + 5) |]) ]</span>
+
+<span class="c">Chart.BoxPlotFromData</span>
+<span class="c">    ( threeSyntheticDataSets,</span>
+<span class="c">    ShowUnusualValues = true, ShowMedian = false,</span>
+<span class="c">    ShowAverage = false, WhiskerPercentile = 10) |&gt; check</span>
+
+<span class="c">Chart.Candlestick [for x in 0 .. 10 -&gt; x+10, x-10, x+5, x-5 ] </span>
+<span class="c">Chart.Stock [for x in 0 .. 10 -&gt; x+10, x-10, x+5, x-5 ] </span>
+<span class="c">*)</span>
+
+
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> [ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ]
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Name</span><span class="o">=</span><span class="s">&quot;The Curve Of Growth&quot;</span>, <span class="i">Color</span><span class="o">=</span><span class="i">OxyPlot</span><span class="o">.</span><span class="i">OxyColors</span><span class="o">.</span><span class="i">Blue</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Name</span><span class="o">=</span><span class="s">&quot;The Curve Of Growth&quot;</span>, <span class="i">Color</span><span class="o">=</span><span class="i">OxyPlot</span><span class="o">.</span><span class="i">OxyColors</span><span class="o">.</span><span class="i">Green</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Name</span><span class="o">=</span><span class="s">&quot;The Curve Of Growth&quot;</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Title</span><span class="o">=</span><span class="s">&quot;The Only Way is Up&quot;</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Name</span><span class="o">=</span><span class="s">&quot;The Curve Of Growth&quot;</span>, <span class="i">XTitle</span><span class="o">=</span><span class="s">&quot;Time&quot;</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">XTitle</span><span class="o">=</span><span class="s">&quot;Time&quot;</span>, <span class="i">YTitle</span><span class="o">=</span><span class="s">&quot;Growth&quot;</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">Title</span><span class="o">=</span><span class="s">&quot;The Only Way is Up&quot;</span>, <span class="i">XTitle</span><span class="o">=</span><span class="s">&quot;Time&quot;</span>, <span class="i">YTitle</span><span class="o">=</span><span class="s">&quot;Growth&quot;</span>)
+<span class="i">Chart</span><span class="o">.</span><span class="i">Line</span> ([ <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">0.0</span> <span class="o">..</span> <span class="n">10.0</span> <span class="k">-&gt;</span> <span class="i">i</span>, <span class="i">i</span><span class="o">*</span><span class="i">i</span> ], <span class="i">XTitle</span><span class="o">=</span><span class="s">&quot;Time&quot;</span>)
+
+<span class="c">//--------------------------------------------------------------------------</span>
+
+
+
+<span class="prep">#load</span> <span class="s">&quot;EventEx-0.1.fsx&quot;</span>
+<span class="k">let</span> <span class="i">rnd</span> <span class="o">=</span> <span class="k">new</span> <span class="i">System</span><span class="o">.</span><span class="i">Random</span>()
+<span class="k">let</span> <span class="i">rand</span>() <span class="o">=</span> <span class="i">rnd</span><span class="o">.</span><span class="i">NextDouble</span>()
+<span class="k">let</span> <span class="i">incData</span> <span class="o">=</span> <span class="i">Event</span><span class="o">.</span><span class="i">clock</span> <span class="n">10</span> <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> (<span class="i">x</span>, <span class="i">x</span><span class="o">.</span><span class="i">Millisecond</span>))
+<span class="k">let</span> <span class="i">evData</span> <span class="o">=</span> 
+    <span class="i">Event</span><span class="o">.</span><span class="i">clock</span> <span class="n">10</span> 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> (<span class="i">x</span>, <span class="i">x</span><span class="o">.</span><span class="i">Millisecond</span>)) 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">windowTimeInterval</span> <span class="n">3000</span> 
+
+<span class="k">let</span> <span class="i">evData2</span> <span class="o">=</span> 
+    <span class="i">Event</span><span class="o">.</span><span class="i">clock</span> <span class="n">20</span> 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> (<span class="i">x</span>, <span class="n">100.0</span> <span class="o">+</span> <span class="n">200.0</span> <span class="o">*</span> <span class="i">sin</span> (<span class="i">float</span> (<span class="i">x</span><span class="o">.</span><span class="i">Ticks</span> <span class="o">/</span> <span class="n">2000000L</span>)))) 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">windowTimeInterval</span> <span class="n">3000</span> 
+
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span> <span class="i">evData</span>  <span class="c">// TODO: this fails because it doesn&#39;t like DateTime</span>
+
+<span class="k">let</span> <span class="i">data2</span> <span class="o">=</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span class="i">x</span>,<span class="i">sin</span>(<span class="i">float</span> <span class="i">x</span> <span class="o">/</span> <span class="n">10.0</span>)) ]
+<span class="k">let</span> <span class="i">data3</span> <span class="o">=</span> [ <span class="k">for</span> <span class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span class="n">99</span> <span class="k">-&gt;</span> (<span class="i">x</span>,<span class="i">cos</span>(<span class="i">float</span> <span class="i">x</span> <span class="o">/</span> <span class="n">10.0</span>)) ]
+<span class="c">// Cycle through two data sets of the same type</span>
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span> (<span class="i">Event</span><span class="o">.</span><span class="i">cycle</span> <span class="n">1000</span> [<span class="i">data2</span>; <span class="i">data3</span>])
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">LineIncremental</span> <span class="i">incData</span>
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span> <span class="i">evData</span>
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span> <span class="i">evData2</span>
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Clock&quot;</span>)
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">evData2</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Clock&quot;</span>,<span class="i">Title</span><span class="o">=</span><span class="s">&quot;ABC&quot;</span>)
+
+<span class="k">let</span> <span class="i">evBubbleData</span> <span class="o">=</span> 
+    <span class="i">Event</span><span class="o">.</span><span class="i">clock</span> <span class="n">10</span> 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> (<span class="i">rand</span>(), <span class="i">rand</span>(), <span class="i">rand</span>() <span class="o">*</span> <span class="n">10.0</span>)) 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">sampled</span> <span class="n">30</span> 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">windowTimeInterval</span> <span class="n">3000</span>  
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="i">Array</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> (_,<span class="i">x</span>) <span class="k">-&gt;</span> <span class="i">x</span>))
+
+<span class="k">let</span> <span class="i">incBubbleData</span> <span class="o">=</span> 
+    <span class="i">Event</span><span class="o">.</span><span class="i">clock</span> <span class="n">10</span> 
+    <span class="o">|&gt;</span> <span class="i">Event</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> (<span class="i">rand</span>(), <span class="i">rand</span>(), <span class="i">rand</span>() <span class="o">*</span> <span class="n">10.0</span>))
+
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">BubbleIncremental</span>(<span class="i">incBubbleData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Clock&quot;</span>)
+<span class="i">LiveChart</span><span class="o">.</span><span class="i">Bubble</span>(<span class="i">evBubbleData</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Clock&quot;</span>)
+
+<span class="c">(*</span>
+<span class="c">LiveChart.LineIncremental(incData,Name=&quot;MouseMove&quot;).WithXAxis(Enabled=false).WithYAxis(Enabled=false)</span>
+<span class="c">LiveChart.FastLineIncremental(incData,Name=&quot;MouseMove&quot;).WithXAxis(Enabled=false).WithYAxis(Enabled=false)</span>
+
+<span class="c">LiveChart.Line(evData,Name=&quot;MouseMove&quot;).WithXAxis(Enabled=false).WithYAxis(Enabled=false)</span>
+<span class="c">LiveChart.Line(evData2,Name=&quot;Clock&quot;).WithXAxis(Enabled=false).WithYAxis(Enabled=false)</span>
+<span class="c">LiveChart.Line(evData2,Name=&quot;Clock&quot;)</span>
+<span class="c">    .WithXAxis(Title=&quot;abc&quot;)</span>
+<span class="c">    .WithYAxis(Title=&quot;def&quot;)</span>
+
+<span class="c">LiveChart.Point(evData2,Name=&quot;Clock&quot;)</span>
+<span class="c">LiveChart.PointIncremental(incData,Name=&quot;Clock&quot;)</span>
+<span class="c">*)</span>
+
+<span class="c">//LiveChart.FastPoint(evData2,Name=&quot;Clock&quot;)</span>
+<span class="c">//LiveChart.FastPointIncremental(incData,Name=&quot;Clock&quot;)</span>
+
+<span class="c">(*</span>
+<span class="c">LiveChart.Line(evData2,Name=&quot;Clock&quot;)</span>
+<span class="c">    .WithXAxis(Title=&quot;&quot;)</span>
+<span class="c">    .WithYAxis(Title=&quot;&quot;)</span>
+
+<span class="c">LiveChart.Line(evData2).WithTitle(&quot;A&quot;)</span>
+
+<span class="c">LiveChart.Line(evData,Name=&quot;MouseMove&quot;)</span>
+
+<span class="c">LiveChart.Line(constantLiveTimeSeriesData)</span>
+<span class="c">*)</span>
+
+<span class="c">//--------------------------------------------------------------------------</span>
+
+
+<span class="k">open</span> <span class="i">Gtk</span>
+<span class="k">module</span> <span class="i">Example1</span> <span class="o">=</span> 
+    <span class="k">let</span> <span class="i">win</span> <span class="o">=</span> <span class="k">new</span> <span class="i">Window</span>(<span class="s">&quot;Hello&quot;</span>)
+    <span class="k">let</span> <span class="i">btn</span> <span class="o">=</span> <span class="k">new</span> <span class="i">Button</span>(<span class="s">&quot;Button&quot;</span>)
+    <span class="i">btn</span><span class="o">.</span><span class="i">Visible</span> <span class="o">&lt;-</span> <span class="k">true</span>
+    <span class="i">btn</span><span class="o">.</span><span class="i">Show</span>()
+    <span class="i">win</span><span class="o">.</span><span class="i">Add</span>(<span class="i">btn</span>)
+    <span class="i">win</span><span class="o">.</span><span class="i">Present</span>()
+</code></pre></td>
+</tr>
+</table>
+
 
         </div>
         <div class="span3">
@@ -124,17 +506,17 @@
           </a>
 
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">F# Charting</li>
+            <li class="nav-header">FSharp.Charting</li>
             <li><a href="http://fslab.org/FSharp.Charting/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://nuget.org/packages/FSharp.Charting">Get Library via NuGet</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting">Source Code on GitHub</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md">License (BSD)</a></li>
             <li><a href="http://github.com/fslaborg/FSharp.Charting/blob/master/RELEASE_NOTES.md">Release notes</a></li>
-            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to F# Charting</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/contributing.html">Contributing to FSharp.Charting</a></li>
             
             <li class="nav-header">Documentation</li>
-            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">F# Charting Documentation</a></li>
+            <li><a href="http://fslab.org/FSharp.Charting/fsharpcharting.html">FSharp.Charting Documentation</a></li>
             <li class="divider"></li>
             <li><a href="http://fslab.org/FSharp.Charting/ReferencingTheLibrary.html">Referencing The Library</a></li>
             <li><a href="http://fslab.org/FSharp.Charting/PointAndLineCharts.html">Point and Line Charts</a></li>

@@ -34,7 +34,7 @@ let Empty = new EmptyConstraint()
 
 let EmptyString = new EmptyStringConstraint()
 
-let NullOrEmptyString = new NullOrEmptyStringConstraint()
+//let NullOrEmptyString = new NullOrEmptyStringConstraint()
 
 let True = new TrueConstraint()
 

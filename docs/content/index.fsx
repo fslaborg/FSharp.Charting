@@ -88,6 +88,9 @@ FSharp.Charting features
 * Can be used in conjunction with the [FSharp.Data](http://fsharp.github.io/FSharp.Data) library</a>.
 * Many extra chart types (Windows-only): BoxPlot, Candlestick, Doughnut, ErrorBar, FastLine, FastPoint, Funnel, Kagi and more.
 
+Not all features are supported in the FSharp.Charting.Gtk version of the library.
+See ``INCOMPLETE_API`` in the implementation.  Contributions to compelte the features are welcome.
+
 Approach, history and future
 -----------------------------
 

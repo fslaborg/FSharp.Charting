@@ -10,8 +10,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSharp.Charting</RootNamespace>
     <AssemblyName>FSharp.Charting</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Name>FSharp.Charting</Name>
+    <OutputPath>..\bin\</OutputPath>
+    <DocumentationFile>..\bin\FSharp.Charting.xml</DocumentationFile>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -19,25 +21,17 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\FSharp.Charting.XML</DocumentationFile>
     <StartAction>Project</StartAction>
-    <StartProgram>
-    </StartProgram>
-    <StartArguments>
-    </StartArguments>
     <OtherFlags>--warnon:1182</OtherFlags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\FSharp.Charting.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FSharp.Charting.fs" />
@@ -72,66 +66,12 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
-  <Target Name="AfterBuild">
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName)$(TargetExt)" DestinationFolder="$(SolutionDir)bin\v40" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin\v40" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).xml" DestinationFolder="$(SolutionDir)bin\v40" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName)$(TargetExt)" DestinationFolder="$(SolutionDir)bin" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)bin" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).xml" DestinationFolder="$(SolutionDir)bin" />
-    <Copy SourceFiles="$(ProjectDir)$(OutDir)$(TargetName).fsx" DestinationFolder="$(SolutionDir)bin" />
-  </Target>
   <Import Project="..\.paket\paket.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v2.0' Or $(TargetFrameworkVersion) == 'v3.0' Or $(TargetFrameworkVersion) == 'v3.5')">
-      <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\packages\FSharp.Core\lib\net20\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2')">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.6.1')">
       <ItemGroup>
         <Reference Include="FSharp.Core">
           <HintPath>..\packages\FSharp.Core\lib\net40\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="($(TargetFrameworkIdentifier) == '.NETCore') Or ($(TargetFrameworkIdentifier) == 'MonoAndroid' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v2.2' Or $(TargetFrameworkVersion) == 'v2.3' Or $(TargetFrameworkVersion) == 'v4.0.3' Or $(TargetFrameworkVersion) == 'v4.1' Or $(TargetFrameworkVersion) == 'v4.2' Or $(TargetFrameworkVersion) == 'v4.3' Or $(TargetFrameworkVersion) == 'v4.4' Or $(TargetFrameworkVersion) == 'v5.0' Or $(TargetFrameworkVersion) == 'v5.1' Or $(TargetFrameworkVersion) == 'v6.0' Or $(TargetFrameworkVersion) == 'v7.0' Or $(TargetFrameworkVersion) == 'v7.1' Or $(TargetFrameworkVersion) == 'v8.0' Or $(TargetFrameworkVersion) == 'v8.1')) Or ($(TargetFrameworkIdentifier) == 'MonoTouch') Or ($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1' Or $(TargetFrameworkVersion) == 'v2.0' Or $(TargetFrameworkVersion) == 'v2.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And ($(TargetFrameworkVersion) == 'v1.1' Or $(TargetFrameworkVersion) == 'v1.2' Or $(TargetFrameworkVersion) == 'v1.3' Or $(TargetFrameworkVersion) == 'v1.4' Or $(TargetFrameworkVersion) == 'v1.5' Or $(TargetFrameworkVersion) == 'v1.6' Or $(TargetFrameworkVersion) == 'v2.0')) Or ($(TargetFrameworkProfile) == 'Profile7') Or ($(TargetFrameworkProfile) == 'Profile44') Or ($(TargetFrameworkIdentifier) == 'Xamarin.iOS') Or ($(TargetFrameworkIdentifier) == 'Xamarin.Mac') Or ($(TargetFrameworkIdentifier) == 'Xamarin.tvOS') Or ($(TargetFrameworkIdentifier) == 'Xamarin.watchOS')">
-      <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\packages\FSharp.Core\lib\portable-net45+netcore45\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.0') Or ($(TargetFrameworkProfile) == 'Profile78') Or ($(TargetFrameworkProfile) == 'Profile49') Or ($(TargetFrameworkProfile) == 'Profile31') Or ($(TargetFrameworkIdentifier) == 'WindowsPhone' And ($(TargetFrameworkVersion) == 'v8.0' Or $(TargetFrameworkVersion) == 'v8.1'))">
-      <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\packages\FSharp.Core\lib\portable-net45+netcore45+wp8\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="($(TargetFrameworkIdentifier) == 'WindowsPhoneApp') Or ($(TargetFrameworkProfile) == 'Profile259') Or ($(TargetFrameworkProfile) == 'Profile111') Or ($(TargetFrameworkProfile) == 'Profile151') Or ($(TargetFrameworkProfile) == 'Profile157') Or ($(TargetFrameworkProfile) == 'Profile32') Or ($(TargetFrameworkProfile) == 'Profile84') Or ($(TargetFrameworkIdentifier) == '.NETCore' And $(TargetFrameworkVersion) == 'v5.0')">
-      <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\packages\FSharp.Core\lib\portable-net45+netcore45+wpa81+wp8\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="($(TargetFrameworkProfile) == 'Profile24') Or ($(TargetFrameworkProfile) == 'Profile47') Or ($(TargetFrameworkIdentifier) == 'Silverlight' And $(TargetFrameworkVersion) == 'v5.0')">
-      <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\packages\FSharp.Core\lib\portable-net45+sl5+netcore45\FSharp.Core.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

@@ -5,13 +5,13 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("FSharp.Charting")>]
 [<assembly: AssemblyProductAttribute("FSharp.Charting")>]
 [<assembly: AssemblyDescriptionAttribute("A Charting Library for F#")>]
-[<assembly: AssemblyVersionAttribute("2.0.0")>]
-[<assembly: AssemblyFileVersionAttribute("2.0.0")>]
+[<assembly: AssemblyVersionAttribute("2.1.0")>]
+[<assembly: AssemblyFileVersionAttribute("2.1.0")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "FSharp.Charting"
     let [<Literal>] AssemblyProduct = "FSharp.Charting"
     let [<Literal>] AssemblyDescription = "A Charting Library for F#"
-    let [<Literal>] AssemblyVersion = "2.0.0"
-    let [<Literal>] AssemblyFileVersion = "2.0.0"
+    let [<Literal>] AssemblyVersion = "2.1.0"
+    let [<Literal>] AssemblyFileVersion = "2.1.0"

@@ -16,7 +16,7 @@
 #r "System.Windows.Forms.DataVisualization.dll"
 #nowarn "211"
 #I __SOURCE_DIRECTORY__
-#I "lib/net40"
+#I "lib/net45"
 #r "FSharp.Charting.dll"
 
 open FSharp.Charting

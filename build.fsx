@@ -11,6 +11,8 @@ open System.Text.RegularExpressions
 open Fake 
 open Fake.AssemblyInfoFile
 open Fake.Git
+open Fake.Testing
+
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
@@ -115,11 +117,10 @@ Target "RunTests" (fun _ ->
 
     if not compilingOnUnix then
       (files [ "tests/bin/Release/FSharp.Charting.Tests.dll"])
-      |> NUnit (fun p ->
+      |> NUnit3 (fun p ->
         { p with
-            DisableShadowCopy = true
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml" })
+            TimeOut = TimeSpan.FromMinutes 20.            
+            })
 )
 
 FinalTarget "CloseTestRunner" (fun _ ->  
@@ -130,44 +131,19 @@ FinalTarget "CloseTestRunner" (fun _ ->
 // Build a NuGet package
 
 Target "NuGet" (fun _ ->
-
-    // Format the description to fit on a single line (remove \r\n and double-spaces)
-    let description = description.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-    let descriptionGtk = descriptionGtk.Replace("\r", "").Replace("\n", "").Replace("  ", " ")
-
+    Paket.Pack (fun p -> 
+        { p with 
+            TemplateFile = "nuget/FSharp.Charting.Gtk.template"
+            Version = release.NugetVersion
+            OutputPath = "bin"
+            ReleaseNotes = toLines release.Notes })
     if not compilingOnUnix then
-      NuGet (fun p -> 
-        { p with   
-            Authors = authors
-            Project = project
-            Summary = summary
-            Description = description
-            Version = version
-            ReleaseNotes = releaseNotes
-            Tags = tags
-            OutputPath = "bin"
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
-            Dependencies = [] 
-            WorkingDir = "./nuget" })
-        "nuget/FSharp.Charting.nuspec"
-
-    NuGet (fun p -> 
-        { p with   
-            Authors = authors
-            Project = projectGtk
-            Summary = summaryGtk
-            Description = descriptionGtk
-            Version = version
-            ReleaseNotes = releaseNotes
-            Tags = tagsGtk
-            OutputPath = "bin"
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
-            Dependencies = [] 
-            WorkingDir = "./nuget" })
-        "nuget/FSharp.Charting.Gtk.nuspec"
-
+        Paket.Pack (fun p -> 
+            { p with 
+                TemplateFile = "nuget/FSharp.Charting.template"
+                Version = release.NugetVersion
+                OutputPath = "bin"
+                ReleaseNotes = toLines release.Notes })
 )
 
 // --------------------------------------------------------------------------------------

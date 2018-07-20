@@ -18,7 +18,6 @@
   </metadata>
   <files>
     <file src="..\bin\FSharp.Charting.Gtk.dll" target="lib/net40" />
-    <file src="..\bin\FSharp.Charting.Gtk.pdb" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.Gtk.xml" target="lib/net40" />
     <file src="..\bin\FSharp.Charting.Gtk.fsx" target="." />
     <file src="..\bin\OxyPlot.dll" target="lib/net40" />

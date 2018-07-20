@@ -27,6 +27,12 @@
 #I "/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/gtk-sharp-2.0"
 #I "/usr/lib/mono/gtk-sharp-2.0"
 
+// In Ubuntu, GTK-sharp libraries are split into various directories
+#I "/usr/lib/cli/glib-sharp-2.0/"
+#I "/usr/lib/cli/atk-sharp-2.0/"
+#I "/usr/lib/cli/gtk-sharp-2.0/"
+#I "/usr/lib/cli/gdk-sharp-2.0/"
+
 #r "gtk-sharp.dll"
 #r "gdk-sharp.dll"
 #r "atk-sharp.dll"
@@ -38,10 +44,11 @@
 // This means that using #I __SOURCE_DIRECTORY__ is sufficient to enable local resolution of #r and #I paths within an included script file.
 
 #I __SOURCE_DIRECTORY__
+#I "lib/net40"
 
-#r "lib/net40/OxyPlot.dll"
-#r "lib/net40/OxyPlot.GtkSharp.dll"
-#r "lib/net40/FSharp.Charting.Gtk.dll"
+#r "OxyPlot.dll"
+#r "OxyPlot.GtkSharp.dll"
+#r "FSharp.Charting.Gtk.dll"
 
 open System
 let verifyMac () = 

@@ -232,6 +232,16 @@ namespace FSharp.Charting
             member __.Y = Y
             member __.Size = Size
             member __.Tag = Tag
+        type public CandlestickChartItem(Date: key, Open: value, High: value, Low: value, Close: value) =
+            member __.Date = Date
+            member __.Open = Open
+            member __.High = High
+            member __.Low = Low
+            member __.Close = Close
+
+        // let mapHiLoItem (d, o, h, l, c) = 
+        //     let x = Axes.DateTimeAxis.ToDouble d
+        //     HighLowItem(x,h,l,o,c)
 
 #if INCOMPLETE_API
         /// Specifies the image type of the chart.
@@ -730,7 +740,8 @@ namespace FSharp.Charting
             let ensureDefaultAxis (X) =
                 match model.Axes |> Seq.tryFind (fun x -> (if X then x.IsHorizontal() else x.IsVertical()) && x.IsXyAxis()) with 
                 | None -> 
-                    let axis = Axes.LinearAxis(if X then Axes.AxisPosition.Bottom else Axes.AxisPosition.Left)
+                    let axis = Axes.LinearAxis()
+                    axis.Position <- (if X then Axes.AxisPosition.Bottom else Axes.AxisPosition.Left)
                     model.Axes.Add axis
                     axis :> Axes.Axis
                 | Some a -> a
@@ -1126,6 +1137,7 @@ namespace FSharp.Charting
            GenericChart.Create(data |> listen |> makeItems (fun (x,y) -> LineChartItem(x,y)), LineSeries(DataFieldX="X",DataFieldY="Y"))
              |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom)
              |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
+            
 
         /// <summary>Illustrates trends in data with the passing of time.</summary>
         /// <param name="data">The data for the chart.</param>
@@ -1184,6 +1196,19 @@ namespace FSharp.Charting
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Point(data:seq<#value>,?Name,?Title,?Labels,?Color,?XTitle,?YTitle,?MarkerSize) = 
            Chart.Point(indexData data,?Name=Name,?Title=Title,?Labels=Labels,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerSize=MarkerSize)
+
+        /// <summary>Used to display stock information using high, low, open and close values.</summary>
+        /// <param name="data">The data for the chart as (time, high, low, open, close) tuples.</param>
+        /// <param name="Name">The name of the data set.</param>
+        /// <param name="Title">The title of the chart.</param>
+        /// <param name="Labels">The labels that match the data.</param>
+        /// <param name="Color">The color for the data.</param>
+        /// <param name="XTitle">The title of the X-axis.</param>
+        /// <param name="YTitle">The title of the Y-axis.</param>
+        static member Candlestick(data:seq<('key :> key) * #value * #value * #value * #value>,?Name,?Title,?Color,?XTitle,?YTitle) =
+            GenericChart.Create(data |> listen |> makeItems (fun(d,o,h,l,c) -> CandlestickChartItem(d |> Axes.DateTimeAxis.ToDouble,o,h,l,c)), CandleStickSeries(DataFieldX = "Date", DataFieldOpen = "Open", DataFieldHigh = "High", DataFieldLow = "Low", DataFieldClose = "Close"))
+            |> Helpers.ApplyStaticAxis(typeof<'key>, Axes.AxisPosition.Bottom)
+            |> Helpers.ApplyStyles(?Name=Name,?Title=Title,?Color=Color,?AxisXTitle=XTitle,?AxisYTitle=YTitle)
 
 #if INCOMPLETE_API
         /// <summary>Disregards the passage of time and only displays changes in prices.</summary>

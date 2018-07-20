@@ -1,7 +1,7 @@
 (*** hide ***)
 #I "../../bin"
 (** 
-# F# Charting: Bar and Column Charts
+# FSharp.Charting: Bar and Column Charts
 
 *Summary:* This example shows how to create bar and column charts in F#.
 

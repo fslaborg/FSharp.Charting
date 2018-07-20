@@ -6,17 +6,19 @@ iconurl https://raw.github.com/fslaborg/FSharp.Charting/master/misc/logo.png
 description
   The F# Charting Gtk library (FSharp.Charting.Gtk.dll) is a cross-platform variation of
   of FSharp.Charting. It can be used on Windows, OSX and other platforms supporting Gtk.
+  See also th https://fslab.org/XPlot library for cross-platform charting.
 authors
   Carl Nolan
   Tomas Petricek
   Don Syme
+  Robert Simra
 tags
     F#, fsharp, interactive, compiler, editor, charting, gtk
 files
     ../bin/FSharp.Charting.Gtk.dll ==> lib/net45
     ../bin/FSharp.Charting.Gtk.xml ==> lib/net45
     ../bin/FSharp.Charting.Gtk.fsx ==> lib/net45
-    ../bin/FSharp.Charting.Gtk.?db ==> lib/net45
-    ../bin/FSharp.Charting.Gtk.dll.?db ==> lib/net45
     ../bin/OxyPlot.dll ==> lib/net45
     ../bin/OxyPlot.GtkSharp.dll ==> lib/net45
+dependencies
+  FSharp.Core >= LOCKEDVERSION

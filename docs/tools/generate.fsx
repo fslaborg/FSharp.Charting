@@ -6,14 +6,14 @@
 // Binaries that have XML documentation (in a corresponding generated XML file)
 let referenceBinaries = [ "FSharp.Charting.dll" ]
 // Web site location for the generated documentation
-let website = "http://fslab.org/FSharp.Charting"
+let website = "https://fslab.org/FSharp.Charting"
 
 // Specify more information about your project
 let info =
-  [ "project-name", "F# Charting"
+  [ "project-name", "FSharp.Charting"
     "project-author", "Don Syme, Carl Nolan, Tomas Petricek"
-    "project-summary", "The F# Charting library implements charting suitable for in F# scripting."
-    "project-github", "http://github.com/fslaborg/FSharp.Charting"
+    "project-summary", "The FSharp.Charting library implements charting suitable for in F# scripting."
+    "project-github", "https://github.com/fslaborg/FSharp.Charting"
     "project-nuget", "https://nuget.org/packages/FSharp.Charting" ]
 
 // --------------------------------------------------------------------------------------

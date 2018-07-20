@@ -1,7 +1,7 @@
 (*** hide ***)
 #I "../../bin"
 (** 
-# F# Charting: BoxPlot Charts
+# FSharp.Charting: BoxPlot Charts
 
 *Summary:* This example shows how to create boxplot diagrams in F#. It looks at how 
 to create a single boxplot from six statistics about an observation set as well as 
@@ -82,9 +82,6 @@ The example above demonstrates how to calculate boxplot diagrams
 automatically from (randomly generated) data. It is also possible to set 
 several custom properties to configure the boxplot diagram. When 
 `BoxPlotShowUnusualValues` is true, the boxplot displays unusual values using points, as shown in Figure 1.
-
-More information about working with financial data and how to download 
-stock prices from the Yahoo Finance portal using F# can be found in [Try F#](http://tryfsharp.org).
 
 
 *)

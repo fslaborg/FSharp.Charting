@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>@project@</id>
+    <version>@build.number@</version>
+    <authors>@authors@</authors>
+    <owners>@authors@</owners>
+    <licenseUrl>https://github.com/fslaborg/FSharp.Charting/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://fslab.org/FSharp.Charting</projectUrl>
+    <iconUrl>https://raw.github.com/fslaborg/FSharp.Charting/master/misc/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>@summary@</summary>
+    <description>@description@</description>
+    <releaseNotes>@releaseNotes@</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>@tags@</tags>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="..\bin\FSharp.Charting.Gtk.dll" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.Gtk.xml" target="lib/net40" />
+    <file src="..\bin\FSharp.Charting.Gtk.fsx" target="." />
+    <file src="..\bin\OxyPlot.dll" target="lib/net40" />
+    <file src="..\bin\OxyPlot.GtkSharp.dll" target="lib/net40" />
+    <file src="..\bin\LICENSE.md" target="." />
+  </files>
+</package>

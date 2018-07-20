@@ -1,12 +1,12 @@
 frameworks: net40, net45, net461, net461
 source https://nuget.org/api/v2
 
-nuget FSharp.Formatting
-nuget NUnit
-nuget NUnit.Runners
+nuget FSharp.Core 4.0.0.1
+nuget FSharp.Formatting 2.12.0
+nuget NUnit 3.10.1
+nuget NUnit.Runners 3.8
 nuget OxyPlot.GtkSharp 1.0.0
 nuget OxyPlot.Core 1.0.0
-nuget FSharp.Core 4.0.0.1
 nuget Nuget.CommandLine
-nuget FAKE
-nuget FSharp.Control.AsyncSeq
+nuget FAKE 4.64.13
+nuget FSharp.Control.AsyncSeq 2.0.2

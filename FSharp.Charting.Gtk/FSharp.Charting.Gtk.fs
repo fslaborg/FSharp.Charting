@@ -1195,7 +1195,7 @@ namespace FSharp.Charting
         /// <param name="XTitle">The title of the X-axis.</param>
         /// <param name="YTitle">The title of the Y-axis.</param>
         static member Point(data:seq<#value>,?Name,?Title,?Labels,?Color,?XTitle,?YTitle,?MarkerSize) = 
-           Chart.Point(indexData data,?Name=Name,?Title=Title,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerSize=MarkerSize)
+           Chart.Point(indexData data,?Name=Name,?Title=Title,?Labels=Labels,?Color=Color,?XTitle=XTitle,?YTitle=YTitle,?MarkerSize=MarkerSize)
 
         /// <summary>Used to display stock information using high, low, open and close values.</summary>
         /// <param name="data">The data for the chart as (time, high, low, open, close) tuples.</param>

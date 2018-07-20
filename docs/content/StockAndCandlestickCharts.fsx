@@ -1,7 +1,7 @@
 (*** hide ***)
 #I "../../bin"
 (** 
-# F# Charting: Stock and Candlestick Charts
+# FSharp.Charting: Stock and Candlestick Charts
 
 *Summary:* This example shows how to create stock and candlestick charts to visualize financial data in F#. 
 It looks at how to draw charts, use dates as labels, and specify the range of a chart.
@@ -27,8 +27,6 @@ let prices =
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
 
 (**
-More information about working with financial data and how to download 
-stock prices from the Yahoo Finance portal using F# can be found in [Try F#](http://tryfsharp.org).
 
 A stock or a candlestick chart can be created using the `FSharpChart.Stock` and `FSharpChart.Candlestick` methods. Financial charts for
 visualizing stocks require four values for drawing each data point (High, Low, Open, and Close price). 

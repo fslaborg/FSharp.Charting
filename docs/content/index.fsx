@@ -3,6 +3,7 @@
 #load "FSharp.Charting.fsx"
 open FSharp.Charting
 open System
+
 let prices =
   [ 26.24,25.80,26.22,25.95; 26.40,26.18,26.26,26.20
     26.37,26.04,26.11,26.08; 26.78,26.15,26.60,26.16
@@ -14,28 +15,37 @@ let prices =
     27.81,27.07,27.76,27.25; 27.94,27.29,27.93,27.50
     28.26,27.91,28.19,27.97; 28.34,28.05,28.10,28.28
     28.34,27.79,27.80,28.20; 27.84,27.51,27.70,27.77 ]
+
 let priceSeries = 
     prices |> List.mapi (fun i (hi,lo,op,cl) -> 
         (DateTime.Today.AddDays(float i).ToShortDateString(), hi, lo, op, cl))
+
 let futureDate numDays = DateTime.Today.AddDays(float numDays)
+
 let rnd = new Random()
+
 let rand() = rnd.NextDouble()
+
 let expectedIncome = 
-  [ for x in 1 .. 100 -> 
-      futureDate x, 1000.0 + rand() * 100.0 * exp (float x / 40.0) ]
+    [ for x in 1 .. 100 -> 
+        futureDate x, 1000.0 + rand() * 100.0 * exp (float x / 40.0) ]
+
 let expectedExpenses = 
-  [ for x in 1 .. 100 -> 
-      futureDate x, rand() * 500.0 * sin (float x / 50.0) ]
+    [ for x in 1 .. 100 -> 
+        futureDate x, rand() * 500.0 * sin (float x / 50.0) ]
+
 let computedProfit = 
-  (expectedIncome, expectedExpenses) 
-  ||> List.map2 (fun (d1,i) (d2,e) -> (d1, i - e))
+    (expectedIncome, expectedExpenses) 
+    ||> List.map2 (fun (d1,i) (d2,e) -> (d1, i - e))
 
 
 (**
-F# Charting: Library for Data Visualization
+FSharp.Charting: Library for Data Visualization
 ===========================================
 
-The F# Charting library implements charting suitable for use from F# scripting.
+> NOTE: FSharp.Charting is mostly used on Windows. See the [XPlot](https://fslab.org/XPlot) package for alternative cross-platform charting.
+
+The FSharp.Charting library implements charting suitable for use from F# scripting.
 Once you load the library as documented in [referencing the library document](ReferencingTheLibrary.html), you 
 can use the members of the `Chart` type to easily build charts. The following example creates a candlestick
 chart for a time series and sets the range of the Y axis:
@@ -61,18 +71,18 @@ Chart.Combine(
 
 (**
 
-### How to get F# Charting
+### How to get FSharp.Charting
 
+ * The [FsLab](https://fslab.org) template includes both FSharp.Charting and [XPlot](https://fslab.org/XPlot).
  * The Windows version of the library is available as [FSharp.Charting](https://nuget.org/packages/FSharp.Charting) on NuGet
- * The Mac/Linux version of the library is available as [FSharp.Charting.Gtk](https://nuget.org/packages/FSharp.Charting.Gtk) on NuGet
- * Alternatively, you can download the [source as a ZIP file][source] or as a [binary release as a ZIP file][release].
+ * There is a preliminary Mac/Linux version of the library is available as [FSharp.Charting.Gtk](https://nuget.org/packages/FSharp.Charting.Gtk) on NuGet. See the [XPlot](https://fslab.org/XPlot) package for alternative cross-platform charting.
 
-F# Charting features 
+FSharp.Charting features 
 --------
 
 * Cross-platform 2D charting and support for pseudo-3D charts on .NET.
 * Many cross-platform chart types: Area, Bar, Bubble, Column, Line, Point and more.
-* Create charts directly from F# data such as lists and tuples.
+* Create charts directly from FSharp.Data such as lists and tuples.
 * Use either fluent or pipelined chart specifications.
 * Create updating 'LiveChart' charts from F# or Rx observables.
 * Can be used in conjunction with the [FSharp.Data](http://fsharp.github.io/FSharp.Data) library</a>.
@@ -86,13 +96,9 @@ Approach, history and future
 
 This library is a successor to `FSharpChart`. The last version of FSharpChart was [version 0.61][fsharpchart61].
 
-F# Charting uses simple, declarative chart specifications.
-On Windows, F# Charting is implemented using the Data Visualization charting controls 
+On Windows, FSharp.Charting is implemented using the Data Visualization charting controls 
 available on Windows in .NET 4.x.
-On OSX, F# Charting is implemented using the OxyPlot.GtkSharp charting library.
-
-F# Charting is designed so that the same charting specifications can be supported when 
-using different charting implementations. 
+On OSX, FSharp.Charting is implemented using the OxyPlot.GtkSharp charting library.
 
 ### Contributing
 
@@ -101,8 +107,7 @@ the project and submit pull requests. If you're adding new public API, please al
 contribute [examples][examples] that can be turned into a documentation.
 
  * If you want to discuss an issue or feature that you want to add the to the library,
-   then you can submit [an issue or feature request][issues] via Github or you can 
-   send an email to the [F# open source][fsharp-oss] mailing list.
+   then you can submit [an issue or feature request][issues] via Github.
 
  * For more information about the library architecture, organization and more
    see the [contributing](contributing.html) page.
@@ -123,6 +128,5 @@ use the library for commercial purposes, fork it, modify it as you wish.
   [gh]: https://github.com/fslaborg/FSharp.Charting
   [issues]: https://github.com/fslaborg/FSharp.Charting/issues
   [readme]: https://github.com/fslaborg/FSharp.Charting/blob/master/README.md
-  [fsharp-oss]: http://groups.google.com/group/fsharp-opensource
   [fsharpchart61]: http://code.msdn.microsoft.com/windowsdesktop/FSharpChart-b59073f5
 *)

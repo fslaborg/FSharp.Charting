@@ -1,3 +1,9 @@
+#### 2.1.0 - 20.07.2018
+* Merge master to get 0.91 updates
+
+#### 2.0.0 - 20.07.2018
+* Update docs an rebrand as 2.0.0
+
 #### 0.91.1  11.08.2017
 * Fix #133
 * Add Candlestick charts. #131

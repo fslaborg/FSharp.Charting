@@ -26,7 +26,7 @@ let project = "FSharp.Charting"
 let authors = ["Carl Nolan, Tomas Petricek"]
 let summary = "A Charting Library for F#"
 let description = """
-  The F# Charting library (FSharp.Charting.dll) is a compositional library for creating charts
+  The FSharp.Charting library (FSharp.Charting.dll) is a compositional library for creating charts
   from F#. It is designed to be a great fit for data scripting in F# Interactive, but 
   charts can also be embedded in Windows applications. The library is a wrapper for .NET Chart
   Controls, which are only supported on Windows."""
@@ -37,7 +37,7 @@ let projectGtk = "FSharp.Charting.Gtk"
 let summaryGtk = summary + " (Gtk, cross-platform)"
 let tagsGtk = tags + " Gtk GtkSharp OxyPlot"
 let descriptionGtk = """
-  The F# Charting library (FSharp.Charting.Gtk.dll) is a cross-platform variation of
+  The FSharp.Charting library (FSharp.Charting.Gtk.dll) is a cross-platform variation of
   of FSharp.Charting. It can be used on Windows, OSX and other platforms supporting Gtk."""
 
 // Read additional information from the release notes document
@@ -57,8 +57,8 @@ let compilingOnUnix =
 // Generate assembly info files with the right version & up-to-date information
 
 Target "AssemblyInfo" (fun _ ->
-    [ ("src/AssemblyInfo.fs", "FSharp.Charting", project, summary)
-      ( "src/AssemblyInfo.Gtk.fs", "FSharp.Charting.Gtk", projectGtk, summaryGtk ) ]
+    [ ("FSharp.Charting/AssemblyInfo.fs", "FSharp.Charting", project, summary)
+      ( "FSharp.Charting.Gtk/AssemblyInfo.Gtk.fs", "FSharp.Charting.Gtk", projectGtk, summaryGtk ) ]
     |> Seq.iter (fun (fileName, title, project, summary) ->
         CreateFSharpAssemblyInfo fileName
            [ Attribute.Title title
@@ -73,7 +73,7 @@ Target "AssemblyInfo" (fun _ ->
 
 Target "UpdateFsxVersions" (fun _ ->
     for nm in [ "FSharp.Charting"; "FSharp.Charting.Gtk" ] do
-        for path in [ @"./src/" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "docs/content")  do
+        for path in [ @"./" + nm + "/" + nm + ".fsx" ] @ Seq.toList (Directory.EnumerateFiles "docs/content")  do
           let text1 = File.ReadAllText(path)
           // Adjust entries like #I "../../../packages/FSharp.Charting.0.84"
           let text2 = Regex.Replace(text1, "packages/" + nm + @".(.*)/lib/net40""", "packages/" + nm + sprintf @".%s/lib/net40""" version)
@@ -98,14 +98,14 @@ Target "Clean" (fun _ ->
 
 Target "Build" (fun _ ->
     (files [if not compilingOnUnix then
-                yield "src/FSharp.Charting.fsproj";
+                yield "FSharp.Charting/FSharp.Charting.fsproj";
                 yield "tests/FSharp.Charting.Tests.fsproj" ])
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )
 
 Target "BuildGtk" (fun _ ->
-    (files [ "src/FSharp.Charting.Gtk.fsproj" ])
+    (files [ "FSharp.Charting.Gtk/FSharp.Charting.Gtk.fsproj" ])
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )

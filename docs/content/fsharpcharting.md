@@ -1,4 +1,4 @@
-# F# Charting: Documentation
+# FSharp.Charting: Documentation
 
 Getting Started:
 

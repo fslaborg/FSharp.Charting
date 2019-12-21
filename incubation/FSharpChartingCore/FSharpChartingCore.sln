@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpChartingCore", "FSharpChartingCore\FSharpChartingCore.fsproj", "{45CFACA9-4B48-4BE3-A87F-42CC948280B7}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpChartingCoreExample", "FSharpChartingCoreExample\FSharpChartingCoreExample.fsproj", "{AE2A5E1F-BF9A-4547-828F-4D41C4E6B93D}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpChartingCoreTests", "FSharpChartingCoreTests\FSharpChartingCoreTests.fsproj", "{6ABB8199-0F3E-486A-B9A5-505C0CF381E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45CFACA9-4B48-4BE3-A87F-42CC948280B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CFACA9-4B48-4BE3-A87F-42CC948280B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CFACA9-4B48-4BE3-A87F-42CC948280B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CFACA9-4B48-4BE3-A87F-42CC948280B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2A5E1F-BF9A-4547-828F-4D41C4E6B93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2A5E1F-BF9A-4547-828F-4D41C4E6B93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2A5E1F-BF9A-4547-828F-4D41C4E6B93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2A5E1F-BF9A-4547-828F-4D41C4E6B93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ABB8199-0F3E-486A-B9A5-505C0CF381E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABB8199-0F3E-486A-B9A5-505C0CF381E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABB8199-0F3E-486A-B9A5-505C0CF381E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABB8199-0F3E-486A-B9A5-505C0CF381E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

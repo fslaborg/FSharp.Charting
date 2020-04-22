@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{35EEF7
 		paket.lock = paket.lock
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting", "src\FSharp.Charting.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting", "FSharp.Charting\FSharp.Charting.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{36E72EB1-5847-4B38-8993-B951648CB0D9}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{36E7
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.Gtk", "src\FSharp.Charting.Gtk.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117D}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Charting.Gtk", "FSharp.Charting.Gtk\FSharp.Charting.Gtk.fsproj", "{6EBFDE55-9687-40A9-8C1A-6E204ECB117D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{E0C29A24-145E-4364-A268-2687F5136613}"
 	ProjectSection(SolutionItems) = preProject

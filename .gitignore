@@ -11,3 +11,6 @@ temp/*
 *.orig
 docs/output
 .fake
+FSharp.Charting.Gtk/bin/
+FSharp.Charting.Gtk/obj/
+FSharp.Charting/obj/

@@ -2,7 +2,7 @@
 
 The `FSharp.Charting` library implements charting suitable for use from F# scripting.
 
-See https://fslab.org/FSharp.Charting/ and [other charting libraries for use with F#](http://fsharp.org/guides/data-visualization/)
+See https://fslab.org/FSharp.Charting/ and [other charting libraries for use with F#](https://fsharp.org/guides/data-science/#charting)
 
 ## Library license
 

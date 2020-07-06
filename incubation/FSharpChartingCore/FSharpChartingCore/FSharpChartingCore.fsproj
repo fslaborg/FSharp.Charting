@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <!-- <UseWPF>true</UseWPF> -->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>FSharpChartingCore</Title>
+        <Authors>Tomas Petricek, other contributors, and Sergei Lopatin</Authors>
+        <Description>Charting API for F#</Description>
+        <Copyright>Apache 2.0 License</Copyright>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <PackageVersion>1.0.0-prerelease</PackageVersion>
+        <!--
+        <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+        <PublishReadyToRun>true</PublishReadyToRun>
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishTrimmed>true</PublishTrimmed> 
+        -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="FSharpChartingCore.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="3.12.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+        <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.19218.1" />
+    </ItemGroup>
+
+</Project>
